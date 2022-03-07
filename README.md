@@ -12,4 +12,4 @@ How are you??
 
 How's it going?
 
-Fine
+Fine, Thank you!! How are u?
