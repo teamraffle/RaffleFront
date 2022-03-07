@@ -14,6 +14,7 @@ export default function Landing() {
       <div>Landing Page...</div>
       <img src="https://mblogthumb-phinf.pstatic.net/20151212_10/sirasaya_1449911335572G9iqJ_GIF/0AZdESv.gif?type=w2"></img>
       <div> localhost:3000/connectWallet </div>
+      <h3> Hello ! </h3>
     </div>
   );
 }
