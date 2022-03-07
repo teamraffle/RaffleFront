@@ -12,4 +12,6 @@ How are you??
 
 How's it going?
 
-Fine, Thank you!! How are u?
+Fine
+
+Do you wanna build a snowman?
