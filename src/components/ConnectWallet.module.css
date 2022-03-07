@@ -1,0 +1,68 @@
+.title {
+  color: #f5f5f5;
+  font-family: Poppins;
+  min-height: 910px;
+  text-align: center;
+  margin-top: 155px;
+}
+
+.btnDefault {
+  position: relative;
+  width: 402px;
+  height: 80px;
+  font-size: 28px;
+  font-family: Poppins;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.84px;
+  text-align: left;
+  margin-bottom: 16px;
+  padding-left: 116px;
+  background-color: #d6f866;
+  color: #151517;
+  border-radius: 6px;
+  border: solid 1px #e8faad;
+  opacity: 0.3;
+  cursor: default;
+}
+
+.btnDisable {
+  position: relative;
+  width: 402px;
+  height: 80px;
+  font-size: 28px;
+  font-family: Poppins;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.84px;
+  text-align: left;
+  margin-bottom: 16px;
+  padding-left: 116px;
+  background-color: #d6f866;
+  color: #151517;
+  border-radius: 6px;
+  border: solid 1px #e8faad;
+  opacity: 0.3;
+  cursor: default;
+}
+
+.btnDisable:hover {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.btnDefault:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.btnIcon {
+  position: absolute;
+  top: 14px;
+  left: 36px;
+  width: 52px;
+}

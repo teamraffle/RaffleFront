@@ -5,16 +5,55 @@
 .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-open::after,
 .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-open::after,
 .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-selected::after,
-.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-selected::after {
-  border-bottom: 2px solid #21bf96 !important;
+.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-selected::after,
+.ant-menu-horizontal > .ant-menu-item-selected {
+  background-color: #151517 !important;
+}
+.ant-menu-horizontal > .ant-menu-item:hover {
+  background-color: #151517 !important;
 }
 
-.ant-menu-horizontal > .ant-menu-item-selected a,
+.ant-menu-horizontal > .ant-menu-item-selected a {
+  color: #e8faad !important;
+}
+
 .ant-menu-horizontal > .ant-menu-item a:hover {
-  color: #21bf96 !important;
+  color: #e8faad !important;
 }
 
 .ant-modal-content {
   overflow: auto;
   border-radius: 1rem;
+}
+
+.logo {
+  align-items: "center";
+  padding-left: "28px";
+  padding-right: "30px";
+}
+
+.searchIcon {
+  position: "absolute";
+  margin-top: "9.7px";
+  margin-left: "13px";
+  width: "26.6px";
+  height: "26.6px";
+  cursor: "default";
+}
+
+.metmaskBtnIcon {
+  position: "absolute";
+  margin-top: "10px";
+}
+
+.searchBar {
+  width: "520px";
+  height: "44px";
+  background-color: "#4f4f54";
+  border: "solid 1px #626262";
+  font-size: "18px";
+  float: "left";
+  color: "#63717f";
+  padding-left: "45px";
+  border-radius: "8px";
 }
