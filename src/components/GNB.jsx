@@ -8,12 +8,7 @@ function MenuItems() {
 
   return (
     <>
-      <Menu
-        theme="dark"
-        mode="horizontal"
-        className={styles.menuBar}
-        defaultSelectedKeys={[pathname]}
-      >
+      <Menu className={styles.menuBar} defaultSelectedKeys={[pathname]}>
         {/* logo */}
         <Menu.Item key="/">
           <NavLink to="/"></NavLink>
