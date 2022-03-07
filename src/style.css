@@ -6,6 +6,9 @@
 .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-open::after,
 .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-selected::after,
 .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-selected::after,
+.ant-menu.ant-menu-dark {
+  background-color: #151517;
+}
 .ant-menu-horizontal > .ant-menu-item-selected {
   background-color: #151517 !important;
 }

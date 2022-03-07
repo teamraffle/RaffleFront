@@ -1,63 +1,23 @@
 import { useLocation } from "react-router";
 import { Menu } from "antd";
 import { NavLink } from "react-router-dom";
+import styles from "./GNB.module.css";
 
 function MenuItems() {
   const { pathname } = useLocation();
-
-  const styles = {
-    menuBar: {
-      display: "flex",
-      fontSize: "17px",
-      fontWeight: "500",
-      width: "1440px",
-      justifyContent: "left",
-      background: "#151517",
-      fontFamily: "Poppins",
-    },
-    menuItem: {
-      display: "#151517",
-      height: "fit-content",
-      fontSize: "20px",
-    },
-    searchBar: {
-      width: "520px",
-      height: "44px",
-      background: "#4f4f54",
-      border: "solid 1px #626262",
-      fontSize: "18px",
-      float: "left",
-      color: "#63717f",
-      paddingLeft: "45px",
-      borderRadius: "8px",
-    },
-    icon: {
-      position: "absolute",
-      marginTop: "9.7px",
-      marginLeft: "13px",
-      width: "26.6px",
-      height: "26.6px",
-      cursor: "default",
-    },
-    logo: {
-      alignItems: "center",
-      paddingLeft: "28px",
-      paddingRight: "30px",
-    },
-  };
 
   return (
     <>
       <Menu
         theme="dark"
         mode="horizontal"
-        style={styles.menuBar}
+        className={styles.menuBar}
         defaultSelectedKeys={[pathname]}
       >
         {/* logo */}
         <Menu.Item key="/">
           <NavLink to="/"></NavLink>
-          <div style={styles.logo}>
+          <div className={styles.logo}>
             <svg
               width="121"
               height="19"
@@ -73,22 +33,22 @@ function MenuItems() {
           </div>
         </Menu.Item>
         {/* Button Ranking */}
-        <Menu.Item style={styles.menuItem} key="/ranking">
+        <Menu.Item className={styles.menuItem} key="/ranking">
           <NavLink to="/ranking">Ranking</NavLink>
         </Menu.Item>
         {/* Button About Us */}
-        <Menu.Item style={styles.menuItem} key="/aboutUs">
+        <Menu.Item className={styles.menuItem} key="/aboutUs">
           <NavLink to="/aboutUs">About Us</NavLink>
         </Menu.Item>
         {/* Search Bar */}
         <Menu.Item key="searchIcon">
           <div className="searchContainer">
             <img
-              style={styles.icon}
+              className={styles.icon}
               src="https://user-images.githubusercontent.com/49471288/156142084-1cd52e4a-db14-4ced-93b8-2d23170f0291.png"
             />
             <input
-              style={styles.searchBar}
+              className={styles.searchBar}
               type="search"
               id="search"
               placeholder="Search Nickname and Address"

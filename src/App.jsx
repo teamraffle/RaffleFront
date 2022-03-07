@@ -19,22 +19,13 @@ import Ranking from "components/Ranking";
 import Contract from "components/Contract/Contract";
 import Text from "antd/lib/typography/Text";
 import Ramper from "components/Ramper";
-import MenuItems from "./components/MenuItems";
+import GNB from "./components/GNB";
 import Landing from "./components/Landing";
 import AboutUs from "./components/AboutUs";
 import ConnectWallet from "./components/ConnectWallet";
 const { Footer } = Layout;
 
 const styles = {
-  content: {
-    display: "flex",
-    justifyContent: "center",
-    fontFamily: "Poppins, sans-serif",
-    color: "#f5f5f5",
-    backgroundColor: "#151517",
-    marginTop: "72px",
-    padding: "10px",
-  },
   header: {
     position: "fixed",
     zIndex: 1,
@@ -54,6 +45,15 @@ const styles = {
     alignItems: "center",
     fontSize: "15px",
     fontWeight: "600",
+  },
+  content: {
+    display: "flex",
+    justifyContent: "center",
+    fontFamily: "Poppins, sans-serif",
+    color: "#f5f5f5",
+    backgroundColor: "#151517",
+    marginTop: "72px",
+    padding: "10px",
   },
   footer: {
     alignItems: "left",
@@ -83,15 +83,13 @@ const App = ({ isServerInfo }) => {
         <Router>
           {/* Header */}
           <div style={styles.header}>
-            <MenuItems />
-            {/* Search Bar */}
-
-            {/* header right */}
+            <GNB />
             <div style={styles.headerRight}>
               <Account />
             </div>
           </div>
 
+          {/* Contents */}
           <div style={styles.content}>
             <Switch>
               <Route exact path="/">
@@ -146,6 +144,8 @@ const App = ({ isServerInfo }) => {
             </Switch>
           </div>
         </Router>
+
+        {/* Footer */}
         <Footer style={styles.footer}>
           <Text style={{ color: "#bdbebe" }}>
             ⓒ 2022 RAFFLE | All rights reserved

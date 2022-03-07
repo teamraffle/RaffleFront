@@ -1,0 +1,42 @@
+.menuBar {
+  display: flex;
+  font-size: 17px;
+  font-weight: 500;
+  width: 1440px;
+  justify-content: left;
+  background: #151517;
+  font-family: Poppins;
+}
+
+.logo {
+  align-items: center;
+  padding-left: 28px;
+  padding-right: 30px;
+}
+
+.icon {
+  position: absolute;
+  margin-top: 9.7px;
+  margin-left: 13px;
+  width: 26.6px;
+  height: 26.6px;
+  cursor: default;
+}
+
+.menuItem {
+  display: #151517;
+  height: fit-content;
+  font-size: 20px;
+}
+
+.searchBar {
+  width: 520px;
+  height: 44px;
+  background: #4f4f54;
+  border: solid 1px #626262;
+  font-size: 18px;
+  float: left;
+  color: #63717f;
+  padding-left: 45px;
+  border-radius: 8px;
+}
