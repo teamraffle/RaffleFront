@@ -6,7 +6,6 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
-import Account from "components/Account/Account";
 import ERC20Balance from "components/ERC20Balance";
 import ERC20Transfers from "components/ERC20Transfers";
 import DEX from "components/DEX";
@@ -84,9 +83,6 @@ const App = ({ isServerInfo }) => {
           {/* Header */}
           <div style={styles.header}>
             <GNB />
-            <div style={styles.headerRight}>
-              <Account />
-            </div>
           </div>
 
           {/* Contents */}

@@ -41,22 +41,3 @@
   padding-left: 45px;
   border-radius: 8px;
 }
-
-.headerRight {
-  display: flex;
-  margin-left: 263px;
-  gap: 20px;
-  align-items: center;
-  font-size: 15px;
-  font-weight: 600;
-  cursor: default;
-}
-
-.connectBtn {
-  border: 1px solid #d6f866;
-  border-radius: 6px;
-  padding: 2px 40px;
-  color: #d6f866;
-  background-color: #151517;
-  cursor: pointer;
-}
