@@ -10,9 +10,9 @@
 
 .logo {
   align-items: center;
-  width: 268px;
-  padding-left: 28px;
-  padding-right: 30px;
+  width: 140px;
+  margin-top: 9px;
+  margin-bottom: 9px;
 }
 
 .icon {
@@ -25,21 +25,9 @@
 }
 
 .menuItem {
-  display: #151517;
+  background-color: #151517;
   height: fit-content;
   font-size: 20px;
-}
-
-.searchBar {
-  width: 520px;
-  height: 44px;
-  background: #4f4f54;
-  border: solid 1px #626262;
-  font-size: 18px;
-  float: left;
-  color: #63717f;
-  padding-left: 45px;
-  border-radius: 8px;
 }
 
 .headerRight {
