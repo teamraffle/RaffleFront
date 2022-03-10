@@ -8,7 +8,14 @@
 .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-selected::after,
 .ant-menu.ant-menu-dark {
   background-color: #151517;
+  color: red;
 }
+
+/* For GNB Buttons */
+.ant-menu-dark .ant-menu-item > span > a {
+  color: #f5f5f5;
+}
+
 .ant-menu-horizontal > .ant-menu-item-selected {
   background-color: #151517 !important;
 }
@@ -29,34 +36,45 @@
   border-radius: 1rem;
 }
 
-.logo {
-  align-items: "center";
-  padding-left: "28px";
-  padding-right: "30px";
+input:focus {
+  outline: none;
 }
 
-.searchIcon {
-  position: "absolute";
-  margin-top: "9.7px";
-  margin-left: "13px";
-  width: "26.6px";
-  height: "26.6px";
-  cursor: "default";
+/* App.jsx */
+.header {
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  height: 72px;
+  background: #151517;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  font-family: Roboto, sans-serif;
+  border-bottom: 5px solid rgba(47, 47, 47, 1);
+  padding: 0px;
 }
 
-.metmaskBtnIcon {
-  position: "absolute";
-  margin-top: "10px";
+.headerRight {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  font-size: 15px;
+  font-weight: 600;
 }
 
-.searchBar {
-  width: "520px";
-  height: "44px";
-  background-color: "#4f4f54";
-  border: "solid 1px #626262";
-  font-size: "18px";
-  float: "left";
-  color: "#63717f";
-  padding-left: "45px";
-  border-radius: "8px";
+.content {
+  display: flex;
+  justify-content: center;
+  font-family: Poppins, sans-serif;
+  color: #f5f5f5;
+  background-color: #151517;
+  margin-top: 72px;
+  padding: 10px;
+}
+
+.footer {
+  align-items: left;
+  background-color: #151517;
+  color: #bdbebe;
 }

@@ -2,7 +2,7 @@
   display: flex;
   font-size: 17px;
   font-weight: 500;
-  width: 1440px;
+  max-width: 1440px;
   justify-content: left;
   background: #151517;
   font-family: Poppins;
@@ -10,8 +10,9 @@
 
 .logo {
   align-items: center;
-  padding-left: 28px;
-  padding-right: 30px;
+  width: 140px;
+  margin-top: 9px;
+  margin-bottom: 9px;
 }
 
 .icon {
@@ -24,19 +25,29 @@
 }
 
 .menuItem {
-  display: #151517;
+  background-color: #151517;
   height: fit-content;
   font-size: 20px;
 }
 
-.searchBar {
-  width: 520px;
+.headerRight {
+  display: flex;
+  margin-left: 263px;
+  gap: 20px;
+  align-items: center;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: default;
+}
+
+.connectBtn {
   height: 44px;
-  background: #4f4f54;
-  border: solid 1px #626262;
-  font-size: 18px;
-  float: left;
-  color: #63717f;
-  padding-left: 45px;
-  border-radius: 8px;
+  line-height: 44px;
+  width: 147px;
+  border: 1px solid #d6f866;
+  border-radius: 6px;
+  color: #d6f866;
+  background-color: #151517;
+  cursor: pointer;
+  font-size: 16px;
 }

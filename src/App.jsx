@@ -6,7 +6,6 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
-import Account from "components/Account/Account";
 import ERC20Balance from "components/ERC20Balance";
 import ERC20Transfers from "components/ERC20Transfers";
 import DEX from "components/DEX";
@@ -14,6 +13,7 @@ import NFTBalance from "components/NFTBalance";
 import Wallet from "components/Wallet";
 import { Layout, Tabs } from "antd"; // ant design library
 import "antd/dist/antd.css";
+// import styles from "./style.css";
 import "./style.css";
 import Ranking from "components/Ranking";
 import Contract from "components/Contract/Contract";
@@ -24,6 +24,7 @@ import Landing from "./components/Landing";
 import AboutUs from "./components/AboutUs";
 import ConnectWallet from "./components/ConnectWallet";
 const { Footer } = Layout;
+// import st from "./style.css";
 
 const styles = {
   header: {
@@ -48,17 +49,22 @@ const styles = {
   },
   content: {
     display: "flex",
+    position: "relative",
     justifyContent: "center",
     fontFamily: "Poppins, sans-serif",
     color: "#f5f5f5",
     backgroundColor: "#151517",
     marginTop: "72px",
-    padding: "10px",
+    minHeight: "1080px",
+    height: "auto",
   },
   footer: {
+    position: "absolute",
+    bottom: "0",
+    left: "0",
+    width: "100%",
     alignItems: "left",
-    backgroundColor: "#151517",
-    color: "#bdbebe",
+    backgroundColor: "rgba(255, 255, 255, 0)",
   },
 };
 
@@ -77,16 +83,13 @@ const App = ({ isServerInfo }) => {
     <div>
       <Layout
         style={{
-          height: "10vh",
+          height: "100vh",
         }}
       >
         <Router>
           {/* Header */}
           <div style={styles.header}>
             <GNB />
-            <div style={styles.headerRight}>
-              <Account />
-            </div>
           </div>
 
           {/* Contents */}
@@ -142,15 +145,14 @@ const App = ({ isServerInfo }) => {
                 <>Please login using the "Authenticate" button</>
               </Route>
             </Switch>
+            {/* Footer */}
+            <Footer style={styles.footer}>
+              <Text style={{ color: "#bdbebe" }}>
+                ⓒ 2022 RAFFLE | All rights reserved
+              </Text>
+            </Footer>
           </div>
         </Router>
-
-        {/* Footer */}
-        <Footer style={styles.footer}>
-          <Text style={{ color: "#bdbebe" }}>
-            ⓒ 2022 RAFFLE | All rights reserved
-          </Text>
-        </Footer>
       </Layout>
     </div>
   );
