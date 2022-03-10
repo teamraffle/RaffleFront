@@ -53,6 +53,18 @@
   border-right: solid 1px #626262;
 }
 
-.ant-menu-selected > input {
-  background-color: red;
+.searchResultString {
+  height: 40px;
+  font-size: 12px;
+  font-weight: 500px;
+  font-style: normal;
+  text-align: left;
+}
+
+.searchingString {
+  height: 40px;
+  font-size: 16px;
+  font-weight: 500px;
+  font-style: normal;
+  text-align: left;
 }

@@ -12,7 +12,10 @@ function SearchBar() {
   const SearchPreview = ({ keyword }) => {
     return (
       <div className={styles.searchResults}>
-        <div>{keyword}</div>
+        {keyword.length > 0 ? (
+          <div className={styles.searchingString}>🖐 {keyword}</div>
+        ) : null}
+        <div className={styles.searchResultString}>REACENTLY SEARCHES</div>
       </div>
     );
   };
@@ -27,10 +30,11 @@ function SearchBar() {
 
   return (
     <div>
-      {searchingWord.length > 0 ? (
+      {searchingWord.length > 0 || searching ? (
         <SearchPreview keyword={searchingWord} />
       ) : null}
       <input
+        autoComplete="off"
         className={
           searching || searchingWord.length > 0
             ? styles.searchBarFocus
@@ -40,6 +44,7 @@ function SearchBar() {
         id="search"
         placeholder="Search Nickname and Address"
         onChange={onchange}
+        onClick={isSearching}
         onFocus={isSearching}
         onBlur={stopSearching}
       />

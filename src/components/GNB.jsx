@@ -34,14 +34,12 @@ function MenuItems() {
         <Menu.Item key="search">
           <SearchBar />
         </Menu.Item>
-        {/* GNB Right */}
-        {/*
+        {/* GNB Right -- Connect Button */}
         <Menu.Item className={styles.headerRight}>
           <button className={styles.connectBtn}>
             <NavLink to="/connectWallet"></NavLink>Connect
           </button>
         </Menu.Item>
-        */}
       </Menu>
     </>
   );
