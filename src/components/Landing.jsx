@@ -1,20 +1,20 @@
 import React from "react";
-
-const styles = {
-  title: {
-    color: "#f5f5f5",
-    fontFamily: "Poppins",
-    minHeight: "840px",
-  },
-};
+import styles from "./Landing.module.css";
 
 export default function Landing() {
   return (
-    <div style={styles.title}>
-      <div>Landing Page...</div>
-      <img src="https://mblogthumb-phinf.pstatic.net/20151212_10/sirasaya_1449911335572G9iqJ_GIF/0AZdESv.gif?type=w2"></img>
-      <div> localhost:3000/connectWallet </div>
-      <h3>Hello !</h3>
+    <div className={styles.Landing}>
+      <div className={styles.Track}>
+        Track Your Position <br />
+        in NFT World
+      </div>
+
+      <div className={styles.Browser}>
+        <img src="img/Mask_group.png"></img>
+      </div>
+
+      <div className={styles.Lets}>Let's start a journey to NFT World!</div>
+      <button className={styles.Component}>Check My Rank</button>
     </div>
   );
 }

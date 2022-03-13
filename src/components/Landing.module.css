@@ -1,6 +1,87 @@
+@keyframes fadein {
+  0% {
+    opacity: 0;
+    transform: none;
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.Landing {
+  color: #f5f5f5;
+  font-family: Poppins;
+  position: relative;
+  
+}
+
 .logo {
   align-items: center;
   width: 140px;
   margin-top: 9px;
   margin-bottom: 9px;
+}
+
+.Browser {
+  width: 947px;
+  height: 574px;
+  overflow: hidden;
+  animation: fadein 3s ease-in-out;
+  flex-grow: 0;
+  margin: -256px -122px -190px 851px;
+}
+
+.Track {
+  width: 610px;
+  height: 160px;
+  margin: 212px 1042px 24px 268px;
+  overflow: hidden;
+  animation: fadein 3s ease-in-out;
+  font-family: Poppins;
+  font-size: 60px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.25;
+  letter-spacing: -1.28px;
+  text-align: left;
+  color: #fff;
+}
+
+.Lets {
+  width: 405px;
+  height: 72px;
+  margin: -320px 5px 504px 268px;
+  overflow: hidden;
+  animation: fadein 3s ease-in-out;
+  font-family: Poppins;
+  font-size: 24px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: var(--raffle-white);
+}
+
+.Component {
+  position: absolute;
+  overflow: hidden;
+  animation: fadein 3s ease-in-out;
+  top: 55.4%;
+  left: 44.8%;
+  background-color: #d6f866;
+  margin: -130px 5px 504px -512px;
+  width: 253px;
+  height: 53px;
+  align-items: center;
+  border-radius: 8px;
+  border: solid 1px #e8faad;
+  font-size: 22px;
+  font-weight: bold;
+  color: #151517;
+  letter-spacing: -0.66px;
+  cursor: pointer;
 }
