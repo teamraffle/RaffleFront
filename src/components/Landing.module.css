@@ -13,7 +13,7 @@
   color: #f5f5f5;
   font-family: Poppins;
   text-align: center;
-  width: 100%;
+  width: 1920px;
   height: 5240px;
 }
 
@@ -210,6 +210,8 @@
 }
 
 .Block5RightTitle {
+  position: relative;
+  z-index: 2;
   margin-top: 204px;
   font-family: Poppins;
   font-size: 72px;
@@ -223,6 +225,8 @@
 }
 
 .Block5RightContent {
+  position: relative;
+  z-index: 2;
   margin-top: 38px;
   font-family: Poppins;
   font-size: 18px;
@@ -341,7 +345,7 @@
   width: auto;
   height: auto;
   margin-left: 778px;
-  margin-top: 4094px;
+  margin-top: 3600px;
   /* object-fit: contain; */
   animation: fadein 3s ease-in-out;
 }

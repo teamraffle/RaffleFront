@@ -55,11 +55,10 @@ const styles = {
     color: "#f5f5f5",
     backgroundColor: "#151517",
     marginTop: "72px",
-    minHeight: "100%",
     height: "auto",
   },
   footer: {
-    position: "absolute",
+    position: "relative",
     bottom: "0",
     left: "0",
     width: "100%",
@@ -141,13 +140,13 @@ const App = ({ isServerInfo }) => {
                 <>Please login using the "Authenticate" button</>
               </Route>
             </Switch>
-            {/* Footer */}
-            <Footer style={styles.footer}>
-              <Text style={{ color: "#bdbebe" }}>
-                ⓒ 2022 RAFFLE | All rights reserved
-              </Text>
-            </Footer>
           </div>
+          {/* Footer */}
+          <Footer style={styles.footer}>
+            <Text style={{ color: "#bdbebe" }}>
+              ⓒ 2022 RAFFLE | All rights reserved
+            </Text>
+          </Footer>
         </Router>
       </Layout>
     </div>
