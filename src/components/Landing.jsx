@@ -4,6 +4,12 @@ import styles from "./Landing.module.css";
 export default function Landing() {
   return (
     <div className={styles.Landing}>
+      <div className={styles.Blur1}>
+        <img src="img/Blur_1.png" alt=" "></img>
+      </div>
+      <div className={styles.Blur3}>
+        <img src="img/Blur_3.png" alt=" "></img>
+      </div>
       <div className={styles.Block1}>
         <div className={styles.Block1Title}>
           Track Your Position <br />
@@ -18,10 +24,6 @@ export default function Landing() {
           <button className={styles.Block1Btn}>Check My Rank</button>
         </div>
       </div>
-
-      {/* <div className={styles.Blur1}>
-        <img src="img/Blur_1.svg"></img>
-      </div> */}
       <div className={styles.Block2}>
         <div className={styles.Block2Left}>
           <div className={styles.Block2LeftTitle}>
@@ -109,6 +111,9 @@ export default function Landing() {
             <button className={styles.Block1Btn}>Check My Rank</button>
           </div>
         </div>
+      </div>
+      <div className={styles.Blur2}>
+        <img src="img/Blur_2.png" alt=" "></img>
       </div>
     </div>
   );

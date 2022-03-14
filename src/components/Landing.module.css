@@ -19,7 +19,7 @@
 
 .Block1Title {
   font-family: Poppins;
-  font-size: 84px;
+  font-size: 88px;
   font-weight: bold;
   font-stretch: normal;
   font-style: normal;
@@ -48,16 +48,6 @@
   text-align: center;
   margin-top: 56px;
   color: var(--raffle-white);
-}
-
-.Blur1 {
-  position: absolute;
-  width: 749px;
-  height: 474px;
-  margin-left: 57.4%;
-  margin-top: -21%;
-  /* object-fit: contain; */
-  animation: fadein 3s ease-in-out;
 }
 
 .Block1Btn {
@@ -136,6 +126,7 @@
 }
 
 .Block3Image {
+  z-index: 2;
   animation: fadein 3s ease-in-out;
   margin-top: 72px;
   width: 945px;
@@ -276,32 +267,77 @@
     flex-grow: 0;
 }  */
 
+/* ---------------- Blocks ------------------- */
 .Block1 {
+  z-index: 2;
   margin-top: 192px;
   overflow: hidden;
 }
 
 .Block2 {
+  z-index: 2;
   margin-top: 281px;
   height: 591;
   overflow: hidden;
 }
 
 .Block3 {
+  z-index: 2;
   margin-top: 283px;
   overflow: hidden;
 }
 
 .Block4 {
+  z-index: 2;
   margin-top: 377px;
   overflow: hidden;
 }
 
 .Block5 {
+  z-index: 2;
   margin-top: 206px;
   overflow: hidden;
 }
 
 .Block6 {
+  z-index: 2;
   margin-top: 248px;
+}
+
+/* -------------- Blur Images ---------------- */
+
+.Blur1 {
+  z-index: 1;
+  overflow: hidden;
+  position: absolute;
+  width: auto;
+  height: auto;
+  margin-left: 709px;
+  margin-top: 0px;
+  /* object-fit: contain; */
+  animation: fadein 3s ease-in-out;
+}
+
+.Blur2 {
+  z-index: 1;
+  overflow: hidden;
+  position: absolute;
+  width: auto;
+  height: auto;
+  margin-left: 87px;
+  margin-top: -3636px;
+  /* object-fit: contain; */
+  animation: fadein 3s ease-in-out;
+}
+
+.Blur3 {
+  z-index: 1;
+  overflow: hidden;
+  position: absolute;
+  width: auto;
+  height: auto;
+  margin-left: 778px;
+  margin-top: 4094px;
+  /* object-fit: contain; */
+  animation: fadein 3s ease-in-out;
 }
