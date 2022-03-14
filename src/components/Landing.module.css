@@ -25,6 +25,9 @@
 .Browser {
   width: 947px;
   height: 574px;
+  top: 55%;
+  left: 5%;
+  position: relative;
   overflow: hidden;
   animation: fadein 3s ease-in-out;
   flex-grow: 0;
@@ -32,30 +35,34 @@
 }
 
 .Track {
-  width: 610px;
-  height: 160px;
-  margin: 212px 1042px 24px 268px;
+  width: 1000px;
+  height: 400px;
+  top: 20%;
+  left: 19%;
+  position: relative;
   overflow: hidden;
   animation: fadein 3s ease-in-out;
   font-family: Poppins;
-  font-size: 60px;
+  font-size: 84px;
   font-weight: bold;
   font-stretch: normal;
   font-style: normal;
   line-height: 1.25;
   letter-spacing: -1.28px;
-  text-align: left;
+  text-align: center;
   color: #fff;
 }
 
 .Lets {
-  width: 405px;
-  height: 72px;
-  margin: -320px 5px 504px 268px;
+  width: 500px;
+  height: 100px;
+  position: absolute;
+  top: 42.5%;
+  left: 34%;
   overflow: hidden;
   animation: fadein 3s ease-in-out;
   font-family: Poppins;
-  font-size: 24px;
+  font-size: 28px;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
@@ -65,14 +72,25 @@
   color: var(--raffle-white);
 }
 
+.Blur1 {
+  width: 100%;
+  height: auto;
+  top: -35%;
+  left: 35%;
+  position: relative;
+  /* margin: -256px -122px -190px 851px; */
+  object-fit: contain;
+  overflow: hidden;
+  animation: fadein 3s ease-in-out;
+}
+
 .Component {
   position: absolute;
   overflow: hidden;
   animation: fadein 3s ease-in-out;
-  top: 55.4%;
-  left: 44.8%;
+  top: 50%;
+  left: 41.5%;
   background-color: #d6f866;
-  margin: -130px 5px 504px -512px;
   width: 253px;
   height: 53px;
   align-items: center;
@@ -82,5 +100,8 @@
   font-weight: bold;
   color: #151517;
   letter-spacing: -0.66px;
-  cursor: pointer;
+  cursor: pointer; 
 }
+
+
+

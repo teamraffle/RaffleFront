@@ -13,6 +13,10 @@ export default function Landing() {
         <img src="img/Mask_group.png"></img>
       </div>
 
+      <div className={styles.Blur1}>
+        <img src="img/Blur_1.png"></img>
+      </div>
+
       <div className={styles.Lets}>Let's start a journey to NFT World!</div>
       <button className={styles.Component}>Check My Rank</button>
     </div>

@@ -55,7 +55,7 @@ const styles = {
     color: "#f5f5f5",
     backgroundColor: "#151517",
     marginTop: "72px",
-    minHeight: "1080px",
+    minHeight: "100%",
     height: "auto",
   },
   footer: {
@@ -83,7 +83,7 @@ const App = ({ isServerInfo }) => {
     <div>
       <Layout
         style={{
-          height: "100vh",
+          minheight: "907px",
         }}
       >
         <Router>
