@@ -81,11 +81,7 @@ const App = ({ isServerInfo }) => {
 
   return (
     <div>
-      <Layout
-        style={{
-          minheight: "1080px",
-        }}
-      >
+      <Layout>
         <Router>
           {/* Header */}
           <div style={styles.header}>
