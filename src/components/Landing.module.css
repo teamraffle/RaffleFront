@@ -18,6 +18,7 @@
 }
 
 .Block1Title {
+  position: relative;
   font-family: Poppins;
   font-size: 88px;
   font-weight: bold;
@@ -29,15 +30,9 @@
   color: #fff;
 }
 
-.logo {
-  align-items: center;
-  width: 140px;
-  margin-top: 9px;
-  margin-bottom: 9px;
-}
-
 .Block1Content {
   animation: fadein 3s ease-in-out;
+  position: relative;
   font-family: Poppins;
   font-size: 28px;
   font-weight: normal;
@@ -53,6 +48,8 @@
 .Block1Btn {
   animation: fadein 3s ease-in-out;
 
+  z-index: 2;
+  position: relative;
   background-color: #d6f866;
   width: 253px;
   height: 53px;
@@ -113,6 +110,8 @@
 }
 
 .Block3Title {
+  position: relative;
+  z-index: 2;
   animation: fadein 3s ease-in-out;
   font-family: Poppins;
   font-size: 72px;
@@ -126,6 +125,7 @@
 }
 
 .Block3Image {
+  position: relative;
   z-index: 2;
   animation: fadein 3s ease-in-out;
   margin-top: 72px;
@@ -137,6 +137,8 @@
 }
 
 .Block3Content {
+  position: relative;
+  z-index: 2;
   margin-top: 84px;
   text-align: left;
   overflow: auto;
@@ -234,6 +236,8 @@
 }
 
 .Block6Title {
+  position: relative;
+  z-index: 2;
   margin-bottom: 72px;
   font-family: Poppins;
   font-size: 88px;
@@ -313,7 +317,7 @@
   width: auto;
   height: auto;
   margin-left: 709px;
-  margin-top: 0px;
+  margin-top: -192px;
   /* object-fit: contain; */
   animation: fadein 3s ease-in-out;
 }

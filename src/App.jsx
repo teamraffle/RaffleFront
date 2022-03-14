@@ -29,7 +29,7 @@ const { Footer } = Layout;
 const styles = {
   header: {
     position: "fixed",
-    zIndex: 1,
+    zIndex: 100,
     width: "100%",
     height: "72px",
     background: "#151517",

@@ -1,4 +1,6 @@
 .menuBar {
+  z-index: 100;
+  position: absolute;
   display: flex;
   font-size: 17px;
   font-weight: 500;

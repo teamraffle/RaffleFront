@@ -4,13 +4,13 @@ import styles from "./Landing.module.css";
 export default function Landing() {
   return (
     <div className={styles.Landing}>
-      <div className={styles.Blur1}>
-        <img src="img/Blur_1.png" alt=" "></img>
-      </div>
       <div className={styles.Blur3}>
         <img src="img/Blur_3.png" alt=" "></img>
       </div>
       <div className={styles.Block1}>
+        <div className={styles.Blur1}>
+          <img src="img/Blur_1.png" alt=" "></img>
+        </div>
         <div className={styles.Block1Title}>
           Track Your Position <br />
           in NFT World
