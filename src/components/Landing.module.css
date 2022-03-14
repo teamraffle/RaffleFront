@@ -23,25 +23,25 @@
 }
 
 .Browser {
-  width: 947px;
-  height: 574px;
-  top: 55%;
-  left: 5%;
-  position: relative;
+  position: absolute;
   overflow: hidden;
   animation: fadein 3s ease-in-out;
+  width: 947px;
+  height: 574px;
+  margin: 300px -100px auto;
   flex-grow: 0;
-  margin: -256px -122px -190px 851px;
+  
 }
 
 .Track {
+  position: absolute;
+  overflow: hidden;
+  display: flex;
+  margin:220px 275px auto;
+  animation: fadein 3s ease-in-out;
   width: 1000px;
   height: 400px;
-  top: 20%;
-  left: 19%;
-  position: relative;
-  overflow: hidden;
-  animation: fadein 3s ease-in-out;
+  left: 1%;
   font-family: Poppins;
   font-size: 84px;
   font-weight: bold;
@@ -57,8 +57,7 @@
   width: 500px;
   height: 100px;
   position: absolute;
-  top: 42.5%;
-  left: 34%;
+  margin: -780px 430px auto;
   overflow: hidden;
   animation: fadein 3s ease-in-out;
   font-family: Poppins;
@@ -77,9 +76,9 @@
   height: auto;
   top: -35%;
   left: 35%;
-  position: relative;
-  /* margin: -256px -122px -190px 851px; */
-  object-fit: contain;
+  position: absolute;
+  margin: 10px 80px auto;
+  /* object-fit: contain; */
   overflow: hidden;
   animation: fadein 3s ease-in-out;
 }
@@ -88,8 +87,8 @@
   position: absolute;
   overflow: hidden;
   animation: fadein 3s ease-in-out;
-  top: 50%;
-  left: 41.5%;
+
+  margin: -700px 550px auto;
   background-color: #d6f866;
   width: 253px;
   height: 53px;
@@ -102,3 +101,63 @@
   letter-spacing: -0.66px;
   cursor: pointer;
 }
+
+.Jungle {
+    width: 1000px;
+    height: 400px;
+    top: -45%;
+    left: 10%;
+    position: relative;
+    overflow: hidden;
+    animation: fadein 3s ease-in-out;
+    font-family: Poppins;
+    font-size: 72px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.25;
+    letter-spacing: -1.28px;
+    text-align: left;
+    color: #fff;
+}
+
+.Junglecontent {
+    width: 500px;
+    height: 100px;
+    position: absolute;
+    /* top: 25%;
+    left: 34%; */
+    overflow: hidden;
+    animation: fadein 3s ease-in-out;
+    font-family: Poppins;
+    font-size: 28px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: left;
+    color: var(--raffle-white);
+}
+
+/* .Portfolio {
+    width: 947px;
+    height: 574px;
+    top: 33%;
+    left: 5%;
+    /* position: relative; */
+    /* overflow: hidden;
+    animation: fadein 3s ease-in-out;
+    flex-grow: 0;
+}
+
+.Portfolio2 {
+    width: 947px;
+    height: 574px;
+    top: 33%;
+    left: 5%;
+    /* position: relative; */
+    /* overflow: hidden;
+    animation: fadein 3s ease-in-out;
+    flex-grow: 0;
+}  */ 

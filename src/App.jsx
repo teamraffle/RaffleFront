@@ -83,7 +83,7 @@ const App = ({ isServerInfo }) => {
     <div>
       <Layout
         style={{
-          minheight: "907px",
+          minheight: "1080px",
         }}
       >
         <Router>
