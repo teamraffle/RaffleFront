@@ -29,14 +29,6 @@ export default function Landing() {
         Welcomesdfsdfsd <br />
         to the Junglefsdf
       </div>
-
-      {/* <div className={styles.Prortfolio}>
-        <img src="img/Mask_group.png"></img>
-      </div>
-
-      <div className={styles.Portfolio2}>
-        <img src="img/Blur_1.png"></img>
-      </div> */}
     </div>
   );
 }

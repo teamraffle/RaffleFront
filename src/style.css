@@ -11,6 +11,10 @@
   color: red;
 }
 
+.ant-layout {
+  min-height:100vh;
+  background-color: #151517;
+}
 /* For GNB Buttons */
 .ant-menu-dark .ant-menu-item > span > a {
   color: #f5f5f5;
