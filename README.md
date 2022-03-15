@@ -10,9 +10,6 @@ BRANCH
  |--dev\            # 개발용
 ```
 
-- ethereum-boilerplate [링크](https://github.com/ethereum-boilerplate/ethereum-boilerplate)
-- antd UI Library [링크](https://ant.design/docs/react/introduce)
-
 ```
 public\
  |--img\            # 로고, 아이콘 등의 이미지 파일들
@@ -28,3 +25,6 @@ src\
  |--index.css       #
  |--style.css       #
 ```
+
+- ethereum-boilerplate [링크](https://github.com/ethereum-boilerplate/ethereum-boilerplate)
+- antd UI Library [링크](https://ant.design/docs/react/introduce)
