@@ -20,7 +20,7 @@ function MenuItems() {
         {/* logo */}
         <Menu.Item key="/">
           <NavLink to="/"></NavLink>
-          <img className={styles.logo} src="img/NFT_Ranks_Logo.png" />
+          <img className={styles.logo} src="img/NFT_Ranks_Logo.svg" alt=" " />
         </Menu.Item>
         {/* Ranking Button */}
         <Menu.Item className={styles.menuItem} key="/ranking">

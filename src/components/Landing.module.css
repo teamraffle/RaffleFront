@@ -12,33 +12,15 @@
 .Landing {
   color: #f5f5f5;
   font-family: Poppins;
-  position: relative;
   text-align: center;
+  width: 1920px;
+  height: 5240px;
 }
 
-.logo {
-  align-items: center;
-  width: 140px;
-  margin-top: 9px;
-  margin-bottom: 9px;
-}
-
-.Browser {
-  overflow: hidden;
-  animation: fadein 3s ease-in-out;
-  width: 947px;
-  height: 574px;
-  flex-grow: 0;
-}
-
-.Track {
-  overflow: hidden;
-  animation: fadein 3s ease-in-out;
-  width: 1000px;
-  height: 400px;
-  margin-top: 200px;
+.Block1Title {
+  position: relative;
   font-family: Poppins;
-  font-size: 84px;
+  font-size: 88px;
   font-weight: bold;
   font-stretch: normal;
   font-style: normal;
@@ -48,9 +30,9 @@
   color: #fff;
 }
 
-.Lets {
-  overflow: hidden;
+.Block1Content {
   animation: fadein 3s ease-in-out;
+  position: relative;
   font-family: Poppins;
   font-size: 32px;
   font-weight: normal;
@@ -59,25 +41,15 @@
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
+  margin-top: 56px;
   color: var(--raffle-white);
 }
 
-.Blur1 {
-  width: 100%;
-  height: auto;
-  top: -35%;
-  left: 35%;
-  position: absolute;
-  margin: 10px 80px auto;
-  overflow: hidden;
+.Block1Btn {
   animation: fadein 3s ease-in-out;
-}
 
-.Component {
-  overflow: hidden;
-  animation: fadein 3s ease-in-out;
+  z-index: 2;
   position: relative;
-
   background-color: #d6f866;
   width: 253px;
   height: 53px;
@@ -87,43 +59,199 @@
   font-weight: bold;
   color: #151517;
   letter-spacing: -0.66px;
-  text-align: center;
   cursor: pointer;
+
+  margin-top: 72px;
 }
 
-.Jungle {
-  overflow: hidden;
+.Block2Left {
+  margin-left: 14%;
+  text-align: left;
+  float: left;
+  width: 32%;
+}
+
+.Block2LeftTitle {
   animation: fadein 3s ease-in-out;
   font-family: Poppins;
-  font-size: 72px;
-  font-weight: bold;
+  font-size: 54px;
   font-stretch: normal;
   font-style: normal;
   line-height: 1.25;
   letter-spacing: -1.28px;
-  text-align: left;
   color: #fff;
+  margin-bottom: 48px;
 }
 
-.Junglecontent {
-  width: 500px;
-  height: 100px;
-  position: absolute;
+.Block2LeftContents {
   /* top: 25%;
     left: 34%; */
-  overflow: hidden;
   animation: fadein 3s ease-in-out;
   font-family: Poppins;
-  font-size: 28px;
+  font-size: 18px;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  text-align: left;
   color: var(--raffle-white);
 }
 
+.Block2Right {
+  text-align: left;
+  float: left;
+  width: 35%;
+}
+
+.Block2RightContents {
+  width: 974px;
+  height: 574px;
+}
+
+.Block3Title {
+  position: relative;
+  z-index: 2;
+  animation: fadein 3s ease-in-out;
+  font-family: Poppins;
+  font-size: 54px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: var(--raffle-white);
+}
+
+.Block3Image {
+  position: relative;
+  z-index: 2;
+  animation: fadein 3s ease-in-out;
+  margin-top: 72px;
+  width: 945px;
+  height: 364px;
+  text-align: left;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.Block3Content {
+  position: relative;
+  z-index: 2;
+  margin-top: 84px;
+  text-align: left;
+  overflow: auto;
+  font-size: 18px;
+  font-weight: 300;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.56;
+  letter-spacing: -0.36px;
+}
+
+.B3CLeft {
+  margin-left: 519px;
+  float: left;
+}
+
+.B3CRight {
+  margin-left: 54px;
+  float: left;
+}
+
+.Block4Left {
+  margin-left: 14%;
+  float: left;
+}
+
+.Block4LeftTitle {
+  width: 315px;
+  height: 160px;
+  font-family: Poppins;
+  font-size: 54px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.11;
+  letter-spacing: -1.44px;
+  text-align: left;
+  color: #fff;
+}
+
+.Block4LeftContent {
+  margin-top: 48px;
+  font-family: Poppins;
+  font-size: 18px;
+  font-weight: 300;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.56;
+  letter-spacing: -0.36px;
+  text-align: left;
+  color: #fff;
+}
+
+.Block4Right {
+  float: right;
+  width: 1024px;
+  height: 480px;
+}
+
+.Block5Left {
+  float: left;
+  width: 820px;
+  height: 731px;
+}
+
+.Block5Right {
+  float: left;
+  margin-left: 200px;
+}
+
+.Block5RightTitle {
+  position: relative;
+  z-index: 2;
+  margin-top: 204px;
+  font-family: Poppins;
+  font-size: 54px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.11;
+  letter-spacing: -1.44px;
+  text-align: left;
+  color: #fff;
+}
+
+.Block5RightContent {
+  position: relative;
+  z-index: 2;
+  margin-top: 38px;
+  font-family: Poppins;
+  font-size: 18px;
+  font-weight: 300;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.56;
+  letter-spacing: -0.36px;
+  text-align: left;
+  color: #fff;
+}
+
+.Block6Title {
+  position: relative;
+  z-index: 2;
+  margin-bottom: 72px;
+  font-family: Poppins;
+  font-size: 88px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.7;
+  letter-spacing: -1.76px;
+  text-align: center;
+  color: #fff;
+}
 /* .Portfolio {
     width: 947px;
     height: 574px;
@@ -145,3 +273,78 @@
     animation: fadein 3s ease-in-out;
     flex-grow: 0;
 }  */
+
+/* ---------------- Blocks ------------------- */
+.Block1 {
+  z-index: 2;
+  margin-top: 192px;
+  overflow: hidden;
+}
+
+.Block2 {
+  z-index: 2;
+  margin-top: 281px;
+  height: 591;
+  overflow: hidden;
+}
+
+.Block3 {
+  z-index: 2;
+  margin-top: 283px;
+  overflow: hidden;
+}
+
+.Block4 {
+  z-index: 2;
+  margin-top: 377px;
+  overflow: hidden;
+}
+
+.Block5 {
+  z-index: 2;
+  margin-top: 206px;
+  overflow: hidden;
+}
+
+.Block6 {
+  z-index: 2;
+  margin-top: 248px;
+}
+
+/* -------------- Blur Images ---------------- */
+
+.Blur1 {
+  z-index: 1;
+  overflow: hidden;
+  position: absolute;
+  width: auto;
+  height: auto;
+  margin-left: 709px;
+  margin-top: -192px;
+  /* object-fit: contain; */
+  animation: fadein 3s ease-in-out;
+}
+
+.Blur2 {
+  z-index: 1;
+  overflow: hidden;
+  position: absolute;
+  width: auto;
+  height: auto;
+  margin-left: 87px;
+  margin-top: -3636px;
+  /* object-fit: contain; */
+  animation: fadein 3s ease-in-out;
+}
+
+.Blur3 {
+  z-index: 1;
+  overflow: hidden;
+  position: absolute;
+  width: auto;
+  height: auto;
+  margin-left: 778px;
+  margin-top: 3600px;
+  /* object-fit: contain; */
+  animation: fadein 3s ease-in-out;
+}

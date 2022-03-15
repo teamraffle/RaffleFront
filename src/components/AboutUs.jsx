@@ -5,7 +5,7 @@ export default function AboutUs() {
   return (
     <div className={styles.aboutUs}>
       <div className={styles.bgImage}>
-        <img src="img/LandingPageBGImage.png"></img>
+        <img src="img/LandingPageBGImage.png" alt=" " />
         <div className={styles.title}>
           We Seek to Improve <br />
           the NFT Investment Culture
