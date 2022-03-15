@@ -7,7 +7,7 @@ export default function ConnectWallet() {
   const [metamaskBtnClick, setMetamaskBtnClick] = useState(false);
 
   /** 지갑 연결에 성공했는지 체크하는 상태 변수 */
-  const [isConnected, setIsConnected] = useState(false);
+  // const [isConnected, setIsConnected] = useState(false);
 
   const checkIfWalletIsConnected = async () => {
     try {

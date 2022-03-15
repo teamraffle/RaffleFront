@@ -59,7 +59,7 @@ const styles = {
   },
   footer: {
     position: "relative",
-    bottom: "0",
+    transform: "translateY(-100%)",
     left: "0",
     width: "100%",
     alignItems: "left",
@@ -94,7 +94,7 @@ const App = ({ isServerInfo }) => {
                 <Landing />
               </Route>
               <Route exact path="/Ranking">
-                <Ranking isServerInfo={isServerInfo} />
+                {/* <Ranking isServerInfo={isServerInfo} /> */}
               </Route>
               <Route path="/connectWallet">
                 <ConnectWallet />
