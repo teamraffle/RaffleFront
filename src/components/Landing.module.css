@@ -74,8 +74,7 @@
 .Block2LeftTitle {
   animation: fadein 3s ease-in-out;
   font-family: Poppins;
-  font-size: 72px;
-  font-weight: bold;
+  font-size: 54px;
   font-stretch: normal;
   font-style: normal;
   line-height: 1.25;
@@ -114,7 +113,7 @@
   z-index: 2;
   animation: fadein 3s ease-in-out;
   font-family: Poppins;
-  font-size: 72px;
+  font-size: 54px;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
@@ -169,7 +168,7 @@
   width: 315px;
   height: 160px;
   font-family: Poppins;
-  font-size: 72px;
+  font-size: 54px;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
@@ -214,7 +213,7 @@
   z-index: 2;
   margin-top: 204px;
   font-family: Poppins;
-  font-size: 72px;
+  font-size: 54px;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
