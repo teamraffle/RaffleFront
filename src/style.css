@@ -11,7 +11,12 @@
   color: red;
 }
 
+.ant-layout-footer {
+  padding: 0;
+}
+
 .ant-layout {
+  position: relative;
   min-height: 100vh;
   background-color: #151517;
 }

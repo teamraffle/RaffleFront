@@ -58,11 +58,12 @@ const styles = {
     height: "auto",
   },
   footer: {
-    position: "relative",
-    transform: "translateY(-100%)",
-    left: "0",
-    width: "100%",
-    alignItems: "left",
+    position: "absolute",
+    bottom: "0",
+    fontSize: "16px",
+    fontFamily: "Poppins",
+    marginBottom: "24px",
+    marginLeft: "268px",
     backgroundColor: "rgba(255, 255, 255, 0)",
   },
 };
