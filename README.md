@@ -2,10 +2,16 @@
 
 frontend for Raffle
 
+<img src="https://user-images.githubusercontent.com/49471288/158230601-0a47c57a-a285-4f93-9968-017741a5987a.png">
+
+```
+BRANCH
+ |--main\           # 배포용
+ |--dev\            # 개발용
+```
+
 - ethereum-boilerplate [링크](https://github.com/ethereum-boilerplate/ethereum-boilerplate)
 - antd UI Library [링크](https://ant.design/docs/react/introduce)
-
-<img src="https://user-images.githubusercontent.com/49471288/158230601-0a47c57a-a285-4f93-9968-017741a5987a.png">
 
 ```
 public\
