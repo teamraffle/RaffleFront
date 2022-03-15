@@ -1,6 +1,6 @@
 ## Raffle Frontend Repository
 
-frontend for Raffle
+frontend for Raffle.
 
 <img src="https://user-images.githubusercontent.com/49471288/158230601-0a47c57a-a285-4f93-9968-017741a5987a.png">
 
