@@ -1,62 +1,111 @@
 import React, { useState, useEffect } from "react";
 import styles from "./ConnectWallet.module.css";
+
 import axios from "axios";
 
 export default function ConnectWallet() {
+  const { ethereum } = window;
   /** -------------------- State Variables -------------------- */
-  const [currentAccount, setCurrentAccount] = useState();
-  const [pageStep, setPageStep] = useState(1); // 1[select], 2[signing], 3[setNickName], 4[failed]
+  // 1[select], 2[signing], 3[setNickName], 4[failed]
+  const [pageStep, setPageStep] = useState(1);
+  /** <1> */
   const [chainID, setChainID] = useState(); // 버튼 클릭 감지 [MetaMask] Click
+  /** <2> */
+  const [userInfo, setUserInfo] = useState();
+  const [currentAccount, setCurrentAccount] = useState(0);
   // const [isConnected, setIsConnected] = useState(false);  // 지갑 연결에 성공했는지 체크하는 상태 변수
 
+  console.log("[*] Page Rendered...");
+  console.log("[ConnectWallet] pageStep : ", pageStep);
+  console.log("[ConnectWallet] chainID : ", chainID);
+  console.log("[ConnectWallet] currentAccount : ", currentAccount);
+
   /** -------------------- Functions -------------------- */
-  // const checkIfWalletIsConnected = async () => {
-  //   try {
-  //     const { ethereum } = window;
-  //     const accounts = await ethereum.request({ method: "eth_accounts" });
-  //     if (accounts.length !== 0) {
-  //       const account = accounts[0];
-  //       console.log(account);
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+  const checkIfMetamaskWalletIsConnected = async () => {
+    try {
+      const accounts = await ethereum.request({ method: "eth_accounts" });
+      if (accounts.length !== 0) {
+        const account = accounts[0];
+        console.log("[checkIfMetamaskWalletIsConnected] account : ", account);
+        /**
+         * 특정 페이지로 이동할 수 있게 코딩해야함
+         */
+        // <NavLink to="/"></NavLink>;
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const connectMetamaskWallet = async () => {
+    const { ethereum } = window;
+    try {
+      if (!ethereum) {
+        alert("저런.. Metamask가 없으시군요?\n선택화면으로 돌아가세요.");
+        setPageStep(1);
+        return;
+      }
 
-  // const connectMetamaskWallet = async () => {
-  //   try {
-  //     const { ethereum } = window;
-
-  //     if (!ethereum) {
-  //       alert("Get MetaMask!");
-  //       return;
-  //     }
-  //     const accounts = await ethereum.request({
-  //       method: "eth_requestAccounts",
-  //     });
-
-  //     console.log("Connected", accounts[0]);
-  //     setCurrentAccount(accounts[0]);
-  //     console.log("Connected Complete:", currentAccount);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-  const btnClick = async () => {
-    const params = {
-      chain_id: chainID,
-      address: "0x415e380a6bbee81a59FA73465fb83727396Dcf18",
-    };
-    const response = await axios.get(
-      "https://nftranks.xyz:3033/v1/users?chain_id=1&address=0x415e380a6bbee81a59FA73465fb83727396Dcf18",
-    );
-    console.log(params.chain_id);
-    console.log(params.address);
-    console.log(response);
+      const accounts = await ethereum.request({
+        method: "eth_requestAccounts",
+      });
+      console.log("[useEffect, chainID] accounts : ", accounts);
+      setCurrentAccount(accounts[0]);
+    } catch (error) {
+      console.log("[connectMetamaskWallet] ERROR : ", error);
+    }
   };
 
+  const getUsersAPICalling = async () => {
+    const params = {
+      chain_id: chainID,
+      address: currentAccount,
+    };
+
+    // TEST Payload for arbitary address value
+    // const payload =
+    //   "https://nftranks.xyz:3033/v1/users" +
+    //   "?" +
+    //   "chain_id" +
+    //   "=1" +
+    //   "&" +
+    //   "address" +
+    //   "=0x415e380a6bbee81a59FA73465fb83727396Dcf18";
+
+    try {
+      // 기존 유저 일 때
+      // const response = await axios.get(payload);
+
+      const response = await axios.get("https://nftranks.xyz:3033/v1/users", {
+        params,
+      });
+
+      console.log("[getUsersAPICalling] response : ", response);
+      console.log("Welcome Back " + response.data.nickname + " !");
+      setUserInfo(response.data);
+    } catch (ex) {
+      if (ex.response && ex.response.status === 404) {
+        // 신규 유저 등록하러 가야함
+        setPageStep(3);
+      }
+    }
+  };
+
+  /** API test w/ axios */
+  // const btnClick = async () => {
+  //   const params = {
+  //     chain_id: chainID,
+  //     address: "0x415e380a6bbee81a59FA73465fb83727396Dcf18",
+  //   };
+  //   const response = await axios.get(
+  //     "https://nftranks.xyz:3033/v1/users?chain_id=1&address=0x415e380a6bbee81a59FA73465fb83727396Dcf18",
+  //   );
+  //   console.log(params.chain_id);
+  //   console.log(params.address);
+  //   console.log(response);
+  // };
+
   /**  -------------------- 렌더링 함수들 -------------------- */
-  /** 지갑 선택하는 화면 */
+  /** [Step 1] 지갑 연결하는 화면 */
   const renderingSelectPage = () => {
     return (
       <div className={styles.title}>
@@ -90,11 +139,12 @@ export default function ConnectWallet() {
         <div>
           <div>
             <button
-              onClick={async () => {
+              onClick={() => {
                 setChainID(1);
                 // await hasMetamaskWallet();
-                // 메타마스크 있는지 여부로 아래에 삼항 연산을 통해 진행 / 돌려보내기 결정해야함
+                console.log("[renderingSelectPage] ChainID has been updated");
                 setPageStep(2);
+                console.log("[renderingSelectPage] pageStep has been updated");
               }}
               className={styles.btnDefault}
             >
@@ -161,7 +211,7 @@ export default function ConnectWallet() {
     );
   };
 
-  /** 지갑 연결하는 화면 */
+  /** [Step 2] 지갑 연결하는 화면 */
   const renderingSigningPage = () => {
     return (
       <div className={styles.connectionLoading}>
@@ -176,7 +226,9 @@ export default function ConnectWallet() {
           Your Connecting is in Progress with:
         </div>
         <div align="center">
-          <img src="img/metamaskLoadingIcon.svg" alt=" " />
+          {chainID === 1 && <img src="img/metamaskLoadingIcon.svg" alt=" " />}
+          {chainID === 2 && <img src="img/" alt="coinbase icon" />}
+          {chainID === 2 && <img src="img/" alt="coinbase icon" />}
         </div>
 
         <div
@@ -193,6 +245,7 @@ export default function ConnectWallet() {
     );
   };
 
+  /** [Step 3] 닉네임 설정하는 화면 */
   const renderingSetNickNamePage = () => {
     return (
       <div>
@@ -201,6 +254,7 @@ export default function ConnectWallet() {
     );
   };
 
+  /** [Step 4] 에러 발생 화면 */
   const renderingFailedConnectionPage = () => {
     return (
       <div>
@@ -210,13 +264,17 @@ export default function ConnectWallet() {
   };
 
   /** -------------------- useEffect 함수들 -------------------- */
-  // useEffect(() => {
-  //   checkIfWalletIsConnected();
-  // }, []);
+  useEffect(() => {
+    if (chainID === 1) {
+      connectMetamaskWallet();
+    }
+  }, [chainID]);
 
   useEffect(() => {
-    console.log(chainID);
-  }, [chainID]);
+    if (currentAccount !== 0) {
+      getUsersAPICalling();
+    }
+  }, [currentAccount]);
 
   return (
     <div>
