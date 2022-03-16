@@ -15,10 +15,10 @@ export default function ConnectWallet() {
   const [currentAccount, setCurrentAccount] = useState(0);
   // const [isConnected, setIsConnected] = useState(false);  // 지갑 연결에 성공했는지 체크하는 상태 변수
 
-  console.log("[*] Page Rendered...");
-  console.log("[ConnectWallet] pageStep : ", pageStep);
-  console.log("[ConnectWallet] chainID : ", chainID);
-  console.log("[ConnectWallet] currentAccount : ", currentAccount);
+  // console.log("[*] Page Rendered...");
+  // console.log("[ConnectWallet] pageStep : ", pageStep);
+  // console.log("[ConnectWallet] chainID : ", chainID);
+  // console.log("[ConnectWallet] currentAccount : ", currentAccount);
 
   /** -------------------- Functions -------------------- */
   const checkIfMetamaskWalletIsConnected = async () => {
@@ -26,7 +26,7 @@ export default function ConnectWallet() {
       const accounts = await ethereum.request({ method: "eth_accounts" });
       if (accounts.length !== 0) {
         const account = accounts[0];
-        console.log("[checkIfMetamaskWalletIsConnected] account : ", account);
+        // console.log("[checkIfMetamaskWalletIsConnected] account : ", account);
         /**
          * 특정 페이지로 이동할 수 있게 코딩해야함
          */
@@ -48,10 +48,10 @@ export default function ConnectWallet() {
       const accounts = await ethereum.request({
         method: "eth_requestAccounts",
       });
-      console.log("[useEffect, chainID] accounts : ", accounts);
+      // console.log("[useEffect, chainID] accounts : ", accounts);
       setCurrentAccount(accounts[0]);
     } catch (error) {
-      console.log("[connectMetamaskWallet] ERROR : ", error);
+      // console.log("[connectMetamaskWallet] ERROR : ", error);
     }
   };
 
@@ -79,8 +79,8 @@ export default function ConnectWallet() {
         params,
       });
 
-      console.log("[getUsersAPICalling] response : ", response);
-      console.log("Welcome Back " + response.data.nickname + " !");
+      // console.log("[getUsersAPICalling] response : ", response);
+      // console.log("Welcome Back " + response.data.nickname + " !");
       setUserInfo(response.data);
     } catch (ex) {
       if (ex.response && ex.response.status === 404) {
@@ -142,9 +142,7 @@ export default function ConnectWallet() {
               onClick={() => {
                 setChainID(1);
                 // await hasMetamaskWallet();
-                console.log("[renderingSelectPage] ChainID has been updated");
                 setPageStep(2);
-                console.log("[renderingSelectPage] pageStep has been updated");
               }}
               className={styles.btnDefault}
             >
