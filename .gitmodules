@@ -1,0 +1,3 @@
+[submodule "src/RandomAvatarGenerator"]
+	path = src/RandomAvatarGenerator
+	url = https://github.com/ZitRos/pseudorandom-avatar-generator

@@ -70,3 +70,146 @@
   text-align: cetner;
   font-family: Poppins;
 }
+
+.setNickNamePage {
+  text-align: center;
+  font-family: Poppins;
+}
+
+.setNickNamePageTitle {
+  font-family: Poppins;
+  font-size: 36px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #f5f5f5;
+  margin-top: 155px;
+}
+
+.setNickNamePageBox {
+  position: relative;
+  width: 470px;
+  height: 430px;
+  margin-top: 43px;
+  border-radius: 14px;
+  background-color: #d6f866;
+}
+
+.setNickNamePageWalletSymbol {
+  position: absolute;
+  left: 6%;
+  top: 4.7%;
+  width: 20px;
+  height: 20px;
+}
+
+.setNickNamePageWalletName {
+  position: absolute;
+  left: 11.9%;
+  top: 4.9%;
+  width: auto;
+  height: auto;
+  flex-grow: 0;
+  font-family: Poppins;
+  font-size: 12px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.36px;
+  text-align: left;
+  color: #4f4f54;
+}
+
+.setNickNamePageChainName {
+  position: absolute;
+  left: 28.9%;
+  top: 4.9%;
+  width: auto;
+  height: auto;
+  flex-grow: 0;
+  font-family: Poppins;
+  font-size: 12px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.36px;
+  text-align: left;
+  color: #4f4f54;
+}
+
+.setNickNamePageRandomAvatar {
+  position: absolute;
+  left: 35.1%;
+  top: 13.7%;
+  width: 140px;
+  height: 140px;
+}
+
+.setNickNamePageUserAddress {
+  position: absolute;
+  top: 50.5%;
+  width: 470px;
+  font-family: Poppins;
+  font-size: 18px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.54px;
+  text-align: center;
+  color: #151517;
+}
+
+.setNickNamePageInputNicknameBox {
+  position: absolute;
+  top: 61.9%;
+  left: 6%;
+  border-radius: 8px;
+}
+
+input::placeholder {
+  color: #bdbebe;
+}
+
+.setNickNamePageInputNickname {
+  width: 414px;
+  background-color: #fff;
+  color: #bdbebe;
+  border-radius: 8px;
+  border: solid 1px #bdbebe;
+  font-family: Poppins;
+  font-size: 18px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.54px;
+  text-align: left;
+  padding-left: 18px;
+  padding-top: 11px;
+  padding-bottom: 12px;
+}
+
+.setNickNamePageInputDoneButtonBox {
+  position: absolute;
+  top: 80.5%;
+  left: 32.6%;
+  width: 163px;
+  height: 44px;
+  border-radius: 8px;
+  border: solid 0px;
+  background: #bdbebe;
+}
+
+.setNickNamePageInputDoneButton {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  border: solid 0px;
+  background: #bdbebe;
+}

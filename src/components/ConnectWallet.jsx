@@ -62,26 +62,32 @@ export default function ConnectWallet() {
     };
 
     // TEST Payload for arbitary address value
-    // const payload =
-    //   "https://nftranks.xyz:3033/v1/users" +
-    //   "?" +
-    //   "chain_id" +
-    //   "=1" +
-    //   "&" +
-    //   "address" +
-    //   "=0x415e380a6bbee81a59FA73465fb83727396Dcf18";
+    const payload =
+      "https://nftranks.xyz:3033/v1/users" +
+      "?" +
+      "chain_id" +
+      "=1" +
+      "&" +
+      "address" +
+      "=0x415e380a6bbee81a59FA73465fb83727396Dcf17"; // 테스트를 위한 가짜 주소
+    //   "=0x415e380a6bbee81a59FA73465fb83727396Dcf18"; // 정상 지갑 주소
 
     try {
       // 기존 유저 일 때
-      // const response = await axios.get(payload);
+      const response = await axios.get(payload);
 
-      const response = await axios.get("https://nftranks.xyz:3033/v1/users", {
-        params,
-      });
+      // const response = await axios.get("https://nftranks.xyz:3033/v1/users", {
+      //   params,
+      // });
 
       // console.log("[getUsersAPICalling] response : ", response);
       // console.log("Welcome Back " + response.data.nickname + " !");
       setUserInfo(response.data);
+
+      /** targetURL로 이동함 */
+      const url = await window.location.href;
+      const targetURL = url.slice(0, url.indexOf("connectWallet"));
+      window.location.href = targetURL;
     } catch (ex) {
       if (ex.response && ex.response.status === 404) {
         // 신규 유저 등록하러 가야함
@@ -246,8 +252,65 @@ export default function ConnectWallet() {
   /** [Step 3] 닉네임 설정하는 화면 */
   const renderingSetNickNamePage = () => {
     return (
-      <div>
-        <div>test</div>
+      <div className={styles.setNickNamePage}>
+        <div className={styles.setNickNamePageTitle}>Create Your Nickname</div>
+        <div className={styles.setNickNamePageBox}>
+          <div className={styles.setNickNamePageWalletSymbol}>
+            <img
+              src="img/SetNickName_metamask_symbol.png"
+              alt="set nickname page wallet symbol"
+            />
+          </div>
+          <div className={styles.setNickNamePageWalletName}>
+            {" "}
+            {chainID === 1 && "metamask"}{" "}
+          </div>
+          <div
+            style={{
+              position: "absolute",
+              top: "4.6%",
+              left: "26.4%",
+              color: "#4f4f54",
+            }}
+          >
+            |
+          </div>
+          <div className={styles.setNickNamePageChainName}>
+            {" "}
+            {chainID === 1 && "ethereum"}{" "}
+          </div>
+          <div className={styles.setNickNamePageRandomAvatar}>
+            <img
+              src="img/SetNickName_Avatar_Image.png"
+              alt="set nickname page"
+            />
+          </div>
+          <div className={styles.setNickNamePageUserAddress}>
+            {currentAccount}
+          </div>
+          <div className={styles.setNickNamePageInputNicknameBox}>
+            <input
+              className={styles.setNickNamePageInputNickname}
+              placeholder="Nickname (max. 20 characters)"
+            ></input>
+          </div>
+          <div className={styles.setNickNamePageInputDoneButtonBox}>
+            <button className={styles.setNickNamePageInputDoneButton}>
+              DONE
+            </button>
+          </div>
+        </div>
+
+        <div
+          style={{
+            fontSize: "24px",
+            fontFamily: "Poppins",
+            textAlign: "center",
+            marginTop: "88px",
+          }}
+        >
+          please check your browser modal.
+        </div>
       </div>
     );
   };
