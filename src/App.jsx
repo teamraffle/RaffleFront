@@ -15,7 +15,7 @@ import { Layout, Tabs } from "antd"; // ant design library
 import "antd/dist/antd.css";
 // import styles from "./style.css";
 import "./style.css";
-import Ranking from "components/Ranking";
+// import Ranking from "components/Ranking";
 import Contract from "components/Contract/Contract";
 import Text from "antd/lib/typography/Text";
 import Ramper from "components/Ramper";
