@@ -300,17 +300,6 @@ export default function ConnectWallet() {
             </button>
           </div>
         </div>
-
-        <div
-          style={{
-            fontSize: "24px",
-            fontFamily: "Poppins",
-            textAlign: "center",
-            marginTop: "88px",
-          }}
-        >
-          please check your browser modal.
-        </div>
       </div>
     );
   };
