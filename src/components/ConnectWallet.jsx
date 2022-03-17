@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "./ConnectWallet.module.css";
+import { generateSvgAvatar } from "../RandomAvatarGenerator/index.js";
 
 import axios from "axios";
 
@@ -14,6 +15,10 @@ export default function ConnectWallet() {
   const [userInfo, setUserInfo] = useState();
   const [currentAccount, setCurrentAccount] = useState(0);
   // const [isConnected, setIsConnected] = useState(false);  // 지갑 연결에 성공했는지 체크하는 상태 변수
+
+  /** <3> */
+  const [avatarImage, setAvatarImage] = useState();
+  const [nickname, setNickname] = useState();
 
   // console.log("[*] Page Rendered...");
   // console.log("[ConnectWallet] pageStep : ", pageStep);
@@ -281,15 +286,20 @@ export default function ConnectWallet() {
           </div>
           <div className={styles.setNickNamePageRandomAvatar}>
             <img
-              src="img/SetNickName_Avatar_Image.png"
+              // src="img/SetNickName_Avatar_Image.png"
+              src={avatarImage}
               alt="set nickname page"
             />
+            {console.log(avatarImage)}
           </div>
           <div className={styles.setNickNamePageUserAddress}>
             {currentAccount}
           </div>
           <div className={styles.setNickNamePageInputNicknameBox}>
             <input
+              onChange={(event) => {
+                setNickname(event.target.value);
+              }}
               className={styles.setNickNamePageInputNickname}
               placeholder="Nickname (max. 20 characters)"
             ></input>
@@ -326,6 +336,9 @@ export default function ConnectWallet() {
     }
   }, [currentAccount]);
 
+  useEffect(() => {
+    setAvatarImage(generateSvgAvatar(nickname), { size: "140px" });
+  }, [nickname]);
   return (
     <div>
       <div>
