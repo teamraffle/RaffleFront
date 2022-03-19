@@ -195,6 +195,44 @@ input::placeholder {
   padding-bottom: 12px;
 }
 
+.setNickNamePageInputNicknameAvailable {
+  width: 414px;
+  background-color: #bccfff;
+  color: #bdbebe;
+  border-radius: 8px;
+  border: solid 1px #bdbebe;
+  font-family: Poppins;
+  font-size: 18px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.54px;
+  text-align: left;
+  padding-left: 18px;
+  padding-top: 11px;
+  padding-bottom: 12px;
+}
+
+.setNickNamePageInputNicknameDenied {
+  width: 414px;
+  background-color: #ffb2b2;
+  color: #bdbebe;
+  border-radius: 8px;
+  border: solid 1px #bdbebe;
+  font-family: Poppins;
+  font-size: 18px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.54px;
+  text-align: left;
+  padding-left: 18px;
+  padding-top: 11px;
+  padding-bottom: 12px;
+}
+
 .setNickNamePageInputDoneButtonBox {
   position: absolute;
   top: 80.5%;
@@ -212,4 +250,13 @@ input::placeholder {
   border-radius: 8px;
   border: solid 0px;
   background: #bdbebe;
+}
+
+.setNickNamePageInputDoneButtonActivate {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  border: solid 0px;
+  background: #151517;
+  cursor: pointer;
 }

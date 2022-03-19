@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import styles from "./ConnectWallet.module.css";
-import { generateSvgAvatar } from "../RandomAvatarGenerator/index.js";
 
 import axios from "axios";
 
@@ -18,12 +17,17 @@ export default function ConnectWallet() {
 
   /** <3> */
   const [avatarImage, setAvatarImage] = useState();
-  const [nickname, setNickname] = useState();
+  const [nickname, setNickname] = useState("");
+  const [nicknameAvailable, setNicknameAvailable] = useState(false);
+  const [cssInputStyle, setCssInputStyle] = useState(
+    styles.setNickNamePageInputNickname,
+  );
+  const [loginDone, setLoginDone] = useState(false);
 
-  // console.log("[*] Page Rendered...");
-  // console.log("[ConnectWallet] pageStep : ", pageStep);
-  // console.log("[ConnectWallet] chainID : ", chainID);
-  // console.log("[ConnectWallet] currentAccount : ", currentAccount);
+  console.log("[*] Page Rendered...");
+  console.log("[ConnectWallet] pageStep : ", pageStep);
+  console.log("[ConnectWallet] chainID : ", chainID);
+  console.log("[ConnectWallet] currentAccount : ", currentAccount);
 
   /** -------------------- Functions -------------------- */
   const checkIfMetamaskWalletIsConnected = async () => {
@@ -67,29 +71,32 @@ export default function ConnectWallet() {
     };
 
     // TEST Payload for arbitary address value
-    const payload =
-      "https://nftranks.xyz:3033/v1/users" +
-      "?" +
-      "chain_id" +
-      "=1" +
-      "&" +
-      "address" +
-      "=0x415e380a6bbee81a59FA73465fb83727396Dcf17"; // 테스트를 위한 가짜 주소
-    //   "=0x415e380a6bbee81a59FA73465fb83727396Dcf18"; // 정상 지갑 주소
+    // const payload =
+    //   "https://nftranks.xyz:8888/v1/users" +
+    //   "?" +
+    //   "chain_id" +
+    //   "=1" +
+    //   "&" +
+    //   "address" +
+    //   "=0x415e380a6bbee81a59FA73465fb83727396Dcf17"; // 테스트를 위한 가짜 주소
+    // "=0x415e380a6bbee81a59FA73465fb83727396Dcf18"; // 정상 지갑 주소
+
+    // [테스트 코드] 지갑 주소도 변경해둠
+    // setCurrentAccount("0x415e380a6bbee81a59FA73465fb83727396Dcf17");
 
     try {
-      // 기존 유저 일 때
-      const response = await axios.get(payload);
+      // [테스트 코드] 기존 유저 일 때
+      // const response = await axios.get(payload);
 
-      // const response = await axios.get("https://nftranks.xyz:3033/v1/users", {
-      //   params,
-      // });
+      const response = await axios.get("https://nftranks.xyz:8888/v1/users", {
+        params,
+      });
 
-      // console.log("[getUsersAPICalling] response : ", response);
-      // console.log("Welcome Back " + response.data.nickname + " !");
+      console.log("[getUsersAPICalling] response : ", response);
+      console.log("Welcome Back " + response.data.nickname + " !");
       setUserInfo(response.data);
 
-      /** targetURL로 이동함 */
+      // targetURL로 이동함
       const url = await window.location.href;
       const targetURL = url.slice(0, url.indexOf("connectWallet"));
       window.location.href = targetURL;
@@ -101,19 +108,82 @@ export default function ConnectWallet() {
     }
   };
 
-  /** API test w/ axios */
-  // const btnClick = async () => {
-  //   const params = {
-  //     chain_id: chainID,
-  //     address: "0x415e380a6bbee81a59FA73465fb83727396Dcf18",
-  //   };
-  //   const response = await axios.get(
-  //     "https://nftranks.xyz:3033/v1/users?chain_id=1&address=0x415e380a6bbee81a59FA73465fb83727396Dcf18",
-  //   );
-  //   console.log(params.chain_id);
-  //   console.log(params.address);
-  //   console.log(response);
-  // };
+  // 닉네임을 입력했을 때
+  // value.length > 0 이고 change가 1초 이상 일어나지 않을 경우
+  // axios.닉네임중복 API 호출을 해서 결과를 받아옴
+  const setTimerForNicknameOverlappingCheckAPICalling = async (_nickname) => {
+    // 중복검사 + 버튼 바꾸는 코드
+    let filteringCondition = /^[a-zA-Z+]{3,20}$/;
+    let willUpdate = true;
+    // console.log(typeof _nickname);
+    // console.log(_nickname.length);
+    // console.log(filteringCondition.test(_nickname));
+    try {
+      willUpdate = filteringCondition.test(_nickname);
+
+      if (willUpdate) {
+        setNicknameAvailable(true);
+      } else {
+        setNicknameAvailable(false);
+      }
+
+      const params = {
+        check_value: nickname,
+        chain_id: chainID,
+      };
+
+      const response = await axios.get(
+        "https://nftranks.xyz:8888/v1/register/nickname",
+        {
+          params,
+        },
+      );
+      console.log(response);
+    } catch (ex) {
+      if (ex.response && ex.response.status === 409) {
+        setNicknameAvailable(false);
+      }
+    }
+  };
+
+  // 신규 유저 등록하는 함수
+  const sendPostToRegisterNewUser = async () => {
+    try {
+      const registerData = {
+        // 등록할 때 필요한 정보 묶음
+        chain_id: chainID,
+        address: currentAccount,
+        nickname: nickname,
+      };
+
+      await axios.post("https://nftranks.xyz:8888/v1/users", registerData);
+      //등록이 되었음
+      setLoginDone(true);
+      const url = await window.location.href;
+      const targetURL = url.slice(0, url.indexOf("connectWallet"));
+      window.location.href = targetURL;
+    } catch (ex) {
+      console.log("[sendPostToRegisterNewUser] Error : ", ex);
+    }
+  };
+
+  /** ---------- 컴포넌트 함수들 ----------- */
+  const buttonSendPostActive = () => {
+    return (
+      <button
+        className={styles.setNickNamePageInputDoneButtonActivate}
+        onClick={sendPostToRegisterNewUser}
+      >
+        DONE
+      </button>
+    );
+  };
+
+  const buttonSendPostInactive = () => {
+    return (
+      <button className={styles.setNickNamePageInputDoneButton}>DONE</button>
+    );
+  };
 
   /**  -------------------- 렌더링 함수들 -------------------- */
   /** [Step 1] 지갑 연결하는 화면 */
@@ -267,8 +337,7 @@ export default function ConnectWallet() {
             />
           </div>
           <div className={styles.setNickNamePageWalletName}>
-            {" "}
-            {chainID === 1 && "metamask"}{" "}
+            {chainID === 1 && "metamask"}
           </div>
           <div
             style={{
@@ -285,29 +354,32 @@ export default function ConnectWallet() {
             {chainID === 1 && "ethereum"}{" "}
           </div>
           <div className={styles.setNickNamePageRandomAvatar}>
-            <img
+            {/* <img
               // src="img/SetNickName_Avatar_Image.png"
               src={avatarImage}
               alt="set nickname page"
-            />
-            {console.log(avatarImage)}
+            /> */}
+            {avatarImage}
           </div>
           <div className={styles.setNickNamePageUserAddress}>
             {currentAccount}
           </div>
           <div className={styles.setNickNamePageInputNicknameBox}>
             <input
+              type="text"
               onChange={(event) => {
                 setNickname(event.target.value);
+
+                console.log(cssInputStyle);
               }}
-              className={styles.setNickNamePageInputNickname}
+              className={cssInputStyle}
               placeholder="Nickname (max. 20 characters)"
             ></input>
           </div>
           <div className={styles.setNickNamePageInputDoneButtonBox}>
-            <button className={styles.setNickNamePageInputDoneButton}>
-              DONE
-            </button>
+            {nicknameAvailable
+              ? buttonSendPostActive()
+              : buttonSendPostInactive()}
           </div>
         </div>
       </div>
@@ -337,8 +409,21 @@ export default function ConnectWallet() {
   }, [currentAccount]);
 
   useEffect(() => {
-    setAvatarImage(generateSvgAvatar(nickname), { size: "140px" });
+    setTimerForNicknameOverlappingCheckAPICalling(nickname);
+    // setAvatarImage(generateSvgAvatar(nickname), { size: "140px" });
   }, [nickname]);
+
+  useEffect(() => {
+    if (nickname === "") {
+      setCssInputStyle(styles.setNickNamePageInputNickname);
+    } else {
+      if (nicknameAvailable) {
+        setCssInputStyle(styles.setNickNamePageInputNicknameAvailable);
+      } else {
+        setCssInputStyle(styles.setNickNamePageInputNicknameDenied);
+      }
+    }
+  }, [nicknameAvailable, nickname]);
   return (
     <div>
       <div>
