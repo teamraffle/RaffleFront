@@ -24,10 +24,10 @@ export default function ConnectWallet() {
   );
   const [loginDone, setLoginDone] = useState(false);
 
-  console.log("[*] Page Rendered...");
-  console.log("[ConnectWallet] pageStep : ", pageStep);
-  console.log("[ConnectWallet] chainID : ", chainID);
-  console.log("[ConnectWallet] currentAccount : ", currentAccount);
+  // console.log("[*] Page Rendered...");
+  // console.log("[ConnectWallet] pageStep : ", pageStep);
+  // console.log("[ConnectWallet] chainID : ", chainID);
+  // console.log("[ConnectWallet] currentAccount : ", currentAccount);
 
   // 테스트용
   /** -------------------- Functions -------------------- */
@@ -93,8 +93,8 @@ export default function ConnectWallet() {
         params,
       });
 
-      console.log("[getUsersAPICalling] response : ", response);
-      console.log("Welcome Back " + response.data.nickname + " !");
+      // console.log("[getUsersAPICalling] response : ", response);
+      // console.log("Welcome Back " + response.data.nickname + " !");
       setUserInfo(response.data);
 
       // targetURL로 이동함
@@ -139,7 +139,7 @@ export default function ConnectWallet() {
           params,
         },
       );
-      console.log(response);
+      // console.log(response);
     } catch (ex) {
       if (ex.response && ex.response.status === 409) {
         setNicknameAvailable(false);
@@ -164,7 +164,7 @@ export default function ConnectWallet() {
       const targetURL = url.slice(0, url.indexOf("connectWallet"));
       window.location.href = targetURL;
     } catch (ex) {
-      console.log("[sendPostToRegisterNewUser] Error : ", ex);
+      // console.log("[sendPostToRegisterNewUser] Error : ", ex);
     }
   };
 
@@ -371,7 +371,7 @@ export default function ConnectWallet() {
               onChange={(event) => {
                 setNickname(event.target.value);
 
-                console.log(cssInputStyle);
+                // console.log(cssInputStyle);
               }}
               className={cssInputStyle}
               placeholder="Nickname (max. 20 characters)"
