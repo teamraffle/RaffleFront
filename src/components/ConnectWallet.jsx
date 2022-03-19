@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "./ConnectWallet.module.css";
+import { generateSvgAvatar } from "../pseudorandom-avatar-generator/index.js";
 
 import axios from "axios";
 
@@ -14,9 +15,11 @@ export default function ConnectWallet() {
   const [userInfo, setUserInfo] = useState();
   const [currentAccount, setCurrentAccount] = useState(0);
   // const [isConnected, setIsConnected] = useState(false);  // 지갑 연결에 성공했는지 체크하는 상태 변수
+  const [randomAvatar, setRandomAvatar] = useState(
+    <img src="img/SetNickName_Avatar_Image.png" alt="basic img" />,
+  );
 
   /** <3> */
-  const [avatarImage, setAvatarImage] = useState();
   const [nickname, setNickname] = useState("");
   const [nicknameAvailable, setNicknameAvailable] = useState(false);
   const [cssInputStyle, setCssInputStyle] = useState(
@@ -72,14 +75,14 @@ export default function ConnectWallet() {
     };
 
     // TEST Payload for arbitary address value
-    // const payload =
-    //   "https://nftranks.xyz:8888/v1/users" +
-    //   "?" +
-    //   "chain_id" +
-    //   "=1" +
-    //   "&" +
-    //   "address" +
-    //   "=0x415e380a6bbee81a59FA73465fb83727396Dcf17"; // 테스트를 위한 가짜 주소
+    const payload =
+      "https://nftranks.xyz:8888/v1/users" +
+      "?" +
+      "chain_id" +
+      "=1" +
+      "&" +
+      "address" +
+      "=0x415e380a6bbee81a59FA73465fb83727396Dcf16"; // 테스트를 위한 가짜 주소
     // "=0x415e380a6bbee81a59FA73465fb83727396Dcf18"; // 정상 지갑 주소
 
     // [테스트 코드] 지갑 주소도 변경해둠
@@ -87,11 +90,11 @@ export default function ConnectWallet() {
 
     try {
       // [테스트 코드] 기존 유저 일 때
-      // const response = await axios.get(payload);
+      const response = await axios.get(payload);
 
-      const response = await axios.get("https://nftranks.xyz:8888/v1/users", {
-        params,
-      });
+      // const response = await axios.get("https://nftranks.xyz:8888/v1/users", {
+      //   params,
+      // });
 
       // console.log("[getUsersAPICalling] response : ", response);
       // console.log("Welcome Back " + response.data.nickname + " !");
@@ -166,6 +169,10 @@ export default function ConnectWallet() {
     } catch (ex) {
       // console.log("[sendPostToRegisterNewUser] Error : ", ex);
     }
+  };
+
+  const renderAvatarImage = () => {
+    return <div>{randomAvatar}</div>;
   };
 
   /** ---------- 컴포넌트 함수들 ----------- */
@@ -355,12 +362,9 @@ export default function ConnectWallet() {
             {chainID === 1 && "ethereum"}{" "}
           </div>
           <div className={styles.setNickNamePageRandomAvatar}>
-            {/* <img
-              // src="img/SetNickName_Avatar_Image.png"
-              src={avatarImage}
-              alt="set nickname page"
-            /> */}
-            {avatarImage}
+            {/* 랜덤 아바타 이미지 */}
+            {/* <img src={randomAvatar} alt="random avatar" /> */}
+            {renderAvatarImage()}
           </div>
           <div className={styles.setNickNamePageUserAddress}>
             {currentAccount}
@@ -432,8 +436,14 @@ export default function ConnectWallet() {
   }, [currentAccount]);
 
   useEffect(() => {
+    // 중복체크하는 코드
     setTimerForNicknameOverlappingCheckAPICalling(nickname);
-    // setAvatarImage(generateSvgAvatar(nickname), { size: "140px" });
+    // 랜덤 아바타 생성 코드
+    if (nickname !== "") {
+      // setRandomAvatar(generateSvgAvatar(nickname, { size: "140" }));
+      console.log(randomAvatar);
+      console.log(generateSvgAvatar(nickname, { size: "70" }));
+    }
   }, [nickname]);
 
   useEffect(() => {
