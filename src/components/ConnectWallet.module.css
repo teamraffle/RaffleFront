@@ -260,3 +260,66 @@ input::placeholder {
   background: #151517;
   cursor: pointer;
 }
+
+.failedConnectionPage {
+  text-align: cetner;
+  font-family: Poppins;
+  align-items: center;
+  width: 1920px;
+}
+
+.bigXLogo {
+  width: 240px;
+  height: 240px;
+  margin-left: 43.8%;
+  margin-top: 173px;
+}
+
+.textConnectionFailed {
+  font-family: Poppins;
+  font-size: 36px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #f5f5f5;
+  margin-top: 30px;
+}
+
+.buttonTryAgain {
+  /* button */
+  width: 220px;
+  height: 62px;
+  margin-top: 36px;
+  margin-left: 44.2%;
+  border-radius: 6px;
+  border: solid 1px #d6f866;
+  background-color: #151517;
+  cursor: pointer;
+
+  /* text */
+  font-family: Poppins;
+  font-size: 28px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.84px;
+  text-align: center;
+  color: #d6f866;
+}
+
+.textGoGetAMetamask {
+  font-family: Poppins;
+  font-size: 20px;
+  font-weight: 300;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #f5f5f5;
+  margin-top: 40px;
+}

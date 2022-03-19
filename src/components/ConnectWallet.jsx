@@ -29,6 +29,7 @@ export default function ConnectWallet() {
   console.log("[ConnectWallet] chainID : ", chainID);
   console.log("[ConnectWallet] currentAccount : ", currentAccount);
 
+  // 테스트용
   /** -------------------- Functions -------------------- */
   const checkIfMetamaskWalletIsConnected = async () => {
     try {
@@ -389,8 +390,30 @@ export default function ConnectWallet() {
   /** [Step 4] 에러 발생 화면 */
   const renderingFailedConnectionPage = () => {
     return (
-      <div>
-        <div>test</div>
+      <div className={styles.failedConnectionPage}>
+        <div className={styles.bigXLogo}>
+          <img src="img/bigXLogo.png" alt="big x logo" />
+        </div>
+        <div className={styles.textConnectionFailed}>Connection Failed</div>
+
+        <button
+          className={styles.buttonTryAgain}
+          onClick={() => {
+            setPageStep(1);
+          }}
+        >
+          TRY AGAIN
+        </button>
+        <div className={styles.textGoGetAMetamask}>
+          <a
+            style={{ color: "#f5f5f5" }}
+            href="https://metamask.io/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <u>Don't you have a wallet?</u>
+          </a>
+        </div>
       </div>
     );
   };
