@@ -1,4 +1,16 @@
 .profileButton {
   width: 40.6px;
   height: 40.6px;
+  background: skyblue;
+  cursor: pointer;
+}
+
+.profileMiniBox {
+  position: absolute;
+  width: 214px;
+  height: 348px;
+  border-radius: 8px;
+  box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.1);
+  border: solid 1px #626262;
+  background-color: #2f2f2f;
 }
