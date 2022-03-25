@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import styles from "./ConnectWallet.module.css";
-import { generateSvgAvatar } from "../pseudorandom-avatar-generator/index.js";
 
 import axios from "axios";
 
-export default function ConnectWallet() {
+export default function ConnectWallet({ setIsLogin_Appjsx }) {
   const { ethereum } = window;
   /** -------------------- State Variables -------------------- */
   // 1[select], 2[signing], 3[setNickName], 4[failed]
@@ -14,10 +13,6 @@ export default function ConnectWallet() {
   /** <2> */
   const [userInfo, setUserInfo] = useState();
   const [currentAccount, setCurrentAccount] = useState(0);
-  // const [isConnected, setIsConnected] = useState(false);  // 지갑 연결에 성공했는지 체크하는 상태 변수
-  const [randomAvatar, setRandomAvatar] = useState(
-    <img src="img/SetNickName_Avatar_Image.png" alt="basic img" />,
-  );
 
   /** <3> */
   const [nickname, setNickname] = useState("");
@@ -25,30 +20,13 @@ export default function ConnectWallet() {
   const [cssInputStyle, setCssInputStyle] = useState(
     styles.setNickNamePageInputNickname,
   );
-  const [loginDone, setLoginDone] = useState(false);
 
-  // console.log("[*] Page Rendered...");
-  // console.log("[ConnectWallet] pageStep : ", pageStep);
-  // console.log("[ConnectWallet] chainID : ", chainID);
-  // console.log("[ConnectWallet] currentAccount : ", currentAccount);
+  console.log("[*] Page Rendered...");
+  console.log("[ConnectWallet] pageStep : ", pageStep);
+  console.log("[ConnectWallet] chainID : ", chainID);
+  console.log("[ConnectWallet] currentAccount : ", currentAccount);
 
-  // 테스트용
   /** -------------------- Functions -------------------- */
-  const checkIfMetamaskWalletIsConnected = async () => {
-    try {
-      const accounts = await ethereum.request({ method: "eth_accounts" });
-      if (accounts.length !== 0) {
-        const account = accounts[0];
-        // console.log("[checkIfMetamaskWalletIsConnected] account : ", account);
-        /**
-         * 특정 페이지로 이동할 수 있게 코딩해야함
-         */
-        // <NavLink to="/"></NavLink>;
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
   const connectMetamaskWallet = async () => {
     const { ethereum } = window;
     try {
@@ -61,46 +39,28 @@ export default function ConnectWallet() {
       const accounts = await ethereum.request({
         method: "eth_requestAccounts",
       });
-      // console.log("[useEffect, chainID] accounts : ", accounts);
+
       setCurrentAccount(accounts[0]);
     } catch (error) {
-      // console.log("[connectMetamaskWallet] ERROR : ", error);
+      console.log("[connectMetamaskWallet] ERROR : ", error);
     }
   };
 
+  // 지갑이 연결되면, 바로 기존 유저인지 확인함
   const getUsersAPICalling = async () => {
     const params = {
       chain_id: chainID,
       address: currentAccount,
     };
 
-    // TEST Payload for arbitary address value
-    const payload =
-      "https://nftranks.xyz:8888/v1/users" +
-      "?" +
-      "chain_id" +
-      "=1" +
-      "&" +
-      "address" +
-      "=0x415e380a6bbee81a59FA73465fb83727396Dcf16"; // 테스트를 위한 가짜 주소
-    // "=0x415e380a6bbee81a59FA73465fb83727396Dcf18"; // 정상 지갑 주소
-
-    // [테스트 코드] 지갑 주소도 변경해둠
-    // setCurrentAccount("0x415e380a6bbee81a59FA73465fb83727396Dcf17");
-
     try {
-      // [테스트 코드] 기존 유저 일 때
-      const response = await axios.get(payload);
-
-      // const response = await axios.get("https://nftranks.xyz:8888/v1/users", {
-      //   params,
-      // });
-
-      // console.log("[getUsersAPICalling] response : ", response);
-      // console.log("Welcome Back " + response.data.nickname + " !");
-      setUserInfo(response.data);
+      const response = await axios.get("https://nftranks.xyz:8888/v1/users", {
+        params,
+      });
 
       // targetURL로 이동함
+      console.log(response.data.user_id);
+      sessionStorage.setItem("user", response.data.user_id);
       const url = await window.location.href;
       const targetURL = url.slice(0, url.indexOf("connectWallet"));
       window.location.href = targetURL;
@@ -112,16 +72,10 @@ export default function ConnectWallet() {
     }
   };
 
-  // 닉네임을 입력했을 때
-  // value.length > 0 이고 change가 1초 이상 일어나지 않을 경우
-  // axios.닉네임중복 API 호출을 해서 결과를 받아옴
-  const setTimerForNicknameOverlappingCheckAPICalling = async (_nickname) => {
-    // 중복검사 + 버튼 바꾸는 코드
+  // 닉네임을 입력했을 때 중복검사 + 버튼 상태 바꾸는 함수
+  const checkNicknameOverlappingAPICalling = async (_nickname) => {
     let filteringCondition = /^[a-zA-Z+]{3,20}$/;
     let willUpdate = true;
-    // console.log(typeof _nickname);
-    // console.log(_nickname.length);
-    // console.log(filteringCondition.test(_nickname));
     try {
       willUpdate = filteringCondition.test(_nickname);
 
@@ -136,13 +90,9 @@ export default function ConnectWallet() {
         chain_id: chainID,
       };
 
-      const response = await axios.get(
-        "https://nftranks.xyz:8888/v1/register/nickname",
-        {
-          params,
-        },
-      );
-      // console.log(response);
+      await axios.get("https://nftranks.xyz:8888/v1/register/nickname", {
+        params,
+      });
     } catch (ex) {
       if (ex.response && ex.response.status === 409) {
         setNicknameAvailable(false);
@@ -154,28 +104,22 @@ export default function ConnectWallet() {
   const sendPostToRegisterNewUser = async () => {
     try {
       const registerData = {
-        // 등록할 때 필요한 정보 묶음
         chain_id: chainID,
         address: currentAccount,
         nickname: nickname,
       };
 
       await axios.post("https://nftranks.xyz:8888/v1/users", registerData);
-      //등록이 되었음
-      setLoginDone(true);
+
       const url = await window.location.href;
       const targetURL = url.slice(0, url.indexOf("connectWallet"));
       window.location.href = targetURL;
     } catch (ex) {
-      // console.log("[sendPostToRegisterNewUser] Error : ", ex);
+      console.log("[sendPostToRegisterNewUser] Error : ", ex);
     }
   };
 
-  const renderAvatarImage = () => {
-    return <div>{randomAvatar}</div>;
-  };
-
-  /** ---------- 컴포넌트 함수들 ----------- */
+  /** ---------- 컴포넌트 ----------- */
   const buttonSendPostActive = () => {
     return (
       <button
@@ -193,7 +137,7 @@ export default function ConnectWallet() {
     );
   };
 
-  /**  -------------------- 렌더링 함수들 -------------------- */
+  /**  -------------------- 페이지 렌더링하는 함수  -------------------- */
   /** [Step 1] 지갑 연결하는 화면 */
   const renderingSelectPage = () => {
     return (
@@ -230,7 +174,6 @@ export default function ConnectWallet() {
             <button
               onClick={() => {
                 setChainID(1);
-                // await hasMetamaskWallet();
                 setPageStep(2);
               }}
               className={styles.btnDefault}
@@ -362,9 +305,7 @@ export default function ConnectWallet() {
             {chainID === 1 && "ethereum"}{" "}
           </div>
           <div className={styles.setNickNamePageRandomAvatar}>
-            {/* 랜덤 아바타 이미지 */}
-            {/* <img src={randomAvatar} alt="random avatar" /> */}
-            {renderAvatarImage()}
+            <img src="img/SetNickName_Avatar_Image.png" alt="basic img" />
           </div>
           <div className={styles.setNickNamePageUserAddress}>
             {currentAccount}
@@ -436,14 +377,7 @@ export default function ConnectWallet() {
   }, [currentAccount]);
 
   useEffect(() => {
-    // 중복체크하는 코드
-    setTimerForNicknameOverlappingCheckAPICalling(nickname);
-    // 랜덤 아바타 생성 코드
-    if (nickname !== "") {
-      // setRandomAvatar(generateSvgAvatar(nickname, { size: "140" }));
-      console.log(randomAvatar);
-      console.log(generateSvgAvatar(nickname, { size: "70" }));
-    }
+    checkNicknameOverlappingAPICalling(nickname);
   }, [nickname]);
 
   useEffect(() => {
@@ -457,6 +391,7 @@ export default function ConnectWallet() {
       }
     }
   }, [nicknameAvailable, nickname]);
+
   return (
     <div>
       <div>
