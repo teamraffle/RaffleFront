@@ -36,7 +36,7 @@ function MenuItems() {
           <SearchBar />
         </Menu.Item>
         {/* GNB Right -- Connect Button */}
-        <Menu.Item className={styles.headerRight}>
+        <Menu.Item className={styles.headerRight} style={{ paddingRight: "0" }}>
           {sessionStorage.getItem("user") ? (
             <ProfileButton />
           ) : (

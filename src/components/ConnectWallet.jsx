@@ -61,6 +61,8 @@ export default function ConnectWallet({ setIsLogin_Appjsx }) {
       // targetURL로 이동함
       console.log(response.data.user_id);
       sessionStorage.setItem("user", response.data.user_id);
+      sessionStorage.setItem("nickname", response.data.nickname);
+      sessionStorage.setItem("walletAddress", currentAccount);
       const url = await window.location.href;
       const targetURL = url.slice(0, url.indexOf("connectWallet"));
       window.location.href = targetURL;
@@ -110,6 +112,18 @@ export default function ConnectWallet({ setIsLogin_Appjsx }) {
       };
 
       await axios.post("https://nftranks.xyz:8888/v1/users", registerData);
+
+      // sessionStorage에 유저 정보 저장해둠
+      const params = {
+        chain_id: chainID,
+        address: currentAccount,
+      };
+      const response = await axios.get("https://nftranks.xyz:8888/v1/users", {
+        params,
+      });
+      sessionStorage.setItem("user", response.data.user_id);
+      sessionStorage.setItem("nickname", response.data.nickname);
+      sessionStorage.setItem("walletAddress", currentAccount);
 
       const url = await window.location.href;
       const targetURL = url.slice(0, url.indexOf("connectWallet"));
