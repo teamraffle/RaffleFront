@@ -3,6 +3,7 @@ import { Menu } from "antd";
 import { NavLink } from "react-router-dom";
 import styles from "./GNB.module.css";
 import SearchBar from "./SearchBar.jsx";
+import ProfileButton from "./ProfileButton.jsx";
 
 function MenuItems() {
   const { pathname } = useLocation();
@@ -35,10 +36,14 @@ function MenuItems() {
           <SearchBar />
         </Menu.Item>
         {/* GNB Right -- Connect Button */}
-        <Menu.Item className={styles.headerRight}>
-          <button className={styles.connectBtn}>
-            <NavLink to="/connectWallet"></NavLink>Connect
-          </button>
+        <Menu.Item className={styles.headerRight} style={{ paddingRight: "0" }}>
+          {sessionStorage.getItem("user") ? (
+            <ProfileButton />
+          ) : (
+            <button className={styles.connectBtn}>
+              <NavLink to="/connectWallet"></NavLink>Connect
+            </button>
+          )}
         </Menu.Item>
       </Menu>
     </>

@@ -1,0 +1,70 @@
+.profileButton {
+  width: 40.6px;
+  height: 40.6px;
+  background: skyblue;
+  cursor: pointer;
+}
+
+.profileMiniBox {
+  position: absolute;
+  right: 0;
+  top: 52px;
+  width: 214px;
+  min-height: 348px;
+  border-radius: 8px;
+  box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.1);
+  border: solid 1px #626262;
+  background-color: #2f2f2f;
+  padding-left: 22px;
+}
+
+.profileNickname {
+  margin-top: 28px;
+  font-family: Poppins;
+  font-size: 16px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.48px;
+  text-align: left;
+  color: #f5f5f5;
+}
+
+.profileWalletAddress {
+  margin-top: 17px;
+  font-family: Poppins;
+  font-size: 14px;
+  font-weight: 300;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.42px;
+  text-align: left;
+  color: #bdbebe;
+}
+
+.options {
+  font-family: Poppins;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.42px;
+  text-align: left;
+  color: #f5f5f5;
+}
+
+.optionsBox {
+  padding: 0;
+  margin-top: 10px;
+  height: 52px;
+}
+
+.optionsBox:hover {
+  color: red;
+}
+.splitLine {
+  width: 170px;
+}
