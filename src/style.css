@@ -33,10 +33,6 @@
   background-color: #151517 !important;
 }
 
-.ant-menu-horizontal > .ant-menu-item-selected a {
-  color: #e8faad !important;
-}
-
 .ant-menu-horizontal > .ant-menu-item a:hover {
   color: #e8faad !important;
 }

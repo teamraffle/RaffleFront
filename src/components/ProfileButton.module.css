@@ -62,9 +62,17 @@
   height: 52px;
 }
 
-.optionsBox:hover {
-  color: red;
-}
 .splitLine {
+  color: #4f4f54;
   width: 170px;
+}
+
+.darkModeBox {
+  display: flex;
+}
+
+.darkModeText {
+  padding: 0;
+  margin-top: 10px;
+  height: 52px;
 }

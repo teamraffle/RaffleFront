@@ -87,6 +87,8 @@
 .Block2LeftContents {
   /* top: 25%;
     left: 34%; */
+  width: 474px;
+  height: 280px;
   animation: fadein 3s ease-in-out;
   font-family: Poppins;
   font-size: 18px;

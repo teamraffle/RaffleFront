@@ -13,9 +13,9 @@ export default function Landing() {
           in NFT World
         </div>
         <div className={styles.Block1Content}>
-          lorem ipsum lorem ipsum lorem ipsum lorem ipsum <br />
-          lorem ipsum lorem ipsum lorem ipsum lorem ipsum <br />
-          lorem ipsum lorem ipsum
+          NFT Ranks was created by NFT Degens who are highly <br />
+          interested in building service to provide ranking system <br />
+          of wallets and NFT projects in addition to NFT portfolio analysis.{" "}
         </div>
         <div>
           <button className={styles.Block1Btn}>Check My Rank</button>
@@ -28,16 +28,15 @@ export default function Landing() {
             to the Jungle <br />
           </div>
           <div className={styles.Block2LeftContents}>
-            NFT Ranks was created by NFT Degens who are highly <br />
-            interested in building service to provide ranking system <br />
-            of wallets and NFT projects in addition to NFT portfolio <br />
-            analysis. <br />
+            NFT Ranks was created by NFT Degens who are highly interested in
+            building service to provide ranking system of wallets and NFT
+            projects in addition to NFT portfolio analysis.
             <br />
-            The ranking parameters are set to comprehend <br />
-            whether the owner contributes to NFT eco-system or <br />
-            not. As we aim to help build sound NFT culture , the <br />
-            criterion for the ranking varies and do not focus on <br />
-            profit one has made. <br />
+            <br />
+            The ranking parameters are set to comprehend whether the owner
+            contributes to NFT eco-system or not. As we aim to help build sound
+            NFT culture , the criterion for the ranking varies and do not focus
+            on profit one has made. <br />
           </div>
         </div>
         <div className={styles.Block2Right}>

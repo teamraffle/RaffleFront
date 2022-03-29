@@ -1,6 +1,5 @@
 .menuBar {
-  z-index: 100;
-  position: absolute;
+  position: relative;
   display: flex;
   font-size: 17px;
   font-weight: 500;
@@ -33,7 +32,6 @@
 }
 
 .headerRight {
-  display: flex;
   margin-left: 263px;
   gap: 20px;
   align-items: center;

@@ -1,7 +1,19 @@
 import styles from "./ProfileButton.module.css";
 import { useState } from "react";
-import { Menu } from "antd";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
+
+const ProfileBoxLinkButton = styled.div`
+  position: relative;
+  padding: 0;
+  margin-top: 10px;
+  height: 52px;
+  color: #f5f5f5;
+
+  &:hover {
+    cursor: pointer;
+  }
+`;
 
 const ProfileMiniBox = () => {
   const nickname = sessionStorage.getItem("nickname");
@@ -17,22 +29,26 @@ const ProfileMiniBox = () => {
           walletAddress.substring(35)}
       </div>
 
-      {/* grey split line */}
+      {/* split line in grey */}
       <div className={styles.splitLine}>━━━━━━━━━━━</div>
 
+      {/* Buttons */}
       <div className={styles.options}>
         {/* Button Portfolio */}
-        <Menu.Item className={styles.optionsBox} key="/portfolio">
-          <NavLink to="/portfolio">Porfolio</NavLink>
-        </Menu.Item>
+        <ProfileBoxLinkButton key="/portfolio">
+          Portfolio
+          <Link to="/portfolio"></Link>
+        </ProfileBoxLinkButton>
+
         {/* Button Switch Wallet */}
-        <Menu.Item className={styles.optionsBox} key="/connectWallet">
-          <NavLink to="/connectWallet">switch wallet</NavLink>
-        </Menu.Item>
+        <ProfileBoxLinkButton key="/connectWallet">
+          Switch Wallet
+          <Link to="/connectWallet"></Link>
+        </ProfileBoxLinkButton>
         {/* Dark Toggle switch */}
-        <div className={styles.optionsBox}>
-          dark mode
-          <div className={styles.toggleSwitch}></div>
+        <div className={styles.darkModeBox}>
+          <div className={styles.darkModeText}>Dark Mode</div>
+          {/* <div className={styles.toggleSwitch}></div> */}
         </div>
         {/* Sign out */}
         <div className={styles.optionsBox}>Sign Out</div>
