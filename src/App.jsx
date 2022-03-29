@@ -58,9 +58,7 @@ const App = ({ isServerInfo }) => {
               <Route path="/connectWallet">
                 <ConnectWallet />
               </Route>
-              <Route path="/AboutUs">
-                <AboutUs />
-              </Route>
+              <Route path="/AboutUs">{/* <AboutUs /> */}</Route>
               <Route path="/wallet">
                 <Wallet />
               </Route>
