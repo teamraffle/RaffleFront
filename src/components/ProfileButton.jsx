@@ -66,10 +66,12 @@ const ProfileButton = () => {
         className={styles.profileButton}
         onMouseOver={() => {
           setMouseEnter(true);
+          console.log("Mouse Entered");
         }}
-        // onMouseLeave={() => {
-        //   setMouseEnter(false);
-        // }}
+        onMouseLeave={() => {
+          setMouseEnter(false);
+          console.log("Mouse Leave");
+        }}
       >
         a
       </div>
@@ -77,9 +79,11 @@ const ProfileButton = () => {
         <ProfileMiniBox
           onMouseOver={() => {
             setMouseEnter(true);
+            console.log("Mouse Entered");
           }}
           onMouseLeave={() => {
             setMouseEnter(false);
+            console.log("Mouse Leave");
           }}
         />
       ) : null}

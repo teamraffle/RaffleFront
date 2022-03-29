@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./Landing.module.css";
+import styled from "styled-components";
 
 export default function Landing() {
   return (
@@ -9,8 +10,7 @@ export default function Landing() {
           <img src="img/Blur_1.png" alt=" "></img>
         </div>
         <div className={styles.Block1Title}>
-          Track Your Position <br />
-          in NFT World
+          Track Your Position in NFT World
         </div>
         <div className={styles.Block1Content}>
           NFT Ranks was created by NFT Degens who are highly <br />
@@ -55,14 +55,14 @@ export default function Landing() {
         </div>
         <div className={styles.Block3Content}>
           <div className={styles.B3CLeft}>
-            NFT Ranks was created by NFT Degens who are <br /> highly interested
-            in building service to provide <br /> ranking system of wallets and
-            NFT projects in <br /> addition to NFT portfolio analysis.
+            NFT Ranks was created by NFT Degens who are highly interested in
+            building service to provide ranking system of wallets and NFT
+            projects in addition to NFT portfolio analysis.
           </div>
           <div className={styles.B3CRight}>
-            NFT Ranks was created by NFT Degens who are <br /> highly interested
-            in building service to provide <br /> ranking system of wallets and
-            NFT projects in <br /> addition to NFT portfolio analysis.
+            NFT Ranks was created by NFT Degens who are highly interested in
+            building service to provide ranking system of wallets and NFT
+            projects in addition to NFT portfolio analysis.
           </div>
         </div>
       </div>
@@ -73,13 +73,11 @@ export default function Landing() {
             Rank on?
           </div>
           <div className={styles.Block4LeftContent}>
-            Rankings are indicators of how your choices have <br />
-            influenced your portfolio and NFT culture in positive <br />
-            way. Investment credit ratings will be granted <br />
-            according to specific criteria. People above a certain <br />
-            score get an honorable role called Diamond Hands. <br />
-            On the contrary, people with low scores receive a roll <br />
-            called Paper Hands.
+            Rankings are indicators of how your choices have influenced your
+            portfolio and NFT culture in positive way. Investment credit ratings
+            will be granted according to specific criteria. People above a
+            certain score get an honorable role called Diamond Hands. On the
+            contrary, people with low scores receive a roll called Paper Hands.
           </div>
         </div>
         <div className={styles.Block4Right}>

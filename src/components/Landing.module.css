@@ -13,19 +13,23 @@
   color: #f5f5f5;
   font-family: Poppins;
   text-align: center;
-  overflow: hidden;
-  width: 1920px;
-  height: 5240px;
+  width: 100%;
+  height: 100%;
 }
 
 .Block1Title {
   position: relative;
+  /* width: 807px;
+  height: 200px; */
+  margin: auto;
+  width: 42.406vw;
+  height: 3.8%;
   font-family: Poppins;
   font-size: 4.62vw;
   font-weight: bold;
   font-stretch: normal;
   font-style: normal;
-  line-height: 1.25;
+  line-height: 1.14;
   letter-spacing: -1.28px;
   text-align: center;
   color: #fff;
@@ -75,7 +79,8 @@
 .Block2LeftTitle {
   animation: fadein 3s ease-in-out;
   font-family: Poppins;
-  font-size: 54px;
+  /* font-size: 54px; */
+  font-size: 2.84vw;
   font-stretch: normal;
   font-style: normal;
   line-height: 1.25;
@@ -87,11 +92,13 @@
 .Block2LeftContents {
   /* top: 25%;
     left: 34%; */
-  width: 474px;
-  height: 280px;
+  /* width: 474px;
+  height: 280px; */
+  width: 24.908vw;
+  height: 14.713vw;
   animation: fadein 3s ease-in-out;
   font-family: Poppins;
-  font-size: 18px;
+  font-size: 0.945vw;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
@@ -103,12 +110,14 @@
 .Block2Right {
   text-align: left;
   float: left;
-  width: 35%;
+  width: 49.3%;
+  height: auto;
 }
 
 .Block2RightContents {
-  width: 974px;
-  height: 574px;
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
 
 .Block3Title {
@@ -131,8 +140,10 @@
   z-index: 2;
   animation: fadein 3s ease-in-out;
   margin-top: 72px;
-  width: 945px;
-  height: 364px;
+  /* width: 945px;
+  height: 364px; */
+  width: 49.658vw;
+  height: 19.127vw;
   text-align: left;
   margin-left: auto;
   margin-right: auto;
@@ -153,11 +164,15 @@
 }
 
 .B3CLeft {
+  width: 421px;
+  height: 112px;
   margin-left: 519px;
   float: left;
 }
 
 .B3CRight {
+  width: 409px;
+  height: 112px;
   margin-left: 54px;
   float: left;
 }
@@ -168,10 +183,13 @@
 }
 
 .Block4LeftTitle {
-  width: 315px;
-  height: 160px;
+  /* width: 315px;
+  height: 160px; */
+  width: 16.552vw;
+  height: 8.407vw;
   font-family: Poppins;
-  font-size: 54px;
+  /* font-size: 54px; */
+  font-size: 2.837vw;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
@@ -182,9 +200,15 @@
 }
 
 .Block4LeftContent {
+  /* width: 474px;
+  height: 196px; */
+  width: 24.908vw;
+  height: 10.299vw;
   margin-top: 48px;
   font-family: Poppins;
-  font-size: 18px;
+  /* font-size: 18px; */
+  font-size: 0.945vw;
+  overflow: auto;
   font-weight: 300;
   font-stretch: normal;
   font-style: normal;
@@ -196,14 +220,19 @@
 
 .Block4Right {
   float: right;
-  width: 1024px;
-  height: 480px;
+  /* width: 1024px;
+  height: 480px; */
+  width: 59.809vw;
+  height: 25.223vw;
 }
 
 .Block5Left {
   float: left;
-  width: 820px;
-  height: 731px;
+  display: flex;
+  /* width: 820px;
+  height: 731px; */
+  width: 43.089vw;
+  height: 38.413vw;
 }
 
 .Block5Right {
@@ -212,11 +241,16 @@
 }
 
 .Block5RightTitle {
+  /* width: 532px;
+  height: 160px; */
+  width: 27.955vw;
+  height: 8.407vw;
   position: relative;
   z-index: 2;
   margin-top: 204px;
   font-family: Poppins;
-  font-size: 54px;
+  /* font-size: 54px; */
+  font-size: 2.837vw;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
@@ -227,11 +261,16 @@
 }
 
 .Block5RightContent {
+  /* width: 474px;
+  height: 112px; */
+  width: 24.908vw;
+  height: 5.885vw;
   position: relative;
   z-index: 2;
   margin-top: 38px;
   font-family: Poppins;
-  font-size: 18px;
+  /* font-size: 18px; */
+  font-size: 0.945vw;
   font-weight: 300;
   font-stretch: normal;
   font-style: normal;
@@ -242,11 +281,16 @@
 }
 
 .Block6Title {
+  /* width: 893;
+  height: 150px; */
+  width: 46.925vw;
+  height: 7.882vw;
   position: relative;
   z-index: 2;
   margin-bottom: 72px;
   font-family: Poppins;
-  font-size: 88px;
+  /* font-size: 88px; */
+  font-size: 4.624vw;
   font-weight: 500;
   font-stretch: normal;
   font-style: normal;
@@ -285,6 +329,7 @@
 }
 
 .Block2 {
+  display: flex;
   z-index: 2;
   margin-top: 281px;
   height: 591;
@@ -304,6 +349,7 @@
 }
 
 .Block5 {
+  display: flex;
   z-index: 2;
   margin-top: 206px;
   overflow: hidden;

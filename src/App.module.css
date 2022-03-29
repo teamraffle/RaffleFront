@@ -6,8 +6,8 @@
   height: 72px;
   background: #151517;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: center; /*flex box 의 가로축 정렬*/
+  align-items: center; /*flex box 의 세로축 정렬*/
   font-family: Poppins;
   border-bottom: 5px solid rgba(47, 47, 47, 1);
   padding: 0px;

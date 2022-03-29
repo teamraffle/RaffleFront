@@ -24,6 +24,7 @@ import Landing from "./components/Landing";
 import AboutUs from "./components/AboutUs";
 import ConnectWallet from "./components/ConnectWallet";
 import AppjsxStyle from "./App.module.css";
+import styled from "styled-components";
 const { Footer } = Layout;
 
 const App = ({ isServerInfo }) => {
@@ -36,6 +37,13 @@ const App = ({ isServerInfo }) => {
       enableWeb3({ provider: connectorId });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticated, isWeb3Enabled]);
+
+  const Header = styled.div`
+  @media screen and (max-width:1440px) {
+    
+  }
+  }
+  `;
 
   return (
     <div>

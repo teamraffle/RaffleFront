@@ -32,3 +32,6 @@ typechain
 #Truffle files
 /Truffle/build
 /Truffle/data
+
+# Landing Page 반응형으로 만드는 작업 폴더
+src/components/Landing
