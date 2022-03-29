@@ -6,16 +6,12 @@ export default function AboutUs() {
     <div className={styles.aboutUs}>
       <div className={styles.bgImage}>
         <img src="img/LandingPageBGImage.png" alt=" " />
-        <div className={styles.title}>
-          We Seek to Improve <br />
-          the NFT Investment Culture
-        </div>
-        <div className={styles.subTitle}>
-          You can read the documentation <br />
-          about NFT Ranks and how we have built
-        </div>
-        <button className={styles.DocsBtn}>Go to Docs</button>
       </div>
+      <div className={styles.title}>
+        Change <br />
+        the NFT Culture
+      </div>
+      <button className={styles.DocsBtn}>Go to Docs</button>
     </div>
   );
 }
