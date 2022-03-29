@@ -10,15 +10,12 @@
   background-color: #151517;
 }
 
-.ant-layout-footer {
-  padding: 0;
-}
-
 .ant-layout {
   position: relative;
   min-height: 100vh;
   background-color: #151517;
   align-items: center;
+  width: 1920px;
 }
 
 /* For GNB Buttons */

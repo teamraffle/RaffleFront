@@ -4,7 +4,7 @@ import App from "./App";
 import { MoralisProvider } from "react-moralis";
 import "./index.css";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
-import Landing from "components/Landing/Landing";
+import Landing from "components/Landing";
 
 /** Get your free Moralis Account https://moralis.io/ */
 

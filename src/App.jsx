@@ -20,7 +20,7 @@ import Contract from "components/Contract/Contract";
 import Text from "antd/lib/typography/Text";
 import Ramper from "components/Ramper";
 import GNB from "./components/GNB";
-import Landing from "./components/Landing/Landing";
+import Landing from "./components/Landing";
 import AboutUs from "./components/AboutUs";
 import ConnectWallet from "./components/ConnectWallet";
 import AppjsxStyle from "./App.module.css";
