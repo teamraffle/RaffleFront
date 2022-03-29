@@ -11,11 +11,12 @@
 }
 
 .ant-layout {
+  width: 1920px;
+
   position: relative;
   min-height: 100vh;
   background-color: #151517;
   align-items: center;
-  width: 1920px;
 }
 
 /* For GNB Buttons */
