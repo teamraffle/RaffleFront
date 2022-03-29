@@ -23,50 +23,8 @@ import GNB from "./components/GNB";
 import Landing from "./components/Landing";
 import AboutUs from "./components/AboutUs";
 import ConnectWallet from "./components/ConnectWallet";
+import AppjsxStyle from "./App.module.css";
 const { Footer } = Layout;
-// import st from "./style.css";
-
-const styles = {
-  header: {
-    position: "fixed",
-    zIndex: 100,
-    width: "100%",
-    height: "72px",
-    background: "#151517",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    fontFamily: "Roboto, sans-serif",
-    borderBottom: "5px solid rgba(47, 47, 47, 1)",
-    padding: "0px",
-  },
-  headerRight: {
-    display: "flex",
-    gap: "20px",
-    alignItems: "center",
-    fontSize: "15px",
-    fontWeight: "600",
-  },
-  content: {
-    display: "flex",
-    position: "relative",
-    justifyContent: "center",
-    fontFamily: "Poppins, sans-serif",
-    color: "#f5f5f5",
-    backgroundColor: "#151517",
-    marginTop: "72px",
-    height: "auto",
-  },
-  footer: {
-    position: "absolute",
-    bottom: "0",
-    fontSize: "16px",
-    fontFamily: "Poppins",
-    marginBottom: "24px",
-    marginLeft: "268px",
-    backgroundColor: "rgba(255, 255, 255, 0)",
-  },
-};
 
 const App = ({ isServerInfo }) => {
   const { isWeb3Enabled, enableWeb3, isAuthenticated, isWeb3EnableLoading } =
@@ -84,12 +42,12 @@ const App = ({ isServerInfo }) => {
       <Layout>
         <Router>
           {/* Header */}
-          <div style={styles.header}>
+          <div className={AppjsxStyle.header}>
             <GNB />
           </div>
 
           {/* Contents */}
-          <div style={styles.content}>
+          <div className={AppjsxStyle.content}>
             <Switch>
               <Route exact path="/">
                 <Landing />
@@ -143,7 +101,7 @@ const App = ({ isServerInfo }) => {
             </Switch>
           </div>
           {/* Footer */}
-          <Footer style={styles.footer}>
+          <Footer className={AppjsxStyle.footer}>
             <Text style={{ color: "#bdbebe" }}>
               ⓒ 2022 RAFFLE | All rights reserved
             </Text>
