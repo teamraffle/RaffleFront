@@ -9,6 +9,8 @@
   }
 }
 
+/*------------ aBlock1----------------*/
+
 .aboutUs {
   color: #f5f5f5;
   font-family: Poppins;
@@ -53,4 +55,49 @@
   color: #151517;
   letter-spacing: -0.66px;
   cursor: pointer;
+}
+
+/* ----------------aBlock2--------------*/
+
+.aBlock2Left {
+}
+
+.aBlock2LeftVid {
+}
+
+/* ---------------- aBlocks ------------------- */
+.aBlock1 {
+  z-index: 2;
+  margin-top: 192px;
+  overflow: hidden;
+}
+
+.aBlock2 {
+  z-index: 2;
+  margin-top: 281px;
+  height: 591;
+  overflow: hidden;
+}
+
+.Block3 {
+  z-index: 2;
+  margin-top: 283px;
+  overflow: hidden;
+}
+
+.Block4 {
+  z-index: 2;
+  margin-top: 377px;
+  overflow: hidden;
+}
+
+.Block5 {
+  z-index: 2;
+  margin-top: 206px;
+  overflow: hidden;
+}
+
+.Block6 {
+  z-index: 2;
+  margin-top: 248px;
 }
