@@ -1,38 +1,69 @@
 /* App.jsx */
 .header {
+  /* flex container properties */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+
+  /* flex items properties */
+  align-self: center;
+
   position: fixed;
   z-index: 100;
-  width: 100%;
+
+  width: 1920px;
+  max-width: 1920px;
   height: 72px;
   background: #151517;
-  display: flex;
-  justify-content: center; /*flex box 의 가로축 정렬*/
-  align-items: center; /*flex box 의 세로축 정렬*/
+
   font-family: Poppins;
   border-bottom: 5px solid rgba(47, 47, 47, 1);
   padding: 0px;
 }
 
 .content {
+  /* flex container properties */
   display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  /* position relative for absolute child components */
   position: relative;
   z-index: 1;
-  justify-content: center;
+
   font-family: Poppins, sans-serif;
   color: #f5f5f5;
   background-color: #151517;
   margin-top: 72px;
   height: auto;
   overflow: hidden;
+
+  max-width: 1920px;
 }
 
 .footer {
+  /* flex items properties */
   position: absolute;
   bottom: 0;
   z-index: 2;
-  font-size: 16px;
-  font-family: Poppins;
-  margin-bottom: 24px;
-  margin-left: 268px;
+
+  margin-bottom: 10%;
+  left: 14%;
+
   background-color: rgba(255, 255, 255, 0);
+
+  width: 275px;
+  height: 24px;
+
+  /* text */
+  font-family: Poppins;
+  font-size: 16px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.48px;
+  text-align: left;
+  color: #bdbebe;
 }

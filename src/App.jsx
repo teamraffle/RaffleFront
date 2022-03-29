@@ -20,7 +20,7 @@ import Contract from "components/Contract/Contract";
 import Text from "antd/lib/typography/Text";
 import Ramper from "components/Ramper";
 import GNB from "./components/GNB";
-import Landing from "./components/Landing";
+import Landing from "./components/Landing/Landing";
 import AboutUs from "./components/AboutUs";
 import ConnectWallet from "./components/ConnectWallet";
 import AppjsxStyle from "./App.module.css";
@@ -37,13 +37,6 @@ const App = ({ isServerInfo }) => {
       enableWeb3({ provider: connectorId });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticated, isWeb3Enabled]);
-
-  const Header = styled.div`
-  @media screen and (max-width:1440px) {
-    
-  }
-  }
-  `;
 
   return (
     <div>
@@ -105,13 +98,11 @@ const App = ({ isServerInfo }) => {
                 <>Please login using the "Authenticate" button</>
               </Route>
             </Switch>
-          </div>
-          {/* Footer */}
-          <Footer className={AppjsxStyle.footer}>
-            <Text style={{ color: "#bdbebe" }}>
+            <div className={AppjsxStyle.footer}>
               ⓒ 2022 RAFFLE | All rights reserved
-            </Text>
-          </Footer>
+            </div>
+          </div>
+          {/* Footer is in Content*/}
         </Router>
       </Layout>
     </div>

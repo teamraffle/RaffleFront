@@ -1,10 +1,10 @@
 .menuBar {
   position: relative;
   display: flex;
+  justify-content: left;
   font-size: 17px;
   font-weight: 500;
-  max-width: 1440px;
-  justify-content: left;
+  width: 1440px;
   background: #151517;
   font-family: Poppins;
 }
