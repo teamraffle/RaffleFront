@@ -6,9 +6,6 @@
   justify-content: space-around;
   align-items: center;
 
-  /* flex items properties */
-  align-self: center;
-
   position: fixed;
   z-index: 100;
 
@@ -19,7 +16,6 @@
 
   font-family: Poppins;
   border-bottom: 5px solid rgba(47, 47, 47, 1);
-  padding: 0px;
 }
 
 .content {

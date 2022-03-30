@@ -40,9 +40,12 @@
   /* flex item properties*/
   order: 2;
 
-  animation: fadein 3s ease-in-out;
+  /* content */
   width: 595px;
   height: auto;
+  margin-top: 56px;
+
+  /* text */
   font-family: Poppins;
   font-size: 24px;
   font-weight: 300;
@@ -51,30 +54,34 @@
   line-height: 1.5;
   letter-spacing: -0.48px;
   text-align: center;
-  margin-top: 56px;
   color: var(--raffle-white);
+
+  /* animation */
+  animation: fadein 3s ease-in-out;
 }
 
 .Block1Btn {
   /* flex item properties*/
   order: 3;
 
-  animation: fadein 3s ease-in-out;
-
+  /* content */
   z-index: 2;
-  position: relative;
-  background-color: #d6f866;
   width: 253px;
   height: 53px;
-  border-radius: 8px;
+  background-color: #d6f866;
   border: solid 1px #e8faad;
+  border-radius: 8px;
+  margin-top: 72px;
+
+  /* text */
   font-size: 22px;
   font-weight: bold;
   color: #151517;
   letter-spacing: -0.66px;
   cursor: pointer;
 
-  margin-top: 72px;
+  /* animation */
+  animation: fadein 3s ease-in-out;
 }
 
 /* ----- Block2 items ----- */
@@ -84,10 +91,15 @@
   flex-direction: column;
   align-content: stretch;
 
-  margin-left: 14%;
-  text-align: left;
-  overflow: hidden;
+  /* flex items properties */
   flex: 0 0 474px;
+
+  /* content */
+  margin-left: 14%;
+  overflow: hidden;
+
+  /* text */
+  text-align: left;
 }
 
 .Block2LeftTitle {

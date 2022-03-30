@@ -11,7 +11,7 @@
 }
 
 .ant-layout {
-  width: 1920px;
+  min-width: 1900px;
 
   position: relative;
   min-height: 100vh;
