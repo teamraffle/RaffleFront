@@ -1,4 +1,3 @@
-import { useLocation } from "react-router";
 import { Menu } from "antd";
 import { Link } from "react-router-dom";
 import styles from "./GNB.module.css";
@@ -81,13 +80,11 @@ const GNBLink = styled(Link)`
 `;
 
 function MenuItems() {
-  const { pathname } = useLocation();
-
   // call back functions for Search Bar
 
   return (
     <>
-      <GNBContainer defaultSelectedKeys={[pathname]}>
+      <GNBContainer>
         {/* logo */}
         <GNBItem width="14rem" marginRight="4rem">
           <Link to="/">

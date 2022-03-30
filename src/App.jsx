@@ -51,73 +51,72 @@ const App = ({ isServerInfo }) => {
   `;
 
   return (
-    <div>
-      <Wrapper>
-        <Router>
-          {/* Header */}
-          <div className={AppjsxStyle.header}>
-            <GNB />
+    <Wrapper>
+      {/* Header */}
+      <Router>
+        <div className={AppjsxStyle.header}>
+          <GNB />
+        </div>
+      </Router>
+      <Router>
+        {/* Contents */}
+        <div className={AppjsxStyle.content}>
+          <Switch>
+            <Route exact path="/">
+              <Landing />
+            </Route>
+            <Route exact path="/Ranking">
+              {/* <Ranking isServerInfo={isServerInfo} /> */}
+            </Route>
+            <Route path="/connectWallet">
+              <ConnectWallet />
+            </Route>
+            <Route path="/AboutUs">{/* <AboutUs /> */}</Route>
+            <Route path="/wallet">
+              <Wallet />
+            </Route>
+            <Route path="/1inch">
+              <Tabs defaultActiveKey="1" style={{ alignItems: "center" }}>
+                <Tabs.TabPane tab={<span>Ethereum</span>} key="1">
+                  <DEX chain="eth" />
+                </Tabs.TabPane>
+                <Tabs.TabPane tab={<span>Binance Smart Chain</span>} key="2">
+                  <DEX chain="bsc" />
+                </Tabs.TabPane>
+                <Tabs.TabPane tab={<span>Polygon</span>} key="3">
+                  <DEX chain="polygon" />
+                </Tabs.TabPane>
+              </Tabs>
+            </Route>
+            <Route path="/erc20balance">
+              <ERC20Balance />
+            </Route>
+            <Route path="/onramp">
+              <Ramper />
+            </Route>
+            <Route path="/erc20transfers">
+              <ERC20Transfers />
+            </Route>
+            <Route path="/nftBalance">
+              <NFTBalance />
+            </Route>
+            <Route path="/contract">
+              <Contract />
+            </Route>
+            <Route path="/">
+              <Redirect to="/" />
+            </Route>
+            <Route path="/nonauthenticated">
+              <>Please login using the "Authenticate" button</>
+            </Route>
+          </Switch>
+          <div className={AppjsxStyle.footer}>
+            ⓒ 2022 RAFFLE | All rights reserved
           </div>
-
-          {/* Contents */}
-          <div className={AppjsxStyle.content}>
-            <Switch>
-              <Route exact path="/">
-                <Landing />
-              </Route>
-              <Route exact path="/Ranking">
-                {/* <Ranking isServerInfo={isServerInfo} /> */}
-              </Route>
-              <Route path="/connectWallet">
-                <ConnectWallet />
-              </Route>
-              <Route path="/AboutUs">{/* <AboutUs /> */}</Route>
-              <Route path="/wallet">
-                <Wallet />
-              </Route>
-              <Route path="/1inch">
-                <Tabs defaultActiveKey="1" style={{ alignItems: "center" }}>
-                  <Tabs.TabPane tab={<span>Ethereum</span>} key="1">
-                    <DEX chain="eth" />
-                  </Tabs.TabPane>
-                  <Tabs.TabPane tab={<span>Binance Smart Chain</span>} key="2">
-                    <DEX chain="bsc" />
-                  </Tabs.TabPane>
-                  <Tabs.TabPane tab={<span>Polygon</span>} key="3">
-                    <DEX chain="polygon" />
-                  </Tabs.TabPane>
-                </Tabs>
-              </Route>
-              <Route path="/erc20balance">
-                <ERC20Balance />
-              </Route>
-              <Route path="/onramp">
-                <Ramper />
-              </Route>
-              <Route path="/erc20transfers">
-                <ERC20Transfers />
-              </Route>
-              <Route path="/nftBalance">
-                <NFTBalance />
-              </Route>
-              <Route path="/contract">
-                <Contract />
-              </Route>
-              <Route path="/">
-                <Redirect to="/" />
-              </Route>
-              <Route path="/nonauthenticated">
-                <>Please login using the "Authenticate" button</>
-              </Route>
-            </Switch>
-            <div className={AppjsxStyle.footer}>
-              ⓒ 2022 RAFFLE | All rights reserved
-            </div>
-          </div>
-          {/* Footer is in Content*/}
-        </Router>
-      </Wrapper>
-    </div>
+        </div>
+        {/* Footer is in Content*/}
+      </Router>
+    </Wrapper>
   );
 };
 export default App;
