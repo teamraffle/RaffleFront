@@ -46,7 +46,7 @@ const App = ({ isServerInfo }) => {
 
     position: relative;
     min-height: 100vh;
-    background-color: #151517;
+    background: #151517;
     align-items: center;
   `;
 
