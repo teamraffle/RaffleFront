@@ -53,14 +53,14 @@ const App = ({ isServerInfo }) => {
   return (
     <Wrapper>
       {/* Header */}
-      <Router>
-        <div className={AppjsxStyle.header}>
-          <GNB />
-        </div>
-      </Router>
+
       <Router>
         {/* Contents */}
         <div className={AppjsxStyle.content}>
+          <div className={AppjsxStyle.header}>
+            <GNB />
+          </div>
+
           <Switch>
             <Route exact path="/">
               <Landing />
