@@ -11,7 +11,7 @@ import ERC20Transfers from "components/ERC20Transfers";
 import DEX from "components/DEX";
 import NFTBalance from "components/NFTBalance";
 import Wallet from "components/Wallet";
-import { Layout, Tabs } from "antd"; // ant design library
+import { Tabs } from "antd"; // ant design library
 import "antd/dist/antd.css";
 // import styles from "./style.css";
 import "./style.css";
@@ -25,7 +25,6 @@ import AboutUs from "./components/AboutUs";
 import ConnectWallet from "./components/ConnectWallet";
 import AppjsxStyle from "./App.module.css";
 import styled from "styled-components";
-const { Footer } = Layout;
 
 const App = ({ isServerInfo }) => {
   const { isWeb3Enabled, enableWeb3, isAuthenticated, isWeb3EnableLoading } =
@@ -38,9 +37,22 @@ const App = ({ isServerInfo }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticated, isWeb3Enabled]);
 
+  const Wrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    background: #151517;
+
+    min-width: 1900px;
+
+    position: relative;
+    min-height: 100vh;
+    background-color: #151517;
+    align-items: center;
+  `;
+
   return (
     <div>
-      <Layout>
+      <Wrapper>
         <Router>
           {/* Header */}
           <div className={AppjsxStyle.header}>
@@ -104,7 +116,7 @@ const App = ({ isServerInfo }) => {
           </div>
           {/* Footer is in Content*/}
         </Router>
-      </Layout>
+      </Wrapper>
     </div>
   );
 };

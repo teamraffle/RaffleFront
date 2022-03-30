@@ -11,6 +11,10 @@
 }
 
 .ant-layout {
+  display: flex;
+  flex-direction: column;
+  background: #151517;
+
   min-width: 1900px;
 
   position: relative;
