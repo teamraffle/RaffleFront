@@ -32,7 +32,7 @@ const App = ({ isServerInfo }) => {
     flex-direction: column;
     background: #151517;
 
-    width: 100%;
+    min-width: 102.4rem;
 
     position: relative;
     min-height: 100vh;
