@@ -1,15 +1,53 @@
 import React from "react";
 import styles from "./Landing.module.css";
+import styled, { keyframes } from "styled-components";
+
+const fadein = keyframes`
+  0% {
+    opacity: 0;
+    transform: none;
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+`;
+
+const Blur = styled.img`
+  z-index: 1;
+  overflow: hidden;
+  position: absolute;
+  width: ${(props) => props.width};
+  height: ${(props) => props.height};
+
+  /* (temporary) % for small screen */
+  margin-left: ${(props) => props.marginLeft};
+  margin-right: ${(props) => props.marginRight};
+  top: ${(props) => props.top};
+  animation: ${fadein} 3s ease-in-out;
+`;
 
 export default function Landing() {
   return (
     <>
-      <div className={styles.Blur1}>
-        <img src="img/Blur_1.png" alt=" "></img>
-      </div>
-      <div className={styles.Blur2}>
-        <img src="img/Blur_2.png" alt=" "></img>
-      </div>
+      <Blur
+        src="img/Blur_1.png"
+        alt=" "
+        width="131.1rem"
+        height="121.8rem"
+        marginLeft="63.8rem"
+        marginRight="0rem"
+        top="-6rem"
+      />
+      <Blur
+        src="img/Blur_2.png"
+        alt=" "
+        width="137.7rem"
+        height="166.2rem"
+        marginLeft="30rem"
+        marginRight="80rem"
+        top="112.3rem"
+      />
       <div className={styles.Blur3}>
         <img src="img/Blur_3.png" alt=" "></img>
       </div>
@@ -98,10 +136,9 @@ export default function Landing() {
               Like a Diamond
             </div>
             <div className={styles.Block5RightContent}>
-              We can sort out wallets into three levels: diamond <br />
-              hands, normal hands, and paper hands. We also have <br />
-              further plan to create community with diamond hands <br />
-              and adopt DAO system.
+              We can sort out wallets into three levels: diamond hands, normal
+              hands, and paper hands. We also have further plan to create
+              community with diamond hands and adopt DAO system.
             </div>
           </div>
         </div>

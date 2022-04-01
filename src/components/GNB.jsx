@@ -1,6 +1,5 @@
 import { Menu } from "antd";
 import { Link } from "react-router-dom";
-import styles from "./GNB.module.css";
 import SearchBar from "./SearchBar.jsx";
 import ProfileButton from "./ProfileButton.jsx";
 import styled, { css } from "styled-components";
@@ -27,7 +26,7 @@ const GNBContainer = styled.div`
   font-family: Poppins;
 
   /* container properties */
-  width: 192rem;
+  width: 102.4rem;
   background: #151517;
 `;
 
@@ -39,15 +38,15 @@ const GNBItem = styled.div`
   margin-right: ${(props) => props.marginRight};
 
   button {
-    height: 44px;
-    line-height: 44px;
-    width: 147px;
-    border: 1px solid #d6f866;
-    border-radius: 6px;
+    height: 4.4rem;
+    line-height: 4.4rem;
+    width: 14.7rem;
+    border: 0.1rem solid #d6f866;
+    border-radius: 0.6rem;
     color: #d6f866;
     background-color: #151517;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 1.6rem;
   }
 `;
 
@@ -66,12 +65,12 @@ const GNBLink = styled(Link)`
   }};
 
   font-family: Poppins;
-  font-size: 20px;
+  font-size: 2rem;
   font-weight: 500;
   font-stretch: normal;
   font-style: normal;
   line-height: normal;
-  letter-spacing: -0.6px;
+  letter-spacing: -0.06rem;
   text-align: left;
 
   &:hover {
@@ -79,52 +78,55 @@ const GNBLink = styled(Link)`
   }
 `;
 
+const Logo = styled.img`
+  align-items: center;
+  width: 14rem;
+  margin-top: 0.9rem;
+  margin-bottom: 0.9rem;
+`;
+
 function MenuItems() {
-  // call back functions for Search Bar
-
   return (
-    <>
-      <GNBContainer>
-        {/* logo */}
-        <GNBItem width="14rem" marginRight="4rem">
-          <Link to="/">
-            <img className={styles.logo} src="img/NFT_Ranks_Logo.svg" alt=" " />
-          </Link>
-        </GNBItem>
+    <GNBContainer>
+      {/* logo */}
+      <GNBItem width="14rem" marginRight="1rem">
+        <Link to="/">
+          <Logo src="img/NFT_Ranks_Logo.svg" alt=" " />
+        </Link>
+      </GNBItem>
 
-        {/* Ranking Button */}
-        <GNBItem width="8rem" marginRight="3.2rem">
-          <GNBLink to="/ranking" color="RaffleWhite">
-            Ranking
-          </GNBLink>
-        </GNBItem>
+      {/* Ranking Button */}
+      <GNBItem width="8rem" marginRight="1rem">
+        <GNBLink to="/ranking" color="RaffleWhite">
+          Ranking
+        </GNBLink>
+      </GNBItem>
 
-        {/* AboutUs Button */}
-        <GNBItem width="8.8rem" marginRight="3.2rem">
-          <GNBLink to="/aboutUs" color="RaffleWhite">
-            About Us
-          </GNBLink>
-        </GNBItem>
+      {/* AboutUs Button */}
+      <GNBItem width="8.8rem" marginRight="1rem">
+        <GNBLink to="/aboutUs" color="RaffleWhite">
+          About Us
+        </GNBLink>
+      </GNBItem>
 
-        {/* Search Bar */}
-        <GNBItem width="56.4rem" marginRight="36.6rem">
-          <SearchBar />
-        </GNBItem>
+      {/* Search Bar */}
+      <GNBItem width="44.4rem" marginRight="0rem">
+        <SearchBar />
+      </GNBItem>
 
-        {/* GNB Right -- Connect Button */}
-        <GNBItem>
-          {sessionStorage.getItem("user") ? (
-            <ProfileButton />
-          ) : (
-            <button>
-              <GNBLink to="/connectWallet" color="RaffleNeon">
-                Connect
-              </GNBLink>
-            </button>
-          )}
-        </GNBItem>
-      </GNBContainer>
-    </>
+      {/* GNB Right -- Connect Button */}
+      <GNBItem>
+        {sessionStorage.getItem("user") ? (
+          <ProfileButton />
+        ) : (
+          <button>
+            <GNBLink to="/connectWallet" color="RaffleNeon">
+              Connect
+            </GNBLink>
+          </button>
+        )}
+      </GNBItem>
+    </GNBContainer>
   );
 }
 
