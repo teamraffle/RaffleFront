@@ -51,7 +51,7 @@ const App = ({ isServerInfo }) => {
     top: 0;
     z-index: 100;
 
-    width: 102.4rem;
+    max-width: 102.4rem;
     height: 7.2rem;
     background: #151517;
 
@@ -76,7 +76,7 @@ const App = ({ isServerInfo }) => {
     height: auto;
     overflow: hidden;
 
-    width: 102.4rem;
+    max-width: 102.4rem;
   `;
 
   const Footer = styled.div`
