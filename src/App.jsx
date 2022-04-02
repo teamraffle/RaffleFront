@@ -28,8 +28,6 @@ const App = ({ isServerInfo }) => {
   }, [isAuthenticated, isWeb3Enabled]);
 
   const Wrapper = styled.div`
-    display: flex;
-    flex-direction: column;
     background: #151517;
 
     min-width: 102.4rem;
@@ -47,13 +45,14 @@ const App = ({ isServerInfo }) => {
     justify-content: space-around;
     align-items: center;
 
-    position: fixed;
+    position: relative;
     top: 0;
     z-index: 100;
 
     max-width: 102.4rem;
     height: 7.2rem;
     background: #151517;
+    margin: 0 auto;
 
     font-family: Poppins;
     border-bottom: 5px solid rgba(47, 47, 47, 1);
@@ -72,7 +71,7 @@ const App = ({ isServerInfo }) => {
     font-family: Poppins, sans-serif;
     color: #f5f5f5;
     background-color: #151517;
-    margin-top: 72px;
+    margin: 7.2rem auto;
     height: auto;
     overflow: hidden;
 
