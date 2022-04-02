@@ -14,6 +14,7 @@ import GNB from "./components/GNB";
 import Landing from "./components/Landing";
 import AboutUs from "./components/AboutUs";
 import ConnectWallet from "./components/ConnectWallet";
+import Portfoilo from "./components/Portfoilo";
 import styled from "styled-components";
 
 const App = ({ isServerInfo }) => {
@@ -28,12 +29,11 @@ const App = ({ isServerInfo }) => {
   }, [isAuthenticated, isWeb3Enabled]);
 
   const Wrapper = styled.div`
-    background: #151517;
-
     min-width: 102.4rem;
+    min-height: 100vh;
 
     position: relative;
-    min-height: 100vh;
+
     background: #151517;
     align-items: center;
   `;
@@ -84,12 +84,12 @@ const App = ({ isServerInfo }) => {
     bottom: 0;
     z-index: 2;
 
-    margin-bottom: 10rem;
+    margin-bottom: 2rem;
     left: 10rem;
 
     background-color: rgba(255, 255, 255, 0);
 
-    width: 275px;
+    width: 27.5rem;
     height: 24px;
 
     /* text */
@@ -124,9 +124,11 @@ const App = ({ isServerInfo }) => {
             <Route path="/connectWallet">
               <ConnectWallet />
             </Route>
+            <Route path="/Portfolio">
+              <Portfoilo />
+            </Route>
             <Route path="/AboutUs">{/* <AboutUs /> */}</Route>
           </Switch>
-
           {/* Footer */}
           <Footer>ⓒ 2022 RAFFLE | All rights reserved</Footer>
         </Content>

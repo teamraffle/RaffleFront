@@ -9,7 +9,7 @@
   }
 }
 
-.Landing {
+.LandingContainer {
   /* flex container properties */
   display: flex;
   flex-direction: column;

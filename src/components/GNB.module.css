@@ -1,13 +1,14 @@
 .menuBar {
   display: flex;
   flex-direction: row;
-  justify-content: left;
+  justify-content: space-evenly;
 
   font-size: 17px;
   font-weight: 500;
   width: 1440px;
   background: #151517;
   font-family: Poppins;
+  border: 0;
 }
 
 .logo {

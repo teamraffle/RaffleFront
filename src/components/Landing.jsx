@@ -51,7 +51,7 @@ export default function Landing() {
       <div className={styles.Blur3}>
         <img src="img/Blur_3.png" alt=" "></img>
       </div>
-      <div className={styles.Landing}>
+      <div className={styles.LandingContainer}>
         <div className={styles.Block1}>
           <div className={styles.Block1Title}>
             Track Your Position in NFT World
