@@ -33,7 +33,7 @@ const GNBContainer = styled.div`
 const GNBItem = styled.div`
   /* container properties */
   width: ${(props) => props.width};
-  height: fit-content;
+  height: ${(props) => props.height || "fit-content"};
   background: #151517;
   margin-right: ${(props) => props.marginRight};
 
@@ -110,7 +110,7 @@ function MenuItems() {
       </GNBItem>
 
       {/* Search Bar */}
-      <GNBItem width="44.4rem" marginRight="0rem">
+      <GNBItem width="44.4rem" marginRight="0rem" height="auto">
         <SearchBar />
       </GNBItem>
 
