@@ -5,27 +5,31 @@ export default function AboutUs() {
   return (
     <div className={styles.aboutUs}>
       <div className={styles.aBlock1}>
-        <div className={styles.bgImage}>
-          <img src="img/LandingPageBGImage.png" alt=" " />
-        </div>
         <div className={styles.title}>
           Change <br />
           the NFT Culture
         </div>
-        <div>
-          <button className={styles.DocsBtn}>Go to Docs</button>
+        <div className={styles.bgImage}>
+          <img src="img/LandingPageBGImage.png" alt=" " />
         </div>
+        <button className={styles.DocsBtn}>Go to Docs</button>
       </div>
+
       <div className={styles.aBlock2}>
-        <div className={styles.aBlock2Left}>
-          <div className={styles.aBlock2LeftVid}>
-            <video
-              src="vid/aBlock2LeftVid.mp4"
-              type="video/mp4"
-              muted
-              loop
-            ></video>
-          </div>
+        <div className={styles.aBlock2LeftVid}>
+          <video
+            poster
+            loop="loop"
+            autoPlay="autoplay"
+            src="vid/aBlock2LeftVid.mp4"
+            type="video/mp4"
+            muted="muted"
+            playsInline="playsinline"
+            width={1500}
+          ></video>
+        </div>
+
+        <div className={styles.aBlock2Right}>
           <div className={styles.aBlock2RightTitle}>
             Improve <br />
             the NFT investment <br />
@@ -40,6 +44,7 @@ export default function AboutUs() {
           </div>
         </div>
       </div>
+
       <div className={styles.aBlock3}>
         <div className={styles.aBlock3CenterTitle}>
           To Infinity and <br />
@@ -91,67 +96,70 @@ export default function AboutUs() {
           they will get the chance to participate in diamond hands DAO.
         </div>
       </div>
+
       <div className={styles.aBlock4}>
         <div className={styles.aBlock4Title}>Our Team</div>
-        <div className={styles.aBlock4Summer}>
-          <img src="img/Summer.png" alt=" "></img>
-        </div>
-        <div className={styles.aBlock4SummerCont1}>Developer</div>
-        <div className={styles.aBlock4SummerCont2}>Summer</div>
-        <div className={styles.aBlock4SummerCont3}>
-          KOKO is the GOAT Developer <br />
-          KOKO is the GOAT Developer <br />
-          KOKO is the GOAT Developer <br />
-          KOKO is the GOAT Developer <br />
-          KOKO is the GOAT Developer
-        </div>
-        <div className={styles.aBlock4Blockcodes}>
-          <img src="img/Blockcodes.png" alt=" "></img>
-        </div>
-        <div className={styles.aBlock4BlockcodesCont1}>Developer</div>
-        <div className={styles.aBlock4BlockcodesCont2}>Blockcodes</div>
-        <div className={styles.aBlock4BlockcodesCont3}>
-          KOKO is the GOAT Developer <br />
-          KOKO is the GOAT Developer <br />
-          KOKO is the GOAT Developer <br />
-          KOKO is the GOAT Developer <br />
-          KOKO is the GOAT Developer
-        </div>
-        <div className={styles.aBlock4Koko}>
-          <img src="img/Koko.png" alt=" "></img>
-        </div>
-        <div className={styles.aBlock4KokoCont1}>Developer</div>
-        <div className={styles.aBlock4KokoCont2}>Koko</div>
-        <div className={styles.aBlock4KokoCont3}>
-          KOKO is the GOAT Developer <br />
-          KOKO is the GOAT Developer <br />
-          KOKO is the GOAT Developer <br />
-          KOKO is the GOAT Developer <br />
-          KOKO is the GOAT Developer
-        </div>
-        <div className={styles.aBlock4Panna}>
-          <img src="img/Panna.png" alt=" "></img>
-        </div>
-        <div className={styles.aBlock4PannaCont1}>Developer</div>
-        <div className={styles.aBlock4PannaCont2}>Panna</div>
-        <div className={styles.aBlock4PannaCont3}>
-          KOKO is the GOAT Developer <br />
-          KOKO is the GOAT Developer <br />
-          KOKO is the GOAT Developer <br />
-          KOKO is the GOAT Developer <br />
-          KOKO is the GOAT Developer
-        </div>
-        <div className={styles.aBlock4Mean}>
-          <img src="img/Mean.png" alt=" "></img>
-        </div>
-        <div className={styles.aBlock4MeanCont1}>Designer</div>
-        <div className={styles.aBlock4MeanCont2}>Mean</div>
-        <div className={styles.aBlock4MeanCont3}>
-          KOKO is the GOAT Developer <br />
-          KOKO is the GOAT Developer <br />
-          KOKO is the GOAT Developer <br />
-          KOKO is the GOAT Developer <br />
-          KOKO is the GOAT Developer
+        <div className={styles.aBlock4Row}>
+          <div className={styles.aBlock4Summer}>
+            <img src="img/Summer.png" alt=" "></img>
+          </div>
+          <div className={styles.aBlock4SummerCont1}>Developer</div>
+          <div className={styles.aBlock4SummerCont2}>Summer</div>
+          <div className={styles.aBlock4SummerCont3}>
+            KOKO is the GOAT Developer <br />
+            KOKO is the GOAT Developer <br />
+            KOKO is the GOAT Developer <br />
+            KOKO is the GOAT Developer <br />
+            KOKO is the GOAT Developer
+          </div>
+          <div className={styles.aBlock4Blockcodes}>
+            <img src="img/Blockcodes.png" alt=" "></img>
+          </div>
+          <div className={styles.aBlock4BlockcodesCont1}>Developer</div>
+          <div className={styles.aBlock4BlockcodesCont2}>Blockcodes</div>
+          <div className={styles.aBlock4BlockcodesCont3}>
+            KOKO is the GOAT Developer <br />
+            KOKO is the GOAT Developer <br />
+            KOKO is the GOAT Developer <br />
+            KOKO is the GOAT Developer <br />
+            KOKO is the GOAT Developer
+          </div>
+          <div className={styles.aBlock4Koko}>
+            <img src="img/Koko.png" alt=" "></img>
+          </div>
+          <div className={styles.aBlock4KokoCont1}>Developer</div>
+          <div className={styles.aBlock4KokoCont2}>Koko</div>
+          <div className={styles.aBlock4KokoCont3}>
+            KOKO is the GOAT Developer <br />
+            KOKO is the GOAT Developer <br />
+            KOKO is the GOAT Developer <br />
+            KOKO is the GOAT Developer <br />
+            KOKO is the GOAT Developer
+          </div>
+          <div className={styles.aBlock4Panna}>
+            <img src="img/Panna.png" alt=" "></img>
+          </div>
+          <div className={styles.aBlock4PannaCont1}>Developer</div>
+          <div className={styles.aBlock4PannaCont2}>Panna</div>
+          <div className={styles.aBlock4PannaCont3}>
+            KOKO is the GOAT Developer <br />
+            KOKO is the GOAT Developer <br />
+            KOKO is the GOAT Developer <br />
+            KOKO is the GOAT Developer <br />
+            KOKO is the GOAT Developer
+          </div>
+          <div className={styles.aBlock4Mean}>
+            <img src="img/Mean.png" alt=" "></img>
+          </div>
+          <div className={styles.aBlock4MeanCont1}>Designer</div>
+          <div className={styles.aBlock4MeanCont2}>Mean</div>
+          <div className={styles.aBlock4MeanCont3}>
+            KOKO is the GOAT Developer <br />
+            KOKO is the GOAT Developer <br />
+            KOKO is the GOAT Developer <br />
+            KOKO is the GOAT Developer <br />
+            KOKO is the GOAT Developer
+          </div>
         </div>
       </div>
     </div>

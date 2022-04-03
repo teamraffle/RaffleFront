@@ -9,89 +9,478 @@
   }
 }
 
-/*------------ aBlock1----------------*/
-
 .aboutUs {
-  color: #f5f5f5;
-  font-family: Poppins;
-  position: relative;
-  text-align: center;
-  width: 1920px;
-  height: 100%;
+flex-direction: column;
+align-items: center;
+text-align: center;
+font-family: Poppins;
+width: 100%;
+height: 100%;
 }
 
-.bgImage {
+ /*------------ aBlock1----------------*/
+ .aBlock1{
+  /* flex container properties */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  margin-top: 0px;
+}
+
+ .bgImage {
+  z-index: 1;
+  margin-top: 0px;
+  bottom: 0px;
+  content: "";
   width: 100%;
   height: 100%;
-  overflow: hidden;
   animation: fadein 4s ease-in-out;
-  position: relative;
+
+  /* display: block;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-shadow: 
+    inset 0 0 20px #151517,
+    inset 0 0 20px #151517,
+    inset 0 0 20px #151517,
+    inset 0 0 20px #151517; */
+/* 
+  background: linear-gradient( 
+    to bottom,
+   rgba(21, 21, 23, 0) 10%,
+   rgba(21, 21, 23, 0.5) 20%,
+   rgba(21, 21, 23, 0.7) 75%,
+   rgba(21, 21, 23, 1) 100%); */
 }
 
-.title {
-  position: absolute;
-  overflow: hidden;
-  animation: fadein 4s ease-in-out;
-  top: 25%;
-  font-size: 64px;
-  text-align: center;
-  color: #ffffff;
+.title {   
+ order: 1;
+ z-index: 2;
+ position: absolute;
+
+ /*content*/
+ width: 721px;
+ height: 322px;
+ top: 30%;
+
+ /*text*/
+ font-size: 64px;
+ font-weight: bold;
+ font-stretch: normal;
+ font-style: normal;
+ text-align: center;
+ line-height: 1.25;
+ letter-spacing: -1.28px;
+ color: #ffffff;
+
+ /*animation*/
+ animation: fadein 4s ease-in-out;
 }
 
 .DocsBtn {
+  /* order: 2; */
+  z-index: 2;
   position: absolute;
-  overflow: hidden;
-  animation: fadein 4s ease-in-out;
-  top: 55.4%;
-  left: 44.8%;
-  background-color: #d6f866;
+
+  /*content*/
+  top: 50%;
   width: 202px;
   height: 53px;
   align-items: center;
+
+  /*text*/
+  background-color: #d6f866;
   border-radius: 8px;
   border: solid 1px #e8faad;
   font-size: 22px;
   font-weight: bold;
   color: #151517;
   letter-spacing: -0.66px;
+  text-align: center;
   cursor: pointer;
+
+  /*animation*/
+  animation: fadein 4s ease-in-out;
 }
 
 /* ----------------aBlock2--------------*/
 
-/* ---------------- aBlocks ------------------- */
-.aBlock1 {
-  z-index: 2;
-  margin-top: 192px;
-  overflow: hidden;
-}
-
 .aBlock2 {
-  z-index: 2;
-  margin-top: 281px;
-  height: 591;
-  overflow: hidden;
+  /* flex container properties */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  margin-top: 100px;
+  height:auto;
 }
 
-.Block3 {
-  z-index: 2;
-  margin-top: 283px;
-  overflow: hidden;
+.aBlock2LeftVid {
+  order: 1;
+  flex: 0 0 1157px;
+  margin-left: -150px;
+  width: 150px;
 }
 
-.Block4 {
-  z-index: 2;
-  margin-top: 377px;
-  overflow: hidden;
+.aBlock2Right {
+   /* flex container properties */
+  order: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: right;
+
+  /* text */
+  text-align: left;
+  margin-right: 14%;
 }
 
-.Block5 {
-  z-index: 2;
-  margin-top: 206px;
-  overflow: hidden;
+.aBlock2RightTitle {
+  
+  width: 503px;
+  height: 198px;
+  font-family: Poppins;
+  font-size: 54px;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 66px;
+  letter-spacing: -1.08px;
+  color: #fff;
+  margin-bottom: 48px;
+
+  animation: fadein 3s ease-in-out;
 }
 
-.Block6 {
-  z-index: 2;
-  margin-top: 248px;
+.aBlock2RightContent{
+
+  width: 474px;
+  height: 140px;
+  font-family: Poppins;
+  font-size: 18px;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 28px;
+  letter-spacing: -0.36px;
+  color: #fff;
+
+  animation: fadein 3s ease-in-out;
+
+}
+
+/* ---------------- aBlock3 ------------------- */
+
+.aBlock3 {
+  /* flex container properties */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  margin-top: 100px;
+  height: 1400px;
+}
+
+.aBlock3CenterTitle {
+  width: 369px;
+  height: 132px;
+  font-family: Poppins;
+  font-size: 54px;
+  font-stretch: normal;
+  font-style: normal;
+  
+  line-height: 66px;
+  letter-spacing: -1.08px;
+  color: #fff;
+
+  animation: fadein 3s ease-in-out;
+}
+
+.aBlock3RmapYearTop {
+  position: absolute;
+  width: 65px;
+  height: 28px;
+  font-family: Poppins;
+  font-size: 28px;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: -0.56px;
+  color: #fff;
+  left: 530px;
+  margin-top: 219px;
+  animation: fadein 3s ease-in-out;
+}
+
+.aBlock3RmapYearBottom {
+  position: absolute;
+  width: 65px;
+  height: 28px;
+  font-family: Poppins;
+  font-size: 28px;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: -0.56px;
+  color: #fff;
+  left: 530px;
+  margin-top: 1319px;
+  animation: fadein 3s ease-in-out;
+}
+
+.aBlock3RmapBar {
+  width: 32px;
+  position: absolute;
+  left: 645px;
+  margin-top: 219px;
+}
+
+.aBlock3ContentT1 {
+  position: absolute;
+  width: 322px;
+  height: 28px;
+  font-family: Poppins;
+  font-size: 24px;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: -0.48px;
+  line-height: 28px;
+  color: #626262;
+  text-align: left;
+  left: 747px;
+  margin-top: 222px;
+  animation: fadein 3s ease-in-out;
+}
+
+.aBlock3Content1 {
+  position: absolute;
+  width: 658px;
+  height: 56px;
+  font-family: Poppins;
+  font-size: 18px;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: -0.48px;
+  line-height: 28px;
+  color: #fff;
+  text-align: left;
+  left: 747px;
+  margin-top: 268px;
+  animation: fadein 3s ease-in-out;
+}
+
+.aBlock3ContentT2 {
+  position: absolute;
+  width: 322px;
+  height: 28px;
+  font-family: Poppins;
+  font-size: 24px;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: -0.48px;
+  line-height: 28px;
+  color: #626262;
+  text-align: left;
+  left: 747px;
+  margin-top: 350px;
+  animation: fadein 3s ease-in-out;
+}
+
+.aBlock3Content2{
+  position: absolute;
+  width: 658px;
+  height: 84px;
+  font-family: Poppins; 
+  font-size: 18px;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: -0.48px;
+  line-height: 28px;
+  color: #fff;
+  text-align: left;
+  left: 747px;
+  margin-top: 396px;
+  animation: fadein 3s ease-in-out;
+}
+
+.aBlock3ContentT3 {
+  position: absolute;
+  width: 322px;
+  height: 28px;
+  font-family: Poppins;
+  font-size: 24px;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: -0.48px;
+  line-height: 28px;
+  color: #626262;
+  text-align: left;
+  left: 747px;
+  margin-top: 536px;
+  animation: fadein 3s ease-in-out;
+}
+
+.aBlock3Content3 {
+  position: absolute;
+  width: 658px;
+  height: 84px;
+  font-family: Poppins; 
+  font-size: 18px;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: -0.48px;
+  line-height: 28px;
+  color: #fff;
+  text-align: left;
+  left: 747px;
+  margin-top: 582px;
+  animation: fadein 3s ease-in-out;
+}
+
+.aBlock3ContentT4 {
+  position: absolute;
+  width: 322px;
+  height: 28px;
+  font-family: Poppins;
+  font-size: 24px;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: -0.48px;
+  line-height: 28px;
+  color: #626262;
+  text-align: left;
+  left: 747px;
+  margin-top: 682px;
+  animation: fadein 3s ease-in-out;
+}
+
+.aBlock3Content4 {
+  position: absolute;
+  width: 658px;
+  height: 84px;
+  font-family: Poppins; 
+  font-size: 18px;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: -0.48px;
+  line-height: 28px;
+  color: #fff;
+  text-align: left;
+  left: 747px;
+  margin-top: 728px;
+  animation: fadein 3s ease-in-out;
+}
+
+.aBlock3ContentT5 {
+  position: absolute;
+  width: 322px;
+  height: 28px;
+  font-family: Poppins;
+  font-size: 24px;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: -0.48px;
+  line-height: 28px;
+  color: #626262;
+  text-align: left;
+  left: 747px;
+  margin-top: 856px;
+  animation: fadein 3s ease-in-out;
+}
+
+.aBlock3Content5 {
+  position: absolute;
+  width: 658px;
+  height: 84px;
+  font-family: Poppins; 
+  font-size: 18px;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: -0.48px;
+  line-height: 28px;
+  color: #fff;
+  text-align: left;
+  left: 747px;
+  margin-top: 902px;
+  animation: fadein 3s ease-in-out;
+}
+
+.aBlock3ContentT6 {
+  position: absolute;
+  width: 322px;
+  height: 28px;
+  font-family: Poppins;
+  font-size: 24px;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: -0.48px;
+  line-height: 28px;
+  color: #626262;
+  text-align: left;
+  left: 747px;
+  margin-top: 1042px;
+  animation: fadein 3s ease-in-out;
+}
+
+.aBlock3Content6 {
+  position: absolute;
+  width: 658px;
+  height: 84px;
+  font-family: Poppins; 
+  font-size: 18px;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: -0.48px;
+  line-height: 28px;
+  color: #fff;
+  text-align: left;
+  left: 747px;
+  margin-top: 1182px;
+  animation: fadein 3s ease-in-out;
+}
+
+/* ---------------- aBlock4 ------------------- */
+
+.aBlock4 {
+  /* flex container properties */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  margin-top: 100px;
+}
+
+.aBlock4Title {
+  position: absolute;
+  width: 262px;
+  height: 66px;
+  font-family: Poppins; 
+  font-size: 54px;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: -1.08px;
+  line-height: 66px;
+  color: #fff;
+  text-align: left;
+  left: 268px;
+  margin-top: 10px;
+  animation: fadein 3s ease-in-out;
+}
+
+.aBlock4Row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  margin-top: 100px;
+}
+
+.aBlock4Summer {
+  
+
+
 }
