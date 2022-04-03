@@ -71,10 +71,11 @@ const App = ({ isServerInfo }) => {
     font-family: Poppins, sans-serif;
     color: #f5f5f5;
     background-color: #151517;
-    margin: 7.2rem auto;
-    height: auto;
+    margin-left: auto;
+    margin-right: auto;
     overflow: hidden;
 
+    min-height: 90vh;
     max-width: 102.4rem;
   `;
 
