@@ -9,7 +9,7 @@
   }
 }
 
-.Landing {
+.LandingContainer {
   /* flex container properties */
   display: flex;
   flex-direction: column;
@@ -92,10 +92,10 @@
   align-content: stretch;
 
   /* flex items properties */
-  flex: 0 0 474px;
+  flex: 0 0 auto;
 
   /* content */
-  margin-left: 14%;
+  margin-left: 9.5rem;
   overflow: hidden;
 
   /* text */
@@ -103,27 +103,27 @@
 }
 
 .Block2LeftTitle {
-  width: 452px;
-  height: 160px;
+  width: 30rem;
+  height: auto;
   animation: fadein 3s ease-in-out;
   font-family: Poppins;
-  font-size: 54px;
+  font-size: 4.2rem;
   font-stretch: normal;
   font-style: normal;
   line-height: 1.25;
   letter-spacing: -1.28px;
   color: #fff;
-  margin-bottom: 48px;
+  margin-bottom: 3.2rem;
 }
 
 .Block2LeftContents {
   /* top: 25%;
     left: 34%; */
-  width: 474px;
-  height: 280px;
+  width: 30rem;
+  height: auto;
   animation: fadein 3s ease-in-out;
   font-family: Poppins;
-  font-size: 18px;
+  font-size: 1.45rem;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
@@ -133,7 +133,7 @@
 }
 
 .Block2Right {
-  flex: 0 0 974px;
+  flex: 0 0 65rem;
   align-self: stretch;
 }
 
@@ -152,7 +152,7 @@
 
   animation: fadein 3s ease-in-out;
   font-family: Poppins;
-  font-size: 54px;
+  font-size: 4.8rem;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
@@ -168,9 +168,9 @@
 
   z-index: 2;
   animation: fadein 3s ease-in-out;
-  margin-top: 72px;
-  width: 945px;
-  height: 364px;
+  margin-top: 2.4rem;
+  width: 90rem;
+  height: 30.5rem;
 }
 
 .Block3Content {
@@ -179,28 +179,31 @@
 
   /* flex container properties */
   display: flex;
+  flex-direction: row;
   align-items: flex-start;
-  justify-content: space-between;
-  gap: 2.8%;
+  justify-content: space-around;
+  gap: 7rem;
 
   z-index: 2;
   margin-top: 84px;
   text-align: left;
-  font-size: 18px;
+  font-size: 1.8rem;
   font-weight: 300;
   font-stretch: normal;
   font-style: normal;
   line-height: 1.56;
   letter-spacing: -0.36px;
+
+  width: 70rem;
 }
 
 .B3CLeft {
-  width: 421px;
+  width: 52rem;
   height: 112px;
 }
 
 .B3CRight {
-  width: 421px;
+  width: 52rem;
   height: 112px;
 }
 
@@ -216,7 +219,7 @@
   /* align-items: left; */
   align-items: flex-start;
 
-  margin-left: 14%;
+  margin-left: 8.5rem;
 }
 
 .Block4LeftTitle {
@@ -224,9 +227,9 @@
   order: 1;
 
   width: 315px;
-  height: 160px;
+  height: auto;
   font-family: Poppins;
-  font-size: 72px;
+  font-size: 4.8rem;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
@@ -240,11 +243,11 @@
   /* flex items properties */
   order: 2;
 
-  margin-top: 48px;
-  width: 474px;
-  height: 196px;
+  margin-top: 3rem;
+  width: 35rem;
+  height: auto;
   font-family: Poppins;
-  font-size: 18px;
+  font-size: 1.5rem;
   font-weight: 300;
   font-stretch: normal;
   font-style: normal;
@@ -257,26 +260,27 @@
 .Block4Right {
   /* flex items properties */
   order: 2;
-  flex: 0 0 1024px;
+  flex: 0 0 57.5rem;
 
   align-self: flex-end;
-  height: 100%;
+  height: 95%;
 }
 
 .Block5Left {
   /* flex items properties */
   order: 1;
-  flex: 0 0 820px;
+  flex: 0 0 50rem;
 
   /* width: 820px;
   height: 731px; */
-  margin-left: 106px;
+  margin-left: -0.5rem;
   align-self: stretch;
 }
 
 .Block5Right {
   /* flex items properties */
   order: 2;
+  justify-self: flex-end;
 
   /* flex container properties */
   display: flex;
@@ -289,10 +293,10 @@
   order: 1;
 
   z-index: 2;
-  width: 532px;
-  margin-top: 204px;
+  width: 40rem;
+  margin-top: 0rem;
   font-family: Poppins;
-  font-size: 72px;
+  font-size: 4.8rem;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
@@ -307,10 +311,10 @@
   order: 2;
 
   z-index: 2;
-  width: 474px;
+  width: 40rem;
   margin-top: 38px;
   font-family: Poppins;
-  font-size: 18px;
+  font-size: 1.85rem;
   font-weight: 300;
   font-stretch: normal;
   font-style: normal;
@@ -375,8 +379,7 @@
   display: flex;
   flex-direction: row;
   align-items: stretch;
-  justify-content: space-between;
-  row-gap: 151px;
+  row-gap: 0rem;
 
   z-index: 2;
   margin-top: 281px;
@@ -397,7 +400,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  gap: 154px;
+  gap: 0rem;
 
   width: auto;
   height: 480px;
@@ -411,7 +414,7 @@
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  gap: 200px;
+  gap: 10rem;
 
   z-index: 2;
   margin-top: 206px;
@@ -434,6 +437,7 @@
   z-index: 1;
   overflow: hidden;
   position: absolute;
+
   width: 1311px;
   height: 1218px;
 
@@ -448,6 +452,7 @@
   z-index: 1;
   overflow: hidden;
   position: absolute;
+
   width: 1377px;
   height: 1662px;
   margin-left: 300px;
@@ -465,7 +470,7 @@
 
   margin-left: 710px;
   margin-right: 0px;
-  top: 3650px;
+  top: 3120px;
   /* object-fit: contain; */
   animation: fadein 3s ease-in-out;
 }

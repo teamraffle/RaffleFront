@@ -6,24 +6,15 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
-import ERC20Balance from "components/ERC20Balance";
-import ERC20Transfers from "components/ERC20Transfers";
-import DEX from "components/DEX";
-import NFTBalance from "components/NFTBalance";
-import Wallet from "components/Wallet";
-import { Tabs } from "antd"; // ant design library
 import "antd/dist/antd.css";
 // import styles from "./style.css";
 import "./style.css";
 // import Ranking from "components/Ranking";
-import Contract from "components/Contract/Contract";
-import Text from "antd/lib/typography/Text";
-import Ramper from "components/Ramper";
 import GNB from "./components/GNB";
 import Landing from "./components/Landing";
 import AboutUs from "./components/AboutUs";
 import ConnectWallet from "./components/ConnectWallet";
-import AppjsxStyle from "./App.module.css";
+import Portfoilo from "./components/Portfoilo";
 import styled from "styled-components";
 
 const App = ({ isServerInfo }) => {
@@ -38,86 +29,114 @@ const App = ({ isServerInfo }) => {
   }, [isAuthenticated, isWeb3Enabled]);
 
   const Wrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    background: #151517;
-
-    min-width: 1900px;
+    min-width: 102.4rem;
+    min-height: 100vh;
 
     position: relative;
-    min-height: 100vh;
+
     background: #151517;
     align-items: center;
   `;
 
-  return (
-    <div>
-      <Wrapper>
-        <Router>
-          {/* Header */}
-          <div className={AppjsxStyle.header}>
-            <GNB />
-          </div>
+  const Header = styled.div`
+    /* flex container properties */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
 
-          {/* Contents */}
-          <div className={AppjsxStyle.content}>
-            <Switch>
-              <Route exact path="/">
-                <Landing />
-              </Route>
-              <Route exact path="/Ranking">
-                {/* <Ranking isServerInfo={isServerInfo} /> */}
-              </Route>
-              <Route path="/connectWallet">
-                <ConnectWallet />
-              </Route>
-              <Route path="/AboutUs">{<AboutUs />}</Route>
-              <Route path="/wallet">
-                <Wallet />
-              </Route>
-              <Route path="/1inch">
-                <Tabs defaultActiveKey="1" style={{ alignItems: "center" }}>
-                  <Tabs.TabPane tab={<span>Ethereum</span>} key="1">
-                    <DEX chain="eth" />
-                  </Tabs.TabPane>
-                  <Tabs.TabPane tab={<span>Binance Smart Chain</span>} key="2">
-                    <DEX chain="bsc" />
-                  </Tabs.TabPane>
-                  <Tabs.TabPane tab={<span>Polygon</span>} key="3">
-                    <DEX chain="polygon" />
-                  </Tabs.TabPane>
-                </Tabs>
-              </Route>
-              <Route path="/erc20balance">
-                <ERC20Balance />
-              </Route>
-              <Route path="/onramp">
-                <Ramper />
-              </Route>
-              <Route path="/erc20transfers">
-                <ERC20Transfers />
-              </Route>
-              <Route path="/nftBalance">
-                <NFTBalance />
-              </Route>
-              <Route path="/contract">
-                <Contract />
-              </Route>
-              <Route path="/">
-                <Redirect to="/" />
-              </Route>
-              <Route path="/nonauthenticated">
-                <>Please login using the "Authenticate" button</>
-              </Route>
-            </Switch>
-            <div className={AppjsxStyle.footer}>
-              ⓒ 2022 RAFFLE | All rights reserved
-            </div>
-          </div>
-          {/* Footer is in Content*/}
-        </Router>
-      </Wrapper>
-    </div>
+    position: relative;
+    top: 0;
+    z-index: 100;
+
+    max-width: 102.4rem;
+    height: 7.2rem;
+    background: #151517;
+    margin: 0 auto;
+
+    font-family: Poppins;
+    border-bottom: 5px solid rgba(47, 47, 47, 1);
+  `;
+
+  const Content = styled.div`
+    /* flex container properties */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    /* position relative for absolute child components */
+    position: relative;
+    z-index: 1;
+
+    font-family: Poppins, sans-serif;
+    color: #f5f5f5;
+    background-color: #151517;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+
+    min-height: 90vh;
+    max-width: 102.4rem;
+  `;
+
+  const Footer = styled.div`
+    /* flex items properties */
+    position: absolute;
+    bottom: 0;
+    z-index: 2;
+
+    margin-bottom: 2rem;
+    left: 10rem;
+
+    background-color: rgba(255, 255, 255, 0);
+
+    width: 27.5rem;
+    height: 24px;
+
+    /* text */
+    font-family: Poppins;
+    font-size: 1.2rem;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.48px;
+    text-align: left;
+    color: #bdbebe;
+  `;
+
+  return (
+    <Wrapper>
+      <Router>
+        {/* Header */}
+        <Header>
+          <GNB />
+        </Header>
+
+        {/* Contents */}
+        <Content>
+          <Switch>
+            <Route exact path="/">
+              <Landing />
+            </Route>
+            <Route exact path="/Ranking">
+              {/* <Ranking isServerInfo={isServerInfo} /> */}
+            </Route>
+            <Route path="/connectWallet">
+              <ConnectWallet />
+            </Route>
+            <Route path="/Portfolio">
+              <Portfoilo />
+            </Route>
+            <Route path="/AboutUs">{/* <AboutUs /> */}</Route>
+          </Switch>
+          {/* Footer */}
+          <Footer>ⓒ 2022 RAFFLE | All rights reserved</Footer>
+        </Content>
+
+        {/* Footer is in Content*/}
+      </Router>
+    </Wrapper>
   );
 };
 export default App;
