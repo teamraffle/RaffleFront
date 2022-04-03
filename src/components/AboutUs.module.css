@@ -10,16 +10,16 @@
 }
 
 .aboutUs {
-flex-direction: column;
-align-items: center;
-text-align: center;
-font-family: Poppins;
-width: 100%;
-height: 100%;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  font-family: Poppins;
+  width: 100%;
+  height: 100%;
 }
 
- /*------------ aBlock1----------------*/
- .aBlock1{
+/*------------ aBlock1----------------*/
+.aBlock1 {
   /* flex container properties */
   display: flex;
   flex-direction: column;
@@ -29,7 +29,7 @@ height: 100%;
   margin-top: 0px;
 }
 
- .bgImage {
+.bgImage {
   z-index: 1;
   margin-top: 0px;
   bottom: 0px;
@@ -49,7 +49,7 @@ height: 100%;
     inset 0 0 20px #151517,
     inset 0 0 20px #151517,
     inset 0 0 20px #151517; */
-/* 
+  /* 
   background: linear-gradient( 
     to bottom,
    rgba(21, 21, 23, 0) 10%,
@@ -58,28 +58,28 @@ height: 100%;
    rgba(21, 21, 23, 1) 100%); */
 }
 
-.title {   
- order: 1;
- z-index: 2;
- position: absolute;
+.title {
+  order: 1;
+  z-index: 2;
+  position: absolute;
 
- /*content*/
- width: 721px;
- height: 322px;
- top: 30%;
+  /*content*/
+  width: 721px;
+  height: 322px;
+  top: 30%;
 
- /*text*/
- font-size: 64px;
- font-weight: bold;
- font-stretch: normal;
- font-style: normal;
- text-align: center;
- line-height: 1.25;
- letter-spacing: -1.28px;
- color: #ffffff;
+  /*text*/
+  font-size: 64px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  text-align: center;
+  line-height: 1.25;
+  letter-spacing: -1.28px;
+  color: #ffffff;
 
- /*animation*/
- animation: fadein 4s ease-in-out;
+  /*animation*/
+  animation: fadein 4s ease-in-out;
 }
 
 .DocsBtn {
@@ -118,7 +118,7 @@ height: 100%;
   text-align: center;
   position: relative;
   margin-top: 100px;
-  height:auto;
+  height: auto;
 }
 
 .aBlock2LeftVid {
@@ -129,7 +129,7 @@ height: 100%;
 }
 
 .aBlock2Right {
-   /* flex container properties */
+  /* flex container properties */
   order: 2;
   display: flex;
   flex-direction: column;
@@ -141,7 +141,6 @@ height: 100%;
 }
 
 .aBlock2RightTitle {
-  
   width: 503px;
   height: 198px;
   font-family: Poppins;
@@ -156,8 +155,7 @@ height: 100%;
   animation: fadein 3s ease-in-out;
 }
 
-.aBlock2RightContent{
-
+.aBlock2RightContent {
   width: 474px;
   height: 140px;
   font-family: Poppins;
@@ -169,7 +167,6 @@ height: 100%;
   color: #fff;
 
   animation: fadein 3s ease-in-out;
-
 }
 
 /* ---------------- aBlock3 ------------------- */
@@ -192,7 +189,7 @@ height: 100%;
   font-size: 54px;
   font-stretch: normal;
   font-style: normal;
-  
+
   line-height: 66px;
   letter-spacing: -1.08px;
   color: #fff;
@@ -288,11 +285,11 @@ height: 100%;
   animation: fadein 3s ease-in-out;
 }
 
-.aBlock3Content2{
+.aBlock3Content2 {
   position: absolute;
   width: 658px;
   height: 84px;
-  font-family: Poppins; 
+  font-family: Poppins;
   font-size: 18px;
   font-stretch: normal;
   font-style: normal;
@@ -326,7 +323,7 @@ height: 100%;
   position: absolute;
   width: 658px;
   height: 84px;
-  font-family: Poppins; 
+  font-family: Poppins;
   font-size: 18px;
   font-stretch: normal;
   font-style: normal;
@@ -360,7 +357,7 @@ height: 100%;
   position: absolute;
   width: 658px;
   height: 84px;
-  font-family: Poppins; 
+  font-family: Poppins;
   font-size: 18px;
   font-stretch: normal;
   font-style: normal;
@@ -394,7 +391,7 @@ height: 100%;
   position: absolute;
   width: 658px;
   height: 84px;
-  font-family: Poppins; 
+  font-family: Poppins;
   font-size: 18px;
   font-stretch: normal;
   font-style: normal;
@@ -428,7 +425,7 @@ height: 100%;
   position: absolute;
   width: 658px;
   height: 84px;
-  font-family: Poppins; 
+  font-family: Poppins;
   font-size: 18px;
   font-stretch: normal;
   font-style: normal;
@@ -457,7 +454,7 @@ height: 100%;
   position: absolute;
   width: 262px;
   height: 66px;
-  font-family: Poppins; 
+  font-family: Poppins;
   font-size: 54px;
   font-stretch: normal;
   font-style: normal;
@@ -480,7 +477,4 @@ height: 100%;
 }
 
 .aBlock4Summer {
-  
-
-
 }

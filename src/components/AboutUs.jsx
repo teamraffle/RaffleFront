@@ -21,7 +21,7 @@ export default function AboutUs() {
             poster
             loop="loop"
             autoPlay="autoplay"
-            src="vid/aBlock2LeftVid.mp4"
+            src="vid/aBlock2LeftVids.mp4"
             type="video/mp4"
             muted="muted"
             playsInline="playsinline"
