@@ -3,15 +3,14 @@ import styles from "./ConnectWallet.module.css";
 
 import axios from "axios";
 
-export default function ConnectWallet({ setIsLogin_Appjsx }) {
-  const { ethereum } = window;
+export default function ConnectWallet() {
   /** -------------------- State Variables -------------------- */
   // 1[select], 2[signing], 3[setNickName], 4[failed]
   const [pageStep, setPageStep] = useState(1);
+
   /** <1> */
   const [chainID, setChainID] = useState(); // 버튼 클릭 감지 [MetaMask] Click
   /** <2> */
-  const [userInfo, setUserInfo] = useState();
   const [currentAccount, setCurrentAccount] = useState(0);
 
   /** <3> */
