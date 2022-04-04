@@ -23,6 +23,7 @@ const Blur = styled.img`
   /* (temporary) % for small screen */
   margin-left: ${(props) => props.marginLeft};
   margin-right: ${(props) => props.marginRight};
+  left: ${(props) => props.left};
   top: ${(props) => props.top};
   animation: ${fadein} 3s ease-in-out;
 `;
@@ -33,11 +34,12 @@ export default function Landing() {
       <Blur
         src="img/Blur_1.png"
         alt=" "
-        width="131.1rem"
-        height="121.8rem"
-        marginLeft="63.8rem"
+        width="49.7rem"
+        height="60rem"
+        marginLeft="0rem"
         marginRight="0rem"
-        top="-6rem"
+        left="0rem"
+        top="0rem"
       />
       <Blur
         src="img/Blur_2.png"
@@ -57,9 +59,8 @@ export default function Landing() {
             Track Your Position in NFT World
           </div>
           <div className={styles.Block1Content}>
-            NFT Ranks was created by NFT Degens who are highly interested in
-            building service to provide ranking system of wallets and NFT
-            projects in addition to NFT portfolio analysis.
+            Get accurate data and <br />
+            build reliable whitelists with NFT Ranks
           </div>
 
           <button className={styles.Block1Btn}>Check My Rank</button>
