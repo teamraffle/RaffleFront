@@ -20,16 +20,73 @@ const colors = {
 };
 
 /* ---- styled components ---- */
+const GeneralStatsContainer = styled.div`
+  /* flex container properties */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+
+  row-gap: 0.4rem;
+
+  width: 14.5rem;
+  height: 6rem;
+`;
+const StatsHeaderContainer = styled.div`
+  /* flex container properties */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.4rem;
+`;
+const StatsName = styled.div`
+  /* text properties */
+  font-family: Poppins;
+  font-size: 1rem;
+  font-weight: Regular;
+  color: ${colors.RaffleNeon};
+`;
+
+const StatsDataContainer = styled.div`
+  /* flex container properties */
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  column-gap: 0.8rem;
+`;
+
+const StatsData = styled.div`
+  /* text properties */
+  font-family: Poppins;
+  font-size: 1.2rem;
+  font-weight: SemiBold;
+  color: ${colors.RaffleWhite};
+`;
+
+const StatsDataUnit = styled.div`
+  /* text properties */
+  font-family: Poppins;
+  font-size: 0.8rem;
+  font-weight: Light;
+  color: ${colors.RaffleWhite};
+`;
+
+const StatsInfoImg = styled.img`
+  width: 0.8rem;
+  height: 0.8rem;
+  cursor: pointer;
+`;
+
 const PortfoiloContainer = styled.div`
   /* flex container properties */
   display: flex;
   flex-direction: column;
-  width: 62.5rem;
+  width: 72.5rem;
   height: 100%;
 `;
 
 const PortfoiloHeader = styled.div`
-  width: 62.5rem;
+  width: 100%;
 `;
 
 const HeaderTitle = styled.div`
@@ -54,16 +111,100 @@ const HeaderContainer = styled.div`
   justify-content: space-between;
 `;
 const HeaderUserInfoBox = styled.div`
-  width: 30.5rem;
+  /* flex container properties */
+  display: flex;
+  flex-direction: row;
+  justify-content: stretch;
+  align-items: center;
+  column-gap: 2rem;
+
+  width: 35.5rem;
   height: 18.8rem;
+  padding: 1.5rem 1.2rem;
 
   border-radius: 14px;
   border: solid 1px ${colors.RaffleCharcoal};
   background-color: ${colors.RaffleDeepDark};
 `;
+
+const UserInfoBoxIcon = styled.img`
+  width: 11.8rem;
+  height: 11.8rem;
+`;
+const UserInfoBoxData = styled.div`
+  /* flex container properties */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2rem;
+  align-items: flex-start;
+
+  height: 100%;
+`;
+
+const DataClass = styled.div`
+  width: 9.6rem;
+  height: 2.4rem;
+  border-radius: 2rem;
+  line-height: 2.4rem;
+  background-color: ${colors.RaffleCharcoal};
+
+  text-align: center;
+`;
+const DataNicknameContainer = styled.div`
+  /* flex container properties */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`;
+const DataNickname = styled.div`
+  /* text properties */
+  font-family: Poppins;
+  font-size: 1.45rem;
+  font-weight: Semibold;
+  color: ${colors.RaffleWhite};
+`;
+const DataNicknameEditButtonImg = styled.img`
+  width: 1.35rem;
+  height: 1.5rem;
+  cursor: pointer;
+
+  margin-left: 0.4rem;
+`;
+const DataWalletAddressContainer = styled.div`
+  /* flex container properties */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`;
+const DataWalletAddress = styled.div`
+  /* text properties */
+  font-family: Poppins;
+  font-size: 1.15rem;
+  font-weight: Light;
+  text-decoration: underline;
+  color: ${colors.RaffleGrey};
+`;
+const DataWalletAddresseCopyButtonImg = styled.img`
+  width: 1.35rem;
+  height: 1.5rem;
+  cursor: pointer;
+
+  margin-left: 0.4rem;
+`;
+
 const HeaderOverview = styled.div`
-  width: 30.5rem;
+  /* flex container properties */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  column-gap: 0.8rem;
+
+  width: 35.5rem;
   height: 18.8rem;
+  padding: 3rem 1rem;
 
   border-radius: 14px;
   border: solid 1px ${colors.RaffleCharcoal};
@@ -145,15 +286,23 @@ const OptionSelectButton = styled.button`
 `;
 
 const OverviewContainer = styled.div`
+  /* flex container properties */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  column-gap: 0.8rem;
+  padding: 1.5rem 2rem;
+
   width: 100%;
-  height: 320px;
+  height: 24rem;
 
   margin-top: 2.4rem;
   border-radius: 1.4rem;
   border: solid 0.1rem ${colors.RaffleCharcoal};
   background-color: ${colors.RaffleDeepDark};
 `;
-const OverviewItem = styled.div``;
 
 const PortfolioUpdateInfoText = styled.div`
   /* flex items properties */
@@ -171,7 +320,7 @@ const PortfolioUpdateInfoText = styled.div`
   color: #b3b3b3;
   text-align: end;
 
-  width: 62.5rem;
+  width: 72.5rem;
 
   margin-top: 2rem;
 `;
@@ -182,7 +331,7 @@ const PortfoiloNSAContainer = styled.div`
   display: flex;
   flex-direction: column;
 
-  width: 62.5rem;
+  width: 72.5rem;
   margin-bottom: 24rem;
 `;
 
@@ -237,8 +386,44 @@ export default function Portfoilo() {
       <PortfoiloHeader>
         <HeaderTitle>Portfolio</HeaderTitle>
         <HeaderContainer>
-          <HeaderUserInfoBox></HeaderUserInfoBox>
-          <HeaderOverview></HeaderOverview>
+          <HeaderUserInfoBox>
+            <UserInfoBoxIcon src="img/InfoBoxIcon.png" alt=""></UserInfoBoxIcon>
+            <UserInfoBoxData>
+              <DataClass>** DIAMOND ** </DataClass>
+              <DataNicknameContainer>
+                <DataNickname>** NICKNAME ** </DataNickname>
+                <DataNicknameEditButtonImg src="img/EditButton.png"></DataNicknameEditButtonImg>
+              </DataNicknameContainer>
+              <DataWalletAddressContainer>
+                <DataWalletAddress>** WALLET ADDRESS **</DataWalletAddress>
+                <DataWalletAddresseCopyButtonImg src="img/CopyButton.png"></DataWalletAddresseCopyButtonImg>
+              </DataWalletAddressContainer>
+            </UserInfoBoxData>
+          </HeaderUserInfoBox>
+          <HeaderOverview>
+            <GeneralStatsContainer>
+              <StatsName>NFTs</StatsName>
+              <StatsData>** 3,592 **</StatsData>
+            </GeneralStatsContainer>
+            <GeneralStatsContainer>
+              <StatsName>Collections</StatsName>
+              <StatsData>** 12 **</StatsData>
+            </GeneralStatsContainer>
+            <GeneralStatsContainer>
+              <StatsHeaderContainer>
+                <StatsName>Average of Holding Period</StatsName>
+                <StatsInfoImg src="img/Circle_I.png" />
+              </StatsHeaderContainer>
+              <StatsData>** 58 ** Days</StatsData>
+            </GeneralStatsContainer>
+            <GeneralStatsContainer>
+              <StatsHeaderContainer>
+                <StatsName>Most Holding</StatsName>
+                <StatsInfoImg src="img/Circle_I.png" />
+              </StatsHeaderContainer>
+              <StatsData>** icon_ gotta catch **</StatsData>
+            </GeneralStatsContainer>
+          </HeaderOverview>
         </HeaderContainer>
       </PortfoiloHeader>
 
@@ -254,18 +439,80 @@ export default function Portfoilo() {
           </OverviewOptionSelectBox>
         </OverviewHeader>
         <OverviewContainer>
-          <div>
-            <OverviewItem></OverviewItem>
-            <OverviewItem></OverviewItem>
-            <OverviewItem></OverviewItem>
-            <OverviewItem></OverviewItem>
-          </div>
-          <div>
-            <OverviewItem></OverviewItem>
-            <OverviewItem></OverviewItem>
-            <OverviewItem></OverviewItem>
-            <OverviewItem></OverviewItem>
-          </div>
+          <GeneralStatsContainer>
+            <StatsHeaderContainer>
+              <StatsName>Est. Market Value</StatsName>
+              <StatsInfoImg src="img/Circle_I.png" />
+            </StatsHeaderContainer>
+            <StatsDataContainer>
+              <StatsData>** 1,591,580.50 **</StatsData>
+              <StatsDataUnit>USD</StatsDataUnit>
+            </StatsDataContainer>
+          </GeneralStatsContainer>
+          <GeneralStatsContainer>
+            <StatsHeaderContainer>
+              <StatsName>Holding Volume</StatsName>
+              <StatsInfoImg src="img/Circle_I.png" />
+            </StatsHeaderContainer>
+            <StatsDataContainer>
+              <StatsData>** 691,120.50 **</StatsData>
+              <StatsDataUnit>USD</StatsDataUnit>
+            </StatsDataContainer>
+          </GeneralStatsContainer>
+          <GeneralStatsContainer>
+            <StatsHeaderContainer>
+              <StatsName>Earnings Rate</StatsName>
+              <StatsInfoImg src="img/Circle_I.png" />
+            </StatsHeaderContainer>
+            <StatsDataContainer>
+              <StatsData>** 1,591,580.50 **</StatsData>
+              <StatsDataUnit>USD</StatsDataUnit>
+            </StatsDataContainer>
+          </GeneralStatsContainer>
+          <GeneralStatsContainer>
+            <StatsHeaderContainer>
+              <StatsName>Gas Fee</StatsName>
+              <StatsInfoImg src="img/Circle_I.png" />
+            </StatsHeaderContainer>
+            <StatsDataContainer>
+              <StatsData>** 14,580.50 **</StatsData>
+              <StatsDataUnit>USD</StatsDataUnit>
+            </StatsDataContainer>
+          </GeneralStatsContainer>
+          <GeneralStatsContainer>
+            <StatsHeaderContainer>
+              <StatsName>Buy Volume</StatsName>
+              <StatsInfoImg src="img/Circle_I.png" />
+            </StatsHeaderContainer>
+            <StatsDataContainer>
+              <StatsData>** 424,580.50 **</StatsData>
+              <StatsDataUnit>USD</StatsDataUnit>
+            </StatsDataContainer>
+          </GeneralStatsContainer>
+          <GeneralStatsContainer>
+            <StatsHeaderContainer>
+              <StatsName>Sell Volume</StatsName>
+              <StatsInfoImg src="img/Circle_I.png" />
+            </StatsHeaderContainer>
+            <StatsDataContainer>
+              <StatsData>** 60,120.50 **</StatsData>
+              <StatsDataUnit>USD</StatsDataUnit>
+            </StatsDataContainer>
+          </GeneralStatsContainer>
+          <GeneralStatsContainer>
+            <StatsHeaderContainer>
+              <StatsName>Related Addresses</StatsName>
+              <StatsInfoImg src="img/Circle_I.png" />
+            </StatsHeaderContainer>
+            <StatsData>** 105 **</StatsData>
+          </GeneralStatsContainer>
+          <GeneralStatsContainer>
+            <StatsHeaderContainer>
+              <StatsName>Activities</StatsName>
+              <StatsInfoImg src="img/Circle_I.png" />
+            </StatsHeaderContainer>
+            <StatsData>** 632 **</StatsData>
+          </GeneralStatsContainer>
         </OverviewContainer>
       </PortfolioOverviewContainer>
 
