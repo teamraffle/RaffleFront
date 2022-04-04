@@ -21,8 +21,6 @@ const Blur = styled.img`
   height: ${(props) => props.height};
 
   /* (temporary) % for small screen */
-  margin-left: ${(props) => props.marginLeft};
-  margin-right: ${(props) => props.marginRight};
   left: ${(props) => props.left};
   top: ${(props) => props.top};
   animation: ${fadein} 3s ease-in-out;
@@ -34,25 +32,27 @@ export default function Landing() {
       <Blur
         src="img/Blur_1.png"
         alt=" "
-        width="49.7rem"
+        width="70.3rem"
         height="60rem"
-        marginLeft="0rem"
-        marginRight="0rem"
-        left="0rem"
-        top="0rem"
+        left="-20.6rem"
+        top="-7.2rem"
       />
       <Blur
         src="img/Blur_2.png"
         alt=" "
-        width="137.7rem"
-        height="166.2rem"
-        marginLeft="30rem"
-        marginRight="80rem"
-        top="112.3rem"
+        width="61.2rem"
+        height="73.9rem"
+        top="79.4rem"
+        left="1.2rem"
       />
-      <div className={styles.Blur3}>
-        <img src="img/Blur_3.png" alt=" "></img>
-      </div>
+      <Blur
+        src="img/Blur_3.png"
+        alt=" "
+        width="63.9rem"
+        height="55.9rem"
+        top="193.8rem"
+        left="47.7rem"
+      />
       <div className={styles.LandingContainer}>
         <div className={styles.Block1}>
           <div className={styles.Block1Title}>
@@ -63,7 +63,7 @@ export default function Landing() {
             build reliable whitelists with NFT Ranks
           </div>
 
-          <button className={styles.Block1Btn}>Check My Rank</button>
+          <button className={styles.Block1Btn}>CHECK MY RANK</button>
         </div>
 
         <div className={styles.Block2}>
@@ -76,12 +76,6 @@ export default function Landing() {
               NFT Ranks was created by NFT Degens who are highly interested in
               building service to provide ranking system of wallets and NFT
               projects in addition to NFT portfolio analysis.
-              <br />
-              <br />
-              The ranking parameters are set to comprehend whether the owner
-              contributes to NFT eco-system or not. As we aim to help build
-              sound NFT culture , the criterion for the ranking varies and do
-              not focus on profit one has made. <br />
             </div>
           </div>
           <div className={styles.Block2Right}>
@@ -96,25 +90,19 @@ export default function Landing() {
             <img src="img/Block3_Portfolio_Image.png" alt=" " />
           </div>
           <div className={styles.Block3Content}>
-            <div className={styles.B3CLeft}>
-              NFT Ranks was created by NFT Degens who are highly interested in
-              building service to provide ranking system of wallets and NFT
-              projects in addition to NFT portfolio analysis.
-            </div>
-            <div className={styles.B3CRight}>
-              NFT Ranks was created by NFT Degens who are highly interested in
-              building service to provide ranking system of wallets and NFT
-              projects in addition to NFT portfolio analysis.
-            </div>
+            The ranking parameters are set to comprehend whether the owner
+            contributes to NFT eco-system or not. As we aim to help build sound
+            NFT culture, the criterion for the ranking varies and do not focus
+            on profit one has made.
           </div>
         </div>
         <div className={styles.Block4}>
           <div className={styles.Block4Left}>
-            <div className={styles.Block4LeftTitle}>
-              Do You <br />
-              Rank on?
-            </div>
-            <div className={styles.Block4LeftContent}>
+            <img src="img/Block4_Rank_Image.png" alt=" " />
+          </div>
+          <div className={styles.Block4Right}>
+            <div className={styles.Block4RightTitle}>Do You Rank on?</div>
+            <div className={styles.Block4RightContent}>
               Rankings are indicators of how your choices have influenced your
               portfolio and NFT culture in positive way. Investment credit
               ratings will be granted according to specific criteria. People
@@ -123,30 +111,24 @@ export default function Landing() {
               Paper Hands.
             </div>
           </div>
-          <div className={styles.Block4Right}>
-            <img src="img/Block4_Rank_Image.png" alt=" " />
-          </div>
         </div>
         <div className={styles.Block5}>
           <div className={styles.Block5Left}>
-            <img src="img/Block_5_Hand_Image.png" alt=" " />
-          </div>
-          <div className={styles.Block5Right}>
-            <div className={styles.Block5RightTitle}>
-              Be Shining <br />
-              Like a Diamond
-            </div>
-            <div className={styles.Block5RightContent}>
+            <div className={styles.Block5LeftTitle}>Shine Like a Diamond</div>
+            <div className={styles.Block5LeftContent}>
               We can sort out wallets into three levels: diamond hands, normal
               hands, and paper hands. We also have further plan to create
               community with diamond hands and adopt DAO system.
             </div>
           </div>
+          <div className={styles.Block5Right}>
+            <img src="img/Block_5_Hand_Image.png" alt=" " />
+          </div>
         </div>
         <div className={styles.Block6}>
           <div className={styles.Block6Title}>Wanna Be Together?</div>
 
-          <button className={styles.Block6Btn}>Check My Rank</button>
+          <button className={styles.Block6Btn}>CHECK MY RANK</button>
         </div>
       </div>
     </>

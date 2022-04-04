@@ -81,17 +81,23 @@ const App = ({ isServerInfo }) => {
 
   const Footer = styled.div`
     /* flex items properties */
-    position: absolute;
-    bottom: 0;
     z-index: 2;
-
-    margin-bottom: 2rem;
-    left: 10rem;
 
     background-color: rgba(255, 255, 255, 0);
 
-    width: 27.5rem;
-    height: 24px;
+    max-width: 102.4rem;
+    height: 6rem;
+
+    font-family: Poppins;
+    font-size: 1.6rem;
+    text-align: center;
+    line-height: auto;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    padding-left: 4.4rem;
+    padding-bottom: 2.4rem;
 
     /* text */
     font-family: Poppins;
@@ -132,10 +138,9 @@ const App = ({ isServerInfo }) => {
               <AboutUs />
             </Route>
           </Switch>
-          {/* Footer */}
-          <Footer>ⓒ 2022 RAFFLE | All rights reserved</Footer>
         </Content>
-
+        {/* Footer */}
+        <Footer>ⓒ 2022 RAFFLE | All rights reserved</Footer>
         {/* Footer is in Content*/}
       </Router>
     </Wrapper>

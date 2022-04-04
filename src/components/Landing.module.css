@@ -66,11 +66,11 @@
 
   /* content */
   z-index: 2;
-  width: 253px;
-  height: 53px;
+  width: 19rem;
+  height: 4rem;
   background-color: #d6f866;
   border: solid 1px #e8faad;
-  border-radius: 8px;
+  border-radius: 0.8rem;
   margin-top: 4.8rem;
 
   /* text */
@@ -99,7 +99,8 @@
   flex: 0 0 auto;
 
   /* content */
-  margin-left: 9.5rem;
+  margin-left: 14.8rem;
+  margin-top: 1.4rem;
   overflow: hidden;
 
   /* text */
@@ -107,17 +108,18 @@
 }
 
 .Block2LeftTitle {
-  width: 30rem;
+  width: auto;
   height: auto;
   animation: fadein 3s ease-in-out;
   font-family: Poppins;
-  font-size: 4.2rem;
+  font-size: 3.6rem;
+  font-weight: Medium;
   font-stretch: normal;
   font-style: normal;
-  line-height: 1.25;
-  letter-spacing: -1.28px;
+  line-height: 4.8rem;
+  letter-spacing: -2%;
   color: #fff;
-  margin-bottom: 3.2rem;
+  margin-bottom: 3.6rem;
 }
 
 .Block2LeftContents {
@@ -127,23 +129,22 @@
   height: auto;
   animation: fadein 3s ease-in-out;
   font-family: Poppins;
-  font-size: 1.45rem;
+  font-size: 1.4rem;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
-  line-height: normal;
-  letter-spacing: normal;
-  color: var(--raffle-white);
+  line-height: 2.1rem;
+  letter-spacing: -2%;
+  color: #fff;
 }
 
 .Block2Right {
-  flex: 0 0 65rem;
   align-self: stretch;
 }
 
 .Block2RightContents {
-  width: 100%;
-  height: auto;
+  width: 43.8rem;
+  height: 26.6rem;
 }
 
 .Block3Title {
@@ -151,19 +152,19 @@
   order: 1;
 
   z-index: 2;
-  width: 829px;
-  height: 72px;
+  width: auto;
+  height: 4.8rem;
 
   animation: fadein 3s ease-in-out;
   font-family: Poppins;
-  font-size: 4.8rem;
-  font-weight: normal;
+  font-size: 3.55rem;
+  font-weight: Medium;
   font-stretch: normal;
   font-style: normal;
-  line-height: normal;
-  letter-spacing: normal;
+  line-height: 4.8rem;
+  letter-spacing: -2%;
   text-align: center;
-  color: var(--raffle-white);
+  color: #fff;
 }
 
 .Block3Image {
@@ -173,159 +174,144 @@
   z-index: 2;
   animation: fadein 3s ease-in-out;
   margin-top: 2.4rem;
-  width: 90rem;
-  height: 30.5rem;
+  width: 42.2rem;
+  height: 23.7rem;
 }
 
 .Block3Content {
   /* flex item properties */
   order: 3;
 
-  /* flex container properties */
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: space-around;
-  gap: 7rem;
-
   z-index: 2;
-  margin-top: 84px;
+
+  width: 42.2rem;
+  height: auto;
+  margin-top: 4rem;
+
   text-align: left;
-  font-size: 1.8rem;
-  font-weight: 300;
+  font-size: 1.35rem;
+  font-weight: normal;
   font-stretch: normal;
   font-style: normal;
-  line-height: 1.56;
-  letter-spacing: -0.36px;
-
-  width: 70rem;
-}
-
-.B3CLeft {
-  width: 52rem;
-  height: 112px;
-}
-
-.B3CRight {
-  width: 52rem;
-  height: 112px;
+  line-height: 2.1rem;
+  letter-spacing: -2%;
 }
 
 .Block4Left {
   /* flex items properties */
   order: 1;
 
-  /* flex container properties */
-  display: flex;
-  flex-direction: column;
+  width: 36.1rem;
+  height: 17.1rem;
 
-  /* invalid value ???*/
-  /* align-items: left; */
-  align-items: flex-start;
-
-  margin-left: 8.5rem;
-}
-
-.Block4LeftTitle {
-  /* flex items properties */
-  order: 1;
-
-  width: 315px;
-  height: auto;
-  font-family: Poppins;
-  font-size: 4.8rem;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 1.11;
-  letter-spacing: -1.44px;
-  text-align: left;
-  color: #fff;
-}
-
-.Block4LeftContent {
-  /* flex items properties */
-  order: 2;
-
-  margin-top: 3rem;
-  width: 35rem;
-  height: auto;
-  font-family: Poppins;
-  font-size: 1.5rem;
-  font-weight: 300;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 1.56;
-  letter-spacing: -0.36px;
-  text-align: left;
-  color: #fff;
+  margin-left: 14.8rem;
+  margin-top: 5rem;
 }
 
 .Block4Right {
   /* flex items properties */
   order: 2;
-  flex: 0 0 57.5rem;
 
-  align-self: flex-end;
-  height: 95%;
+  /* flex container properties */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  margin-left: 4.9rem;
+}
+
+.Block4RightTitle {
+  /* flex items properties */
+  order: 1;
+
+  width: auto;
+  font-family: Poppins;
+  font-size: 3.6rem;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 4.8rem;
+  letter-spacing: -2%;
+  text-align: left;
+  color: #fff;
+}
+
+.Block4RightContent {
+  /* flex items properties */
+  order: 2;
+
+  margin-top: 3.6rem;
+  width: 31.8rem;
+  height: auto;
+  font-family: Poppins;
+  font-size: 1.4rem;
+  font-weight: 300;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 2.1rem;
+  letter-spacing: -2%;
+  text-align: left;
+  color: #fff;
 }
 
 .Block5Left {
   /* flex items properties */
   order: 1;
-  flex: 0 0 50rem;
-
-  /* width: 820px;
-  height: 731px; */
-  margin-left: -0.5rem;
-  align-self: stretch;
-}
-
-.Block5Right {
-  /* flex items properties */
-  order: 2;
   justify-self: flex-end;
 
   /* flex container properties */
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+
+  margin-left: 14.8rem;
 }
 
-.Block5RightTitle {
+.Block5LeftTitle {
   /* flex items properties */
   order: 1;
 
   z-index: 2;
-  width: 40rem;
-  margin-top: 0rem;
+  width: auto;
+  margin-top: 3rem;
   font-family: Poppins;
-  font-size: 4.8rem;
-  font-weight: normal;
+  font-size: 3.6rem;
+  font-weight: 500;
   font-stretch: normal;
   font-style: normal;
-  line-height: 1.11;
-  letter-spacing: -1.44px;
+  line-height: 4.8rem;
+  letter-spacing: -2%;
   text-align: left;
   color: #fff;
 }
 
-.Block5RightContent {
+.Block5LeftContent {
   /* flex items properties */
   order: 2;
 
   z-index: 2;
-  width: 40rem;
-  margin-top: 38px;
+  width: 31.8rem;
+  height: auto;
+
+  margin-top: 3.6rem;
   font-family: Poppins;
-  font-size: 1.85rem;
+  font-size: 1.4rem;
   font-weight: 300;
   font-stretch: normal;
   font-style: normal;
-  line-height: 1.56;
-  letter-spacing: -0.36px;
+  line-height: 2.1rem;
+  letter-spacing: -2%;
   text-align: left;
   color: #fff;
+}
+
+.Block5Right {
+  /* flex items properties */
+  order: 2;
+
+  width: 33.6rem;
+  height: 30.1rem;
+  margin-left: 1.7rem;
 }
 
 .Block6Title {
@@ -333,15 +319,15 @@
   order: 1;
 
   z-index: 2;
-  width: 893px;
-  margin-bottom: 72px;
+  width: auto;
+  margin-bottom: 4.8rem;
   font-family: Poppins;
-  font-size: 88px;
+  font-size: 4.4rem;
   font-weight: 500;
   font-stretch: normal;
   font-style: normal;
-  line-height: 1.7;
-  letter-spacing: -1.76px;
+  line-height: 5.4rem;
+  letter-spacing: -2%;
   text-align: center;
   color: #fff;
 }
@@ -355,11 +341,11 @@
 
   z-index: 2;
   background-color: #d6f866;
-  width: 253px;
-  height: 53px;
-  border-radius: 8px;
+  width: 19rem;
+  height: 4rem;
+  border-radius: 0.8rem;
   border: solid 1px #e8faad;
-  font-size: 22px;
+  font-size: 1.4rem;
   font-weight: bold;
   color: #151517;
   letter-spacing: -0.66px;
@@ -374,7 +360,7 @@
   align-items: center;
 
   z-index: 2;
-  margin-top: 18rem;
+  margin-top: 10.8rem;
   overflow: hidden;
 }
 
@@ -386,7 +372,7 @@
   row-gap: 0rem;
 
   z-index: 2;
-  margin-top: 281px;
+  margin-top: 17.4rem;
 }
 
 .Block3 {
@@ -396,7 +382,7 @@
   align-items: center;
 
   z-index: 2;
-  margin-top: 283px;
+  margin-top: 17.5rem;
 }
 
 .Block4 {
@@ -404,13 +390,13 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: flex-start;
   gap: 0rem;
 
   width: auto;
-  height: 480px;
 
   z-index: 2;
-  margin-top: 377px;
+  margin-top: 18rem;
 }
 
 .Block5 {
@@ -418,10 +404,10 @@
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  gap: 10rem;
+  gap: 1.7rem;
 
   z-index: 2;
-  margin-top: 206px;
+  margin-top: 18rem;
 }
 
 .Block6 {
@@ -431,8 +417,8 @@
   align-items: center;
 
   z-index: 2;
-  margin-top: 248px;
-  margin-bottom: 463px;
+  margin-top: 18rem;
+  margin-bottom: 16rem;
 }
 
 /* -------------- Blur Images ---------------- */
@@ -442,8 +428,8 @@
   overflow: hidden;
   position: absolute;
 
-  width: 1311px;
-  height: 1218px;
+  width: 70.3rem;
+  height: 60rem;
 
   /* (temporary) % for small screen */
   margin-left: 638px;
