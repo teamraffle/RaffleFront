@@ -128,7 +128,9 @@ const App = ({ isServerInfo }) => {
             <Route path="/Portfolio">
               <Portfoilo />
             </Route>
-            <Route path="/AboutUs">{/* <AboutUs /> */}</Route>
+            <Route path="/AboutUs">
+              <AboutUs />
+            </Route>
           </Switch>
           {/* Footer */}
           <Footer>ⓒ 2022 RAFFLE | All rights reserved</Footer>
