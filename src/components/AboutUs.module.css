@@ -486,7 +486,6 @@
   align-items: center;
   text-align: center;
   position: relative;
-
 }
 
 .SummerBox {
@@ -533,7 +532,7 @@
   margin-left: 30px;
 }
 
-.aBlock4SummerCont1{
+.aBlock4SummerCont1 {
   position: absolute;
   width: 71px;
   height: 28px;
@@ -546,10 +545,10 @@
   line-height: 28px;
   color: #626262;
   text-align: left;
-  margin-left: 20px;  
+  margin-left: 20px;
 }
 
-.aBlock4SummerCont2{
+.aBlock4SummerCont2 {
   position: absolute;
   width: 71px;
   height: 28px;
@@ -562,11 +561,11 @@
   line-height: 28px;
   color: #fff;
   text-align: left;
-  margin-left: 20px; 
+  margin-left: 20px;
   margin-top: 30px;
 }
 
-.aBlock4SummerCont3{
+.aBlock4SummerCont3 {
   position: absolute;
   width: 200px;
   height: 100px;
@@ -578,7 +577,7 @@
   line-height: 20px;
   color: #fff;
   text-align: left;
-  margin-left: 20px; 
+  margin-left: 20px;
   margin-top: 70px;
 }
 
@@ -589,10 +588,9 @@
   height: 302px;
   align-items: center;
   margin-left: 30px;
-
 }
 
-.aBlock4BlockcodesCont1{
+.aBlock4BlockcodesCont1 {
   position: absolute;
   width: 71px;
   height: 28px;
@@ -605,10 +603,10 @@
   line-height: 28px;
   color: #626262;
   text-align: left;
-  margin-left: 20px;  
+  margin-left: 20px;
 }
 
-.aBlock4BlockcodesCont2{
+.aBlock4BlockcodesCont2 {
   position: absolute;
   width: 71px;
   height: 28px;
@@ -621,11 +619,11 @@
   line-height: 28px;
   color: #fff;
   text-align: left;
-  margin-left: 20px; 
+  margin-left: 20px;
   margin-top: 30px;
 }
 
-.aBlock4BlockcodesCont3{
+.aBlock4BlockcodesCont3 {
   position: absolute;
   width: 200px;
   height: 100px;
@@ -637,10 +635,9 @@
   line-height: 20px;
   color: #fff;
   text-align: left;
-  margin-left: 20px; 
+  margin-left: 20px;
   margin-top: 70px;
 }
-
 
 /*-------Koko-------*/
 
@@ -651,7 +648,7 @@
   margin-left: 30px;
 }
 
-.aBlock4KokoCont1{
+.aBlock4KokoCont1 {
   position: absolute;
   width: 71px;
   height: 28px;
@@ -664,10 +661,10 @@
   line-height: 28px;
   color: #626262;
   text-align: left;
-  margin-left: 20px;  
+  margin-left: 20px;
 }
 
-.aBlock4KokoCont2{
+.aBlock4KokoCont2 {
   position: absolute;
   width: 71px;
   height: 28px;
@@ -680,11 +677,11 @@
   line-height: 28px;
   color: #fff;
   text-align: left;
-  margin-left: 20px; 
+  margin-left: 20px;
   margin-top: 30px;
 }
 
-.aBlock4KokoCont3{
+.aBlock4KokoCont3 {
   position: absolute;
   width: 200px;
   height: 100px;
@@ -696,7 +693,7 @@
   line-height: 20px;
   color: #fff;
   text-align: left;
-  margin-left: 20px; 
+  margin-left: 20px;
   margin-top: 70px;
 }
 
@@ -709,7 +706,7 @@
   margin-left: 30px;
 }
 
-.aBlock4PannaCont1{
+.aBlock4PannaCont1 {
   position: absolute;
   width: 71px;
   height: 28px;
@@ -722,10 +719,10 @@
   line-height: 28px;
   color: #626262;
   text-align: left;
-  margin-left: 20px;  
+  margin-left: 20px;
 }
 
-.aBlock4PannaCont2{
+.aBlock4PannaCont2 {
   position: absolute;
   width: 71px;
   height: 28px;
@@ -738,11 +735,11 @@
   line-height: 28px;
   color: #fff;
   text-align: left;
-  margin-left: 20px; 
+  margin-left: 20px;
   margin-top: 30px;
 }
 
-.aBlock4PannaCont3{
+.aBlock4PannaCont3 {
   position: absolute;
   width: 200px;
   height: 100px;
@@ -754,7 +751,7 @@
   line-height: 20px;
   color: #fff;
   text-align: left;
-  margin-left: 20px; 
+  margin-left: 20px;
   margin-top: 70px;
 }
 
@@ -767,7 +764,7 @@
   margin-left: 30px;
 }
 
-.aBlock4MeanCont1{
+.aBlock4MeanCont1 {
   position: absolute;
   width: 71px;
   height: 28px;
@@ -780,10 +777,10 @@
   line-height: 28px;
   color: #626262;
   text-align: left;
-  margin-left: 20px;  
+  margin-left: 20px;
 }
 
-.aBlock4MeanCont2{
+.aBlock4MeanCont2 {
   position: absolute;
   width: 71px;
   height: 28px;
@@ -796,11 +793,11 @@
   line-height: 28px;
   color: #fff;
   text-align: left;
-  margin-left: 20px; 
+  margin-left: 20px;
   margin-top: 30px;
 }
 
-.aBlock4MeanCont3{
+.aBlock4MeanCont3 {
   position: absolute;
   width: 200px;
   height: 100px;
@@ -812,7 +809,7 @@
   line-height: 20px;
   color: #fff;
   text-align: left;
-  margin-left: 20px; 
+  margin-left: 20px;
   margin-top: 70px;
 }
 
@@ -827,5 +824,3 @@
 .buttonright {
   color: #fff;
 }
-
-
