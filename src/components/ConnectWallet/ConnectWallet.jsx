@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from "react";
 import styles from "./ConnectWallet.module.css";
 
+/** pages */
+import SelectPage from "./Pages/SelectPage";
+import SigningPage from "./Pages/SigningPage";
+import SetNicknamePage from "./Pages/SetNicknamePage";
+
 import axios from "axios";
 
 export default function ConnectWallet() {
@@ -25,6 +30,18 @@ export default function ConnectWallet() {
   console.log("[ConnectWallet] chainID : ", chainID);
   console.log("[ConnectWallet] currentAccount : ", currentAccount);
 
+  /** ---- functions for state variables ---- */
+  const changeChainID = (_chainID) => {
+    setChainID(_chainID);
+  };
+
+  const changePageStep = (_pageStep) => {
+    setPageStep(_pageStep);
+  };
+
+  const changeNickname = (_nickname) => {
+    setNickname(_nickname);
+  };
   /** -------------------- Functions -------------------- */
   const connectMetamaskWallet = async () => {
     const { ethereum } = window;
@@ -152,142 +169,7 @@ export default function ConnectWallet() {
 
   /**  -------------------- 페이지 렌더링하는 함수  -------------------- */
   /** [Step 1] 지갑 연결하는 화면 */
-  const renderingSelectPage = () => {
-    return (
-      <div className={styles.title}>
-        <div
-          style={{
-            fontSize: "36px",
-            fontWeight: "600",
-            fontStretch: "normal",
-            fontStyle: "normal",
-            letterSpacing: "normal",
-            color: "#f5f5f5",
-          }}
-        >
-          Connect Your Wallet
-        </div>
-        <div
-          style={{
-            fontSize: "24px",
-            fontWeight: "normal",
-            fontStretch: "normal",
-            fontStyle: "normal",
-            lineHeight: "normal",
-            letterSpacing: "normal",
-            color: "#f5f5f5",
-            marginBottom: "58px",
-          }}
-        >
-          Let’s start a journey to NFT’s World
-        </div>
-
-        <div>
-          <div>
-            <button
-              onClick={() => {
-                setChainID(1);
-                setPageStep(2);
-              }}
-              className={styles.btnDefault}
-            >
-              <img
-                className={styles.btnIcon}
-                src="img/metamaskIcon.png"
-                alt="metamask icon"
-              />
-              Metamask
-            </button>
-          </div>
-          <div>
-            <button
-              onClick={() => {
-                setChainID(2);
-              }}
-              className={styles.btnDefault}
-            >
-              <img
-                className={styles.btnIcon}
-                src="img/coinbaseIcon.png"
-                alt="metamask icon"
-              />
-              CoinBase
-            </button>
-          </div>
-          <div>
-            <button
-              onClick={() => {
-                setChainID(3);
-              }}
-              className={styles.btnDefault}
-            >
-              <img
-                className={styles.btnIcon}
-                src="img/kaikasIcon.png"
-                alt="kaikas icon"
-              />
-              KaiKas
-            </button>
-          </div>
-          <div
-            style={{
-              fontSize: "20px",
-              fontWeight: "300",
-              fontStretch: "normal",
-              fontStyle: "normal",
-              lineHeight: "normal",
-              letterSpacing: "-0.6px",
-              margin: "56px",
-            }}
-          >
-            <a
-              style={{ color: "#f5f5f5" }}
-              href="https://metamask.io/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <u>I don't have any wallet</u>
-            </a>
-          </div>
-        </div>
-      </div>
-    );
-  };
-
   /** [Step 2] 지갑 연결하는 화면 */
-  const renderingSigningPage = () => {
-    return (
-      <div className={styles.connectionLoading}>
-        <div
-          style={{
-            fontSize: "36px",
-            fontFamily: "Poppins",
-            marginTop: "155px",
-            marginBottom: "89px",
-          }}
-        >
-          Your Connecting is in Progress with:
-        </div>
-        <div align="center">
-          {chainID === 1 && <img src="img/metamaskLoadingIcon.svg" alt=" " />}
-          {chainID === 2 && <img src="img/" alt="coinbase icon" />}
-          {chainID === 2 && <img src="img/" alt="coinbase icon" />}
-        </div>
-
-        <div
-          style={{
-            fontSize: "24px",
-            fontFamily: "Poppins",
-            textAlign: "center",
-            marginTop: "88px",
-          }}
-        >
-          please check your browser modal.
-        </div>
-      </div>
-    );
-  };
-
   /** [Step 3] 닉네임 설정하는 화면 */
   const renderingSetNickNamePage = () => {
     return (
@@ -408,9 +290,25 @@ export default function ConnectWallet() {
   return (
     <div>
       <div>
-        {(pageStep === 1 && renderingSelectPage()) ||
-          (pageStep === 2 && renderingSigningPage()) ||
-          (pageStep === 3 && renderingSetNickNamePage()) ||
+        {(pageStep === 1 && (
+          <SelectPage
+            changeChainID={changeChainID}
+            changePageStep={changePageStep}
+          />
+        )) ||
+          (pageStep === 2 && <SigningPage chainID={chainID} />) ||
+          (pageStep === 3 && (
+            <SetNicknamePage
+              currentAccount={currentAccount}
+              chainID={chainID}
+              changeNickname={changeNickname}
+              nickname={nickname} // for test
+              nicknameAvailable={nicknameAvailable}
+              // 아래 두 함수 수정 필요
+              buttonSendPostActive={buttonSendPostActive}
+              buttonSendPostInactive={buttonSendPostInactive}
+            />
+          )) ||
           (pageStep === 4 && renderingFailedConnectionPage())}
       </div>
     </div>

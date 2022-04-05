@@ -13,7 +13,7 @@ import "./style.css";
 import GNB from "./components/GNB";
 import Landing from "./components/Landing";
 import AboutUs from "./components/AboutUs";
-import ConnectWallet from "./components/ConnectWallet";
+import ConnectWallet from "./components/ConnectWallet/ConnectWallet";
 import Portfoilo from "./components/Portfoilo";
 import styled from "styled-components";
 
