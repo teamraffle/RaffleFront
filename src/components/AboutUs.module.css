@@ -26,17 +26,16 @@
   align-items: center;
   text-align: center;
   position: relative;
-  margin-top: 0px;
+  margin-top: -72px;
 }
 
 .bgImage {
   z-index: 1;
-  margin-top: 0px;
   bottom: 0px;
   content: "";
 
-  width: 1920px;
-  height: 900px;
+  width: auto;
+  height: auto;
 
   /* animation: fadein 4s ease-in-out; */
 
@@ -67,21 +66,22 @@
 
   /*content*/
   width: 721px;
-  height: 322px;
-  top: 30%;
 
   /*text*/
-  font-size: 80px;
-  font-weight: bold;
+  font-family: Poppins;
+  font-size: 44px;
+  font-weight: 500;
   font-stretch: normal;
   font-style: normal;
+  line-height: 1.23;
+  letter-spacing: -0.88px;
   text-align: center;
-  line-height: 1.25;
-  letter-spacing: -1.28px;
-  color: #ffffff;
+  color: #fff;
 
   /*animation*/
   animation: fadein 4s ease-in-out;
+
+  margin-top: 18rem;
 }
 
 .DocsBtn {
@@ -90,24 +90,29 @@
   position: absolute;
 
   /*content*/
-  top: 55%;
-  width: 202px;
-  height: 53px;
+  width: 152px;
+  height: 41px;
   align-items: center;
 
   /*text*/
   background-color: #d6f866;
   border-radius: 8px;
   border: solid 1px #e8faad;
-  font-size: 22px;
-  font-weight: bold;
-  color: #151517;
-  letter-spacing: -0.66px;
+  font-family: Poppins;
+  font-size: 14px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.42px;
   text-align: center;
+  color: #151517;
   cursor: pointer;
 
   /*animation*/
   animation: fadein 4s ease-in-out;
+
+  margin-top: 34rem;
 }
 
 /* ----------------aBlock2--------------*/
@@ -120,13 +125,15 @@
   text-align: center;
   position: relative;
   height: auto;
+
+  margin-top: 9rem;
 }
 
 .aBlock2LeftVid {
   order: 1;
   flex: 0 0 720px;
   margin-left: -200px;
-  width: 150px;
+  width: 257px;
 }
 
 .aBlock2Right {
@@ -453,9 +460,6 @@
 }
 
 .aBlock4Title {
-  position: absolute;
-  width: 262px;
-  height: 66px;
   font-family: Poppins;
   font-size: 48px;
   font-stretch: normal;
@@ -465,7 +469,7 @@
   color: #fff;
   text-align: left;
   left: 120px;
-  margin-top: 10px;
+
   animation: fadein 3s ease-in-out;
 }
 
