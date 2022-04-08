@@ -102,13 +102,6 @@ const LinkMetamask = styled.a`
 `;
 
 export default function SelectPage(props) {
-  const setChainID = (_chainID) => {
-    props.changeChainID(_chainID);
-  };
-
-  const setPageStep = (_pageStep) => {
-    props.changePageStep(_pageStep);
-  };
   return (
     <SelectPageContainer>
       <Title>Connect Your Wallet</Title>
@@ -117,21 +110,29 @@ export default function SelectPage(props) {
 
       <WalletButton
         onClick={() => {
-          setChainID(1);
-          console.log("TEST");
-          setPageStep(2);
+          props.changeChainID(1);
+          props.changePageStep(2);
         }}
       >
         <WalletButtonIcon src="img/metamaskIcon.png" alt="metamask icon" />
         <WalletButtonText>Metamask</WalletButtonText>
       </WalletButton>
 
-      <WalletButton onClick={setChainID(2)}>
+      <WalletButton
+        onMouseOver={() => console.log("HELLO?")}
+        onClick={() => {
+          props.changeChainID(2);
+        }}
+      >
         <WalletButtonIcon src="img/coinbaseIcon.png" alt="metamask icon" />
         <WalletButtonText>Coinbase</WalletButtonText>
       </WalletButton>
 
-      <WalletButton onClick={setChainID(3)}>
+      <WalletButton
+        onClick={() => {
+          props.changeChainID(3);
+        }}
+      >
         <WalletButtonIcon src="img/kaikasIcon.png" alt="kaikas icon" />
         <WalletButtonText>KaiKas</WalletButtonText>
       </WalletButton>
