@@ -95,8 +95,12 @@ export default function AboutUs() {
         <div className={styles.aBlock4Title}>Our Team</div>
 
         <div className={styles.buttonlist}>
-          <button className={styles.buttonleft}>← Left</button>
-          <button className={styles.buttonright}>Right →</button>
+          <button className={styles.buttonleft}>
+            <img src="img/Buttonleft.png" alt=" "></img>
+          </button>
+          <button className={styles.buttonright}>
+            <img src="img/Buttonright.png" alt=" "></img>
+          </button>
         </div>
 
         <div className={styles.Boxcontrol}>

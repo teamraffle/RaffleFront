@@ -449,7 +449,7 @@
   text-align: center;
   position: relative;
   margin-top: 50px;
-  height: 1200px;
+  height: 700px;
 }
 
 .aBlock4Title {
@@ -818,9 +818,19 @@
 }
 
 .buttonleft {
+  all: unset;
+  width: 70px;
+  margin-top: 30px;
+  margin-left: 780px;
   color: #fff;
+  cursor: pointer;  
 }
 
 .buttonright {
+  all: unset;
+  width: 70px;
+  margin-top: 30px;
+  margin-left: 15px;
   color: #fff;
+  cursor: pointer;
 }
