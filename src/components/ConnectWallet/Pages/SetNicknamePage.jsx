@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 const SetNicknamePageContainer = styled.div`
   /* flex container properties */
@@ -112,7 +114,17 @@ const BoxNicknameInput = styled.input`
   color: #bdbebe;
   border-radius: 0.8rem;
   border: solid 0.1rem #bdbebe;
-  background-color: #fff;
+  background-color: ${(props) => {
+    if (props.nickname === "") {
+      return "#fff";
+    } else {
+      if (props.isAvailabeNickname) {
+        return "#bccfff";
+      } else {
+        return "#ffb2b2";
+      }
+    }
+  }};
 
   font-family: Poppins;
   font-size: 1.4rem;
@@ -129,9 +141,6 @@ const BoxNicknameInput = styled.input`
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 2rem;
-
-  &::placehorder {
-  }
 `;
 
 const BoxDoneButton = styled.button`
@@ -139,7 +148,14 @@ const BoxDoneButton = styled.button`
   height: 4rem;
   border-radius: 8px;
   border: solid 0px;
-  background: #bdbebe;
+
+  ${(props) => {
+    if (props.isButtonActive) {
+      return "background-color: #151517; cursor:pointer";
+    } else {
+      return "background-color: #bdbebe";
+    }
+  }};
 
   font-family: Poppins;
   font-size: 14px;
@@ -153,16 +169,73 @@ const BoxDoneButton = styled.button`
 `;
 
 export default function SetNicknamePage(props) {
-  const { currentAccount, chainID, nicknameAvailable } = props;
-  const setNickname = (_nickname) => {
-    props.changeNickname(_nickname);
+  const { currentAccount, chainID, nickname } = props;
+  const [nicknameAvailable, setNicknameAvailable] = useState(false);
+  const [_nickname, _setNickname] = useState("");
+
+  // 닉네임을 입력했을 때 중복검사 + 버튼 상태 바꾸는 함수
+  const checkNicknameOverlappingAPICalling = async (_nickname) => {
+    let filteringCondition = /^[a-zA-Z+]{3,20}$/;
+    let willUpdate = true;
+    try {
+      willUpdate = filteringCondition.test(_nickname);
+
+      if (willUpdate) {
+        setNicknameAvailable(true);
+      } else {
+        setNicknameAvailable(false);
+      }
+
+      const params = {
+        check_value: nickname,
+        chain_id: chainID,
+      };
+
+      await axios.get("https://nftranks.xyz:8888/v1/register/nickname", {
+        params,
+      });
+    } catch (ex) {
+      if (ex.response && ex.response.status === 409) {
+        setNicknameAvailable(false);
+      }
+    }
   };
-  const buttonSendPostActive = () => {
-    props.buttonSendPostActive();
+
+  // 신규 유저 등록하는 함수
+  const sendPostToRegisterNewUser = async () => {
+    try {
+      const registerData = {
+        chain_id: chainID,
+        address: currentAccount,
+        nickname: nickname,
+      };
+
+      await axios.post("https://nftranks.xyz:8888/v1/users", registerData);
+
+      // sessionStorage에 유저 정보 저장해둠
+      const params = {
+        chain_id: chainID,
+        address: currentAccount,
+      };
+      const response = await axios.get("https://nftranks.xyz:8888/v1/users", {
+        params,
+      });
+      sessionStorage.setItem("user", response.data.user_id);
+      sessionStorage.setItem("nickname", response.data.nickname);
+      sessionStorage.setItem("walletAddress", currentAccount);
+
+      const url = await window.location.href;
+      const targetURL = url.slice(0, url.indexOf("connectWallet"));
+      window.location.href = targetURL;
+    } catch (ex) {
+      console.log("[sendPostToRegisterNewUser] Error : ", ex);
+    }
   };
-  const buttonSendPostInactive = () => {
-    props.buttonSendPostInactive();
-  };
+
+  useEffect(() => {
+    checkNicknameOverlappingAPICalling(_nickname);
+  }, [_nickname]);
+
   return (
     <SetNicknamePageContainer>
       <Title>Create Your Nickname</Title>
@@ -190,13 +263,15 @@ export default function SetNicknamePage(props) {
         <BoxUserAddress>{currentAccount}</BoxUserAddress>
         <BoxNicknameInput
           type="text"
-          onChange={(event) => setNickname(event.target.value)}
+          onChange={(event) => _setNickname(event.target.value)}
           placeholder="Nickname (max. 20 characters)"
+          isAvailabeNickname={nicknameAvailable}
+          nickname={_nickname}
         ></BoxNicknameInput>
-        <BoxDoneButton>
-          {nicknameAvailable
-            ? buttonSendPostActive()
-            : buttonSendPostInactive()}
+        <BoxDoneButton
+          isButtonActive={nicknameAvailable}
+          onClick={sendPostToRegisterNewUser}
+        >
           DONE
         </BoxDoneButton>
       </SetNicknameBox>

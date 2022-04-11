@@ -20,7 +20,6 @@ export default function ConnectWallet() {
 
   /** <3> */
   const [nickname, setNickname] = useState("");
-  const [nicknameAvailable, setNicknameAvailable] = useState(false);
   const [cssInputStyle, setCssInputStyle] = useState(
     styles.setNickNamePageInputNickname,
   );
@@ -90,143 +89,10 @@ export default function ConnectWallet() {
     }
   };
 
-  // 닉네임을 입력했을 때 중복검사 + 버튼 상태 바꾸는 함수
-  const checkNicknameOverlappingAPICalling = async (_nickname) => {
-    let filteringCondition = /^[a-zA-Z+]{3,20}$/;
-    let willUpdate = true;
-    try {
-      willUpdate = filteringCondition.test(_nickname);
-
-      if (willUpdate) {
-        setNicknameAvailable(true);
-      } else {
-        setNicknameAvailable(false);
-      }
-
-      const params = {
-        check_value: nickname,
-        chain_id: chainID,
-      };
-
-      await axios.get("https://nftranks.xyz:8888/v1/register/nickname", {
-        params,
-      });
-    } catch (ex) {
-      if (ex.response && ex.response.status === 409) {
-        setNicknameAvailable(false);
-      }
-    }
-  };
-
-  // 신규 유저 등록하는 함수
-  const sendPostToRegisterNewUser = async () => {
-    try {
-      const registerData = {
-        chain_id: chainID,
-        address: currentAccount,
-        nickname: nickname,
-      };
-
-      await axios.post("https://nftranks.xyz:8888/v1/users", registerData);
-
-      // sessionStorage에 유저 정보 저장해둠
-      const params = {
-        chain_id: chainID,
-        address: currentAccount,
-      };
-      const response = await axios.get("https://nftranks.xyz:8888/v1/users", {
-        params,
-      });
-      sessionStorage.setItem("user", response.data.user_id);
-      sessionStorage.setItem("nickname", response.data.nickname);
-      sessionStorage.setItem("walletAddress", currentAccount);
-
-      const url = await window.location.href;
-      const targetURL = url.slice(0, url.indexOf("connectWallet"));
-      window.location.href = targetURL;
-    } catch (ex) {
-      console.log("[sendPostToRegisterNewUser] Error : ", ex);
-    }
-  };
-
-  /** ---------- 컴포넌트 ----------- */
-  const buttonSendPostActive = () => {
-    return (
-      <button
-        className={styles.setNickNamePageInputDoneButtonActivate}
-        onClick={sendPostToRegisterNewUser}
-      >
-        DONE
-      </button>
-    );
-  };
-
-  const buttonSendPostInactive = () => {
-    return (
-      <button className={styles.setNickNamePageInputDoneButton}>DONE</button>
-    );
-  };
-
   /**  -------------------- 페이지 렌더링하는 함수  -------------------- */
   /** [Step 1] 지갑 연결하는 화면 */
   /** [Step 2] 지갑 연결하는 화면 */
   /** [Step 3] 닉네임 설정하는 화면 */
-  const renderingSetNickNamePage = () => {
-    return (
-      <div className={styles.setNickNamePage}>
-        <div className={styles.setNickNamePageTitle}>Create Your Nickname</div>
-        <div className={styles.setNickNamePageBox}>
-          <div className={styles.setNickNamePageWalletSymbol}>
-            <img
-              src="img/SetNickName_metamask_symbol.png"
-              alt="set nickname page wallet symbol"
-            />
-          </div>
-          <div className={styles.setNickNamePageWalletName}>
-            {chainID === 1 && "metamask"}
-          </div>
-          <div
-            style={{
-              position: "absolute",
-              top: "4.6%",
-              left: "26.4%",
-              color: "#4f4f54",
-            }}
-          >
-            |
-          </div>
-          <div className={styles.setNickNamePageChainName}>
-            {" "}
-            {chainID === 1 && "ethereum"}{" "}
-          </div>
-          <div className={styles.setNickNamePageRandomAvatar}>
-            <img src="img/SetNickName_Avatar_Image.png" alt="basic img" />
-          </div>
-          <div className={styles.setNickNamePageUserAddress}>
-            {currentAccount}
-          </div>
-          <div className={styles.setNickNamePageInputNicknameBox}>
-            <input
-              type="text"
-              onChange={(event) => {
-                setNickname(event.target.value);
-
-                // console.log(cssInputStyle);
-              }}
-              className={cssInputStyle}
-              placeholder="Nickname (max. 20 characters)"
-            ></input>
-          </div>
-          <div className={styles.setNickNamePageInputDoneButtonBox}>
-            {nicknameAvailable
-              ? buttonSendPostActive()
-              : buttonSendPostInactive()}
-          </div>
-        </div>
-      </div>
-    );
-  };
-
   /** [Step 4] 에러 발생 화면 */
   const renderingFailedConnectionPage = () => {
     return (
@@ -271,21 +137,11 @@ export default function ConnectWallet() {
     }
   }, [currentAccount]);
 
-  useEffect(() => {
-    checkNicknameOverlappingAPICalling(nickname);
-  }, [nickname]);
-
-  useEffect(() => {
-    if (nickname === "") {
-      setCssInputStyle(styles.setNickNamePageInputNickname);
-    } else {
-      if (nicknameAvailable) {
-        setCssInputStyle(styles.setNickNamePageInputNicknameAvailable);
-      } else {
-        setCssInputStyle(styles.setNickNamePageInputNicknameDenied);
-      }
-    }
-  }, [nicknameAvailable, nickname]);
+  // 닉네임 체크가 setNicknamePage 에서 끝난 뒤, 부모의 state는 업데이트만 시켜줌
+  //   useEffect(() => {
+  //     checkNicknameOverlappingAPICalling(nickname);
+  //     console.log("Nickname :", nickname);
+  //   }, [nickname]);
 
   return (
     <div>
@@ -302,11 +158,6 @@ export default function ConnectWallet() {
               currentAccount={currentAccount}
               chainID={chainID}
               changeNickname={changeNickname}
-              nickname={nickname} // for test
-              nicknameAvailable={nicknameAvailable}
-              // 아래 두 함수 수정 필요
-              buttonSendPostActive={buttonSendPostActive}
-              buttonSendPostInactive={buttonSendPostInactive}
             />
           )) ||
           (pageStep === 4 && renderingFailedConnectionPage())}
