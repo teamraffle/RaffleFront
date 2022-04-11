@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import styles from "./ConnectWallet.module.css";
+import axios from "axios";
 
 /** pages */
 import SelectPage from "./Pages/SelectPage";
 import SigningPage from "./Pages/SigningPage";
 import SetNicknamePage from "./Pages/SetNicknamePage";
-
-import axios from "axios";
 
 export default function ConnectWallet() {
   /** -------------------- State Variables -------------------- */
@@ -19,15 +18,11 @@ export default function ConnectWallet() {
   const [currentAccount, setCurrentAccount] = useState(0);
 
   /** <3> */
-  const [nickname, setNickname] = useState("");
-  const [cssInputStyle, setCssInputStyle] = useState(
-    styles.setNickNamePageInputNickname,
-  );
 
   console.log("[*] Page Rendered...");
-  console.log("[ConnectWallet] pageStep : ", pageStep);
-  console.log("[ConnectWallet] chainID : ", chainID);
-  console.log("[ConnectWallet] currentAccount : ", currentAccount);
+  console.log("[ConnectWallet] pageStep :", pageStep);
+  console.log("[ConnectWallet] chainID :", chainID);
+  console.log("[ConnectWallet] currentAccount :", currentAccount);
 
   /** ---- functions for state variables ---- */
   const changeChainID = (_chainID) => {
@@ -38,56 +33,10 @@ export default function ConnectWallet() {
     setPageStep(_pageStep);
   };
 
-  const changeNickname = (_nickname) => {
-    setNickname(_nickname);
+  const changeCurrentAccount = (_currentAccount) => {
+    setCurrentAccount(_currentAccount);
   };
   /** -------------------- Functions -------------------- */
-  const connectMetamaskWallet = async () => {
-    const { ethereum } = window;
-    try {
-      if (!ethereum) {
-        alert("저런.. Metamask가 없으시군요?\n선택화면으로 돌아가세요.");
-        setPageStep(1);
-        return;
-      }
-
-      const accounts = await ethereum.request({
-        method: "eth_requestAccounts",
-      });
-
-      setCurrentAccount(accounts[0]);
-    } catch (error) {
-      console.log("[connectMetamaskWallet] ERROR : ", error);
-    }
-  };
-
-  // 지갑이 연결되면, 바로 기존 유저인지 확인함
-  const getUsersAPICalling = async () => {
-    const params = {
-      chain_id: chainID,
-      address: currentAccount,
-    };
-
-    try {
-      const response = await axios.get("https://nftranks.xyz:8888/v1/users", {
-        params,
-      });
-
-      // targetURL로 이동함
-      console.log(response.data.user_id);
-      sessionStorage.setItem("user", response.data.user_id);
-      sessionStorage.setItem("nickname", response.data.nickname);
-      sessionStorage.setItem("walletAddress", currentAccount);
-      const url = await window.location.href;
-      const targetURL = url.slice(0, url.indexOf("connectWallet"));
-      window.location.href = targetURL;
-    } catch (ex) {
-      if (ex.response && ex.response.status === 404) {
-        // 신규 유저 등록하러 가야함
-        setPageStep(3);
-      }
-    }
-  };
 
   /**  -------------------- 페이지 렌더링하는 함수  -------------------- */
   /** [Step 1] 지갑 연결하는 화면 */
@@ -125,23 +74,6 @@ export default function ConnectWallet() {
   };
 
   /** -------------------- useEffect 함수들 -------------------- */
-  useEffect(() => {
-    if (chainID === 1) {
-      connectMetamaskWallet();
-    }
-  }, [chainID]);
-
-  useEffect(() => {
-    if (currentAccount !== 0) {
-      getUsersAPICalling();
-    }
-  }, [currentAccount]);
-
-  // 닉네임 체크가 setNicknamePage 에서 끝난 뒤, 부모의 state는 업데이트만 시켜줌
-  //   useEffect(() => {
-  //     checkNicknameOverlappingAPICalling(nickname);
-  //     console.log("Nickname :", nickname);
-  //   }, [nickname]);
 
   return (
     <div>
@@ -152,12 +84,18 @@ export default function ConnectWallet() {
             changePageStep={changePageStep}
           />
         )) ||
-          (pageStep === 2 && <SigningPage chainID={chainID} />) ||
+          (pageStep === 2 && (
+            <SigningPage
+              chainID={chainID}
+              currentAccount={currentAccount}
+              changePageStep={changePageStep}
+              changeCurrentAccount={changeCurrentAccount}
+            />
+          )) ||
           (pageStep === 3 && (
             <SetNicknamePage
-              currentAccount={currentAccount}
               chainID={chainID}
-              changeNickname={changeNickname}
+              currentAccount={currentAccount}
             />
           )) ||
           (pageStep === 4 && renderingFailedConnectionPage())}

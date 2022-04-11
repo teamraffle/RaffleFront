@@ -2,6 +2,7 @@ import styles from "./ProfileButton.module.css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import Blockies from "react-blockies";
 
 const ProfileBoxLinkButton = styled.div`
   position: relative;
@@ -62,8 +63,13 @@ const ProfileButton = () => {
 
   return (
     <div>
-      <div
-        className={styles.profileButton}
+      <Blockies
+        seed={sessionStorage.getItem("walletAddress")}
+        size={15}
+        scale={3}
+        color="#1f8203"
+        bgColor="#ffe"
+        spotColor="#abc"
         onMouseOver={() => {
           setMouseEnter(true);
           console.log("Mouse Entered");
@@ -74,7 +80,8 @@ const ProfileButton = () => {
         }}
       >
         a
-      </div>
+      </Blockies>
+
       {mouseEnter ? (
         <ProfileMiniBox
           onMouseOver={() => {

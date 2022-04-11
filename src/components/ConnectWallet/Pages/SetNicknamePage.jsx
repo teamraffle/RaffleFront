@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { ConsoleSqlOutlined } from "@ant-design/icons";
 
 const SetNicknamePageContainer = styled.div`
   /* flex container properties */
@@ -169,7 +170,7 @@ const BoxDoneButton = styled.button`
 `;
 
 export default function SetNicknamePage(props) {
-  const { currentAccount, chainID, nickname } = props;
+  const { currentAccount, chainID } = props;
   const [nicknameAvailable, setNicknameAvailable] = useState(false);
   const [_nickname, _setNickname] = useState("");
 
@@ -187,7 +188,7 @@ export default function SetNicknamePage(props) {
       }
 
       const params = {
-        check_value: nickname,
+        check_value: _nickname,
         chain_id: chainID,
       };
 
@@ -207,10 +208,12 @@ export default function SetNicknamePage(props) {
       const registerData = {
         chain_id: chainID,
         address: currentAccount,
-        nickname: nickname,
+        nickname: _nickname,
+        email: "empty_email",
+        profile_pic: "empty_profile_pic",
       };
-
       await axios.post("https://nftranks.xyz:8888/v1/users", registerData);
+      console.log("POST");
 
       // sessionStorage에 유저 정보 저장해둠
       const params = {
