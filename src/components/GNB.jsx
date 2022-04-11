@@ -16,7 +16,6 @@ const GNBContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-
   align-items: center;
 
   /* text properties */
@@ -104,7 +103,7 @@ function MenuItems() {
       </GNBItem>
 
       {/* Search Bar */}
-      <GNBItem width="30rem" marginLeft="13.2rem">
+      <GNBItem width="32rem" marginLeft="11.2rem">
         <SearchBar />
       </GNBItem>
 
