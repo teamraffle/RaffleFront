@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { ConsoleSqlOutlined } from "@ant-design/icons";
 
 const SetNicknamePageContainer = styled.div`
   /* flex container properties */
