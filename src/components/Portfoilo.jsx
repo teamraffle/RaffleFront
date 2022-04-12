@@ -1,19 +1,10 @@
-import { useState } from "react";
-import { Menu } from "antd";
-import { Link } from "react-router-dom";
-import SearchBar from "./SearchBar.jsx";
-import ProfileButton from "./ProfileButton.jsx";
 import PortfolioNFT from "./PortfolioNFT";
 import PortfolioActivity from "./PortfolioActivity";
 import PortfolioStats from "./PortfolioStats";
 import styled, { css } from "styled-components";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import axios from "axios";
+import { useState } from "react";
 
 /* ---- export this to theme.js ---- */
 const colors = {
@@ -94,20 +85,30 @@ const PortfoiloContainer = styled.div`
   flex-direction: column;
   width: 72.5rem;
   height: 100%;
+
+  margin-top: 4.2rem;
 `;
 
-const PortfoiloHeader = styled.div`
-  padding: 15px 0px;
+const Box1 = styled.div`
   width: 100%;
-  height: 100%;
+`;
+
+const Box1Header = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 100%;
+
+  margin-bottom: 2rem;
 `;
 
 const HeaderTitle = styled.div`
   /* flex items properties */
   flex: 0 0 auto;
-  padding: 5px 0px;
-  /* text properties */
 
+  /* text properties */
   font-family: Poppins;
   font-size: 2.8rem;
   font-weight: 600;
@@ -118,25 +119,45 @@ const HeaderTitle = styled.div`
   text-align: left;
   color: ${colors.RaffleWhite};
 `;
-const HeaderContainer = styled.div`
-  /* flex container properties */
 
+const HeaderTime = styled.div`
+  font-family: Poppins;
+  font-size: 1.2rem;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+  color: #b3b3b3;
+
+  margin-left: 18rem;
+`;
+
+const HeaderTimeRefreshButton = styled.div`
+  height: 3.6rem;
+  width: 3.6rem;
+  border-radius: 0.6rem;
+  border: solid 0.1rem #626262;
+
+  cursor: pointer;
+`;
+
+const Box1Container = styled.div`
+  /* flex container properties */
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 `;
-const HeaderUserInfoBox = styled.div`
+const Box1UserInfoBox = styled.div`
   /* flex container properties */
-
   display: flex;
   flex-direction: row;
-  justify-content: stretch;
   align-items: center;
   column-gap: 2rem;
 
-  width: 35.5rem;
+  width: 33.8rem;
   height: 18.8rem;
-  padding: 1.5rem 1.2rem;
 
   border-radius: 14px;
   border: solid 1px ${colors.RaffleCharcoal};
@@ -144,8 +165,10 @@ const HeaderUserInfoBox = styled.div`
 `;
 
 const UserInfoBoxIcon = styled.img`
-  width: 11.8rem;
-  height: 11.8rem;
+  width: 10.1rem;
+  height: 10.1rem;
+
+  margin-left: 3.2rem;
 `;
 const UserInfoBoxData = styled.div`
   /* flex container properties */
@@ -209,7 +232,7 @@ const DataWalletAddresseCopyButtonImg = styled.img`
   margin-left: 0.4rem;
 `;
 
-const HeaderOverview = styled.div`
+const Box1Overview = styled.div`
   /* flex container properties */
   display: flex;
   flex-direction: row;
@@ -218,7 +241,7 @@ const HeaderOverview = styled.div`
   flex-wrap: wrap;
   column-gap: 0.8rem;
 
-  width: 35.5rem;
+  width: 37.6rem;
   height: 18.8rem;
   padding: 3rem 1rem;
 
@@ -349,6 +372,7 @@ const PortfoiloNSAContainer = styled.div`
 
   width: 72.5rem;
   margin-bottom: 24rem;
+  margin-top: 4rem;
 `;
 
 const PortfoiloNSAHeader = styled.div`
@@ -398,29 +422,39 @@ const PortfoiloNSABody = styled.div`
 const getUserData = async () => {
   const params = {
     chain_id: "1",
-    user_id_or_address: sessionStorage.getItem("walletAddress"),
+    user_id: sessionStorage.getItem("user"),
   };
-  const data = await axios.get(
+  const userData = await axios.get(
     "https://nftranks.xyz:8888/v1/portfolios/basic",
     {
       params,
     },
   );
-  console.log(data);
+
+  console.log(userData);
 };
 
 export default function Portfoilo() {
+  const [currentTime, setcurrentTime] = useState(String(new Date()));
+
+  const updateTime = async () => {
+    setcurrentTime(String(new Date()));
+  };
+
   getUserData();
-
-  const NFT_counter = 11;
-
   return (
     <PortfoiloContainer>
       {/* Header */}
-      <PortfoiloHeader>
-        <HeaderTitle>Portfolio</HeaderTitle>
-        <HeaderContainer>
-          <HeaderUserInfoBox>
+      <Box1>
+        <Box1Header>
+          <HeaderTitle>Portfolio</HeaderTitle>
+          <HeaderTime>Last updated: {currentTime}</HeaderTime>
+          <HeaderTimeRefreshButton onClick={updateTime}>
+            <img src="img/refresh.png" alt="refresh button" />
+          </HeaderTimeRefreshButton>
+        </Box1Header>
+        <Box1Container>
+          <Box1UserInfoBox>
             <UserInfoBoxIcon src="img/InfoBoxIcon.png" alt=""></UserInfoBoxIcon>
             <UserInfoBoxData>
               <DataClass>** DIAMOND ** </DataClass>
@@ -433,16 +467,18 @@ export default function Portfoilo() {
                 <DataWalletAddresseCopyButtonImg src="img/CopyButton.png"></DataWalletAddresseCopyButtonImg>
               </DataWalletAddressContainer>
             </UserInfoBoxData>
-          </HeaderUserInfoBox>
-          <HeaderOverview>
+          </Box1UserInfoBox>
+          <Box1Overview>
             <GeneralStatsContainer>
               <StatsName>NFTs</StatsName>
-              <StatsData>{NFT_counter}</StatsData>
+              <StatsData>** 3,592 **</StatsData>
             </GeneralStatsContainer>
+
             <GeneralStatsContainer>
               <StatsName>Collections</StatsName>
               <StatsData>** 12 **</StatsData>
             </GeneralStatsContainer>
+
             <GeneralStatsContainer>
               <StatsHeaderContainer>
                 <StatsName>Average of Holding Period</StatsName>
@@ -450,6 +486,7 @@ export default function Portfoilo() {
               </StatsHeaderContainer>
               <StatsData>** 58 ** Days</StatsData>
             </GeneralStatsContainer>
+
             <GeneralStatsContainer>
               <StatsHeaderContainer>
                 <StatsName>Most Holding</StatsName>
@@ -457,21 +494,12 @@ export default function Portfoilo() {
               </StatsHeaderContainer>
               <StatsData>** icon_ gotta catch **</StatsData>
             </GeneralStatsContainer>
-          </HeaderOverview>
-        </HeaderContainer>
-      </PortfoiloHeader>
+          </Box1Overview>
+        </Box1Container>
+      </Box1>
 
       {/* Overview */}
       <PortfolioOverviewContainer>
-        <OverviewHeader>
-          <OverviewTitle>Overview</OverviewTitle>
-          <OverviewOptionSelectBox>
-            <OptionSelectButton>24H</OptionSelectButton>
-            <OptionSelectButton>7D</OptionSelectButton>
-            <OptionSelectButton>30D</OptionSelectButton>
-            <OptionSelectButton>3M</OptionSelectButton>
-          </OverviewOptionSelectBox>
-        </OverviewHeader>
         <OverviewContainer>
           <GeneralStatsContainer>
             <StatsHeaderContainer>
@@ -549,11 +577,6 @@ export default function Portfoilo() {
           </GeneralStatsContainer>
         </OverviewContainer>
       </PortfolioOverviewContainer>
-
-      {/* Update Info */}
-      <PortfolioUpdateInfoText>
-        Last updated: {String(new Date())}
-      </PortfolioUpdateInfoText>
 
       {/* NFTs, Stats, Activity */}
       <PortfoiloNSAContainer>
