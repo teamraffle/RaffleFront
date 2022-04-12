@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Menu } from "antd";
 import { Link } from "react-router-dom";
 import SearchBar from "./SearchBar.jsx";
@@ -12,6 +13,7 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
+import axios from "axios";
 
 /* ---- export this to theme.js ---- */
 const colors = {
@@ -393,7 +395,25 @@ const PortfoiloNSABody = styled.div`
   background-color: ${colors.RaffleDeepDark};
 `;
 
+const getUserData = async () => {
+  const params = {
+    chain_id: "1",
+    user_id_or_address: sessionStorage.getItem("walletAddress"),
+  };
+  const data = await axios.get(
+    "https://nftranks.xyz:8888/v1/portfolios/basic",
+    {
+      params,
+    },
+  );
+  console.log(data);
+};
+
 export default function Portfoilo() {
+  getUserData();
+
+  const NFT_counter = 11;
+
   return (
     <PortfoiloContainer>
       {/* Header */}
@@ -417,7 +437,7 @@ export default function Portfoilo() {
           <HeaderOverview>
             <GeneralStatsContainer>
               <StatsName>NFTs</StatsName>
-              <StatsData>** 3,592 **</StatsData>
+              <StatsData>{NFT_counter}</StatsData>
             </GeneralStatsContainer>
             <GeneralStatsContainer>
               <StatsName>Collections</StatsName>
