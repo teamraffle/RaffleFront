@@ -102,7 +102,6 @@ const Box1Header = styled.div`
 
 const HeaderTitle = styled.div`
   /* flex items properties */
-  flex: 0 0 auto;
 
   /* text properties */
   font-family: Poppins;
@@ -114,6 +113,8 @@ const HeaderTitle = styled.div`
   letter-spacing: -0.084rem;
   text-align: left;
   color: ${colors.RaffleWhite};
+
+  min-width;
 `;
 
 const HeaderTime = styled.div`
@@ -418,7 +419,7 @@ const PortfoiloNSABody = styled.div`
 const getUserData = async () => {
   const params = {
     chain_id: "1",
-    user_id: sessionStorage.getItem("user"),
+    user_id_or_address: sessionStorage.getItem("walletAddress"),
   };
   const userData = await axios.get(
     "https://nftranks.xyz:8888/v1/portfolios/basic",
@@ -453,7 +454,7 @@ export default function Portfoilo() {
           <Box1UserInfoBox>
             <UserInfoBoxIcon src="img/InfoBoxIcon.png" alt=""></UserInfoBoxIcon>
             <UserInfoBoxData>
-              <DataClass>** DIAMOND ** </DataClass>
+              <DataClass></DataClass>
               <DataNicknameContainer>
                 <DataNickname>** NICKNAME ** </DataNickname>
                 <DataNicknameEditButtonImg src="img/EditButton.png"></DataNicknameEditButtonImg>
