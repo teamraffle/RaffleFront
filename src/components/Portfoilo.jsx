@@ -2,7 +2,16 @@ import { Menu } from "antd";
 import { Link } from "react-router-dom";
 import SearchBar from "./SearchBar.jsx";
 import ProfileButton from "./ProfileButton.jsx";
+import PortfolioNFT from "./PortfolioNFT";
+import PortfolioActivity from "./PortfolioActivity";
+import PortfolioStats from "./PortfolioStats";
 import styled, { css } from "styled-components";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 
 /* ---- export this to theme.js ---- */
 const colors = {
@@ -86,14 +95,17 @@ const PortfoiloContainer = styled.div`
 `;
 
 const PortfoiloHeader = styled.div`
+  padding: 15px 0px;
   width: 100%;
+  height: 100%;
 `;
 
 const HeaderTitle = styled.div`
   /* flex items properties */
   flex: 0 0 auto;
-
+  padding: 5px 0px;
   /* text properties */
+
   font-family: Poppins;
   font-size: 2.8rem;
   font-weight: 600;
@@ -106,12 +118,14 @@ const HeaderTitle = styled.div`
 `;
 const HeaderContainer = styled.div`
   /* flex container properties */
+
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 `;
 const HeaderUserInfoBox = styled.div`
   /* flex container properties */
+
   display: flex;
   flex-direction: row;
   justify-content: stretch;
@@ -523,12 +537,25 @@ export default function Portfoilo() {
 
       {/* NFTs, Stats, Activity */}
       <PortfoiloNSAContainer>
-        <PortfoiloNSAHeader>
-          <NSAHeaderButton>NFTs</NSAHeaderButton>
-          <NSAHeaderButton>Stats</NSAHeaderButton>
-          <NSAHeaderButton>Activity</NSAHeaderButton>
-        </PortfoiloNSAHeader>
-        <PortfoiloNSABody></PortfoiloNSABody>
+        <Router>
+          <PortfoiloNSAHeader>
+            <Link to="/PortfolioNFT">
+              <NSAHeaderButton>NFTs</NSAHeaderButton>
+            </Link>
+            <Link to="/PortfolioStats">
+              <NSAHeaderButton>Stats</NSAHeaderButton>
+            </Link>
+            <Link to="/PortfolioActivity">
+              <NSAHeaderButton>Activity</NSAHeaderButton>
+            </Link>
+          </PortfoiloNSAHeader>
+          <PortfoiloNSABody></PortfoiloNSABody>
+          <main>
+            <Route exact path="/PortfolioNFT" component={PortfolioNFT} />
+            <Route path="/PortfolioActivity" component={PortfolioActivity} />
+            <Route path="/PortfolioStats" component={PortfolioStats} />
+          </main>
+        </Router>
       </PortfoiloNSAContainer>
     </PortfoiloContainer>
   );

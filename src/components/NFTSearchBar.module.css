@@ -1,0 +1,71 @@
+.icon {
+  position: absolute;
+  margin-top: 9.7px;
+  margin-left: 13px;
+  width: 2.66rem;
+  height: 2.66rem;
+  cursor: default;
+}
+
+.searchBarFocus {
+  position: relative;
+  width: 380rem;
+  height: 44px;
+  background: #4f4f54;
+  border-top: solid 1px #626262;
+  border-left: solid 1px #626262;
+  border-right: solid 1px #626262;
+  border-bottom: solid 0px;
+  font-size: 18px;
+  float: left;
+  color: #bdbebe;
+  padding-left: 45px;
+  border-radius: 8px 8px 0px 0px;
+}
+
+.searchBar {
+  position: relative;
+  width: 38rem;
+  height: 44px;
+  background: #4f4f54;
+  border-top: solid 1px #626262;
+  border-left: solid 1px #626262;
+  border-right: solid 1px #626262;
+  border-bottom: solid 0px;
+  font-size: 18px;
+  float: left;
+  color: #bdbebe;
+  padding-left: 45px;
+  border-radius: 8px;
+}
+
+.searchResults {
+  /* flex items properties */
+  order: 2;
+
+  width: 38rem;
+  background-color: #4f4f54;
+  border-radius: 0px 0px 8px 8px;
+  padding-left: 45px;
+  color: #bdbebe;
+  font-size: 18px;
+  border-bottom: solid 1px #626262;
+  border-left: solid 1px #626262;
+  border-right: solid 1px #626262;
+}
+
+.searchResultString {
+  height: 40px;
+  font-size: 12px;
+  font-weight: 500px;
+  font-style: normal;
+  text-align: left;
+}
+
+.searchingString {
+  height: 40px;
+  font-size: 16px;
+  font-weight: 500px;
+  font-style: normal;
+  text-align: left;
+}

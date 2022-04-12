@@ -1,18 +1,238 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import styles from "./AboutUs.module.css";
+import styled from "styled-components";
+
+const Block1GradationBox = styled.div`
+  position: absolute;
+  z-index: 2;
+  width: 102.4rem;
+  height: 10rem;
+  background: linear-gradient(
+    to bottom,
+    rgba(21, 21, 23, 0) 3%,
+    rgba(21, 21, 23, 0.5) 30%,
+    rgba(21, 21, 23, 0.7) 75%,
+    rgba(21, 21, 23, 1) 100%,
+    rgba(21, 21, 23, 1) 100%,
+    rgba(21, 21, 23, 1) 100%
+  );
+  opacity: 0.5;
+
+  margin-top: 45rem;
+`;
+
+const Block4 = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: center;
+  position: relative;
+  margin-top: 50px;
+
+  width: 78.4rem;
+  margin-left: 14.8rem;
+  overflow-x: scroll;
+  ::-webkit-scrollbar {
+    display: none;
+  }
+`;
+
+const Block4Header = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  width: auto;
+  margin-top: 15rem;
+  margin-left: 14.8rem;
+`;
+
+const Block4Title = styled.div`
+  font-family: Poppins;
+  font-size: 48px;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: -1.08px;
+  line-height: 66px;
+  color: #fff;
+  text-align: left;
+  left: 120px;
+
+  animation: fadein 3s ease-in-out;
+`;
+
+const Block4ScrollIndicator = styled.div`
+  display: flex;
+  flex-direction: row;
+  column-gap: 3.2rem;
+
+  margin-right: 9.8rem;
+`;
+
+const TeamMemberContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+
+  overflow: scroll;
+  width: auto;
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+`;
+const TeamMemberBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 25rem;
+  height: 50rem;
+  margin-right: 5.4rem;
+`;
+
+const TeamMemberIcon = styled.img`
+  width: 18rem;
+  height: 30rem;
+`;
+
+const TeamMemberRole = styled.div`
+  font-family: Poppins;
+  font-size: 14px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 2;
+  letter-spacing: -0.28px;
+  text-align: left;
+  color: #626262;
+`;
+const TeamMemberName = styled.div`
+  font-family: Poppins;
+  font-size: 20px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.4;
+  letter-spacing: -0.4px;
+  text-align: left;
+  color: #f5f5f5;
+`;
+const TmeaMemberDescription = styled.div`
+  font-family: Poppins;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: -0.28px;
+  text-align: left;
+  color: #f5f5f5;
+`;
+
+const Block5Title = styled.div`
+  font-family: Poppins;
+  font-size: 4.4rem;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.23;
+  letter-spacing: -0.088rem;
+  text-align: center;
+  color: #fff;
+
+  margin-top: 16rem;
+`;
+const Block5Button = styled.button`
+  width: 19rem;
+  height: 4rem;
+  background-color: #d6f866;
+  border: solid 1px #e8faad;
+  border-radius: 0.8rem;
+
+  margin-top: 4.8rem;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 22rem;
+
+  /* text */
+  font-family: Poppins;
+  font-size: 1.4rem;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.042rem;
+  text-align: center;
+  color: #151517;
+
+  cursor: pointer;
+
+  /* animation */
+  animation: fadein 3s ease-in-out;
+`;
 
 export default function AboutUs() {
+  const scrollRef = useRef(null);
+  const [isDrag, setIsDrag] = useState();
+  const [startX, setStartX] = useState();
+
+  const onDragStart = (e) => {
+    console.log("DRAG!");
+    e.preventDefault();
+    setIsDrag(true);
+    setStartX(e.pageX + scrollRef.current.scrollLeft);
+  };
+
+  const onDragEnd = () => {
+    console.log("DRAG DONE..");
+    setIsDrag(false);
+  };
+
+  const onDragMove = (e) => {
+    if (isDrag) {
+      const { scrollWidth, clientWidth, scrollLeft } = scrollRef.current;
+
+      console.log("[+] scrollWidth : ", scrollWidth);
+      console.log("[+] clientWidth : ", clientWidth);
+      console.log("[+] scrollLeft : ", scrollLeft);
+      scrollRef.current.scrollLeft = startX - e.pageX;
+      console.log("[_] ", scrollRef.current.scrollLeft);
+
+      if (scrollLeft === 0) {
+        setStartX(e.pageX);
+      } else if (scrollWidth <= clientWidth + scrollWidth) {
+        setStartX(e.pageX + scrollLeft);
+      }
+    }
+  };
+
+  const throttle = (func, ms) => {
+    let throttled = false;
+    return (...args) => {
+      if (!throttled) {
+        throttled = true;
+        setTimeout(() => {
+          func(...args);
+          throttled = false;
+        }, ms);
+      }
+    };
+  };
+  const delay = 50;
+  const onThrottleDragMove = throttle(onDragMove, delay);
+
   return (
     <div className={styles.aboutUs}>
       <div className={styles.aBlock1}>
+        <div className={styles.bgImage}>
+          <img src="img/LandingPageBGImage2.png" alt=" " />
+        </div>
         <div className={styles.title}>
           Change <br />
           the NFT Culture
         </div>
-        <div className={styles.bgImage}>
-          <img src="img/LandingPageBGImage.png" alt=" " />
-        </div>
         <button className={styles.DocsBtn}>Go to Docs</button>
+        <Block1GradationBox></Block1GradationBox>
       </div>
 
       <div className={styles.aBlock2}>
@@ -36,11 +256,10 @@ export default function AboutUs() {
             culture <br />
           </div>
           <div className={styles.aBlock2RightContent}>
-            We seek to improve the nft investment culture by <br />
-            helping manage and track the nft portfolio of all sizes <br />
-            NFT holders from newbies to Whales by giving credit <br />
-            ratings according to trading patterns, majorly based <br />
-            on average holding Period .
+            We seek to improve the nft investment culture by helping manage and
+            track the nft portfolio of all sizes NFT holders from newbies to
+            Whales by giving credit ratings according to trading patterns,
+            majorly based on average holding Period .
           </div>
         </div>
       </div>
@@ -91,95 +310,92 @@ export default function AboutUs() {
         </div>
       </div>
 
-      <div className={styles.aBlock4}>
-        <div className={styles.aBlock4Title}>Our Team</div>
+      <Block4Header>
+        <Block4Title>Our Team</Block4Title>
 
-        <div className={styles.buttonlist}>
-          <button className={styles.buttonleft}>
-            <img src="img/Buttonleft.png" alt=" "></img>
-          </button>
-          <button className={styles.buttonright}>
-            <img src="img/Buttonright.png" alt=" "></img>
-          </button>
-        </div>
+        <Block4ScrollIndicator>
+          <img
+            src="img/leftarrow.png"
+            alt=""
+            style={{ width: "4.8rem", height: "1.6rem" }}
+          />
+          <img
+            src="img/rightarrow.png"
+            alt=""
+            style={{ width: "4.8rem", height: "1.6rem" }}
+          />
+        </Block4ScrollIndicator>
+      </Block4Header>
 
-        <div className={styles.Boxcontrol}>
-          <div className={styles.SummerBox}>
-            <div className={styles.aBlock4Summer}>
-              <img src="img/Summer.png" alt=" "></img>
-            </div>
-            <div className={styles.aBlock4SummerCont1}>Developer</div>
-            <div className={styles.aBlock4SummerCont2}>Summer</div>
-            <div className={styles.aBlock4SummerCont3}>
-              KOKO is the GOAT Developer <br />
-              KOKO is the GOAT Developer <br />
-              KOKO is the GOAT Developer <br />
-              KOKO is the GOAT Developer <br />
-              KOKO is the GOAT Developer
-            </div>
-          </div>
+      <Block4
+        onMouseDown={onDragStart}
+        onMouseMove={isDrag ? onThrottleDragMove : null}
+        onMouseUp={onDragEnd}
+        onMouseLeave={onDragEnd}
+        ref={scrollRef}
+      >
+        <TeamMemberContainer>
+          <TeamMemberBox>
+            <TeamMemberIcon src="img/Summer.png" alt=" " />
+            <TeamMemberRole>Developer</TeamMemberRole>
+            <TeamMemberName>Summer</TeamMemberName>
+            <TmeaMemberDescription>
+              Summer is the GOAT Developer <br />
+              Summer is the GOAT Developer <br />
+              Summer is the GOAT Developer <br />
+              Summer is the GOAT Developer <br />
+            </TmeaMemberDescription>
+          </TeamMemberBox>
 
-          <div className={styles.BlockcodesBox}>
-            <div className={styles.aBlock4Blockcodes}>
-              <img src="img/Blockcodes.png" alt=" "></img>
-            </div>
-            <div className={styles.aBlock4BlockcodesCont1}>Developer</div>
-            <div className={styles.aBlock4BlockcodesCont2}>Blockcodes</div>
-            <div className={styles.aBlock4BlockcodesCont3}>
-              KOKO is the GOAT Developer <br />
-              KOKO is the GOAT Developer <br />
-              KOKO is the GOAT Developer <br />
-              KOKO is the GOAT Developer <br />
-              KOKO is the GOAT Developer
-            </div>
-          </div>
+          <TeamMemberBox>
+            <TeamMemberIcon src="img/Blockcodes.png" alt=" " />
+            <TeamMemberRole>Developer</TeamMemberRole>
+            <TeamMemberName>Blockcodes</TeamMemberName>
+            <TmeaMemberDescription>
+              Blockcodes is the GOAT Developer <br />
+              Blockcodes is the GOAT Developer <br />
+              Blockcodes is the GOAT Developer <br />
+              Blockcodes is the GOAT Developer <br />
+            </TmeaMemberDescription>
+          </TeamMemberBox>
+          <TeamMemberBox>
+            <TeamMemberIcon src="img/Koko.png" alt=" " />
+            <TeamMemberRole>Developer</TeamMemberRole>
+            <TeamMemberName>Koko</TeamMemberName>
+            <TmeaMemberDescription>
+              Koko is the GOAT Developer <br />
+              Koko is the GOAT Developer <br />
+              Koko is the GOAT Developer <br />
+              Koko is the GOAT Developer <br />
+            </TmeaMemberDescription>
+          </TeamMemberBox>
+          <TeamMemberBox>
+            <TeamMemberIcon src="img/Panna.png" alt=" " />
+            <TeamMemberRole>Developer</TeamMemberRole>
+            <TeamMemberName>Panna</TeamMemberName>
+            <TmeaMemberDescription>
+              Panna is the GOAT Developer <br />
+              Panna is the GOAT Developer <br />
+              Panna is the GOAT Developer <br />
+              Panna is the GOAT Developer <br />
+            </TmeaMemberDescription>
+          </TeamMemberBox>
+          <TeamMemberBox>
+            <TeamMemberIcon src="img/Mean.png" alt=" " />
+            <TeamMemberRole>Designer</TeamMemberRole>
+            <TeamMemberName>Mean</TeamMemberName>
+            <TmeaMemberDescription>
+              Mean is the GOAT Designer <br />
+              Mean is the GOAT Designer <br />
+              Mean is the GOAT Designer <br />
+              Mean is the GOAT Designer <br />
+            </TmeaMemberDescription>
+          </TeamMemberBox>
+        </TeamMemberContainer>
+      </Block4>
 
-          <div className={styles.KokoBox}>
-            <div className={styles.aBlock4Koko}>
-              <img src="img/Koko.png" alt=" "></img>
-            </div>
-            <div className={styles.aBlock4KokoCont1}>Developer</div>
-            <div className={styles.aBlock4KokoCont2}>Koko</div>
-            <div className={styles.aBlock4KokoCont3}>
-              KOKO is the GOAT Developer <br />
-              KOKO is the GOAT Developer <br />
-              KOKO is the GOAT Developer <br />
-              KOKO is the GOAT Developer <br />
-              KOKO is the GOAT Developer
-            </div>
-          </div>
-
-          <div className={styles.PannaBox}>
-            <div className={styles.aBlock4Panna}>
-              <img src="img/Panna.png" alt=" "></img>
-            </div>
-            <div className={styles.aBlock4PannaCont1}>Developer</div>
-            <div className={styles.aBlock4PannaCont2}>Panna</div>
-            <div className={styles.aBlock4PannaCont3}>
-              KOKO is the GOAT Developer <br />
-              KOKO is the GOAT Developer <br />
-              KOKO is the GOAT Developer <br />
-              KOKO is the GOAT Developer <br />
-              KOKO is the GOAT Developer
-            </div>
-          </div>
-
-          <div className={styles.MeanBox}>
-            <div className={styles.aBlock4Mean}>
-              <img src="img/Mean.png" alt=" "></img>
-            </div>
-            <div className={styles.aBlock4MeanCont1}>Designer</div>
-            <div className={styles.aBlock4MeanCont2}>Mean</div>
-            <div className={styles.aBlock4MeanCont3}>
-              KOKO is the GOAT Developer <br />
-              KOKO is the GOAT Developer <br />
-              KOKO is the GOAT Developer <br />
-              KOKO is the GOAT Developer <br />
-              KOKO is the GOAT Developer
-            </div>
-          </div>
-        </div>
-      </div>
+      <Block5Title>Wanna Be Together?</Block5Title>
+      <Block5Button>CHECK MY RANK</Block5Button>
     </div>
   );
 }
