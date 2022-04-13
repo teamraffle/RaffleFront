@@ -15,6 +15,7 @@ import Landing from "./components/Landing";
 import AboutUs from "./components/AboutUs";
 import ConnectWallet from "./components/ConnectWallet/ConnectWallet";
 import Portfoilo from "./components/Portfoilo";
+import PageNotFound from "./components/PageNotFound";
 import styled from "styled-components";
 
 const App = ({ isServerInfo }) => {
@@ -131,11 +132,14 @@ const App = ({ isServerInfo }) => {
             <Route path="/connectWallet">
               <ConnectWallet />
             </Route>
-            <Route path="/Portfolio">
+            <Route path="/portfolio">
               <Portfoilo />
             </Route>
-            <Route path="/AboutUs">
+            <Route path="/aboutUs">
               <AboutUs />
+            </Route>
+            <Route path="*">
+              <PageNotFound />
             </Route>
           </Switch>
         </Content>
