@@ -4,7 +4,7 @@ import PortfolioStats from "./PortfolioStats";
 import styled, { css } from "styled-components";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 /* ---- export this to theme.js ---- */
 const colors = {
@@ -419,21 +419,6 @@ const PortfoiloNSABody = styled.div`
   background-color: ${colors.RaffleDeepDark};
 `;
 
-const getUserData = async () => {
-  const params = {
-    chain_id: "1",
-    user_id: sessionStorage.getItem("user"),
-  };
-  const userData = await axios.get(
-    "https://nftranks.xyz:8888/v1/portfolios/basic",
-    {
-      params,
-    },
-  );
-
-  console.log(userData);
-};
-
 export default function Portfoilo() {
   const [currentTime, setcurrentTime] = useState(String(new Date()));
 
@@ -441,7 +426,26 @@ export default function Portfoilo() {
     setcurrentTime(String(new Date()));
   };
 
+  const getUserData = async () => {
+    const params = {
+      chain_id: "1",
+      address: "0x4a570CC168caf8eA07eaD7f5DA34e28BBaE44B29",
+    };
+
+    let response = await axios.get(
+      "https://nftranks.xyz:8888/v1/portfolios/basic",
+      {
+        params,
+      },
+    );
+
+    response = response.data;
+    console.log(JSON.stringify(response));
+    this.setState({ data: response });
+  };
+
   getUserData();
+
   return (
     <PortfoiloContainer>
       {/* Header */}
@@ -459,7 +463,7 @@ export default function Portfoilo() {
             <UserInfoBoxData>
               <DataClass>** DIAMOND ** </DataClass>
               <DataNicknameContainer>
-                <DataNickname>** NICKNAME ** </DataNickname>
+                <DataNickname>d</DataNickname>
                 <DataNicknameEditButtonImg src="img/EditButton.png"></DataNicknameEditButtonImg>
               </DataNicknameContainer>
               <DataWalletAddressContainer>
