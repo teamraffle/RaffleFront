@@ -30,7 +30,7 @@ const App = ({ isServerInfo }) => {
   }, [isAuthenticated, isWeb3Enabled]);
 
   const Wrapper = styled.div`
-    min-width: 102.4rem;
+    min-width: 192rem;
     min-height: 100vh;
 
     position: relative;
@@ -77,7 +77,7 @@ const App = ({ isServerInfo }) => {
     overflow: hidden;
 
     min-height: 90vh;
-    max-width: 102.4rem;
+    max-width: 192rem;
   `;
 
   const Footer = styled.div`

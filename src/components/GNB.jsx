@@ -24,7 +24,7 @@ const GNBContainer = styled.div`
   font-family: Poppins;
 
   /* container properties */
-  width: 102.4rem;
+  width: 192rem;
   height: 7.2rem;
   background: #151517;
 `;
