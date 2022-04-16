@@ -421,7 +421,6 @@ const PortfoiloNSABody = styled.div`
 
 export default function Portfoilo() {
   const [currentTime, setcurrentTime] = useState(String(new Date()));
-  const [userData, setUserData] = useState([]);
 
   const updateTime = async () => {
     setcurrentTime(String(new Date()));
@@ -430,7 +429,8 @@ export default function Portfoilo() {
   const getUserData = async () => {
     const params = {
       chain_id: "1",
-      address: "0xA96e16Cdc8c47e1E1E754af62a36D0d4ac7B7c67",
+      // 일단은 특정 주소를 이용해서 값 불러오는 것을 확인함
+      address: process.env.TEST_ADDRESS,
     };
 
     const response = await axios.get(
@@ -440,11 +440,68 @@ export default function Portfoilo() {
       },
     );
 
-    return response;
+    console.log(response.data);
+
+    /**
+     * 일단은 모든 데이터를 sessionStorage에 저장함.
+     * useState를 이용해 response 전체를 저장해두는 방법을 대체한 임시방편임.
+     */
+
+    /**-----user data------*/
+    sessionStorage.setItem("user__nickname", response.data.user.nickname);
+
+    /**-----portfolio basic data------*/
+    sessionStorage.setItem(
+      "portfolio__av_holding_period",
+      response.data.portfolio.av_holding_period,
+    );
+    sessionStorage.setItem(
+      "portfolio__buy_volume",
+      response.data.portfolio.buy_volume,
+    );
+    sessionStorage.setItem(
+      "portfolio__collections_holdings",
+      response.data.portfolio.collections_holdings,
+    );
+    sessionStorage.setItem(
+      "portfolio__earnings_rate",
+      response.data.portfolio.earnings_rate,
+    );
+    sessionStorage.setItem(
+      "portfolio__est_market_value",
+      response.data.portfolio.est_market_value,
+    );
+    sessionStorage.setItem(
+      "portfolio__holding_volume",
+      response.data.portfolio.holding_volume,
+    );
+    sessionStorage.setItem(
+      "portfolio__most_collection_icon",
+      response.data.portfolio.most_collection_icon,
+    );
+    sessionStorage.setItem(
+      "portfolio__most_collection_name",
+      response.data.portfolio.most_collection_name,
+    );
+    sessionStorage.setItem(
+      "portfolio__nft_holdings",
+      response.data.portfolio.nft_holdings,
+    );
+    sessionStorage.setItem(
+      "portfolio__sell_volume",
+      response.data.portfolio.sell_volume,
+    );
+    sessionStorage.setItem(
+      "portfolio__total_gas_fee",
+      response.data.portfolio.total_gas_fee,
+    );
+    sessionStorage.setItem(
+      "portfolio__wallet_address",
+      response.data.portfolio.wallet_address,
+    );
   };
   useEffect(() => {
-    const response = getUserData();
-    setUserData(response);
+    getUserData();
   }, []);
 
   return (
@@ -464,7 +521,9 @@ export default function Portfoilo() {
             <UserInfoBoxData>
               <DataClass>** DIAMOND ** </DataClass>
               <DataNicknameContainer>
-                <DataNickname>{userData.nickname}</DataNickname>
+                <DataNickname>
+                  {sessionStorage.getItem("user__nickname")}
+                </DataNickname>
                 <DataNicknameEditButtonImg src="img/EditButton.png"></DataNicknameEditButtonImg>
               </DataNicknameContainer>
               <DataWalletAddressContainer>
@@ -480,12 +539,16 @@ export default function Portfoilo() {
           <Box1Overview>
             <GeneralStatsContainer>
               <StatsName>NFTs</StatsName>
-              <StatsData>dfdfdfdf</StatsData>
+              <StatsData>
+                {sessionStorage.getItem("portfolio__nft_holdings")}
+              </StatsData>
             </GeneralStatsContainer>
 
             <GeneralStatsContainer>
               <StatsName>Collections</StatsName>
-              <StatsData>** 12 **</StatsData>
+              <StatsData>
+                {sessionStorage.getItem("portfolio__collections_holdings")}
+              </StatsData>
             </GeneralStatsContainer>
 
             <GeneralStatsContainer>
@@ -493,7 +556,9 @@ export default function Portfoilo() {
                 <StatsName>Average of Holding Period</StatsName>
                 <StatsInfoImg src="img/Circle_I.png" />
               </StatsHeaderContainer>
-              <StatsData>** 58 ** Days</StatsData>
+              <StatsData>
+                {sessionStorage.getItem("portfolio__av_holding_period")} Days
+              </StatsData>
             </GeneralStatsContainer>
 
             <GeneralStatsContainer>
@@ -501,7 +566,18 @@ export default function Portfoilo() {
                 <StatsName>Most Holding</StatsName>
                 <StatsInfoImg src="img/Circle_I.png" />
               </StatsHeaderContainer>
-              <StatsData>** icon_ gotta catch **</StatsData>
+              <StatsData>
+                <img
+                  style={{ position: "absolute", width: "2rem" }}
+                  src={sessionStorage.getItem(
+                    "portfolio__most_collection_icon",
+                  )}
+                  alt="nft icon"
+                />
+                <div style={{ paddingLeft: "2.5rem" }}>
+                  {sessionStorage.getItem("portfolio__most_collection_name")}
+                </div>
+              </StatsData>
             </GeneralStatsContainer>
           </Box1Overview>
         </Box1Container>
@@ -516,7 +592,9 @@ export default function Portfoilo() {
               <StatsInfoImg src="img/Circle_I.png" />
             </StatsHeaderContainer>
             <StatsDataContainer>
-              <StatsData>** 1,591,580.50 **</StatsData>
+              <StatsData>
+                {sessionStorage.getItem("portfolio__est_market_value")}
+              </StatsData>
               <StatsDataUnit>USD</StatsDataUnit>
             </StatsDataContainer>
           </GeneralStatsContainer>
@@ -526,7 +604,9 @@ export default function Portfoilo() {
               <StatsInfoImg src="img/Circle_I.png" />
             </StatsHeaderContainer>
             <StatsDataContainer>
-              <StatsData>** 691,120.50 **</StatsData>
+              <StatsData>
+                {sessionStorage.getItem("portfolio__holding_volume")}
+              </StatsData>
               <StatsDataUnit>USD</StatsDataUnit>
             </StatsDataContainer>
           </GeneralStatsContainer>
@@ -536,7 +616,9 @@ export default function Portfoilo() {
               <StatsInfoImg src="img/Circle_I.png" />
             </StatsHeaderContainer>
             <StatsDataContainer>
-              <StatsData>** 1,591,580.50 **</StatsData>
+              <StatsData>
+                {sessionStorage.getItem("portfolio__earnings_rate")}
+              </StatsData>
               <StatsDataUnit>USD</StatsDataUnit>
             </StatsDataContainer>
           </GeneralStatsContainer>
@@ -546,7 +628,9 @@ export default function Portfoilo() {
               <StatsInfoImg src="img/Circle_I.png" />
             </StatsHeaderContainer>
             <StatsDataContainer>
-              <StatsData>** 14,580.50 **</StatsData>
+              <StatsData>
+                {sessionStorage.getItem("portfolio__total_gas_fee")}
+              </StatsData>
               <StatsDataUnit>USD</StatsDataUnit>
             </StatsDataContainer>
           </GeneralStatsContainer>
@@ -556,7 +640,9 @@ export default function Portfoilo() {
               <StatsInfoImg src="img/Circle_I.png" />
             </StatsHeaderContainer>
             <StatsDataContainer>
-              <StatsData>** 424,580.50 **</StatsData>
+              <StatsData>
+                {sessionStorage.getItem("portfolio__buy_volume")}
+              </StatsData>
               <StatsDataUnit>USD</StatsDataUnit>
             </StatsDataContainer>
           </GeneralStatsContainer>
@@ -566,7 +652,9 @@ export default function Portfoilo() {
               <StatsInfoImg src="img/Circle_I.png" />
             </StatsHeaderContainer>
             <StatsDataContainer>
-              <StatsData>** 60,120.50 **</StatsData>
+              <StatsData>
+                {sessionStorage.getItem("portfolio__sell_volume")}
+              </StatsData>
               <StatsDataUnit>USD</StatsDataUnit>
             </StatsDataContainer>
           </GeneralStatsContainer>
