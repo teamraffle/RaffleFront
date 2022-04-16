@@ -93,6 +93,7 @@ export default function SigningPage(props) {
       }
     }
   };
+
   // WALLET
   if (chainID === 1) {
     connectMetamaskWallet();

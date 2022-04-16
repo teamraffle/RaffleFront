@@ -421,6 +421,7 @@ const PortfoiloNSABody = styled.div`
 
 export default function Portfoilo() {
   const [currentTime, setcurrentTime] = useState(String(new Date()));
+  const [userData, setUserData] = useState([]);
 
   const updateTime = async () => {
     setcurrentTime(String(new Date()));
@@ -429,22 +430,22 @@ export default function Portfoilo() {
   const getUserData = async () => {
     const params = {
       chain_id: "1",
-      address: "0x4a570CC168caf8eA07eaD7f5DA34e28BBaE44B29",
+      address: "0xA96e16Cdc8c47e1E1E754af62a36D0d4ac7B7c67",
     };
 
-    let response = await axios.get(
+    const response = await axios.get(
       "https://nftranks.xyz:8888/v1/portfolios/basic",
       {
         params,
       },
     );
 
-    response = response.data;
-    console.log(JSON.stringify(response));
-    this.setState({ data: response });
+    return response;
   };
-
-  getUserData();
+  useEffect(() => {
+    const response = getUserData();
+    setUserData(response);
+  }, []);
 
   return (
     <PortfoiloContainer>
@@ -463,11 +464,15 @@ export default function Portfoilo() {
             <UserInfoBoxData>
               <DataClass>** DIAMOND ** </DataClass>
               <DataNicknameContainer>
-                <DataNickname>d</DataNickname>
+                <DataNickname>{userData.nickname}</DataNickname>
                 <DataNicknameEditButtonImg src="img/EditButton.png"></DataNicknameEditButtonImg>
               </DataNicknameContainer>
               <DataWalletAddressContainer>
-                <DataWalletAddress>** WALLET ADDRESS **</DataWalletAddress>
+                <DataWalletAddress>
+                  {sessionStorage.getItem("walletAddress").substring(0, 6) +
+                    "..." +
+                    sessionStorage.getItem("walletAddress").substring(38, 42)}
+                </DataWalletAddress>
                 <DataWalletAddresseCopyButtonImg src="img/CopyButton.png"></DataWalletAddresseCopyButtonImg>
               </DataWalletAddressContainer>
             </UserInfoBoxData>
@@ -475,7 +480,7 @@ export default function Portfoilo() {
           <Box1Overview>
             <GeneralStatsContainer>
               <StatsName>NFTs</StatsName>
-              <StatsData>** 3,592 **</StatsData>
+              <StatsData>dfdfdfdf</StatsData>
             </GeneralStatsContainer>
 
             <GeneralStatsContainer>

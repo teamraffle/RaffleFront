@@ -41,11 +41,6 @@ const SearchInput = styled.input`
   outline: 0;
 `;
 
-const SearchBarBox = styled.div`
-  order: 3;
-  border-bottom: 1px solid #bdbebe;
-`;
-
 /* 임의로 만든 컴포넌트임 */
 const ClearInputIcon = styled.div`
   position: absolute;

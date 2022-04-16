@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import styles from "./ConnectWallet.module.css";
-import axios from "axios";
 
 /** pages */
 import SelectPage from "./Pages/SelectPage";
