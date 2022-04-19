@@ -1,13 +1,6 @@
-import { useEffect, useState } from "react";
-import { useMoralis } from "react-moralis";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "antd/dist/antd.css";
-// import styles from "./style.css";
+
 import "./style.css";
 // import Ranking from "components/Ranking";
 import GNB from "./components/GNB";
@@ -18,19 +11,14 @@ import Portfoilo from "./components/Portfoilo";
 import PageNotFound from "./components/PageNotFound";
 import styled from "styled-components";
 
-const App = ({ isServerInfo }) => {
-  const { isWeb3Enabled, enableWeb3, isAuthenticated, isWeb3EnableLoading } =
-    useMoralis();
-
-  useEffect(() => {
-    const connectorId = window.localStorage.getItem("connectorId");
-    if (isAuthenticated && !isWeb3Enabled && !isWeb3EnableLoading)
-      enableWeb3({ provider: connectorId });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isAuthenticated, isWeb3Enabled]);
-
+const App = () => {
   const Wrapper = styled.div`
-    min-width: 192rem;
+    /* flex container properties */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    min-width: 102.4rem;
     min-height: 100vh;
 
     position: relative;
@@ -50,7 +38,7 @@ const App = ({ isServerInfo }) => {
     top: 0;
     z-index: 100;
 
-    max-width: 102.4rem;
+    width: 100%;
     height: 7.2rem;
     background: #151517;
     margin: 0 auto;
@@ -77,7 +65,7 @@ const App = ({ isServerInfo }) => {
     overflow: hidden;
 
     min-height: 90vh;
-    max-width: 192rem;
+    max-width: 100%;
   `;
 
   const Footer = styled.div`
@@ -144,9 +132,9 @@ const App = ({ isServerInfo }) => {
           </Switch>
         </Content>
         {/* Footer */}
-        <Footer>ⓒ 2022 RAFFLE | All rights reserved</Footer>
         {/* Footer is in Content*/}
       </Router>
+      <Footer>ⓒ 2022 RAFFLE | All rights reserved</Footer>
     </Wrapper>
   );
 };

@@ -15,7 +15,7 @@ const fadein = keyframes`
 
 const Blur = styled.img`
   z-index: 1;
-  overflow: hidden;
+
   position: absolute;
   width: ${(props) => props.width};
   height: ${(props) => props.height};
@@ -53,6 +53,7 @@ export default function Landing() {
         top="193.8rem"
         left="47.7rem"
       />
+
       <div className={styles.LandingContainer}>
         <div className={styles.Block1}>
           <div className={styles.Block1Title}>

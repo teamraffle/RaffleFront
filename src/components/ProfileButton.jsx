@@ -9,7 +9,6 @@ const DropdownArea = styled.div`
   display: flex;
   flex-direction: column;
 
-  right: 0;
   top: 6.5rem;
   width: 214px;
   min-height: 32rem;
@@ -156,11 +155,9 @@ const ProfileButton = () => {
       <ProfileArea
         onMouseOver={() => {
           setMouseEnter(true);
-          console.log("Mouse Entered");
         }}
         onMouseLeave={() => {
           setMouseEnter(false);
-          console.log("Mouse Leave");
         }}
       >
         <Blockies

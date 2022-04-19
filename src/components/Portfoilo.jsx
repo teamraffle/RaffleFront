@@ -430,7 +430,8 @@ export default function Portfoilo() {
     const params = {
       chain_id: "1",
       // 일단은 특정 주소를 이용해서 값 불러오는 것을 확인함
-      address: process.env.TEST_ADDRESS,
+      address: "0xA96e16Cdc8c47e1E1E754af62a36D0d4ac7B7c67",
+      // address: sessionStorage.getItem("walletAddress"),
     };
 
     const response = await axios.get(
@@ -440,6 +441,7 @@ export default function Portfoilo() {
       },
     );
 
+    console.log(sessionStorage.getItem("walletAddress"));
     console.log(response.data);
 
     /**
@@ -522,7 +524,7 @@ export default function Portfoilo() {
               <DataClass>** DIAMOND ** </DataClass>
               <DataNicknameContainer>
                 <DataNickname>
-                  {sessionStorage.getItem("user__nickname")}
+                  {sessionStorage.getItem("nickname")}
                 </DataNickname>
                 <DataNicknameEditButtonImg src="img/EditButton.png"></DataNicknameEditButtonImg>
               </DataNicknameContainer>
