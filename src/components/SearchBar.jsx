@@ -125,7 +125,7 @@ function SearchBar() {
         autoComplete="off"
         type="search"
         id="search"
-        placeholder="Search Nickname and Address"
+        placeholder="Search Nickname or Address"
         isActivated={activate}
         value={searchingWord}
         onChange={getSearchingWord}

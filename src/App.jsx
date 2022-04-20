@@ -52,7 +52,7 @@ const App = () => {
     display: flex;
     flex-direction: column;
     align-items: center;
-
+    width: 100%;
     /* position relative for absolute child components */
     position: relative;
     z-index: 1;

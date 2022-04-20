@@ -16,7 +16,7 @@ const fadein = keyframes`
 const Blur = styled.img`
   z-index: 1;
 
-  position: absolute;
+  position: fixed;
   width: ${(props) => props.width};
   height: ${(props) => props.height};
 
