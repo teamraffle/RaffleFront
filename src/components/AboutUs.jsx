@@ -238,7 +238,6 @@ export default function AboutUs() {
       <div className={styles.aBlock2}>
         <div className={styles.aBlock2LeftVid}>
           <video
-            poster
             loop="loop"
             autoPlay="autoplay"
             src="vid/aBlock2LeftVids.mp4"

@@ -1,8 +1,5 @@
-import { Menu } from "antd";
-import { Link } from "react-router-dom";
 import SearchBar from "./SearchBar.jsx";
-import ProfileButton from "./ProfileButton.jsx";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 /* ---- export this to theme.js ---- */
 const colors = {

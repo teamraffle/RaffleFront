@@ -24,7 +24,7 @@ const GNBContainer = styled.div`
   font-family: Poppins;
 
   /* container properties */
-  width: 102.4rem;
+  width: 100%;
   height: 7.2rem;
   background: #151517;
 `;
@@ -38,7 +38,7 @@ const GNBItem = styled.div`
   margin-right: ${(props) => props.marginRight};
   margin-left: ${(props) => props.marginLeft};
   button {
-    padding: 0.75rem 2.8rem;
+    padding: 0.75rem 4.8rem;
     border-radius: 0.8rem;
     border: solid 1px ${colors.RaffleNeon};
     background-color: ${colors.RaffleBlack};
@@ -75,28 +75,28 @@ const GNBLink = styled(Link)`
 
 const Logo = styled.img`
   align-items: center;
-  width: 14rem;
+  width: 15rem;
 `;
 
 function MenuItems() {
   return (
     <GNBContainer>
       {/* logo */}
-      <GNBItem width="13rem" marginLeft="4.6rem">
+      <GNBItem width="15rem" marginLeft="0rem">
         <Link to="/">
           <Logo src="img/NFT_Ranks_Logo.svg" alt=" " />
         </Link>
       </GNBItem>
 
       {/* Ranking Button */}
-      <GNBItem width="6.3rem" marginLeft="5.4rem">
+      <GNBItem width="10rem" marginLeft="5.4rem">
         <GNBLink to="/ranking" color="RaffleWhite" fontSize="1.6rem">
           Ranking
         </GNBLink>
       </GNBItem>
 
       {/* AboutUs Button */}
-      <GNBItem width="8.8rem" marginLeft="3.6rem">
+      <GNBItem width="10rem" marginLeft="3.6rem">
         <GNBLink to="/aboutUs" color="RaffleWhite" fontSize="1.6rem">
           About Us
         </GNBLink>
