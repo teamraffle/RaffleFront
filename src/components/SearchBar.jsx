@@ -41,6 +41,7 @@ const SearchInput = styled.input`
   color: #bdbebe;
 
   padding-left: 4.1rem;
+  padding-right: 3rem;
   border-radius: ${(props) => (props.isActivated ? "8px 8px 0px 0px" : "8px")};
 `;
 
@@ -110,7 +111,21 @@ function SearchBar() {
     setSearchingWord("");
   };
 
+  const onEnterPress = (e) => {
+    const filteringCondition = /0x[a-fA-f0-9]{40}/;
+    if (e.key === "Enter") {
+      if (filteringCondition.test(searchingWord)) {
+        console.log("ENTER");
+        sessionStorage.setItem("walletAddress", searchingWord);
+        const url = window.location.href;
+        const targetURL = url + "portfolio";
+        window.location.href = targetURL;
+      }
+    }
+  };
+
   useEffect(() => {
+    console.log(typeof searchingWord);
     if (searchingWord.length > 0) {
       setActivate(true);
     } else {
@@ -132,6 +147,7 @@ function SearchBar() {
         onClick={focusOnSearchBar}
         onFocus={focusOnSearchBar}
         onBlur={stopSearching}
+        onKeyPress={onEnterPress}
       />
       {searchingWord.length > 0 ? (
         <ClearInputIcon onClick={clearKeyword}>
@@ -141,10 +157,19 @@ function SearchBar() {
 
       {activate || searchingWord.length > 0 ? (
         <SearchPreviewBox>
-          <SearchPreviewBoxKeyword>🖐 {searchingWord}</SearchPreviewBoxKeyword>
-          <SearchPreviewBoxResults>REACENTLY SEARCHES</SearchPreviewBoxResults>
-          <SearchPreviewBoxResults>REACENTLY SEARCHES</SearchPreviewBoxResults>
-          <SearchPreviewBoxResults>REACENTLY SEARCHES</SearchPreviewBoxResults>
+          <SearchPreviewBoxKeyword>
+            🖐{" "}
+            {(searchingWord.length < 20 && searchingWord) ||
+              (searchingWord.length >= 20 &&
+                searchingWord.substring(0, 20) + ".......")}
+          </SearchPreviewBoxKeyword>
+          {/* <SearchPreviewBoxResults>REACENTLY SEARCHES</SearchPreviewBoxResults> */}
+          <div
+            onClick={() => {
+              console.log("ENTER");
+              onEnterPress();
+            }}
+          ></div>
         </SearchPreviewBox>
       ) : null}
     </SearchBarArea>
