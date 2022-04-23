@@ -1,6 +1,8 @@
 import PortfolioNFT from "./PortfolioNFT";
 import PortfolioActivity from "./PortfolioActivity";
 import PortfolioStats from "./PortfolioStats";
+import PortfolioProjects from "./PortfolioProjects";
+
 import styled, { css } from "styled-components";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import axios from "axios";
@@ -413,94 +415,63 @@ const NSAHeaderButton = styled.button`
 const PortfoiloNSABody = styled.div`
   width: auto;
   min-height: 40rem;
-
-  border-radius: 14px;
-  border: solid 1px ${colors.RaffleCharcoal};
-  background-color: ${colors.RaffleDeepDark};
 `;
 
 export default function Portfoilo() {
   const [currentTime, setcurrentTime] = useState(String(new Date()));
+  const [portfolioData, setPortfolioData] = useState(null);
+  const [userData, setUserData] = useState(null);
+  const [tab, setTab] = useState("");
 
   const updateTime = async () => {
     setcurrentTime(String(new Date()));
   };
 
+  const changeTab = ({ _tab }) => {
+    setTab(_tab);
+  };
+
+  const renderNFTsTab = () => {
+    setTab("NFTs");
+  };
+
+  const renderStatsTab = () => {
+    setTab("Stats");
+  };
+
+  const renderActivityTab = () => {
+    setTab("Activity");
+  };
+
+  const renderProjectsTab = () => {
+    setTab("Projects");
+  };
+
   const getUserData = async () => {
     const params = {
-      chain_id: "1",
+      chain_id: 1,
       // 일단은 특정 주소를 이용해서 값 불러오는 것을 확인함
-      address: "0xA96e16Cdc8c47e1E1E754af62a36D0d4ac7B7c67",
-      // address: sessionStorage.getItem("walletAddress"),
+      address: sessionStorage.getItem("walletAddress"),
     };
 
-    const response = await axios.get(
+    const response_user = await axios.get(
+      "https://nftranks.xyz:8888/v1/users",
+      {
+        params,
+      },
+    );
+    setUserData(response_user);
+
+    const response_portfolio = await axios.get(
       "https://nftranks.xyz:8888/v1/portfolios/basic",
       {
         params,
       },
     );
+    setPortfolioData(response_portfolio);
 
-    console.log(sessionStorage.getItem("walletAddress"));
-    console.log(response.data);
-
-    /**
-     * 일단은 모든 데이터를 sessionStorage에 저장함.
-     * useState를 이용해 response 전체를 저장해두는 방법을 대체한 임시방편임.
-     */
-
-    /**-----user data------*/
-    sessionStorage.setItem("user__nickname", response.data.user.nickname);
-
-    /**-----portfolio basic data------*/
-    sessionStorage.setItem(
-      "portfolio__av_holding_period",
-      response.data.portfolio.av_holding_period,
-    );
-    sessionStorage.setItem(
-      "portfolio__buy_volume",
-      response.data.portfolio.buy_volume,
-    );
-    sessionStorage.setItem(
-      "portfolio__collections_holdings",
-      response.data.portfolio.collections_holdings,
-    );
-    sessionStorage.setItem(
-      "portfolio__earnings_rate",
-      response.data.portfolio.earnings_rate,
-    );
-    sessionStorage.setItem(
-      "portfolio__est_market_value",
-      response.data.portfolio.est_market_value,
-    );
-    sessionStorage.setItem(
-      "portfolio__holding_volume",
-      response.data.portfolio.holding_volume,
-    );
-    sessionStorage.setItem(
-      "portfolio__most_collection_icon",
-      response.data.portfolio.most_collection_icon,
-    );
-    sessionStorage.setItem(
-      "portfolio__most_collection_name",
-      response.data.portfolio.most_collection_name,
-    );
-    sessionStorage.setItem(
-      "portfolio__nft_holdings",
-      response.data.portfolio.nft_holdings,
-    );
-    sessionStorage.setItem(
-      "portfolio__sell_volume",
-      response.data.portfolio.sell_volume,
-    );
-    sessionStorage.setItem(
-      "portfolio__total_gas_fee",
-      response.data.portfolio.total_gas_fee,
-    );
-    sessionStorage.setItem(
-      "portfolio__wallet_address",
-      response.data.portfolio.wallet_address,
-    );
+    console.log(userData);
+    console.log("[+] portfolio data : ", portfolioData);
   };
   useEffect(() => {
     getUserData();
@@ -524,15 +495,17 @@ export default function Portfoilo() {
               <DataClass>** DIAMOND ** </DataClass>
               <DataNicknameContainer>
                 <DataNickname>
-                  {sessionStorage.getItem("nickname")}
+                  {userData === null ? null : userData.data.nickname}
                 </DataNickname>
                 <DataNicknameEditButtonImg src="img/EditButton.png"></DataNicknameEditButtonImg>
               </DataNicknameContainer>
               <DataWalletAddressContainer>
                 <DataWalletAddress>
-                  {sessionStorage.getItem("walletAddress").substring(0, 6) +
-                    "..." +
-                    sessionStorage.getItem("walletAddress").substring(38, 42)}
+                  {userData === null
+                    ? null
+                    : String(userData.data.wallet.address).substring(0, 6) +
+                      "..." +
+                      String(userData.data.wallet.address).substring(38, 42)}
                 </DataWalletAddress>
                 <DataWalletAddresseCopyButtonImg src="img/CopyButton.png"></DataWalletAddresseCopyButtonImg>
               </DataWalletAddressContainer>
@@ -542,14 +515,19 @@ export default function Portfoilo() {
             <GeneralStatsContainer>
               <StatsName>NFTs</StatsName>
               <StatsData>
-                {sessionStorage.getItem("portfolio__nft_holdings")}
+                {portfolioData === null
+                  ? null
+                  : portfolioData.data.portfolio.nft_holdings}
+                {/* {sessionStorage.getItem("portfolio__nft_holdings")} */}
               </StatsData>
             </GeneralStatsContainer>
 
             <GeneralStatsContainer>
               <StatsName>Collections</StatsName>
               <StatsData>
-                {sessionStorage.getItem("portfolio__collections_holdings")}
+                {portfolioData === null
+                  ? null
+                  : portfolioData.data.portfolio.collections_holdings}
               </StatsData>
             </GeneralStatsContainer>
 
@@ -559,7 +537,11 @@ export default function Portfoilo() {
                 <StatsInfoImg src="img/Circle_I.png" />
               </StatsHeaderContainer>
               <StatsData>
-                {sessionStorage.getItem("portfolio__av_holding_period")} Days
+                {portfolioData === null
+                  ? null
+                  : String(
+                      portfolioData.data.portfolio.av_holding_period,
+                    ).substring(0, 6) + "  Days"}
               </StatsData>
             </GeneralStatsContainer>
 
@@ -571,13 +553,17 @@ export default function Portfoilo() {
               <StatsData>
                 <img
                   style={{ position: "absolute", width: "2rem" }}
-                  src={sessionStorage.getItem(
-                    "portfolio__most_collection_icon",
-                  )}
+                  src={
+                    portfolioData === null
+                      ? null
+                      : portfolioData.data.portfolio.most_collection_icon
+                  }
                   alt="nft icon"
                 />
                 <div style={{ paddingLeft: "2.5rem" }}>
-                  {sessionStorage.getItem("portfolio__most_collection_name")}
+                  {portfolioData === null
+                    ? null
+                    : portfolioData.data.portfolio.most_collection_name}
                 </div>
               </StatsData>
             </GeneralStatsContainer>
@@ -595,7 +581,11 @@ export default function Portfoilo() {
             </StatsHeaderContainer>
             <StatsDataContainer>
               <StatsData>
-                {sessionStorage.getItem("portfolio__est_market_value")}
+                {portfolioData === null
+                  ? null
+                  : String(
+                      portfolioData.data.portfolio.est_market_value,
+                    ).substring(0, 8)}
               </StatsData>
               <StatsDataUnit>USD</StatsDataUnit>
             </StatsDataContainer>
@@ -607,7 +597,9 @@ export default function Portfoilo() {
             </StatsHeaderContainer>
             <StatsDataContainer>
               <StatsData>
-                {sessionStorage.getItem("portfolio__holding_volume")}
+                {portfolioData === null
+                  ? null
+                  : portfolioData.data.portfolio.holding_volume}
               </StatsData>
               <StatsDataUnit>USD</StatsDataUnit>
             </StatsDataContainer>
@@ -619,7 +611,9 @@ export default function Portfoilo() {
             </StatsHeaderContainer>
             <StatsDataContainer>
               <StatsData>
-                {sessionStorage.getItem("portfolio__earnings_rate")}
+                {portfolioData === null
+                  ? null
+                  : portfolioData.data.portfolio.earnings_rate}
               </StatsData>
               <StatsDataUnit>USD</StatsDataUnit>
             </StatsDataContainer>
@@ -631,7 +625,9 @@ export default function Portfoilo() {
             </StatsHeaderContainer>
             <StatsDataContainer>
               <StatsData>
-                {sessionStorage.getItem("portfolio__total_gas_fee")}
+                {portfolioData === null
+                  ? null
+                  : portfolioData.data.portfolio.total_gas_fee}
               </StatsData>
               <StatsDataUnit>USD</StatsDataUnit>
             </StatsDataContainer>
@@ -643,7 +639,12 @@ export default function Portfoilo() {
             </StatsHeaderContainer>
             <StatsDataContainer>
               <StatsData>
-                {sessionStorage.getItem("portfolio__buy_volume")}
+                {portfolioData === null
+                  ? null
+                  : String(portfolioData.data.portfolio.buy_volume).substring(
+                      0,
+                      8,
+                    )}
               </StatsData>
               <StatsDataUnit>USD</StatsDataUnit>
             </StatsDataContainer>
@@ -655,7 +656,12 @@ export default function Portfoilo() {
             </StatsHeaderContainer>
             <StatsDataContainer>
               <StatsData>
-                {sessionStorage.getItem("portfolio__sell_volume")}
+                {portfolioData === null
+                  ? null
+                  : String(portfolioData.data.portfolio.sell_volume).substring(
+                      0,
+                      8,
+                    )}
               </StatsData>
               <StatsDataUnit>USD</StatsDataUnit>
             </StatsDataContainer>
@@ -665,39 +671,45 @@ export default function Portfoilo() {
               <StatsName>Related Addresses</StatsName>
               <StatsInfoImg src="img/Circle_I.png" />
             </StatsHeaderContainer>
-            <StatsData>** 105 **</StatsData>
+            <StatsData>
+              {portfolioData === null
+                ? null
+                : portfolioData.data.portfolio.related_addr_count}
+            </StatsData>
           </GeneralStatsContainer>
           <GeneralStatsContainer>
             <StatsHeaderContainer>
               <StatsName>Activities</StatsName>
               <StatsInfoImg src="img/Circle_I.png" />
             </StatsHeaderContainer>
-            <StatsData>** 632 **</StatsData>
+
+            <StatsData>
+              {portfolioData === null
+                ? null
+                : portfolioData.data.portfolio.activity_count}
+            </StatsData>
           </GeneralStatsContainer>
         </OverviewContainer>
       </PortfolioOverviewContainer>
 
       {/* NFTs, Stats, Activity */}
       <PortfoiloNSAContainer>
-        <Router>
-          <PortfoiloNSAHeader>
-            <Link to="/PortfolioNFT">
-              <NSAHeaderButton>NFTs</NSAHeaderButton>
-            </Link>
-            <Link to="/PortfolioStats">
-              <NSAHeaderButton>Stats</NSAHeaderButton>
-            </Link>
-            <Link to="/PortfolioActivity">
-              <NSAHeaderButton>Activity</NSAHeaderButton>
-            </Link>
-          </PortfoiloNSAHeader>
-          <PortfoiloNSABody></PortfoiloNSABody>
-          <main>
-            <Route exact path="/PortfolioNFT" component={PortfolioNFT} />
-            <Route path="/PortfolioActivity" component={PortfolioActivity} />
-            <Route path="/PortfolioStats" component={PortfolioStats} />
-          </main>
-        </Router>
+        <PortfoiloNSAHeader>
+          <NSAHeaderButton onClick={renderNFTsTab}>NFTs</NSAHeaderButton>
+          <NSAHeaderButton onClick={renderStatsTab}>Stats</NSAHeaderButton>
+          <NSAHeaderButton onClick={renderActivityTab}>
+            Activity
+          </NSAHeaderButton>
+          <NSAHeaderButton onClick={renderProjectsTab}>
+            Projects
+          </NSAHeaderButton>
+        </PortfoiloNSAHeader>
+        <PortfoiloNSABody>
+          {(tab === "NFTs" && <PortfolioNFT />) ||
+            (tab === "Stats" && <PortfolioStats />) ||
+            (tab === "Activity" && <PortfolioActivity />) ||
+            (tab === "Projects" && <PortfolioProjects />)}
+        </PortfoiloNSABody>
       </PortfoiloNSAContainer>
     </PortfoiloContainer>
   );

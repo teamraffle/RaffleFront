@@ -22,8 +22,7 @@ const SearchInput = styled.input`
   /* flex items properties */
   order: 2;
 
-  width: 35rem;
-  height: 44px;
+  width: 48rem;
   background-color: #2f2f2f;
 
   /* text properties */
@@ -49,7 +48,7 @@ const ClearInputIcon = styled.div`
 
   /* 임의로 잡은 값임 */
   margin-top: 0.2rem;
-  margin-left: 27.5rem;
+  margin-left: 48rem;
 
   cursor: pointer;
 `;

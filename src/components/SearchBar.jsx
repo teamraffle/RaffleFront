@@ -41,6 +41,7 @@ const SearchInput = styled.input`
   color: #bdbebe;
 
   padding-left: 4.1rem;
+  padding-right: 3rem;
   border-radius: ${(props) => (props.isActivated ? "8px 8px 0px 0px" : "8px")};
 `;
 
@@ -110,7 +111,31 @@ function SearchBar() {
     setSearchingWord("");
   };
 
+  const onEnterPress = (e) => {
+    const filteringAddress = /0x[a-fA-f0-9]{40}/;
+    const filteringNickname = /[a-f+]{3,20}/;
+    if (e.key === "Enter") {
+      if (
+        filteringAddress.test(searchingWord) ||
+        filteringNickname.test(searchingWord)
+      ) {
+        console.log("ENTER");
+
+        if (filteringAddress.test(searchingWord)) {
+          sessionStorage.setItem("walletAddress", searchingWord);
+
+          const url = "http://localhost:65535/";
+          const targetURL = url + "portfolio";
+          window.location.href = targetURL;
+        } else {
+          console.log("searching by nickname");
+        }
+      }
+    }
+  };
+
   useEffect(() => {
+    console.log(typeof searchingWord);
     if (searchingWord.length > 0) {
       setActivate(true);
     } else {
@@ -132,6 +157,7 @@ function SearchBar() {
         onClick={focusOnSearchBar}
         onFocus={focusOnSearchBar}
         onBlur={stopSearching}
+        onKeyPress={onEnterPress}
       />
       {searchingWord.length > 0 ? (
         <ClearInputIcon onClick={clearKeyword}>
@@ -141,10 +167,19 @@ function SearchBar() {
 
       {activate || searchingWord.length > 0 ? (
         <SearchPreviewBox>
-          <SearchPreviewBoxKeyword>🖐 {searchingWord}</SearchPreviewBoxKeyword>
-          <SearchPreviewBoxResults>REACENTLY SEARCHES</SearchPreviewBoxResults>
-          <SearchPreviewBoxResults>REACENTLY SEARCHES</SearchPreviewBoxResults>
-          <SearchPreviewBoxResults>REACENTLY SEARCHES</SearchPreviewBoxResults>
+          <SearchPreviewBoxKeyword>
+            🖐{" "}
+            {(searchingWord.length < 20 && searchingWord) ||
+              (searchingWord.length >= 20 &&
+                searchingWord.substring(0, 20) + ".......")}
+          </SearchPreviewBoxKeyword>
+          {/* <SearchPreviewBoxResults>REACENTLY SEARCHES</SearchPreviewBoxResults> */}
+          <div
+            onClick={() => {
+              console.log("ENTER");
+              onEnterPress();
+            }}
+          ></div>
         </SearchPreviewBox>
       ) : null}
     </SearchBarArea>
