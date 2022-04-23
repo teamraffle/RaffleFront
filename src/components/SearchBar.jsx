@@ -112,14 +112,24 @@ function SearchBar() {
   };
 
   const onEnterPress = (e) => {
-    const filteringCondition = /0x[a-fA-f0-9]{40}/;
+    const filteringAddress = /0x[a-fA-f0-9]{40}/;
+    const filteringNickname = /[a-f+]{3,20}/;
     if (e.key === "Enter") {
-      if (filteringCondition.test(searchingWord)) {
+      if (
+        filteringAddress.test(searchingWord) ||
+        filteringNickname.test(searchingWord)
+      ) {
         console.log("ENTER");
-        sessionStorage.setItem("walletAddress", searchingWord);
-        const url = window.location.href;
-        const targetURL = url + "portfolio";
-        window.location.href = targetURL;
+
+        if (filteringAddress.test(searchingWord)) {
+          sessionStorage.setItem("walletAddress", searchingWord);
+
+          const url = "http://localhost:65535/";
+          const targetURL = url + "portfolio";
+          window.location.href = targetURL;
+        } else {
+          console.log("searching by nickname");
+        }
       }
     }
   };

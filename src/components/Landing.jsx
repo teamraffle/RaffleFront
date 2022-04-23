@@ -16,7 +16,7 @@ const fadein = keyframes`
 const Blur = styled.img`
   z-index: 1;
 
-  position: fixed;
+  position: absolute;
   width: ${(props) => props.width};
   height: ${(props) => props.height};
 
@@ -34,7 +34,7 @@ export default function Landing() {
         alt=" "
         width="70.3rem"
         height="60rem"
-        left="-20.6rem"
+        left="38rem"
         top="-7.2rem"
       />
       <Blur
@@ -43,7 +43,7 @@ export default function Landing() {
         width="61.2rem"
         height="73.9rem"
         top="79.4rem"
-        left="1.2rem"
+        left="52rem"
       />
       <Blur
         src="img/Blur_3.png"
@@ -51,7 +51,7 @@ export default function Landing() {
         width="63.9rem"
         height="55.9rem"
         top="193.8rem"
-        left="47.7rem"
+        left="76.7rem"
       />
 
       <div className={styles.LandingContainer}>
