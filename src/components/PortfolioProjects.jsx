@@ -31,11 +31,5 @@ const NFTsContainer = styled.div`
 `;
 
 export default function PortfoiloNFT() {
-  return (
-    <NFTsContainer>
-      <NFTSearchBarPosition>
-        <NFTSearchBar />
-      </NFTSearchBarPosition>
-    </NFTsContainer>
-  );
+  return <div></div>;
 }

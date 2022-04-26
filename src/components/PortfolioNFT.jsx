@@ -116,7 +116,7 @@ const BoxImg = styled.div`
   height: 16rem;
 
   border-radius: 0.8rem 0.8rem 0rem 0rem;
-  background: skyblue;
+  background: rgba(21, 21, 23, 0.8);
 `;
 
 const BoxDescription = styled.div`
@@ -125,13 +125,12 @@ const BoxDescription = styled.div`
 
 const BoxSymbol = styled.div`
   position: absolute;
-  width: 3.2rem;
-  height: 3.2rem;
+  width: 3.8rem;
 
   top: 14rem;
   left: 1.2rem;
 
-  background: red;
+  background: rgba(255, 255, 255, 0);
 `; // absolute
 const BoxProjectName = styled.div`
   font-family: Poppins;
@@ -163,7 +162,18 @@ const BoxNFTName = styled.div`
   color: ${colors.RaffleWhite};
 `;
 const BoxOwnedDate = styled.div``;
-const BoxLastPrice = styled.div``;
+const BoxLastPrice = styled.div`
+  display: flex;
+
+  font-family: Poppins;
+  font-size: 10px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.3px;
+  text-align: right;
+`;
 
 //-----------------------------------------------------------------------------------------------
 
@@ -172,10 +182,13 @@ const NFTsFooter = styled.div`
   /* flex container properties */
   display: flex;
   flex-direction: row;
-
   justify-content: center;
+  column-gap: 0.8rem;
 
   margin-top: 4rem;
+
+  width: auto;
+
   font-family: Poppins;
   font-size: 3rem;
   font-weight: 500;
@@ -202,7 +215,9 @@ export default function PortfoiloNFT() {
   const [page, setPage] = useState(1);
   const [nftData, setNftData] = useState(null);
   const [nftDataResult, setNftDataResult] = useState(null);
-  const [indexArray, setIndexArray] = useState([]);
+
+  const images = ["jpg", "png", "gif"];
+  const videos = ["mp4", "3gp", "ogg"];
 
   /**
    * 처음 NFT 탭을 클릭하거나, page 값이 바뀔 때 호출
@@ -240,9 +255,7 @@ export default function PortfoiloNFT() {
     }
   };
 
-  useEffect(() => {
-    console.log(nftData);
-  }, [nftData]);
+  useEffect(() => {}, [nftData]);
 
   useEffect(() => {
     console.log(nftDataResult);
@@ -250,6 +263,8 @@ export default function PortfoiloNFT() {
 
   useEffect(() => {
     console.log("[+] page : ", page);
+    setNftData(null);
+    setNftDataResult(null);
     getNftData();
   }, [page]);
 
@@ -276,25 +291,20 @@ export default function PortfoiloNFT() {
           {nftDataResult === null
             ? null
             : nftDataResult.map((data) => {
-                if (
-                  String(data.nft_image).substring(0, 4) === "http" &&
-                  String(data.nft_image).search("ipfs:") < 0
-                ) {
-                  console.log(
-                    "https://ipfs.io/" +
-                      String(data.nft_image).substring(
-                        String(data.nft_image).search("ipfs"),
-                      ),
-                  );
-                }
                 return (
                   <div>
                     <NFTBox>
                       <BoxImg>
+                        {/* ---------------------일단 적당히 돌아가는 코드임--------------------- */}
+
                         {String(data.nft_image).substring(
                           String(data.nft_image).length - 4,
                           String(data.nft_image).length,
-                        ) === ".mp4" && (
+                        ) === ".mp4" ||
+                        String(data.nft_image).substring(
+                          String(data.nft_image).length - 4,
+                          String(data.nft_image).length,
+                        ) === ".MP4" ? (
                           <video
                             src={
                               "https://ipfs.io/ipfs/" +
@@ -303,33 +313,44 @@ export default function PortfoiloNFT() {
                             loop="loop"
                             autoPlay="autoplay"
                             style={{ width: "100%", height: "100%" }}
-                          ></video>
+                          />
+                        ) : (
+                          <img
+                            src={
+                              //  "ipfs://" 로 시작하는 경우
+                              (String(data.nft_image).substring(0, 7) ===
+                                "ipfs://" &&
+                                "https://ipfs.io/ipfs/" +
+                                  String(data.nft_image).split("://")[1]) ||
+                              // "ar://"로 시작하는 경우
+                              (String(data.nft_image).substring(0, 5) ===
+                                "ar://" &&
+                                "https://arweave.net/" +
+                                  String(data.nft_image).substring(5)) ||
+                              // "https://"로 시작하며, url 따라가면 그냥 이미지 보이는 경우
+                              (String(data.nft_image).substring(0, 4) ===
+                                "http" &&
+                                String(data.nft_image).search("ipfs") >= 0 &&
+                                "https://ipfs.io/ipfs/" +
+                                  String(data.nft_image).split("/ipfs/")[1]) ||
+                              (String(data.nft_image).substring(0, 4) ===
+                                "http" &&
+                                data.nft_image)
+                            }
+                            alt="nft img"
+                            style={{ height: "100%", width: "100%" }}
+                          />
                         )}
-                        <img
-                          src={
-                            (String(data.nft_image).substring(0, 7) ===
-                              "ipfs://" &&
-                              "https://ipfs.io/ipfs/" +
-                                String(data.nft_image).substring(7)) ||
-                            (String(data.nft_image).substring(0, 4) ===
-                              "http" &&
-                              data.nft_image) ||
-                            (String(data.nft_image).substring(0, 4) ===
-                              "http" &&
-                              String(data.nft_image).search("ipfs:") < 0 &&
-                              "https://ipfs.io/" +
-                                String(data.nft_image).substring(
-                                  String(data.nft_image).search("ipfs"),
-                                ))
-                          }
-                          alt="nft img"
-                          style={{ height: "100%", width: "100%" }}
-                        />
+                        {/* ---------------------일단 적당히 돌아가는 코드임--------------------- */}
                         <BoxSymbol>
                           <img
                             src={data.collection.collection_icon}
                             alt="symbol"
-                            style={{ borderRadius: "0.8rem 0.8rem 0rem 0rem" }}
+                            style={{
+                              borderRadius: "0.8rem 0.8rem 0.8rem 0.8rem",
+                              width: "3.2rem",
+                              height: "3.2rem",
+                            }}
                           />
                         </BoxSymbol>
                       </BoxImg>
@@ -337,7 +358,16 @@ export default function PortfoiloNFT() {
                         <BoxProjectName>
                           {nftData === null ? null : data.collection.name}
                         </BoxProjectName>
-                        <BoxNFTName>Name</BoxNFTName>
+                        <BoxNFTName>
+                          #
+                          {nftData === null
+                            ? null
+                            : (String(data.token_id).length > 5 &&
+                                String(data.token_id).substring(0, 5) +
+                                  "...") ||
+                              (String(data.token_id).length <= 5 &&
+                                data.token_id)}
+                        </BoxNFTName>
                         <div
                           style={{
                             display: "flex",
@@ -345,7 +375,19 @@ export default function PortfoiloNFT() {
                           }}
                         >
                           <BoxOwnedDate>Date</BoxOwnedDate>
-                          <BoxLastPrice>PRICE</BoxLastPrice>
+                          <BoxLastPrice>
+                            <img
+                              style={{
+                                width: "1rem",
+                                height: "1rem",
+                                marginTop: "0.2rem",
+                                marginRight: "0.4rem",
+                              }}
+                              src="img/mini_eth.png"
+                              alt="mini eth"
+                            />
+                            {data.collection.fp}&nbsp;ETH
+                          </BoxLastPrice>
                         </div>
                       </BoxDescription>
                     </NFTBox>
@@ -356,6 +398,7 @@ export default function PortfoiloNFT() {
       </NFTsBody>
       <NFTsFooter>
         <FooterIndexButton onClick={pageDecrease}>{"<"}</FooterIndexButton>
+        <FooterIndexButton>{page}</FooterIndexButton>
         <FooterIndexButton onClick={pageIncrease}>{">"}</FooterIndexButton>
       </NFTsFooter>
     </NFTsContainer>

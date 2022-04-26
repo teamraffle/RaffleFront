@@ -228,7 +228,7 @@ export default function SetNicknamePage(props) {
 
       const url = await window.location.href;
       const targetURL = url.slice(0, url.indexOf("connectWallet"));
-      window.location.href = targetURL;
+      window.location.href = targetURL + "/portfolio";
     } catch (ex) {
       console.log("[sendPostToRegisterNewUser] Error : ", ex);
     }
