@@ -17,5 +17,5 @@ const colors = {
 };
 
 export default function PortfoiloStats() {
-  return <SearchBar />;
+  return <div></div>;
 }

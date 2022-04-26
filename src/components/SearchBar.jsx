@@ -124,7 +124,7 @@ function SearchBar() {
         if (filteringAddress.test(searchingWord)) {
           sessionStorage.setItem("walletAddress", searchingWord);
 
-          const url = "https://nftranks.xyz/";
+          const url = sessionStorage.getItem("origin");
           const targetURL = url + "portfolio";
           window.location.href = targetURL;
         } else {

@@ -406,10 +406,6 @@ const NSAHeaderButton = styled.button`
   &:hover {
     border-bottom: solid 0.5rem ${colors.RaffleNeon};
   }
-
-  &:focus {
-    border-bottom: solid 0.5rem ${colors.RaffleNeon};
-  }
 `;
 
 const PortfoiloNSABody = styled.div`
@@ -421,14 +417,10 @@ export default function Portfoilo() {
   const [currentTime, setcurrentTime] = useState(String(new Date()));
   const [portfolioData, setPortfolioData] = useState(null);
   const [userData, setUserData] = useState(null);
-  const [tab, setTab] = useState("");
+  const [tab, setTab] = useState("NFTs");
 
   const updateTime = async () => {
     setcurrentTime(String(new Date()));
-  };
-
-  const changeTab = ({ _tab }) => {
-    setTab(_tab);
   };
 
   const renderNFTsTab = () => {
@@ -470,9 +462,21 @@ export default function Portfoilo() {
     );
     setPortfolioData(response_portfolio);
 
-    console.log(userData);
+    console.log("[+] basic data : ", userData);
     console.log("[+] portfolio data : ", portfolioData);
   };
+
+  const copy = async () => {
+    try {
+      await navigator.clipboard.writeText(
+        sessionStorage.getItem("walletAddress"),
+      );
+      alert("DONE");
+    } catch (error) {
+      console.log("copy failed");
+    }
+  };
+
   useEffect(() => {
     getUserData();
   }, []);
@@ -507,7 +511,10 @@ export default function Portfoilo() {
                       "..." +
                       String(userData.data.wallet.address).substring(38, 42)}
                 </DataWalletAddress>
-                <DataWalletAddresseCopyButtonImg src="img/CopyButton.png"></DataWalletAddresseCopyButtonImg>
+                <DataWalletAddresseCopyButtonImg
+                  src="img/CopyButton.png"
+                  onClick={copy}
+                ></DataWalletAddresseCopyButtonImg>
               </DataWalletAddressContainer>
             </UserInfoBoxData>
           </Box1UserInfoBox>
@@ -695,12 +702,49 @@ export default function Portfoilo() {
       {/* NFTs, Stats, Activity */}
       <PortfoiloNSAContainer>
         <PortfoiloNSAHeader>
-          <NSAHeaderButton onClick={renderNFTsTab}>NFTs</NSAHeaderButton>
-          <NSAHeaderButton onClick={renderStatsTab}>Stats</NSAHeaderButton>
-          <NSAHeaderButton onClick={renderActivityTab}>
+          <NSAHeaderButton
+            onClick={renderNFTsTab}
+            style={
+              (tab === "NFTs" && { borderBottom: "solid 0.5rem #d6f866" }) || {
+                borderBottom: null,
+              }
+            }
+          >
+            NFTs
+          </NSAHeaderButton>
+          <NSAHeaderButton
+            onClick={renderActivityTab}
+            style={
+              (tab === "Activity" && {
+                borderBottom: "solid 0.5rem #d6f866",
+              }) || {
+                borderBottom: null,
+              }
+            }
+          >
             Activity
           </NSAHeaderButton>
-          <NSAHeaderButton onClick={renderProjectsTab}>
+          <NSAHeaderButton
+            onClick={renderStatsTab}
+            style={
+              (tab === "Stats" && { borderBottom: "solid 0.5rem #d6f866" }) || {
+                borderBottom: null,
+              }
+            }
+          >
+            Stats
+          </NSAHeaderButton>
+
+          <NSAHeaderButton
+            onClick={renderProjectsTab}
+            style={
+              (tab === "Projects" && {
+                borderBottom: "solid 0.5rem #d6f866",
+              }) || {
+                borderBottom: null,
+              }
+            }
+          >
             Projects
           </NSAHeaderButton>
         </PortfoiloNSAHeader>
