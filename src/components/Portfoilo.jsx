@@ -259,72 +259,6 @@ const PortfolioOverviewContainer = styled.div`
 
   width: 100%;
 `;
-const OverviewHeader = styled.div`
-  /* flex container properties */
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-
-  margin-top: 4.4rem;
-  width: 100%;
-`;
-const OverviewTitle = styled.div`
-  width: auto;
-
-  /* text properties */
-  font-family: Poppins;
-  font-size: 1.4rem;
-  font-weight: 500;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: -0.54px;
-  text-align: left;
-  color: ${colors.RaffleWhite};
-`;
-
-const OverviewOptionSelectBox = styled.div`
-  /* flex container properties */
-  display: flex;
-  flex-direction: row;
-  justify-content: stretch;
-  align-items: center;
-
-  border-radius: 0.8rem;
-  border: solid 0.1rem ${colors.RaffleBtnStrokeGrey};
-
-  width: auto;
-  height: auto;
-`;
-
-const OptionSelectButton = styled.button`
-  /* text properties */
-  font-family: Poppins;
-  font-size: auto;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: -0.042rem;
-  text-align: center;
-  color: ${colors.RaffleGrey};
-
-  background-color: ${colors.RaffleBlack};
-  border: 0;
-  cursor: pointer;
-  margin: 0 0.2rem;
-  padding: 0 0.1rem;
-  width: 3rem;
-
-  &:hover {
-    border-radius: 0.4rem;
-    background-color: ${colors.RaffleCharcoal};
-  }
-  &:focus {
-    border-radius: 0.4rem;
-    background-color: ${colors.RaffleCharcoal};
-  }
-`;
 
 const OverviewContainer = styled.div`
   /* flex container properties */
@@ -343,27 +277,6 @@ const OverviewContainer = styled.div`
   border-radius: 1.4rem;
   border: solid 0.1rem ${colors.RaffleCharcoal};
   background-color: ${colors.RaffleDeepDark};
-`;
-
-const PortfolioUpdateInfoText = styled.div`
-  /* flex items properties */
-  flex: 0 0 auto;
-
-  /* text properties */
-  font-family: Poppins;
-  font-size: 1.2rem;
-  font-weight: 600;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: -0.084rem;
-  text-align: left;
-  color: #b3b3b3;
-  text-align: end;
-
-  width: 72.5rem;
-
-  margin-top: 2rem;
 `;
 
 // NSA == NFTs, Stats, Activity
@@ -452,6 +365,7 @@ export default function Portfoilo() {
         params,
       },
     );
+
     setUserData(response_user);
 
     const response_portfolio = await axios.get(
@@ -478,6 +392,13 @@ export default function Portfoilo() {
   };
 
   useEffect(() => {
+    console.log("[+] basic data : ", userData);
+  }, [userData]);
+
+  useEffect(() => {
+    console.log("[+] portfolio data : ", portfolioData);
+  }, [portfolioData]);
+  useEffect(() => {
     getUserData();
   }, []);
 
@@ -494,9 +415,36 @@ export default function Portfoilo() {
         </Box1Header>
         <Box1Container>
           <Box1UserInfoBox>
-            <UserInfoBoxIcon src="img/InfoBoxIcon.png" alt=""></UserInfoBoxIcon>
+            <UserInfoBoxIcon
+              src={
+                userData === null
+                  ? null
+                  : "img/profile_picture_" +
+                    String(
+                      (String(userData.data.nickname).charCodeAt(0) % 4) + 1,
+                    ) +
+                    ".png"
+              }
+              alt=""
+            ></UserInfoBoxIcon>
             <UserInfoBoxData>
-              <DataClass>** DIAMOND ** </DataClass>
+              {portfolioData === null ? (
+                <DataClass />
+              ) : (
+                <img
+                  style={{ width: "9.6rem", marginBottom: "-1rem" }}
+                  src={
+                    (portfolioData.data.portfolio.hands === "diamond" &&
+                      "img/Tag_Diamond.png") ||
+                    (portfolioData.data.portfolio.hands === "normal" &&
+                      "img/Tag_Normal.png") ||
+                    (portfolioData.data.portfolio.hands === "paper" &&
+                      "img/Tag_Paper.png")
+                  }
+                  alt="user hands"
+                />
+              )}
+
               <DataNicknameContainer>
                 <DataNickname>
                   {userData === null ? null : userData.data.nickname}
