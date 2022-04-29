@@ -9,6 +9,7 @@ import AboutUs from "./components/AboutUs";
 import ConnectWallet from "./components/ConnectWallet/ConnectWallet";
 import Portfoilo from "./components/Portfoilo";
 import PageNotFound from "./components/PageNotFound";
+import Ranking from "./components/Ranking";
 import styled from "styled-components";
 
 const App = () => {
@@ -115,7 +116,7 @@ const App = () => {
               <Landing />
             </Route>
             <Route exact path="/Ranking">
-              {/* <Ranking isServerInfo={isServerInfo} /> */}
+              <Ranking />
             </Route>
             <Route path="/connectWallet">
               <ConnectWallet />

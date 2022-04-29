@@ -255,10 +255,12 @@ export default function PortfoiloNFT() {
     }
   };
 
-  useEffect(() => {}, [nftData]);
+  useEffect(() => {
+    console.log("[NFT data] : ", nftData);
+  }, [nftData]);
 
   useEffect(() => {
-    console.log(nftDataResult);
+    console.log("[NFT data result] : ", nftDataResult);
   }, [nftDataResult]);
 
   useEffect(() => {

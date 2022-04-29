@@ -1,11 +1,6 @@
 import styled from "styled-components";
 import { useState } from "react";
 
-const OptionBoxContainer = styled.div`
-  height: 24rem;
-  border-radius: 0.6rem;
-`;
-
 const OptionBox = styled.div`
   position: relative;
   width: 12rem;
@@ -48,7 +43,7 @@ export default function NFTOptionBox() {
   // 4 : Price: Low to High
   // 5 : Holding: Long Term
   // 6 : Holding: Short Term
-  const [option, setOption] = useState(1);
+  //   const [option, setOption] = useState(1);
   const [toggle, setToggle] = useState(false);
 
   return (
@@ -58,12 +53,12 @@ export default function NFTOptionBox() {
           setToggle(!toggle);
         }}
       >
-        {(option === 1 && "Latest") ||
+        {/* {(option === 1 && "Latest") ||
           (option === 2 && "Oldest") ||
           (option === 3 && "Price: High to Low") ||
           (option === 4 && "Price: Low to High") ||
           (option === 5 && "Holding: Long Term") ||
-          (option === 6 && "Holding: Short Term")}
+          (option === 6 && "Holding: Short Term")} */}
         <OptionBoxIcon
           src={
             (toggle && "img/option_box_active.png") ||

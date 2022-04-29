@@ -81,6 +81,11 @@ const HeaderChainName = styled.div`
   text-align: left;
   color: #4f4f54;
 `;
+const BoxAvatarContainer = styled.div`
+  /* flex container properties */
+  display: flex;
+  flex-direction: row;
+`;
 
 const BoxAvatarIcon = styled.img`
   width: 10.6rem;
@@ -259,9 +264,12 @@ export default function SetNicknamePage(props) {
             {chainID === 3 && " klaytn"}
           </HeaderChainName>
         </BoxHeader>
-
-        <BoxAvatarIcon src="img/SetNickName_Avatar_Image.png" alt="basic img" />
-
+        <BoxAvatarContainer>
+          <BoxAvatarIcon
+            src={"img/profile_picture_" + String(1) + ".png"}
+            alt="basic img"
+          />
+        </BoxAvatarContainer>
         <BoxUserAddress>{currentAccount}</BoxUserAddress>
         <BoxNicknameInput
           type="text"

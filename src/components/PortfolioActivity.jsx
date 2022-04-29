@@ -1,4 +1,3 @@
-import SearchBar from "./SearchBar.jsx";
 import styled from "styled-components";
 
 import axios from "axios";
@@ -80,7 +79,7 @@ const LogTime = styled.div`
   margin-right: 3.2rem;
 
   font-family: Poppins;
-  font-size: 12px;
+  font-size: 1rem;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
@@ -281,11 +280,15 @@ export default function PortfoiloActivity() {
                 return (
                   <div>
                     <LogContainer>
-                      {/* <LogTime>{data.in_timestamp}</LogTime> */}
                       <div
                         style={{ display: "flex", justifyContent: "center" }}
                       >
-                        <LogTime>temp</LogTime>
+                        <LogTime>
+                          {
+                            String(data.in_timestamp).substring(0, 10) + " "
+                            // + String(data.in_timestamp).substring(11, 19)
+                          }
+                        </LogTime>
 
                         <LogAction>
                           {(data.action === 0 && "Bought") ||
