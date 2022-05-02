@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styled from "styled-components";
@@ -211,12 +212,98 @@ const RankEarnings = styled.div`
   text-align: right;
 `;
 
+const Footer = styled.div`
+  /* flex container properties */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  width: auto;
+  height: 3rem;
+`;
+const FooterMore = styled.div`
+  position: relative;
+  cursor: pointer;
+
+  align-self: center;
+
+  font-family: Poppins;
+  font-size: 14px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.42px;
+  text-align: center;
+  color: #d8d8d8;
+`;
+const MoreImg = styled.img`
+  margin-left: 1.4rem;
+  align-self: center;
+
+  width: 1.1rem;
+  height: 0.5rem;
+`;
+const FooterDone = styled.div`
+  align-self: center;
+
+  font-family: Poppins;
+  font-size: 14px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.42px;
+  text-align: center;
+  color: #d8d8d8;
+`;
+
+const StandardOptionBox = styled.div`
+  margin-left: 8rem;
+
+  width: 12rem;
+  height: 3rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  padding: 0.8rem 2rem;
+  border-radius: 0.8rem;
+  border: solid 1px ${colors.RaffleCharcoal};
+  background-color: ${colors.RaffleDeepDark};
+
+  /* font */
+  font-family: Poppins;
+  font-size: 1.4rem;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.42px;
+  text-align: left;
+  color: ${colors.RaffleGrey};
+
+  cursor: pointer;
+  &:hover {
+    background-color: ${colors.RaffleBtnStrokeGrey};
+  }
+`;
+
+const TitleItems = styled.div`
+  cursor: pointer;
+  &:hover {
+    color: ${colors.RaffleNeon};
+  }
+`;
+
 export default function Ranking() {
   const [rankData, setRankData] = useState(null);
-  const [rankList, setRankList] = useState(null);
+  const [rankList, setRankList] = useState([]);
   const [page, setPage] = useState(1);
   const [tab, setTab] = useState("Collector");
   const [rangeOption, setRangeOption] = useState(0);
+  const [more, setMore] = useState(false);
 
   const renderCollectorTab = () => {
     setTab("Collector");
@@ -238,12 +325,50 @@ export default function Ranking() {
     setRangeOption(3);
   };
 
+  //   const initRanking = async () => {
+  //     const wallets = [];
+  //     wallets.push("0x4a570CC168caf8eA07eaD7f5DA34e28BBaE44B29");
+  //     wallets.push("0x922b8d9803a6cfc60fa6bfb32ac9c4a8fce4ec57");
+  //     wallets.push("0x036eff96a00b461bf86cdfb6cf1fbee08e9e3be6");
+  //     wallets.push("0x138b9057d61e893b72b33ab2d17f24ac87bd33cb");
+  //     wallets.push("0x0bf75cc9f0755cc211ca968cb722cdf472430fb8");
+  //     wallets.push("0x6facad44e126f2cacde44a0b2b85ce1b643495d1");
+  //     wallets.push("0x9678619db86cb846c3a91c960cbf85bff7db842d");
+  //     wallets.push("0x7194397dd015f731a36a30cdca4627ffbde79a72");
+  //     wallets.push("0x11a8e8670970ef4782c90a2af8ccf20f9889c803");
+  //     wallets.push("0x2f2f237d2e655cc0a6f6fef761e5aef13087e71f");
+
+  //     const nicknames = [];
+  //     nicknames.push("alice");
+  //     nicknames.push("brown");
+  //     nicknames.push("fuller");
+  //     nicknames.push("davaron");
+  //     nicknames.push("spencer");
+  //     nicknames.push("aaron");
+  //     nicknames.push("landwher");
+  //     nicknames.push("ancheta");
+  //     nicknames.push("robert");
+  //     nicknames.push("stephanie");
+
+  //     for (let i = 0; i < 10; i++) {
+  //       const params = {
+  //         chain_id: 1,
+  //         address: wallets[i],
+  //         nickname: nicknames[i],
+  //       };
+  //       const response = await axios.post(
+  //         "https://nftranks.xyz:8888/v1/users",
+  //         params,
+  //       );
+
+  //       console.log(response);
+  //     }
+  //   };
+
   const getRankList = async () => {
     const params = {
       page: page - 1,
       standard: "v1",
-      // 일단은 특정 주소를 이용해서 값 불러오는 것을 확인함
-      address: sessionStorage.getItem("walletAddress"),
     };
 
     const response = await axios.get(
@@ -254,7 +379,17 @@ export default function Ranking() {
     );
 
     setRankData(response);
-    setRankList(response.data.result);
+    setPage((prev) => prev + 1);
+
+    response.data.result.map((data) => {
+      setRankList((prev) => [...prev, data]);
+    });
+
+    if (Math.floor(response.data.total / 10) >= page) {
+      setMore(true);
+    } else {
+      setMore(false);
+    }
   };
 
   useEffect(() => {
@@ -267,6 +402,7 @@ export default function Ranking() {
 
   useEffect(() => {
     getRankList();
+    // initRanking();
   }, []);
 
   return (
@@ -336,16 +472,17 @@ export default function Ranking() {
         >
           20001 ~ 20050
         </RangeOption>
+        <StandardOptionBox>정렬 기준</StandardOptionBox>
       </RangeOptionContainer>
       <Body>
         <BodyTitle>
           <div>#</div>
           <div style={{ marginLeft: "3.6rem" }}>User</div>
-          <div style={{ marginLeft: "29rem", color: colors.RaffleNeon }}>
+          <TitleItems style={{ marginLeft: "29rem" }}>
             Est. Market Value
-          </div>
-          <div style={{ marginLeft: "5.8rem" }}>NFTs</div>
-          <div style={{ marginLeft: "5.6rem" }}>Earning</div>
+          </TitleItems>
+          <TitleItems style={{ marginLeft: "5.8rem" }}>NFTs</TitleItems>
+          <TitleItems style={{ marginLeft: "5.6rem" }}>Earning</TitleItems>
         </BodyTitle>
 
         {/* Rank 일단 하나 만듦... 추후 map 으로 여러개 만들어야 함 */}
@@ -353,57 +490,82 @@ export default function Ranking() {
           ? null
           : rankList.map((data) => {
               return (
-                <Rank>
-                  <RankNumber>{data.ranking}</RankNumber>
-                  <RankUser>
-                    <RankUserImg
-                      src={
-                        "img/profile_picture_" +
-                        String((String(data.nickname).charCodeAt(0) % 4) + 1) +
-                        ".png"
-                      }
-                      alt="pfp"
-                    ></RankUserImg>
-                    <RankUsername>{data.nickname}</RankUsername>
-                    <RankHands>
-                      <img
-                        style={{ width: "9.2rem" }}
-                        src={
-                          (data.hands === "dia" && "img/Tag_Diamond.png") ||
-                          (data.hands === "normal" && "img/Tag_Normal.png") ||
-                          (data.hands === "paper" && "img/Tag_Paper.png")
-                        }
-                        alt="hands img"
-                      />
-                    </RankHands>
-                  </RankUser>
-                  <RankEMVContainer>
-                    <RankEstMarketValue>
-                      {String(data.est_market_value).substring(0, 8)}
-                    </RankEstMarketValue>
-                    <div
-                      style={{
-                        fontFamily: "Poppins",
-                        fontSize: "12px",
-                        fontWeight: "normal",
-                        fontStretch: "normal",
-                        fontStyle: "normal",
-                        lineHeight: "normal",
-                        letterSpacing: "-0.36px",
-                        textAlign: "left",
-                        color: "#bdbebe",
-                        alignSelf: "center",
-                      }}
-                    >
-                      &nbsp;ETH
-                    </div>
-                  </RankEMVContainer>
-                  <RankNfts>{data.nft_holdings}</RankNfts>
-                  <RankEarnings>{data.earning}</RankEarnings>
-                </Rank>
+                <div
+                  onClick={() => {
+                    sessionStorage.setItem("walletAddress", data.address);
+                    console.log(sessionStorage.getItem("walletAddress"));
+                  }}
+                >
+                  <Link to="portfolio">
+                    <Rank>
+                      <RankNumber>{data.ranking}</RankNumber>
+                      <RankUser>
+                        <RankUserImg
+                          src={
+                            "img/profile_picture_" +
+                            String(
+                              (String(data.nickname).charCodeAt(0) % 4) + 1,
+                            ) +
+                            ".png"
+                          }
+                          alt="pfp"
+                        ></RankUserImg>
+                        <RankUsername>{data.nickname}</RankUsername>
+                        <RankHands>
+                          <img
+                            style={{ width: "9.2rem" }}
+                            src={
+                              (data.hands === "dia" && "img/Tag_Diamond.png") ||
+                              (data.hands === "normal" &&
+                                "img/Tag_Normal.png") ||
+                              (data.hands === "paper" && "img/Tag_Paper.png")
+                            }
+                            alt="hands img"
+                          />
+                        </RankHands>
+                      </RankUser>
+                      <RankEMVContainer>
+                        <RankEstMarketValue>
+                          {String(data.est_market_value).substring(0, 8)}
+                        </RankEstMarketValue>
+                        <div
+                          style={{
+                            fontFamily: "Poppins",
+                            fontSize: "12px",
+                            fontWeight: "normal",
+                            fontStretch: "normal",
+                            fontStyle: "normal",
+                            lineHeight: "normal",
+                            letterSpacing: "-0.36px",
+                            textAlign: "left",
+                            color: "#bdbebe",
+                            alignSelf: "center",
+                          }}
+                        >
+                          &nbsp;ETH
+                        </div>
+                      </RankEMVContainer>
+                      <RankNfts>{data.nft_holdings}</RankNfts>
+                      <RankEarnings>{data.earning}</RankEarnings>
+                    </Rank>
+                  </Link>
+                </div>
               );
             })}
       </Body>
+      <Footer>
+        {more ? (
+          <div
+            style={{ display: "flex", cursor: "pointer" }}
+            onClick={getRankList}
+          >
+            <FooterMore>More</FooterMore>
+            <MoreImg src="img/more_button.png" alt="more img"></MoreImg>
+          </div>
+        ) : (
+          <FooterDone></FooterDone>
+        )}
+      </Footer>
     </Container>
   );
   //   return (

@@ -28,7 +28,7 @@ const ActitivityContainer = styled.div`
 
   padding-top: 2.4rem;
   padding-bottom: 2.4rem;
-  padding-left: 3.2rem;
+
   padding-right: 3.2rem;
 
   //   border: solid 0.1rem ${colors.RaffleCharcoal};
@@ -65,7 +65,7 @@ const LogContainer = styled.div`
 
   padding-left: 3.2rem;
   padding-right: 3.2rem;
-  margin-bottom: 0.8rem;
+  margin-bottom: 0.4rem;
 
   width: auto;
   height: 5rem;
@@ -205,6 +205,18 @@ const FooterDone = styled.div`
   color: #d8d8d8;
 `;
 
+const NodataContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  width: 728px;
+  height: 344px;
+  border-radius: 14px;
+  border: solid 1px ${colors.RaffleCharcoal};
+  background-color: ${colors.RaffleDeepDark};
+`;
+
 export default function PortfoiloActivity() {
   const [activityData, setActivityData] = useState(null);
   const [activityLogs, setActivityLogs] = useState([]);
@@ -242,11 +254,11 @@ export default function PortfoiloActivity() {
   };
 
   useEffect(() => {
-    console.log(activityData);
+    console.log("[+] activity data : ", activityData);
   }, [activityData]);
 
   useEffect(() => {
-    console.log(activityLogs);
+    console.log("[+] activity logs : ", activityLogs);
   }, [activityLogs]);
 
   useEffect(() => {
@@ -274,52 +286,88 @@ export default function PortfoiloActivity() {
           <HeaderText>activities.</HeaderText>
         </Header>
         <Body>
-          {activityLogs === null
-            ? null
-            : activityLogs.map((data) => {
-                return (
-                  <div>
-                    <LogContainer>
-                      <div
-                        style={{ display: "flex", justifyContent: "center" }}
-                      >
-                        <LogTime>
-                          {
-                            String(data.in_timestamp).substring(0, 10) + " "
-                            // + String(data.in_timestamp).substring(11, 19)
-                          }
-                        </LogTime>
+          {activityLogs.length === 0 ? (
+            <NodataContainer>
+              <img
+                style={{
+                  width: "14rem",
+                  height: " 18rem",
+                  marginLeft: "auto",
+                  marginRight: "auto",
+                  alignSelf: "center",
+                }}
+                src="img/no_data.png"
+                alt="no data img"
+              />
+            </NodataContainer>
+          ) : (
+            activityLogs.map((data) => {
+              return (
+                <div>
+                  <LogContainer>
+                    <div style={{ display: "flex", justifyContent: "center" }}>
+                      <LogTime>
+                        {
+                          String(data.in_timestamp).substring(0, 10) + " "
+                          // + String(data.in_timestamp).substring(11, 19)
+                        }
+                      </LogTime>
 
-                        <LogAction>
-                          {(data.action === 0 && "Bought") ||
-                            (data.action === 1 && "Minted") ||
-                            (data.action === 2 && "Sold") ||
-                            (data.action === 3 && "Burned") ||
-                            (data.action === 4 && "Sent") ||
-                            (data.action === 5 && "Received")}
-                        </LogAction>
+                      <LogAction>
+                        {(data.action === 0 && "Bought") ||
+                          (data.action === 1 && "Minted") ||
+                          (data.action === 2 && "Sold") ||
+                          (data.action === 3 && "Burned") ||
+                          (data.action === 4 && "Sent") ||
+                          (data.action === 5 && "Received")}
+                      </LogAction>
 
-                        <LogSymbol>
-                          <img src={data.collection.icon} alt="nft symbol" />
-                        </LogSymbol>
-                        <LogDescription>
-                          <DescriptWhiteText>
-                            {(data.token_id.length <= 5 &&
-                              "#" + String(data.token_id)) ||
-                              (data.token_id.length > 5 &&
-                                "#" +
-                                  String(data.token_id).substring(0, 5) +
-                                  "...")}
-                          </DescriptWhiteText>
-                          {(data.action === 0 && (
+                      <LogSymbol>
+                        <img src={data.collection.icon} alt="nft symbol" />
+                      </LogSymbol>
+                      <LogDescription>
+                        <DescriptWhiteText>
+                          {(data.token_id.length <= 5 &&
+                            "#" + String(data.token_id)) ||
+                            (data.token_id.length > 5 &&
+                              "#" +
+                                String(data.token_id).substring(0, 5) +
+                                "...")}
+                        </DescriptWhiteText>
+                        {(data.action === 0 && (
+                          <div style={{ display: "flex" }}>
+                            <DescriptText>&nbsp;from</DescriptText>
+                            <DescriptNeonText>
+                              {" "}
+                              &nbsp;
+                              {String(data.from_address).substring(0, 5) +
+                                "....." +
+                                String(data.from_address).substring(37, 42)}
+                            </DescriptNeonText>
+                            <DescriptText>&nbsp;at</DescriptText>
+                            <DescriptWhiteText>
+                              &nbsp;
+                              {String(data.value / Math.pow(10, 19)).substring(
+                                0,
+                                6,
+                              )}
+                            </DescriptWhiteText>
+                            <DescriptText>ETH</DescriptText>
+                            <DescriptText>(Gas: __)</DescriptText>
+                          </div>
+                        )) ||
+                          (data.action === 1 && (
+                            <DescriptText>(Gas: __)</DescriptText>
+                          )) ||
+                          (data.action === 2 && (
                             <div style={{ display: "flex" }}>
-                              <DescriptText>&nbsp;from</DescriptText>
+                              <DescriptText>&nbsp;to</DescriptText>
                               <DescriptNeonText>
                                 {" "}
                                 &nbsp;
-                                {String(data.from_address).substring(0, 5) +
+                                {String(data.to_address).substring(0, 5) +
                                   "....." +
-                                  String(data.from_address).substring(37, 42)}
+                                  String(data.to_address).substring(37, 42)}
                               </DescriptNeonText>
                               <DescriptText>&nbsp;at</DescriptText>
                               <DescriptWhiteText>
@@ -332,80 +380,57 @@ export default function PortfoiloActivity() {
                               <DescriptText>(Gas: __)</DescriptText>
                             </div>
                           )) ||
-                            (data.action === 1 && (
+                          (data.action === 3 && (
+                            <DescriptText>(Gas: __)</DescriptText>
+                          )) ||
+                          (data.action === 4 && (
+                            <div style={{ display: "flex" }}>
+                              <DescriptText>&nbsp;to</DescriptText>
+                              <DescriptNeonText>
+                                &nbsp;
+                                {String(data.to_address).substring(0, 5) +
+                                  "....." +
+                                  String(data.to_address).substring(37, 42)}
+                              </DescriptNeonText>
                               <DescriptText>(Gas: __)</DescriptText>
-                            )) ||
-                            (data.action === 2 && (
-                              <div style={{ display: "flex" }}>
-                                <DescriptText>&nbsp;to</DescriptText>
-                                <DescriptNeonText>
-                                  {" "}
-                                  &nbsp;
-                                  {String(data.to_address).substring(0, 5) +
-                                    "....." +
-                                    String(data.to_address).substring(37, 42)}
-                                </DescriptNeonText>
-                                <DescriptText>&nbsp;at</DescriptText>
-                                <DescriptWhiteText>
-                                  &nbsp;
-                                  {String(
-                                    data.value / Math.pow(10, 19),
-                                  ).substring(0, 6)}
-                                </DescriptWhiteText>
-                                <DescriptText>ETH</DescriptText>
-                                <DescriptText>(Gas: __)</DescriptText>
-                              </div>
-                            )) ||
-                            (data.action === 3 && (
+                            </div>
+                          )) ||
+                          (data.action === 5 && (
+                            <div style={{ display: "flex" }}>
+                              <DescriptText>&nbsp;from</DescriptText>
+                              <DescriptNeonText>
+                                &nbsp;
+                                {String(data.from_address).substring(0, 5) +
+                                  "....." +
+                                  String(data.from_address).substring(37, 42)}
+                              </DescriptNeonText>
                               <DescriptText>(Gas: __)</DescriptText>
-                            )) ||
-                            (data.action === 4 && (
-                              <div style={{ display: "flex" }}>
-                                <DescriptText>&nbsp;to</DescriptText>
-                                <DescriptNeonText>
-                                  &nbsp;
-                                  {String(data.to_address).substring(0, 5) +
-                                    "....." +
-                                    String(data.to_address).substring(37, 42)}
-                                </DescriptNeonText>
-                                <DescriptText>(Gas: __)</DescriptText>
-                              </div>
-                            )) ||
-                            (data.action === 5 && (
-                              <div style={{ display: "flex" }}>
-                                <DescriptText>&nbsp;from</DescriptText>
-                                <DescriptNeonText>
-                                  &nbsp;
-                                  {String(data.from_address).substring(0, 5) +
-                                    "....." +
-                                    String(data.from_address).substring(37, 42)}
-                                </DescriptNeonText>
-                                <DescriptText>(Gas: __)</DescriptText>
-                              </div>
-                            ))}
-                        </LogDescription>
-                      </div>
+                            </div>
+                          ))}
+                      </LogDescription>
+                    </div>
 
-                      <a
-                        href={
-                          "https://etherscan.io/tx/" +
-                          String(data.transaction_hash)
-                        }
-                        target="_blank"
-                        rel="noreferrer"
-                        style={{
-                          alignSelf: "center",
-                          width: "2rem",
-                          height: "2rem",
-                          cursor: "pointer",
-                        }}
-                      >
-                        <img src="img/link_button.png" alt="link button" />
-                      </a>
-                    </LogContainer>
-                  </div>
-                );
-              })}
+                    <a
+                      href={
+                        "https://etherscan.io/tx/" +
+                        String(data.transaction_hash)
+                      }
+                      target="_blank"
+                      rel="noreferrer"
+                      style={{
+                        alignSelf: "center",
+                        width: "2rem",
+                        height: "2rem",
+                        cursor: "pointer",
+                      }}
+                    >
+                      <img src="img/link_button.png" alt="link button" />
+                    </a>
+                  </LogContainer>
+                </div>
+              );
+            })
+          )}
           {/* 테스트용으로 하나 넣음 */}
           {/* <LogContainer>
             <LogTime>Time</LogTime>

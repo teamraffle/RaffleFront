@@ -28,12 +28,14 @@ const NFTsContainer = styled.div`
   border-radius: 1.4rem;
 
   width: auto;
-  min-height: 60rem;
+  min-height: 45rem;
 
   padding-top: 2.4rem;
   padding-bottom: 2.4rem;
   padding-left: 3.2rem;
   padding-right: 3.2rem;
+
+  margin-top: 1.2rem;
 
   border: solid 0.1rem ${colors.RaffleCharcoal};
   background-color: ${colors.RaffleDeepDark};
@@ -284,125 +286,142 @@ export default function PortfoiloNFT() {
       </NFTsHeader>
       <NFTsBody>
         <BodyCountResults>
-          {nftData === null ? null : nftData.data.total} Results
+          {nftData === null ? 0 : nftData.data.total} Results
         </BodyCountResults>
         <NFTWindow nftCount={1}>
           {/* map 함수로 자동으로 여러개 띄워줘야 함. */}
           {/* 4개가 한 칸에 들어가도록 해야함. */}
           {/* Flex box 이용해서 wrap 으로 할지?? */}
-          {nftDataResult === null
-            ? null
-            : nftDataResult.map((data) => {
-                return (
-                  <div>
-                    <NFTBox>
-                      <BoxImg>
-                        {/* ---------------------일단 적당히 돌아가는 코드임--------------------- */}
+          {nftDataResult === null ? (
+            <div
+              style={{
+                marginLeft: "auto",
+                marginRight: "auto",
+                alignSelf: "center",
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
+              <img
+                style={{ width: "14rem", height: "17rem", alignSelf: "center" }}
+                src="img/no_data.png"
+                alt="no data img"
+              />
+            </div>
+          ) : (
+            nftDataResult.map((data) => {
+              return (
+                <div>
+                  <NFTBox>
+                    <BoxImg>
+                      {/* ---------------------일단 적당히 돌아가는 코드임--------------------- */}
 
-                        {String(data.nft_image).substring(
-                          String(data.nft_image).length - 4,
-                          String(data.nft_image).length,
-                        ) === ".mp4" ||
-                        String(data.nft_image).substring(
-                          String(data.nft_image).length - 4,
-                          String(data.nft_image).length,
-                        ) === ".MP4" ? (
-                          <video
-                            src={
+                      {String(data.nft_image).substring(
+                        String(data.nft_image).length - 4,
+                        String(data.nft_image).length,
+                      ) === ".mp4" ||
+                      String(data.nft_image).substring(
+                        String(data.nft_image).length - 4,
+                        String(data.nft_image).length,
+                      ) === ".MP4" ? (
+                        <video
+                          src={
+                            "https://ipfs.io/ipfs/" +
+                            String(data.nft_image).substring(6)
+                          }
+                          loop="loop"
+                          autoPlay="autoplay"
+                          style={{ width: "100%", height: "100%" }}
+                        />
+                      ) : (
+                        <img
+                          src={
+                            //  "ipfs://" 로 시작하는 경우
+                            (String(data.nft_image).substring(0, 7) ===
+                              "ipfs://" &&
                               "https://ipfs.io/ipfs/" +
-                              String(data.nft_image).substring(6)
-                            }
-                            loop="loop"
-                            autoPlay="autoplay"
-                            style={{ width: "100%", height: "100%" }}
-                          />
-                        ) : (
-                          <img
-                            src={
-                              //  "ipfs://" 로 시작하는 경우
-                              (String(data.nft_image).substring(0, 7) ===
-                                "ipfs://" &&
-                                "https://ipfs.io/ipfs/" +
-                                  String(data.nft_image).split("://")[1]) ||
-                              // "ar://"로 시작하는 경우
-                              (String(data.nft_image).substring(0, 5) ===
-                                "ar://" &&
-                                "https://arweave.net/" +
-                                  String(data.nft_image).substring(5)) ||
-                              // "https://"로 시작하며, url 따라가면 그냥 이미지 보이는 경우
-                              (String(data.nft_image).substring(0, 4) ===
-                                "http" &&
-                                String(data.nft_image).search("ipfs") >= 0 &&
-                                "https://ipfs.io/ipfs/" +
-                                  String(data.nft_image).split("/ipfs/")[1]) ||
-                              (String(data.nft_image).substring(0, 4) ===
-                                "http" &&
-                                data.nft_image)
-                            }
-                            alt="nft img"
-                            style={{ height: "100%", width: "100%" }}
-                          />
-                        )}
-                        {/* ---------------------일단 적당히 돌아가는 코드임--------------------- */}
-                        <BoxSymbol>
-                          <img
-                            src={data.collection.collection_icon}
-                            alt="symbol"
-                            style={{
-                              borderRadius: "0.8rem 0.8rem 0.8rem 0.8rem",
-                              width: "3.2rem",
-                              height: "3.2rem",
-                            }}
-                          />
-                        </BoxSymbol>
-                      </BoxImg>
-                      <BoxDescription>
-                        <BoxProjectName>
-                          {nftData === null ? null : data.collection.name}
-                        </BoxProjectName>
-                        <BoxNFTName>
-                          #
-                          {nftData === null
-                            ? null
-                            : (String(data.token_id).length > 5 &&
-                                String(data.token_id).substring(0, 5) +
-                                  "...") ||
-                              (String(data.token_id).length <= 5 &&
-                                data.token_id)}
-                        </BoxNFTName>
-                        <div
+                                String(data.nft_image).split("://")[1]) ||
+                            // "ar://"로 시작하는 경우
+                            (String(data.nft_image).substring(0, 5) ===
+                              "ar://" &&
+                              "https://arweave.net/" +
+                                String(data.nft_image).substring(5)) ||
+                            // "https://"로 시작하며, url 따라가면 그냥 이미지 보이는 경우
+                            (String(data.nft_image).substring(0, 4) ===
+                              "http" &&
+                              String(data.nft_image).search("ipfs") >= 0 &&
+                              "https://ipfs.io/ipfs/" +
+                                String(data.nft_image).split("/ipfs/")[1]) ||
+                            (String(data.nft_image).substring(0, 4) ===
+                              "http" &&
+                              data.nft_image)
+                          }
+                          alt="nft img"
+                          style={{ height: "100%", width: "100%" }}
+                        />
+                      )}
+                      {/* ---------------------일단 적당히 돌아가는 코드임--------------------- */}
+                      <BoxSymbol>
+                        <img
+                          src={data.collection.collection_icon}
+                          alt="symbol"
                           style={{
-                            display: "flex",
-                            justifyContent: "space-between",
+                            borderRadius: "0.8rem 0.8rem 0.8rem 0.8rem",
+                            width: "3.2rem",
+                            height: "3.2rem",
                           }}
-                        >
-                          <BoxOwnedDate>Date</BoxOwnedDate>
-                          <BoxLastPrice>
-                            <img
-                              style={{
-                                width: "1rem",
-                                height: "1rem",
-                                marginTop: "0.2rem",
-                                marginRight: "0.4rem",
-                              }}
-                              src="img/mini_eth.png"
-                              alt="mini eth"
-                            />
-                            {data.collection.fp}&nbsp;ETH
-                          </BoxLastPrice>
-                        </div>
-                      </BoxDescription>
-                    </NFTBox>
-                  </div>
-                );
-              })}
+                        />
+                      </BoxSymbol>
+                    </BoxImg>
+                    <BoxDescription>
+                      <BoxProjectName>
+                        {nftData === null ? null : data.collection.name}
+                      </BoxProjectName>
+                      <BoxNFTName>
+                        #
+                        {nftData === null
+                          ? null
+                          : (String(data.token_id).length > 5 &&
+                              String(data.token_id).substring(0, 5) + "...") ||
+                            (String(data.token_id).length <= 5 &&
+                              data.token_id)}
+                      </BoxNFTName>
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                        }}
+                      >
+                        <BoxOwnedDate>Date</BoxOwnedDate>
+                        <BoxLastPrice>
+                          <img
+                            style={{
+                              width: "1rem",
+                              height: "1rem",
+                              marginTop: "0.2rem",
+                              marginRight: "0.4rem",
+                            }}
+                            src="img/mini_eth.png"
+                            alt="mini eth"
+                          />
+                          {data.collection.fp}&nbsp;ETH
+                        </BoxLastPrice>
+                      </div>
+                    </BoxDescription>
+                  </NFTBox>
+                </div>
+              );
+            })
+          )}
         </NFTWindow>
       </NFTsBody>
-      <NFTsFooter>
-        <FooterIndexButton onClick={pageDecrease}>{"<"}</FooterIndexButton>
-        <FooterIndexButton>{page}</FooterIndexButton>
-        <FooterIndexButton onClick={pageIncrease}>{">"}</FooterIndexButton>
-      </NFTsFooter>
+      {nftData === null ? null : (
+        <NFTsFooter>
+          <FooterIndexButton onClick={pageDecrease}>{"<"}</FooterIndexButton>
+          <FooterIndexButton>{page}</FooterIndexButton>
+          <FooterIndexButton onClick={pageIncrease}>{">"}</FooterIndexButton>
+        </NFTsFooter>
+      )}
     </NFTsContainer>
   );
 }

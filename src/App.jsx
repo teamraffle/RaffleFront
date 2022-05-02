@@ -10,6 +10,9 @@ import ConnectWallet from "./components/ConnectWallet/ConnectWallet";
 import Portfoilo from "./components/Portfoilo";
 import PageNotFound from "./components/PageNotFound";
 import Ranking from "./components/Ranking";
+import Projects from "./components/Projects";
+import ProjectsRegister from "./components/ProjectsRegister";
+import Creator from "./components/Creator";
 import styled from "styled-components";
 
 const App = () => {
@@ -90,14 +93,13 @@ const App = () => {
     padding-bottom: 2.4rem;
 
     /* text */
-    font-family: Poppins;
-    font-size: 1.2rem;
+
     font-weight: 500;
     font-stretch: normal;
     font-style: normal;
-    line-height: normal;
+
     letter-spacing: -0.48px;
-    text-align: left;
+
     color: #bdbebe;
   `;
 
@@ -126,6 +128,15 @@ const App = () => {
             </Route>
             <Route path="/aboutUs">
               <AboutUs />
+            </Route>
+            <Route path="/projects">
+              <Projects />
+            </Route>
+            <Route path="/projectsreg">
+              <ProjectsRegister />
+            </Route>
+            <Route path="/creator">
+              <Creator />
             </Route>
             <Route path="*">
               <PageNotFound />

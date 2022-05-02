@@ -1,4 +1,3 @@
-import NFTSearchBar from "./NFTSearchBar.jsx";
 import styled from "styled-components";
 
 /* ---- export this to theme.js ---- */
@@ -16,20 +15,14 @@ const colors = {
   RaffleBtnStrokeGrey: "#626262",
 };
 
-const NFTSearchBarPosition = styled.div`
-  position: absolute;
-  padding: 1rem;
-  top: 69rem;
-  width: 40rem;
-  height: auto;
-`;
-
-const NFTsContainer = styled.div`
-  border-radius: 1.4rem;
-  border: solid 0.1rem ${colors.RaffleCharcoal};
-  background-color: ${colors.RaffleDeepDark};
+const Container = styled.div`
+  width: auto;
 `;
 
 export default function PortfoiloNFT() {
-  return <div></div>;
+  return (
+    <Container>
+      <img src="img/project_tab_fake.png" alt="project tab img" />
+    </Container>
+  );
 }

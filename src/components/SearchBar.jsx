@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
+import axios from "axios";
 
 const SearchBarArea = styled.div`
   /* flex container properties */
@@ -121,6 +122,7 @@ function SearchBar() {
       ) {
         console.log("ENTER");
 
+        // 지갑 형식에 맞으면 일단 검색함
         if (filteringAddress.test(searchingWord)) {
           sessionStorage.setItem("walletAddress", searchingWord);
 
@@ -168,7 +170,6 @@ function SearchBar() {
       {activate || searchingWord.length > 0 ? (
         <SearchPreviewBox>
           <SearchPreviewBoxKeyword>
-            🖐{" "}
             {(searchingWord.length < 20 && searchingWord) ||
               (searchingWord.length >= 20 &&
                 searchingWord.substring(0, 20) + ".......")}

@@ -87,7 +87,7 @@ const DropdownLink = styled(Link)`
 
 const ProfileMiniBox = () => {
   const nickname = sessionStorage.getItem("nickname");
-  const walletAddress = sessionStorage.getItem("walletAddress");
+  const walletAddress = String(sessionStorage.getItem("myWalletAddress"));
   return (
     <DropdownArea>
       {/* nick name */}
@@ -105,7 +105,16 @@ const ProfileMiniBox = () => {
       {/* Buttons */}
       <DropdownOptionsContainer>
         {/* Button Portfolio */}
-        <DropdownOption key="/portfolio">
+        <DropdownOption
+          onClick={() => {
+            sessionStorage.setItem(
+              "walletAddress",
+              sessionStorage.getItem("myWalletAddress"),
+            );
+            window.location.replace("/portfolio");
+          }}
+          key="/portfolio"
+        >
           <DropdownLink to="/portfolio">Portfolio</DropdownLink>
         </DropdownOption>
 
@@ -121,6 +130,19 @@ const ProfileMiniBox = () => {
         >
           <DropdownLink to="/connectWallet">Switch Wallet</DropdownLink>
         </DropdownOption>
+
+        {/* Creator */}
+        <DropdownOption
+          key="/projects"
+          onClick={() => {
+            // window.location.reload();
+            // sessionStorage.setItem("user", "");
+            // sessionStorage.setItem("nickname", "");
+            // sessionStorage.setItem("walletAddress", "");
+          }}
+        >
+          <DropdownLink to="/creator">Creator</DropdownLink>
+        </DropdownOption>
         {/* Dark Toggle switch */}
         <DropdownOption>
           Dark Mode
@@ -131,7 +153,7 @@ const ProfileMiniBox = () => {
           onClick={() => {
             sessionStorage.setItem("user", "");
             sessionStorage.setItem("nickname", "");
-            sessionStorage.setItem("walletAddress", "");
+            sessionStorage.setItem("myWalletAddress", "");
             window.location.reload();
           }}
         >
@@ -161,7 +183,7 @@ const ProfileButton = () => {
         }}
       >
         <Blockies
-          seed={sessionStorage.getItem("walletAddress")}
+          seed={sessionStorage.getItem("myWalletAddress")}
           size={12}
           scale={4}
           color="#1f8203"

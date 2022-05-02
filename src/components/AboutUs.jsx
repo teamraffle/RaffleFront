@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import React, { useRef, useState } from "react";
 import styles from "./AboutUs.module.css";
 import styled from "styled-components";
@@ -7,14 +8,10 @@ const Block1GradationBox = styled.div`
   z-index: 2;
   width: 102.4rem;
   height: 10rem;
-  background: linear-gradient(
-    to bottom,
-    rgba(21, 21, 23, 0) 3%,
-    rgba(21, 21, 23, 0.5) 30%,
-    rgba(21, 21, 23, 0.7) 75%,
-    rgba(21, 21, 23, 1) 100%,
-    rgba(21, 21, 23, 1) 100%,
-    rgba(21, 21, 23, 1) 100%
+  background-image: linear-gradient(
+    to top,
+    #161618 100%,
+    rgba(20, 20, 20, 0) 10%
   );
   opacity: 0.5;
 
@@ -177,14 +174,12 @@ export default function AboutUs() {
   const [startX, setStartX] = useState();
 
   const onDragStart = (e) => {
-    console.log("DRAG!");
     e.preventDefault();
     setIsDrag(true);
     setStartX(e.pageX + scrollRef.current.scrollLeft);
   };
 
   const onDragEnd = () => {
-    console.log("DRAG DONE..");
     setIsDrag(false);
   };
 
@@ -394,7 +389,18 @@ export default function AboutUs() {
       </Block4>
 
       <Block5Title>Wanna Be Together?</Block5Title>
-      <Block5Button>CHECK MY RANK</Block5Button>
+      <Block5Button>
+        <Link
+          style={{
+            fontSize: "1.4rem",
+            color: "#151517",
+            fontWeight: "bold",
+          }}
+          to="/connectWallet"
+        >
+          CHECK MY RANK
+        </Link>
+      </Block5Button>
     </div>
   );
 }

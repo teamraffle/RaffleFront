@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import React from "react";
 import styles from "./Landing.module.css";
 import styled, { keyframes } from "styled-components";
@@ -30,30 +31,56 @@ export default function Landing() {
   sessionStorage.setItem("origin", window.location.href);
   return (
     <>
-      <Blur
-        src="img/Blur_1.png"
-        alt=" "
-        width="70.3rem"
-        height="60rem"
-        left="38rem"
-        top="-7.2rem"
-      />
-      <Blur
-        src="img/Blur_2.png"
-        alt=" "
-        width="61.2rem"
-        height="73.9rem"
-        top="79.4rem"
-        left="52rem"
-      />
-      <Blur
-        src="img/Blur_3.png"
-        alt=" "
-        width="63.9rem"
-        height="55.9rem"
-        top="193.8rem"
-        left="76.7rem"
-      />
+      <div
+        style={{
+          position: "relative",
+          width: "164.4rem",
+          height: "auto",
+        }}
+      >
+        <Blur
+          src="img/Blur_1.png"
+          alt=" "
+          width="70.3rem"
+          left="12rem"
+          height="60rem"
+          top="-7.2rem"
+        />
+      </div>
+
+      <div
+        style={{
+          position: "relative",
+          width: "164.4rem",
+          height: "auto",
+        }}
+      >
+        <Blur
+          src="img/Blur_2.png"
+          alt=" "
+          width="61.2rem"
+          height="73.9rem"
+          top="79.4rem"
+          left="28rem"
+        />
+      </div>
+
+      <div
+        style={{
+          position: "relative",
+          width: "164.4rem",
+          height: "auto",
+        }}
+      >
+        <Blur
+          src="img/Blur_3.png"
+          alt=" "
+          width="63.9rem"
+          height="55.9rem"
+          top="193.8rem"
+          left="84rem"
+        />
+      </div>
 
       <div className={styles.LandingContainer}>
         <div className={styles.Block1}>
@@ -65,7 +92,18 @@ export default function Landing() {
             build reliable whitelists with NFT Ranks
           </div>
 
-          <button className={styles.Block1Btn}>CHECK MY RANK</button>
+          <div className={styles.Block6Btn} style={{ marginTop: "4.8rem" }}>
+            <Link
+              style={{
+                fontSize: "1.4rem",
+                color: "#151517",
+                fontWeight: "bold",
+              }}
+              to="/connectWallet"
+            >
+              CHECK MY RANK
+            </Link>
+          </div>
         </div>
 
         <div className={styles.Block2}>
@@ -130,7 +168,18 @@ export default function Landing() {
         <div className={styles.Block6}>
           <div className={styles.Block6Title}>Wanna Be Together?</div>
 
-          <button className={styles.Block6Btn}>CHECK MY RANK</button>
+          <div className={styles.Block6Btn}>
+            <Link
+              style={{
+                fontSize: "1.4rem",
+                color: "#151517",
+                fontWeight: "bold",
+              }}
+              to="/connectWallet"
+            >
+              CHECK MY RANK
+            </Link>
+          </div>
         </div>
       </div>
     </>
