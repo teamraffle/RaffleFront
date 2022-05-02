@@ -89,16 +89,22 @@ function MenuItems() {
       </GNBItem>
 
       {/* Ranking Button */}
-      <GNBItem width="10rem" marginLeft="5.4rem">
+      <GNBItem width="7rem" marginLeft="5.4rem">
         <GNBLink to="/ranking" color="RaffleWhite" fontSize="1.6rem">
           Ranking
         </GNBLink>
       </GNBItem>
 
       {/* AboutUs Button */}
-      <GNBItem width="10rem" marginLeft="3.6rem">
+      <GNBItem width="7rem" marginLeft="2.8rem">
         <GNBLink to="/aboutUs" color="RaffleWhite" fontSize="1.6rem">
           About Us
+        </GNBLink>
+      </GNBItem>
+
+      <GNBItem width="7rem" marginLeft="2.8rem">
+        <GNBLink to="/projects" color="RaffleWhite" fontSize="1.6rem">
+          Projects
         </GNBLink>
       </GNBItem>
 

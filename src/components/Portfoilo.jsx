@@ -3,10 +3,11 @@ import PortfolioActivity from "./PortfolioActivity";
 import PortfolioStats from "./PortfolioStats";
 import PortfolioProjects from "./PortfolioProjects";
 
-import styled, { css } from "styled-components";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import styled from "styled-components";
 import axios from "axios";
 import { useState, useEffect } from "react";
+
+import ENS, { getEnsAddress } from "@ensdomains/ensjs";
 
 /* ---- export this to theme.js ---- */
 const colors = {
@@ -65,6 +66,18 @@ const StatsData = styled.div`
   font-size: 1.2rem;
   font-weight: SemiBold;
   color: ${colors.RaffleWhite};
+`;
+
+const StatsDataEmpty = styled.div`
+  font-family: Poppins;
+  font-size: 18px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.54px;
+  text-align: left;
+  color: var(--raffle-white);
 `;
 
 const StatsDataUnit = styled.div`
@@ -330,6 +343,7 @@ export default function Portfoilo() {
   const [currentTime, setcurrentTime] = useState(String(new Date()));
   const [portfolioData, setPortfolioData] = useState(null);
   const [userData, setUserData] = useState(null);
+  const [ensName, setEnsName] = useState(null);
   const [tab, setTab] = useState("NFTs");
 
   const updateTime = async () => {
@@ -359,6 +373,10 @@ export default function Portfoilo() {
       address: sessionStorage.getItem("walletAddress"),
     };
 
+    if (sessionStorage.getItem("myAdress") === null) {
+      console.log("ASDFIAWEFHAWLFJLKSDF");
+    }
+
     const response_user = await axios.get(
       "https://nftranks.xyz:8888/v1/users",
       {
@@ -376,8 +394,8 @@ export default function Portfoilo() {
     );
     setPortfolioData(response_portfolio);
 
-    console.log("[+] basic data : ", userData);
-    console.log("[+] portfolio data : ", portfolioData);
+    console.log("[+] user data : ", userData);
+    console.log("[+] portfolio basic data : ", portfolioData);
   };
 
   const copy = async () => {
@@ -391,13 +409,32 @@ export default function Portfoilo() {
     }
   };
 
+  // ENS 이용하는 코드
+  let web3;
+  let provider;
+
+  web3 = window.web3;
+  provider = web3.currentProvider;
+
+  const ens = new ENS({ provider, ensAddress: getEnsAddress("1") });
+
+  const tryToGetENSName = async (address) => {
+    ens.getName(address).then((data) => {
+      setEnsName(data.name);
+    });
+  };
+
   useEffect(() => {
-    console.log("[+] basic data : ", userData);
+    console.log("[+] user data : ", userData);
   }, [userData]);
 
   useEffect(() => {
-    console.log("[+] portfolio data : ", portfolioData);
+    console.log("[+] portfolio basic data : ", portfolioData);
+
+    tryToGetENSName(sessionStorage.getItem("walletAddress"));
+    console.log("[*] ens name : ", ensName);
   }, [portfolioData]);
+
   useEffect(() => {
     getUserData();
   }, []);
@@ -434,7 +471,7 @@ export default function Portfoilo() {
                 <img
                   style={{ width: "9.6rem", marginBottom: "-1rem" }}
                   src={
-                    (portfolioData.data.portfolio.hands === "diamond" &&
+                    (portfolioData.data.portfolio.hands === "dia" &&
                       "img/Tag_Diamond.png") ||
                     (portfolioData.data.portfolio.hands === "normal" &&
                       "img/Tag_Normal.png") ||
@@ -455,9 +492,11 @@ export default function Portfoilo() {
                 <DataWalletAddress>
                   {userData === null
                     ? null
-                    : String(userData.data.wallet.address).substring(0, 6) +
+                    : ensName === null
+                    ? String(userData.data.wallet.address).substring(0, 6) +
                       "..." +
-                      String(userData.data.wallet.address).substring(38, 42)}
+                      String(userData.data.wallet.address).substring(38, 42)
+                    : String(ensName)}
                 </DataWalletAddress>
                 <DataWalletAddresseCopyButtonImg
                   src="img/CopyButton.png"
@@ -470,9 +509,11 @@ export default function Portfoilo() {
             <GeneralStatsContainer>
               <StatsName>NFTs</StatsName>
               <StatsData>
-                {portfolioData === null
-                  ? null
-                  : portfolioData.data.portfolio.nft_holdings}
+                {portfolioData === null ? (
+                  <StatsDataEmpty>-</StatsDataEmpty>
+                ) : (
+                  portfolioData.data.portfolio.nft_holdings
+                )}
                 {/* {sessionStorage.getItem("portfolio__nft_holdings")} */}
               </StatsData>
             </GeneralStatsContainer>
@@ -480,9 +521,11 @@ export default function Portfoilo() {
             <GeneralStatsContainer>
               <StatsName>Collections</StatsName>
               <StatsData>
-                {portfolioData === null
-                  ? null
-                  : portfolioData.data.portfolio.collections_holdings}
+                {portfolioData === null ? (
+                  <StatsDataEmpty>-</StatsDataEmpty>
+                ) : (
+                  portfolioData.data.portfolio.collections_holdings
+                )}
               </StatsData>
             </GeneralStatsContainer>
 
@@ -492,11 +535,13 @@ export default function Portfoilo() {
                 <StatsInfoImg src="img/Circle_I.png" />
               </StatsHeaderContainer>
               <StatsData>
-                {portfolioData === null
-                  ? null
-                  : String(
-                      portfolioData.data.portfolio.av_holding_period,
-                    ).substring(0, 6) + "  Days"}
+                {portfolioData === null ? (
+                  <StatsDataEmpty>-</StatsDataEmpty>
+                ) : (
+                  String(
+                    portfolioData.data.portfolio.av_holding_period,
+                  ).substring(0, 6) + "  Days"
+                )}
               </StatsData>
             </GeneralStatsContainer>
 
@@ -506,20 +551,26 @@ export default function Portfoilo() {
                 <StatsInfoImg src="img/Circle_I.png" />
               </StatsHeaderContainer>
               <StatsData>
-                <img
-                  style={{ position: "absolute", width: "2rem" }}
-                  src={
-                    portfolioData === null
-                      ? null
-                      : portfolioData.data.portfolio.most_collection_icon
-                  }
-                  alt="nft icon"
-                />
-                <div style={{ paddingLeft: "2.5rem" }}>
-                  {portfolioData === null
-                    ? null
-                    : portfolioData.data.portfolio.most_collection_name}
-                </div>
+                {portfolioData === null ? (
+                  <StatsDataEmpty>-</StatsDataEmpty>
+                ) : (
+                  <div>
+                    <img
+                      style={{ position: "absolute", width: "2rem" }}
+                      src={
+                        portfolioData === null
+                          ? null
+                          : portfolioData.data.portfolio.most_collection_icon
+                      }
+                      alt="nft icon"
+                    />
+                    <div style={{ paddingLeft: "2.5rem" }}>
+                      {portfolioData === null
+                        ? null
+                        : portfolioData.data.portfolio.most_collection_name}
+                    </div>
+                  </div>
+                )}
               </StatsData>
             </GeneralStatsContainer>
           </Box1Overview>
@@ -536,13 +587,15 @@ export default function Portfoilo() {
             </StatsHeaderContainer>
             <StatsDataContainer>
               <StatsData>
-                {portfolioData === null
-                  ? null
-                  : String(
-                      portfolioData.data.portfolio.est_market_value,
-                    ).substring(0, 8)}
+                {portfolioData === null ? (
+                  <StatsDataEmpty>-</StatsDataEmpty>
+                ) : (
+                  String(
+                    portfolioData.data.portfolio.est_market_value,
+                  ).substring(0, 8) + "USD"
+                )}
               </StatsData>
-              <StatsDataUnit>USD</StatsDataUnit>
+              <StatsDataUnit></StatsDataUnit>
             </StatsDataContainer>
           </GeneralStatsContainer>
           <GeneralStatsContainer>
@@ -552,11 +605,13 @@ export default function Portfoilo() {
             </StatsHeaderContainer>
             <StatsDataContainer>
               <StatsData>
-                {portfolioData === null
-                  ? null
-                  : portfolioData.data.portfolio.holding_volume}
+                {portfolioData === null ? (
+                  <StatsDataEmpty>-</StatsDataEmpty>
+                ) : (
+                  String(portfolioData.data.portfolio.holding_volume) + " USD"
+                )}
               </StatsData>
-              <StatsDataUnit>USD</StatsDataUnit>
+              <StatsDataUnit></StatsDataUnit>
             </StatsDataContainer>
           </GeneralStatsContainer>
           <GeneralStatsContainer>
@@ -566,11 +621,13 @@ export default function Portfoilo() {
             </StatsHeaderContainer>
             <StatsDataContainer>
               <StatsData>
-                {portfolioData === null
-                  ? null
-                  : portfolioData.data.portfolio.earnings_rate}
+                {portfolioData === null ? (
+                  <StatsDataEmpty>-</StatsDataEmpty>
+                ) : (
+                  String(portfolioData.data.portfolio.earnings_rate) + " USD"
+                )}
               </StatsData>
-              <StatsDataUnit>USD</StatsDataUnit>
+              <StatsDataUnit></StatsDataUnit>
             </StatsDataContainer>
           </GeneralStatsContainer>
           <GeneralStatsContainer>
@@ -580,11 +637,13 @@ export default function Portfoilo() {
             </StatsHeaderContainer>
             <StatsDataContainer>
               <StatsData>
-                {portfolioData === null
-                  ? null
-                  : portfolioData.data.portfolio.total_gas_fee}
+                {portfolioData === null ? (
+                  <StatsDataEmpty>-</StatsDataEmpty>
+                ) : (
+                  String(portfolioData.data.portfolio.total_gas_fee) + " USD"
+                )}
               </StatsData>
-              <StatsDataUnit>USD</StatsDataUnit>
+              <StatsDataUnit></StatsDataUnit>
             </StatsDataContainer>
           </GeneralStatsContainer>
           <GeneralStatsContainer>
@@ -594,14 +653,16 @@ export default function Portfoilo() {
             </StatsHeaderContainer>
             <StatsDataContainer>
               <StatsData>
-                {portfolioData === null
-                  ? null
-                  : String(portfolioData.data.portfolio.buy_volume).substring(
-                      0,
-                      8,
-                    )}
+                {portfolioData === null ? (
+                  <StatsDataEmpty>-</StatsDataEmpty>
+                ) : (
+                  String(portfolioData.data.portfolio.buy_volume).substring(
+                    0,
+                    8,
+                  ) + " USD"
+                )}
               </StatsData>
-              <StatsDataUnit>USD</StatsDataUnit>
+              <StatsDataUnit></StatsDataUnit>
             </StatsDataContainer>
           </GeneralStatsContainer>
           <GeneralStatsContainer>
@@ -611,14 +672,16 @@ export default function Portfoilo() {
             </StatsHeaderContainer>
             <StatsDataContainer>
               <StatsData>
-                {portfolioData === null
-                  ? null
-                  : String(portfolioData.data.portfolio.sell_volume).substring(
-                      0,
-                      8,
-                    )}
+                {portfolioData === null ? (
+                  <StatsDataEmpty>-</StatsDataEmpty>
+                ) : (
+                  String(portfolioData.data.portfolio.sell_volume).substring(
+                    0,
+                    8,
+                  ) + " USD"
+                )}
               </StatsData>
-              <StatsDataUnit>USD</StatsDataUnit>
+              <StatsDataUnit></StatsDataUnit>
             </StatsDataContainer>
           </GeneralStatsContainer>
           <GeneralStatsContainer>
@@ -627,9 +690,11 @@ export default function Portfoilo() {
               <StatsInfoImg src="img/Circle_I.png" />
             </StatsHeaderContainer>
             <StatsData>
-              {portfolioData === null
-                ? null
-                : portfolioData.data.portfolio.related_addr_count}
+              {portfolioData === null ? (
+                <StatsDataEmpty>-</StatsDataEmpty>
+              ) : (
+                portfolioData.data.portfolio.related_addr_count
+              )}
             </StatsData>
           </GeneralStatsContainer>
           <GeneralStatsContainer>
@@ -639,9 +704,11 @@ export default function Portfoilo() {
             </StatsHeaderContainer>
 
             <StatsData>
-              {portfolioData === null
-                ? null
-                : portfolioData.data.portfolio.activity_count}
+              {portfolioData === null ? (
+                <StatsDataEmpty>-</StatsDataEmpty>
+              ) : (
+                portfolioData.data.portfolio.activity_count
+              )}
             </StatsData>
           </GeneralStatsContainer>
         </OverviewContainer>

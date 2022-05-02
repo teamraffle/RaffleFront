@@ -18,6 +18,9 @@ const colors = {
 
 /* ---- styled components ---- */
 const PageNotFoundContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+
   width: 100%;
   height: auto;
 `;
@@ -31,7 +34,7 @@ const PageNotFoundImg = styled.img`
 `;
 
 const GoToLandingButton = styled.button`
-  position: absolute;
+  align-self: center;
 
   width: 19rem;
   height: 4rem;
