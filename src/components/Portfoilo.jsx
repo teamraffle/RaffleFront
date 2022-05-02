@@ -403,7 +403,7 @@ export default function Portfoilo() {
       await navigator.clipboard.writeText(
         sessionStorage.getItem("walletAddress"),
       );
-      alert("DONE");
+      alert("COPY");
     } catch (error) {
       console.log("copy failed");
     }
