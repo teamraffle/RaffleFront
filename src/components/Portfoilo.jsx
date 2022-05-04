@@ -355,6 +355,7 @@ export default function Portfoilo() {
   const [userData, setUserData] = useState(null);
   const [ensName, setEnsName] = useState(null);
   const [tab, setTab] = useState("NFTs");
+  const [sync, setSync] = useState(2);
 
   const updateTime = async () => {
     setcurrentTime(String(new Date()));
@@ -446,13 +447,7 @@ export default function Portfoilo() {
       },
     );
 
-    if (response !== null) {
-      console.log("[CheckSync] sync : ", response.data.sync);
-      if (response.data.sync === 0) {
-        alert("포트폴리오가 만들어지는 중입니다.");
-        window.location.href = sessionStorage.getItem("origin");
-      }
-    }
+    setSync(response.data.sync);
   };
 
   useEffect(() => {
@@ -465,6 +460,16 @@ export default function Portfoilo() {
     tryToGetENSName(sessionStorage.getItem("walletAddress"));
     console.log("[*] ens name : ", ensName);
   }, [portfolioData]);
+
+  useEffect(() => {
+    console.log("[+] Sync : ", sync);
+    if (sync === 0) {
+      alert("포트폴리오가 만들어지는 중입니다.");
+      window.location.href = sessionStorage.getItem("origin");
+    } else if (sync === 2) {
+      console.log("[*] 아직 sync 값을 받아 오는 중...");
+    }
+  }, [sync]);
 
   useEffect(() => {
     getUserData();
