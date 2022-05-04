@@ -181,10 +181,6 @@ const ProfileButton = () => {
       address: sessionStorage.getItem("walletAddress"),
     };
 
-    if (sessionStorage.getItem("myWalletAddress") === null) {
-      console.log("ASDFIAWEFHAWLFJLKSDF");
-    }
-
     const response_user = await axios.get(
       "https://nftranks.xyz:8888/v1/users",
       {
@@ -200,6 +196,7 @@ const ProfileButton = () => {
   useEffect(() => {
     getUserData();
   }, []);
+
   return (
     <div>
       <ProfileArea
@@ -219,10 +216,13 @@ const ProfileButton = () => {
           spotColor="#abc"
         ></Blockies> */}
         <img
+          style={{ paddingBottom: "1rem", width: "4.5rem" }}
           src={
-            "img/profile_picture_" +
-            String((String(userData.data.nickname).charCodeAt(0) % 7) + 1) +
-            ".png"
+            userData === null
+              ? null
+              : "img/profile_picture_" +
+                String((String(userData.data.nickname).charCodeAt(0) % 7) + 1) +
+                ".png"
           }
           alt="pfp"
         />
