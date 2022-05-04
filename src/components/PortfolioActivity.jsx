@@ -305,7 +305,7 @@ export default function PortfoiloActivity() {
           ) : (
             activityLogs.map((data) => {
               return (
-                <div>
+                <div key={data.transaction_hash}>
                   <LogContainer>
                     <div style={{ display: "flex", justifyContent: "center" }}>
                       <LogTime>

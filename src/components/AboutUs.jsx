@@ -333,57 +333,32 @@ export default function AboutUs() {
             <TeamMemberIcon src="img/Summer.png" alt=" " />
             <TeamMemberRole>Developer</TeamMemberRole>
             <TeamMemberName>Summer</TeamMemberName>
-            <TmeaMemberDescription>
-              Summer is the GOAT Developer <br />
-              Summer is the GOAT Developer <br />
-              Summer is the GOAT Developer <br />
-              Summer is the GOAT Developer <br />
-            </TmeaMemberDescription>
+            <TmeaMemberDescription>Backend</TmeaMemberDescription>
           </TeamMemberBox>
 
           <TeamMemberBox>
             <TeamMemberIcon src="img/Blockcodes.png" alt=" " />
             <TeamMemberRole>Developer</TeamMemberRole>
             <TeamMemberName>Blockcodes</TeamMemberName>
-            <TmeaMemberDescription>
-              Blockcodes is the GOAT Developer <br />
-              Blockcodes is the GOAT Developer <br />
-              Blockcodes is the GOAT Developer <br />
-              Blockcodes is the GOAT Developer <br />
-            </TmeaMemberDescription>
+            <TmeaMemberDescription>Frontend</TmeaMemberDescription>
           </TeamMemberBox>
           <TeamMemberBox>
             <TeamMemberIcon src="img/Koko.png" alt=" " />
             <TeamMemberRole>Developer</TeamMemberRole>
             <TeamMemberName>Koko</TeamMemberName>
-            <TmeaMemberDescription>
-              Koko is the GOAT Developer <br />
-              Koko is the GOAT Developer <br />
-              Koko is the GOAT Developer <br />
-              Koko is the GOAT Developer <br />
-            </TmeaMemberDescription>
+            <TmeaMemberDescription>Backend</TmeaMemberDescription>
           </TeamMemberBox>
           <TeamMemberBox>
             <TeamMemberIcon src="img/Panna.png" alt=" " />
             <TeamMemberRole>Developer</TeamMemberRole>
             <TeamMemberName>Panna</TeamMemberName>
-            <TmeaMemberDescription>
-              Panna is the GOAT Developer <br />
-              Panna is the GOAT Developer <br />
-              Panna is the GOAT Developer <br />
-              Panna is the GOAT Developer <br />
-            </TmeaMemberDescription>
+            <TmeaMemberDescription>Frontend</TmeaMemberDescription>
           </TeamMemberBox>
           <TeamMemberBox>
             <TeamMemberIcon src="img/Mean.png" alt=" " />
             <TeamMemberRole>Designer</TeamMemberRole>
             <TeamMemberName>Mean</TeamMemberName>
-            <TmeaMemberDescription>
-              Mean is the GOAT Designer <br />
-              Mean is the GOAT Designer <br />
-              Mean is the GOAT Designer <br />
-              Mean is the GOAT Designer <br />
-            </TmeaMemberDescription>
+            <TmeaMemberDescription>Design</TmeaMemberDescription>
           </TeamMemberBox>
         </TeamMemberContainer>
       </Block4>
