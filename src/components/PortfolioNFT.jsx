@@ -280,13 +280,13 @@ export default function PortfoiloNFT() {
 
   return (
     <NFTsContainer>
-      <NFTsHeader>
+      <NFTsHeader style={{ zIndex: "3" }}>
         <HeaderSearchBar>
           <NFTSearchBar />
         </HeaderSearchBar>
         <NFTOptionBox>Latest</NFTOptionBox>
       </NFTsHeader>
-      <NFTsBody>
+      <NFTsBody style={{ zIndex: "2" }}>
         <BodyCountResults>
           {nftData === null ? 0 : nftData.data.total} Results
         </BodyCountResults>

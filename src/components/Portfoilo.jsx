@@ -349,6 +349,28 @@ const PortfoiloNSABody = styled.div`
   min-height: 40rem;
 `;
 
+const Loading = styled.div`
+  /* flex container properties */
+  display: flex;
+  flex-direction: column;
+  width: 72.5rem;
+  height: 100%;
+
+  margin-top: 4.2rem;
+`;
+
+const LoadingText = styled.div`
+  font-family: Poppins;
+  font-size: 24px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: ${colors.RaffleWhite};
+`;
+
 export default function Portfoilo() {
   const [currentTime, setcurrentTime] = useState(String(new Date()));
   const [portfolioData, setPortfolioData] = useState(null);
@@ -465,12 +487,6 @@ export default function Portfoilo() {
 
   useEffect(() => {
     console.log("[+] Sync : ", sync);
-    if (sync === 0) {
-      alert("포트폴리오가 만들어지는 중입니다.");
-      window.location.href = sessionStorage.getItem("origin");
-    } else if (sync === 2) {
-      console.log("[*] 아직 sync 값을 받아 오는 중...");
-    }
   }, [sync]);
 
   useEffect(() => {
@@ -479,401 +495,430 @@ export default function Portfoilo() {
   }, []);
 
   return (
-    <PortfoiloContainer>
-      {/* Header */}
-      <Box1>
-        <Box1Header>
-          <HeaderTitle>Portfolio</HeaderTitle>
-          <HeaderTime>Last updated: {currentTime}</HeaderTime>
-          <HeaderTimeRefreshButton onClick={updateTime}>
-            <img src="img/refresh.png" alt="refresh button" />
-          </HeaderTimeRefreshButton>
-        </Box1Header>
-        <Box1Container>
-          <Box1UserInfoBox>
-            <UserInfoBoxIcon
-              src={
-                userData === null
-                  ? null
-                  : "img/profile_picture_" +
-                    String(
-                      (String(userData.data.nickname).charCodeAt(0) % 7) + 1,
-                    ) +
-                    ".png"
-              }
-              alt=""
-            ></UserInfoBoxIcon>
-            <UserInfoBoxData>
-              {portfolioData === null ? (
-                <DataClass />
-              ) : (
-                <img
-                  style={{ width: "9.6rem", marginBottom: "-1rem" }}
+    <div>
+      {sync === 0 ? (
+        <Loading>
+          <img
+            style={{
+              width: "36rem",
+              height: "36rem",
+              marginLeft: "auto",
+              marginRight: "auto",
+            }}
+            src="img/loading_page.png"
+            alt="loading img"
+          />
+          <LoadingText>
+            Please wait!
+            <br />
+            Your result on the way
+          </LoadingText>
+        </Loading>
+      ) : (
+        <PortfoiloContainer>
+          <Box1>
+            <Box1Header>
+              <HeaderTitle>Portfolio</HeaderTitle>
+              <HeaderTime>Last updated: {currentTime}</HeaderTime>
+              <HeaderTimeRefreshButton onClick={updateTime}>
+                <img src="img/refresh.png" alt="refresh button" />
+              </HeaderTimeRefreshButton>
+            </Box1Header>
+            <Box1Container>
+              <Box1UserInfoBox>
+                <UserInfoBoxIcon
                   src={
-                    (portfolioData.data.portfolio.hands === "dia" &&
-                      "img/Tag_Diamond.png") ||
-                    (portfolioData.data.portfolio.hands === "normal" &&
-                      "img/Tag_Normal.png") ||
-                    (portfolioData.data.portfolio.hands === "paper" &&
-                      "img/Tag_Paper.png")
+                    userData === null
+                      ? null
+                      : "img/profile_picture_" +
+                        String(
+                          (String(userData.data.nickname).charCodeAt(0) % 7) +
+                            1,
+                        ) +
+                        ".png"
                   }
-                  alt="user hands"
-                />
-              )}
+                  alt=""
+                ></UserInfoBoxIcon>
+                <UserInfoBoxData>
+                  {portfolioData === null ? (
+                    <DataClass />
+                  ) : (
+                    <img
+                      style={{ width: "9.6rem", marginBottom: "-1rem" }}
+                      src={
+                        (portfolioData.data.portfolio.hands === "dia" &&
+                          "img/Tag_Diamond.png") ||
+                        (portfolioData.data.portfolio.hands === "normal" &&
+                          "img/Tag_Normal.png") ||
+                        (portfolioData.data.portfolio.hands === "paper" &&
+                          "img/Tag_Paper.png")
+                      }
+                      alt="user hands"
+                    />
+                  )}
 
-              <DataNicknameContainer>
-                <DataNickname>
-                  {userData === null ? null : userData.data.nickname}
-                </DataNickname>
-                <DataNicknameEditButtonImg src="img/EditButton.png"></DataNicknameEditButtonImg>
-              </DataNicknameContainer>
-              <DataWalletAddressContainer>
-                <DataWalletAddress>
-                  {userData === null
-                    ? null
-                    : ensName === null
-                    ? String(userData.data.wallet.address).substring(0, 6) +
-                      "..." +
-                      String(userData.data.wallet.address).substring(38, 42)
-                    : String(ensName)}
-                </DataWalletAddress>
-                <DataWalletAddresseCopyButtonImg
-                  src="img/CopyButton.png"
-                  onClick={copy}
-                ></DataWalletAddresseCopyButtonImg>
-              </DataWalletAddressContainer>
-            </UserInfoBoxData>
-          </Box1UserInfoBox>
-          <Box1Overview>
-            <GeneralStatsContainer>
-              <StatsName>NFTs</StatsName>
-              <StatsData>
-                {portfolioData === null ? (
-                  <StatsDataEmpty>-</StatsDataEmpty>
-                ) : (
-                  portfolioData.data.portfolio.nft_holdings
-                )}
-                {/* {sessionStorage.getItem("portfolio__nft_holdings")} */}
-              </StatsData>
-            </GeneralStatsContainer>
+                  <DataNicknameContainer>
+                    <DataNickname>
+                      {userData === null ? null : userData.data.nickname}
+                    </DataNickname>
+                    <DataNicknameEditButtonImg src="img/EditButton.png"></DataNicknameEditButtonImg>
+                  </DataNicknameContainer>
+                  <DataWalletAddressContainer>
+                    <DataWalletAddress>
+                      {userData === null
+                        ? null
+                        : ensName === null
+                        ? String(userData.data.wallet.address).substring(0, 6) +
+                          "..." +
+                          String(userData.data.wallet.address).substring(38, 42)
+                        : String(ensName)}
+                    </DataWalletAddress>
+                    <DataWalletAddresseCopyButtonImg
+                      src="img/CopyButton.png"
+                      onClick={copy}
+                    ></DataWalletAddresseCopyButtonImg>
+                  </DataWalletAddressContainer>
+                </UserInfoBoxData>
+              </Box1UserInfoBox>
+              <Box1Overview>
+                <GeneralStatsContainer>
+                  <StatsName>NFTs</StatsName>
+                  <StatsData>
+                    {portfolioData === null ? (
+                      <StatsDataEmpty>-</StatsDataEmpty>
+                    ) : (
+                      portfolioData.data.portfolio.nft_holdings
+                    )}
+                    {/* {sessionStorage.getItem("portfolio__nft_holdings")} */}
+                  </StatsData>
+                </GeneralStatsContainer>
 
-            <GeneralStatsContainer>
-              <StatsName>Collections</StatsName>
-              <StatsData>
-                {portfolioData === null ? (
-                  <StatsDataEmpty>-</StatsDataEmpty>
-                ) : (
-                  portfolioData.data.portfolio.collections_holdings
-                )}
-              </StatsData>
-            </GeneralStatsContainer>
+                <GeneralStatsContainer>
+                  <StatsName>Collections</StatsName>
+                  <StatsData>
+                    {portfolioData === null ? (
+                      <StatsDataEmpty>-</StatsDataEmpty>
+                    ) : (
+                      portfolioData.data.portfolio.collections_holdings
+                    )}
+                  </StatsData>
+                </GeneralStatsContainer>
 
-            <GeneralStatsContainer>
-              <StatsHeaderContainer>
-                <StatsName>Average of Holding Period</StatsName>
-                <StatsInfoImg src="img/Circle_I.png" />
-              </StatsHeaderContainer>
-              <div style={{ display: "flex", justifyContents: "center" }}>
+                <GeneralStatsContainer>
+                  <StatsHeaderContainer>
+                    <StatsName>Average of Holding Period</StatsName>
+                    <StatsInfoImg src="img/Circle_I.png" />
+                  </StatsHeaderContainer>
+                  <div style={{ display: "flex", justifyContents: "center" }}>
+                    <StatsData>
+                      {portfolioData === null ? (
+                        <StatsDataEmpty>-</StatsDataEmpty>
+                      ) : (
+                        String(
+                          portfolioData.data.portfolio.av_holding_period,
+                        ).substring(0, 6)
+                      )}
+                    </StatsData>
+                    <StatsDataUnit
+                      style={{ alignSelf: "center", marginLeft: "0.6rem" }}
+                    >
+                      Days
+                    </StatsDataUnit>
+                  </div>
+                </GeneralStatsContainer>
+
+                <GeneralStatsContainer>
+                  <StatsHeaderContainer>
+                    <StatsName>Most Holding</StatsName>
+                    <StatsInfoImg src="img/Circle_I.png" />
+                  </StatsHeaderContainer>
+                  <StatsData>
+                    {portfolioData === null ? (
+                      <StatsDataEmpty>-</StatsDataEmpty>
+                    ) : (
+                      <div>
+                        <img
+                          style={{ position: "absolute", width: "2rem" }}
+                          src={
+                            portfolioData === null
+                              ? null
+                              : portfolioData.data.portfolio
+                                  .most_collection_icon
+                          }
+                          alt="nft icon"
+                        />
+                        <div style={{ paddingLeft: "2.5rem" }}>
+                          {portfolioData === null
+                            ? null
+                            : String(
+                                portfolioData.data.portfolio
+                                  .most_collection_name,
+                              ).length < 10
+                            ? portfolioData.data.portfolio.most_collection_name
+                            : String(
+                                portfolioData.data.portfolio
+                                  .most_collection_name,
+                              ).substring(0, 10) + "..."}
+                        </div>
+                      </div>
+                    )}
+                  </StatsData>
+                </GeneralStatsContainer>
+              </Box1Overview>
+            </Box1Container>
+          </Box1>
+
+          {/* Overview */}
+          <PortfolioOverviewContainer>
+            <OverviewContainer>
+              <GeneralStatsContainer>
+                <StatsHeaderContainer>
+                  <StatsName>Est. Market Value</StatsName>
+                  <StatsInfoImg src="img/Circle_I.png" />
+                </StatsHeaderContainer>
+                <StatsDataContainer>
+                  <StatsData>
+                    {portfolioData === null ? (
+                      <StatsDataEmpty>-</StatsDataEmpty>
+                    ) : String(
+                        portfolioData.data.portfolio.est_market_value,
+                      ).indexOf(".") !== -1 ? (
+                      String(
+                        portfolioData.data.portfolio.est_market_value,
+                      ).split(".")[0] +
+                      "." +
+                      String(portfolioData.data.portfolio.est_market_value)
+                        .split(".")[1]
+                        .substring(0, 2)
+                    ) : (
+                      String(portfolioData.data.portfolio.est_market_value)
+                    )}
+                  </StatsData>
+                  <StatsDataUnit>ETH</StatsDataUnit>
+                </StatsDataContainer>
+              </GeneralStatsContainer>
+              <GeneralStatsContainer>
+                <StatsHeaderContainer>
+                  <StatsName>Holding Volume</StatsName>
+                  <StatsInfoImg src="img/Circle_I.png" />
+                </StatsHeaderContainer>
+                <StatsDataContainer>
+                  <StatsData>
+                    {portfolioData === null ? (
+                      <StatsDataEmpty>-</StatsDataEmpty>
+                    ) : String(
+                        portfolioData.data.portfolio.holding_volume,
+                      ).indexOf(".") !== -1 ? (
+                      String(portfolioData.data.portfolio.holding_volume).split(
+                        ".",
+                      )[0] +
+                      "." +
+                      String(portfolioData.data.portfolio.holding_volume)
+                        .split(".")[1]
+                        .substring(0, 2)
+                    ) : (
+                      String(portfolioData.data.portfolio.holding_volume)
+                    )}
+                  </StatsData>
+                  <StatsDataUnit>ETH</StatsDataUnit>
+                </StatsDataContainer>
+              </GeneralStatsContainer>
+              <GeneralStatsContainer>
+                <StatsHeaderContainer>
+                  <StatsName>Earnings Rate</StatsName>
+                  <StatsInfoImg src="img/Circle_I.png" />
+                </StatsHeaderContainer>
+                <StatsDataContainer>
+                  <StatsData>
+                    {portfolioData === null ? (
+                      <StatsDataEmpty>-</StatsDataEmpty>
+                    ) : String(
+                        portfolioData.data.portfolio.earnings_rate,
+                      ).indexOf(".") !== -1 ? (
+                      String(portfolioData.data.portfolio.earnings_rate).split(
+                        ".",
+                      )[0] +
+                      "." +
+                      String(portfolioData.data.portfolio.earnings_rate)
+                        .split(".")[1]
+                        .substring(0, 2)
+                    ) : (
+                      String(portfolioData.data.portfolio.earnings_rate)
+                    )}
+                  </StatsData>
+                  <StatsDataUnit>%</StatsDataUnit>
+                </StatsDataContainer>
+              </GeneralStatsContainer>
+              <GeneralStatsContainer>
+                <StatsHeaderContainer>
+                  <StatsName>Gas Fee</StatsName>
+                  <StatsInfoImg src="img/Circle_I.png" />
+                </StatsHeaderContainer>
+                <StatsDataContainer>
+                  <StatsData>
+                    {portfolioData === null ? (
+                      <StatsDataEmpty>-</StatsDataEmpty>
+                    ) : String(
+                        portfolioData.data.portfolio.total_gas_fee,
+                      ).indexOf(".") !== -1 ? (
+                      String(portfolioData.data.portfolio.total_gas_fee).split(
+                        ".",
+                      )[0] +
+                      "." +
+                      String(portfolioData.data.portfolio.total_gas_fee)
+                        .split(".")[1]
+                        .substring(0, 2)
+                    ) : (
+                      String(portfolioData.data.portfolio.total_gas_fee)
+                    )}
+                  </StatsData>
+                  <StatsDataUnit>ETH</StatsDataUnit>
+                </StatsDataContainer>
+              </GeneralStatsContainer>
+              <GeneralStatsContainer>
+                <StatsHeaderContainer>
+                  <StatsName>Buy Volume</StatsName>
+                  <StatsInfoImg src="img/Circle_I.png" />
+                </StatsHeaderContainer>
+                <StatsDataContainer>
+                  <StatsData>
+                    {portfolioData === null ? (
+                      <StatsDataEmpty>-</StatsDataEmpty>
+                    ) : String(portfolioData.data.portfolio.buy_volume).indexOf(
+                        ".",
+                      ) !== -1 ? (
+                      String(portfolioData.data.portfolio.buy_volume).split(
+                        ".",
+                      )[0] +
+                      "." +
+                      String(portfolioData.data.portfolio.buy_volume)
+                        .split(".")[1]
+                        .substring(0, 2)
+                    ) : (
+                      String(portfolioData.data.portfolio.buy_volume)
+                    )}
+                  </StatsData>
+                  <StatsDataUnit>ETH</StatsDataUnit>
+                </StatsDataContainer>
+              </GeneralStatsContainer>
+              <GeneralStatsContainer>
+                <StatsHeaderContainer>
+                  <StatsName>Sell Volume</StatsName>
+                  <StatsInfoImg src="img/Circle_I.png" />
+                </StatsHeaderContainer>
+                <StatsDataContainer>
+                  <StatsData>
+                    {portfolioData === null ? (
+                      <StatsDataEmpty>-</StatsDataEmpty>
+                    ) : String(
+                        portfolioData.data.portfolio.sell_volume,
+                      ).indexOf(".") !== -1 ? (
+                      String(portfolioData.data.portfolio.sell_volume).split(
+                        ".",
+                      )[0] +
+                      "." +
+                      String(portfolioData.data.portfolio.sell_volume)
+                        .split(".")[1]
+                        .substring(0, 2)
+                    ) : (
+                      String(portfolioData.data.portfolio.sell_volume)
+                    )}
+                  </StatsData>
+                  <StatsDataUnit>ETH</StatsDataUnit>
+                </StatsDataContainer>
+              </GeneralStatsContainer>
+              <GeneralStatsContainer>
+                <StatsHeaderContainer>
+                  <StatsName>Related Addresses</StatsName>
+                  <StatsInfoImg src="img/Circle_I.png" />
+                </StatsHeaderContainer>
                 <StatsData>
                   {portfolioData === null ? (
                     <StatsDataEmpty>-</StatsDataEmpty>
                   ) : (
-                    String(
-                      portfolioData.data.portfolio.av_holding_period,
-                    ).substring(0, 6)
+                    portfolioData.data.portfolio.related_addr_count
                   )}
                 </StatsData>
-                <StatsDataUnit
-                  style={{ alignSelf: "center", marginLeft: "0.6rem" }}
-                >
-                  Days
-                </StatsDataUnit>
-              </div>
-            </GeneralStatsContainer>
+              </GeneralStatsContainer>
+              <GeneralStatsContainer>
+                <StatsHeaderContainer>
+                  <StatsName>Activities</StatsName>
+                  <StatsInfoImg src="img/Circle_I.png" />
+                </StatsHeaderContainer>
 
-            <GeneralStatsContainer>
-              <StatsHeaderContainer>
-                <StatsName>Most Holding</StatsName>
-                <StatsInfoImg src="img/Circle_I.png" />
-              </StatsHeaderContainer>
-              <StatsData>
-                {portfolioData === null ? (
-                  <StatsDataEmpty>-</StatsDataEmpty>
-                ) : (
-                  <div>
-                    <img
-                      style={{ position: "absolute", width: "2rem" }}
-                      src={
-                        portfolioData === null
-                          ? null
-                          : portfolioData.data.portfolio.most_collection_icon
-                      }
-                      alt="nft icon"
-                    />
-                    <div style={{ paddingLeft: "2.5rem" }}>
-                      {portfolioData === null
-                        ? null
-                        : String(
-                            portfolioData.data.portfolio.most_collection_name,
-                          ).length < 10
-                        ? portfolioData.data.portfolio.most_collection_name
-                        : String(
-                            portfolioData.data.portfolio.most_collection_name,
-                          ).substring(0, 10) + "..."}
-                    </div>
-                  </div>
-                )}
-              </StatsData>
-            </GeneralStatsContainer>
-          </Box1Overview>
-        </Box1Container>
-      </Box1>
+                <StatsData>
+                  {portfolioData === null ? (
+                    <StatsDataEmpty>-</StatsDataEmpty>
+                  ) : (
+                    portfolioData.data.portfolio.activity_count
+                  )}
+                </StatsData>
+              </GeneralStatsContainer>
+            </OverviewContainer>
+          </PortfolioOverviewContainer>
 
-      {/* Overview */}
-      <PortfolioOverviewContainer>
-        <OverviewContainer>
-          <GeneralStatsContainer>
-            <StatsHeaderContainer>
-              <StatsName>Est. Market Value</StatsName>
-              <StatsInfoImg src="img/Circle_I.png" />
-            </StatsHeaderContainer>
-            <StatsDataContainer>
-              <StatsData>
-                {portfolioData === null ? (
-                  <StatsDataEmpty>-</StatsDataEmpty>
-                ) : String(
-                    portfolioData.data.portfolio.est_market_value,
-                  ).indexOf(".") !== -1 ? (
-                  String(portfolioData.data.portfolio.est_market_value).split(
-                    ".",
-                  )[0] +
-                  "." +
-                  String(portfolioData.data.portfolio.est_market_value)
-                    .split(".")[1]
-                    .substring(0, 2)
-                ) : (
-                  String(portfolioData.data.portfolio.est_market_value)
-                )}
-              </StatsData>
-              <StatsDataUnit>ETH</StatsDataUnit>
-            </StatsDataContainer>
-          </GeneralStatsContainer>
-          <GeneralStatsContainer>
-            <StatsHeaderContainer>
-              <StatsName>Holding Volume</StatsName>
-              <StatsInfoImg src="img/Circle_I.png" />
-            </StatsHeaderContainer>
-            <StatsDataContainer>
-              <StatsData>
-                {portfolioData === null ? (
-                  <StatsDataEmpty>-</StatsDataEmpty>
-                ) : String(portfolioData.data.portfolio.holding_volume).indexOf(
-                    ".",
-                  ) !== -1 ? (
-                  String(portfolioData.data.portfolio.holding_volume).split(
-                    ".",
-                  )[0] +
-                  "." +
-                  String(portfolioData.data.portfolio.holding_volume)
-                    .split(".")[1]
-                    .substring(0, 2)
-                ) : (
-                  String(portfolioData.data.portfolio.holding_volume)
-                )}
-              </StatsData>
-              <StatsDataUnit>ETH</StatsDataUnit>
-            </StatsDataContainer>
-          </GeneralStatsContainer>
-          <GeneralStatsContainer>
-            <StatsHeaderContainer>
-              <StatsName>Earnings Rate</StatsName>
-              <StatsInfoImg src="img/Circle_I.png" />
-            </StatsHeaderContainer>
-            <StatsDataContainer>
-              <StatsData>
-                {portfolioData === null ? (
-                  <StatsDataEmpty>-</StatsDataEmpty>
-                ) : String(portfolioData.data.portfolio.earnings_rate).indexOf(
-                    ".",
-                  ) !== -1 ? (
-                  String(portfolioData.data.portfolio.earnings_rate).split(
-                    ".",
-                  )[0] +
-                  "." +
-                  String(portfolioData.data.portfolio.earnings_rate)
-                    .split(".")[1]
-                    .substring(0, 2)
-                ) : (
-                  String(portfolioData.data.portfolio.earnings_rate)
-                )}
-              </StatsData>
-              <StatsDataUnit>%</StatsDataUnit>
-            </StatsDataContainer>
-          </GeneralStatsContainer>
-          <GeneralStatsContainer>
-            <StatsHeaderContainer>
-              <StatsName>Gas Fee</StatsName>
-              <StatsInfoImg src="img/Circle_I.png" />
-            </StatsHeaderContainer>
-            <StatsDataContainer>
-              <StatsData>
-                {portfolioData === null ? (
-                  <StatsDataEmpty>-</StatsDataEmpty>
-                ) : String(portfolioData.data.portfolio.total_gas_fee).indexOf(
-                    ".",
-                  ) !== -1 ? (
-                  String(portfolioData.data.portfolio.total_gas_fee).split(
-                    ".",
-                  )[0] +
-                  "." +
-                  String(portfolioData.data.portfolio.total_gas_fee)
-                    .split(".")[1]
-                    .substring(0, 2)
-                ) : (
-                  String(portfolioData.data.portfolio.total_gas_fee)
-                )}
-              </StatsData>
-              <StatsDataUnit>ETH</StatsDataUnit>
-            </StatsDataContainer>
-          </GeneralStatsContainer>
-          <GeneralStatsContainer>
-            <StatsHeaderContainer>
-              <StatsName>Buy Volume</StatsName>
-              <StatsInfoImg src="img/Circle_I.png" />
-            </StatsHeaderContainer>
-            <StatsDataContainer>
-              <StatsData>
-                {portfolioData === null ? (
-                  <StatsDataEmpty>-</StatsDataEmpty>
-                ) : String(portfolioData.data.portfolio.buy_volume).indexOf(
-                    ".",
-                  ) !== -1 ? (
-                  String(portfolioData.data.portfolio.buy_volume).split(
-                    ".",
-                  )[0] +
-                  "." +
-                  String(portfolioData.data.portfolio.buy_volume)
-                    .split(".")[1]
-                    .substring(0, 2)
-                ) : (
-                  String(portfolioData.data.portfolio.buy_volume)
-                )}
-              </StatsData>
-              <StatsDataUnit>ETH</StatsDataUnit>
-            </StatsDataContainer>
-          </GeneralStatsContainer>
-          <GeneralStatsContainer>
-            <StatsHeaderContainer>
-              <StatsName>Sell Volume</StatsName>
-              <StatsInfoImg src="img/Circle_I.png" />
-            </StatsHeaderContainer>
-            <StatsDataContainer>
-              <StatsData>
-                {portfolioData === null ? (
-                  <StatsDataEmpty>-</StatsDataEmpty>
-                ) : String(portfolioData.data.portfolio.sell_volume).indexOf(
-                    ".",
-                  ) !== -1 ? (
-                  String(portfolioData.data.portfolio.sell_volume).split(
-                    ".",
-                  )[0] +
-                  "." +
-                  String(portfolioData.data.portfolio.sell_volume)
-                    .split(".")[1]
-                    .substring(0, 2)
-                ) : (
-                  String(portfolioData.data.portfolio.sell_volume)
-                )}
-              </StatsData>
-              <StatsDataUnit>ETH</StatsDataUnit>
-            </StatsDataContainer>
-          </GeneralStatsContainer>
-          <GeneralStatsContainer>
-            <StatsHeaderContainer>
-              <StatsName>Related Addresses</StatsName>
-              <StatsInfoImg src="img/Circle_I.png" />
-            </StatsHeaderContainer>
-            <StatsData>
-              {portfolioData === null ? (
-                <StatsDataEmpty>-</StatsDataEmpty>
-              ) : (
-                portfolioData.data.portfolio.related_addr_count
-              )}
-            </StatsData>
-          </GeneralStatsContainer>
-          <GeneralStatsContainer>
-            <StatsHeaderContainer>
-              <StatsName>Activities</StatsName>
-              <StatsInfoImg src="img/Circle_I.png" />
-            </StatsHeaderContainer>
+          {/* NFTs, Stats, Activity */}
+          <PortfoiloNSAContainer>
+            <PortfoiloNSAHeader>
+              <NSAHeaderButton
+                onClick={renderNFTsTab}
+                style={
+                  (tab === "NFTs" && {
+                    borderBottom: "solid 0.5rem #d6f866",
+                  }) || {
+                    borderBottom: null,
+                  }
+                }
+              >
+                NFTs
+              </NSAHeaderButton>
+              <NSAHeaderButton
+                onClick={renderActivityTab}
+                style={
+                  (tab === "Activity" && {
+                    borderBottom: "solid 0.5rem #d6f866",
+                  }) || {
+                    borderBottom: null,
+                  }
+                }
+              >
+                Activity
+              </NSAHeaderButton>
+              <NSAHeaderButton
+                onClick={renderStatsTab}
+                style={
+                  (tab === "Stats" && {
+                    borderBottom: "solid 0.5rem #d6f866",
+                  }) || {
+                    borderBottom: null,
+                  }
+                }
+              >
+                Stats
+              </NSAHeaderButton>
 
-            <StatsData>
-              {portfolioData === null ? (
-                <StatsDataEmpty>-</StatsDataEmpty>
-              ) : (
-                portfolioData.data.portfolio.activity_count
-              )}
-            </StatsData>
-          </GeneralStatsContainer>
-        </OverviewContainer>
-      </PortfolioOverviewContainer>
-
-      {/* NFTs, Stats, Activity */}
-      <PortfoiloNSAContainer>
-        <PortfoiloNSAHeader>
-          <NSAHeaderButton
-            onClick={renderNFTsTab}
-            style={
-              (tab === "NFTs" && { borderBottom: "solid 0.5rem #d6f866" }) || {
-                borderBottom: null,
-              }
-            }
-          >
-            NFTs
-          </NSAHeaderButton>
-          <NSAHeaderButton
-            onClick={renderActivityTab}
-            style={
-              (tab === "Activity" && {
-                borderBottom: "solid 0.5rem #d6f866",
-              }) || {
-                borderBottom: null,
-              }
-            }
-          >
-            Activity
-          </NSAHeaderButton>
-          <NSAHeaderButton
-            onClick={renderStatsTab}
-            style={
-              (tab === "Stats" && { borderBottom: "solid 0.5rem #d6f866" }) || {
-                borderBottom: null,
-              }
-            }
-          >
-            Stats
-          </NSAHeaderButton>
-
-          <NSAHeaderButton
-            onClick={renderProjectsTab}
-            style={
-              (tab === "Projects" && {
-                borderBottom: "solid 0.5rem #d6f866",
-              }) || {
-                borderBottom: null,
-              }
-            }
-          >
-            Projects
-          </NSAHeaderButton>
-        </PortfoiloNSAHeader>
-        <PortfoiloNSABody>
-          {(tab === "NFTs" && <PortfolioNFT />) ||
-            (tab === "Stats" && <PortfolioStats />) ||
-            (tab === "Activity" && <PortfolioActivity />) ||
-            (tab === "Projects" && <PortfolioProjects />)}
-        </PortfoiloNSABody>
-      </PortfoiloNSAContainer>
-    </PortfoiloContainer>
+              <NSAHeaderButton
+                onClick={renderProjectsTab}
+                style={
+                  (tab === "Projects" && {
+                    borderBottom: "solid 0.5rem #d6f866",
+                  }) || {
+                    borderBottom: null,
+                  }
+                }
+              >
+                Projects
+              </NSAHeaderButton>
+            </PortfoiloNSAHeader>
+            <PortfoiloNSABody>
+              {(tab === "NFTs" && <PortfolioNFT />) ||
+                (tab === "Stats" && <PortfolioStats />) ||
+                (tab === "Activity" && <PortfolioActivity />) ||
+                (tab === "Projects" && <PortfolioProjects />)}
+            </PortfoiloNSABody>
+          </PortfoiloNSAContainer>
+        </PortfoiloContainer>
+      )}
+    </div>
   );
 }

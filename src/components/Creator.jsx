@@ -2,17 +2,6 @@ import { Link } from "react-router-dom";
 import React from "react";
 import styled, { keyframes } from "styled-components";
 
-const fadein = keyframes`
-  0% {
-    opacity: 0;
-    transform: none;
-  }
-  100% {
-    opacity: 1;
-    transform: none;
-  }
-`;
-
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -78,7 +67,9 @@ export default function Projects() {
       <Body>
         <NewProjectBox>
           <CreateButton>
-            <img src="img/create_button.svg" alt="create button img" />
+            <Link to="/createnewproject">
+              <img src="img/create_button.svg" alt="create button img" />
+            </Link>
           </CreateButton>
           <ProjectBoxText>Launch New Project</ProjectBoxText>
         </NewProjectBox>
