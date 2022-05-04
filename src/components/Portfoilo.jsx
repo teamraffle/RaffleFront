@@ -642,9 +642,13 @@ export default function Portfoilo() {
                 {portfolioData === null ? (
                   <StatsDataEmpty>-</StatsDataEmpty>
                 ) : (
-                  String(
-                    portfolioData.data.portfolio.est_market_value,
-                  ).substring(0, 8)
+                  String(portfolioData.data.portfolio.est_market_value).split(
+                    ".",
+                  )[0] +
+                  "." +
+                  String(portfolioData.data.portfolio.est_market_value)
+                    .split(".")[1]
+                    .substring(0, 4)
                 )}
               </StatsData>
               <StatsDataUnit>ETH</StatsDataUnit>
@@ -660,10 +664,13 @@ export default function Portfoilo() {
                 {portfolioData === null ? (
                   <StatsDataEmpty>-</StatsDataEmpty>
                 ) : (
-                  String(portfolioData.data.portfolio.holding_volume).substring(
-                    0,
-                    7,
-                  )
+                  String(portfolioData.data.portfolio.holding_volume).split(
+                    ".",
+                  )[0] +
+                  "." +
+                  String(portfolioData.data.portfolio.holding_volume)
+                    .split(".")[1]
+                    .substring(0, 4)
                 )}
               </StatsData>
               <StatsDataUnit>ETH</StatsDataUnit>
@@ -679,10 +686,13 @@ export default function Portfoilo() {
                 {portfolioData === null ? (
                   <StatsDataEmpty>-</StatsDataEmpty>
                 ) : (
-                  String(portfolioData.data.portfolio.earnings_rate).substring(
-                    0,
-                    7,
-                  )
+                  String(portfolioData.data.portfolio.earnings_rate).split(
+                    ".",
+                  )[0] +
+                  "." +
+                  String(portfolioData.data.portfolio.earnings_rate)
+                    .split(".")[1]
+                    .substring(0, 4)
                 )}
               </StatsData>
               <StatsDataUnit>%</StatsDataUnit>
@@ -717,10 +727,13 @@ export default function Portfoilo() {
                 {portfolioData === null ? (
                   <StatsDataEmpty>-</StatsDataEmpty>
                 ) : (
-                  String(portfolioData.data.portfolio.buy_volume).substring(
-                    0,
-                    8,
-                  )
+                  String(portfolioData.data.portfolio.buy_volume).split(
+                    ".",
+                  )[0] +
+                  "." +
+                  String(portfolioData.data.portfolio.buy_volume)
+                    .split(".")[1]
+                    .substring(0, 4)
                 )}
               </StatsData>
               <StatsDataUnit>ETH</StatsDataUnit>
@@ -736,10 +749,13 @@ export default function Portfoilo() {
                 {portfolioData === null ? (
                   <StatsDataEmpty>-</StatsDataEmpty>
                 ) : (
-                  String(portfolioData.data.portfolio.sell_volume).substring(
-                    0,
-                    8,
-                  )
+                  String(portfolioData.data.portfolio.sell_volume).split(
+                    ".",
+                  )[0] +
+                  "." +
+                  String(portfolioData.data.portfolio.sell_volume)
+                    .split(".")[1]
+                    .substring(0, 4)
                 )}
               </StatsData>
               <StatsDataUnit>ETH</StatsDataUnit>
