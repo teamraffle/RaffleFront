@@ -641,14 +641,18 @@ export default function Portfoilo() {
               <StatsData>
                 {portfolioData === null ? (
                   <StatsDataEmpty>-</StatsDataEmpty>
-                ) : (
+                ) : String(
+                    portfolioData.data.portfolio.est_market_value,
+                  ).indexOf(".") !== -1 ? (
                   String(portfolioData.data.portfolio.est_market_value).split(
                     ".",
                   )[0] +
                   "." +
                   String(portfolioData.data.portfolio.est_market_value)
                     .split(".")[1]
-                    .substring(0, 4)
+                    .substring(0, 2)
+                ) : (
+                  String(portfolioData.data.portfolio.est_market_value)
                 )}
               </StatsData>
               <StatsDataUnit>ETH</StatsDataUnit>
@@ -663,14 +667,18 @@ export default function Portfoilo() {
               <StatsData>
                 {portfolioData === null ? (
                   <StatsDataEmpty>-</StatsDataEmpty>
-                ) : (
+                ) : String(portfolioData.data.portfolio.holding_volume).indexOf(
+                    ".",
+                  ) !== -1 ? (
                   String(portfolioData.data.portfolio.holding_volume).split(
                     ".",
                   )[0] +
                   "." +
                   String(portfolioData.data.portfolio.holding_volume)
                     .split(".")[1]
-                    .substring(0, 4)
+                    .substring(0, 2)
+                ) : (
+                  String(portfolioData.data.portfolio.holding_volume)
                 )}
               </StatsData>
               <StatsDataUnit>ETH</StatsDataUnit>
@@ -685,14 +693,18 @@ export default function Portfoilo() {
               <StatsData>
                 {portfolioData === null ? (
                   <StatsDataEmpty>-</StatsDataEmpty>
-                ) : (
+                ) : String(portfolioData.data.portfolio.earnings_rate).indexOf(
+                    ".",
+                  ) !== -1 ? (
                   String(portfolioData.data.portfolio.earnings_rate).split(
                     ".",
                   )[0] +
                   "." +
                   String(portfolioData.data.portfolio.earnings_rate)
                     .split(".")[1]
-                    .substring(0, 4)
+                    .substring(0, 2)
+                ) : (
+                  String(portfolioData.data.portfolio.earnings_rate)
                 )}
               </StatsData>
               <StatsDataUnit>%</StatsDataUnit>
@@ -707,11 +719,18 @@ export default function Portfoilo() {
               <StatsData>
                 {portfolioData === null ? (
                   <StatsDataEmpty>-</StatsDataEmpty>
+                ) : String(portfolioData.data.portfolio.total_gas_fee).indexOf(
+                    ".",
+                  ) !== -1 ? (
+                  String(portfolioData.data.portfolio.total_gas_fee).split(
+                    ".",
+                  )[0] +
+                  "." +
+                  String(portfolioData.data.portfolio.total_gas_fee)
+                    .split(".")[1]
+                    .substring(0, 2)
                 ) : (
-                  String(portfolioData.data.portfolio.total_gas_fee).substring(
-                    0,
-                    7,
-                  )
+                  String(portfolioData.data.portfolio.total_gas_fee)
                 )}
               </StatsData>
               <StatsDataUnit>ETH</StatsDataUnit>
@@ -726,14 +745,18 @@ export default function Portfoilo() {
               <StatsData>
                 {portfolioData === null ? (
                   <StatsDataEmpty>-</StatsDataEmpty>
-                ) : (
+                ) : String(portfolioData.data.portfolio.buy_volume).indexOf(
+                    ".",
+                  ) !== -1 ? (
                   String(portfolioData.data.portfolio.buy_volume).split(
                     ".",
                   )[0] +
                   "." +
                   String(portfolioData.data.portfolio.buy_volume)
                     .split(".")[1]
-                    .substring(0, 4)
+                    .substring(0, 2)
+                ) : (
+                  String(portfolioData.data.portfolio.buy_volume)
                 )}
               </StatsData>
               <StatsDataUnit>ETH</StatsDataUnit>
@@ -748,14 +771,18 @@ export default function Portfoilo() {
               <StatsData>
                 {portfolioData === null ? (
                   <StatsDataEmpty>-</StatsDataEmpty>
-                ) : (
+                ) : String(portfolioData.data.portfolio.sell_volume).indexOf(
+                    ".",
+                  ) !== -1 ? (
                   String(portfolioData.data.portfolio.sell_volume).split(
                     ".",
                   )[0] +
                   "." +
                   String(portfolioData.data.portfolio.sell_volume)
                     .split(".")[1]
-                    .substring(0, 4)
+                    .substring(0, 2)
+                ) : (
+                  String(portfolioData.data.portfolio.sell_volume)
                 )}
               </StatsData>
               <StatsDataUnit>ETH</StatsDataUnit>
