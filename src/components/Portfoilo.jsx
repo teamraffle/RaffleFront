@@ -63,13 +63,6 @@ const StatsDataContainer = styled.div`
 const StatsData = styled.div`
   /* text properties */
   font-family: Poppins;
-  font-size: 1.2rem;
-  font-weight: SemiBold;
-  color: ${colors.RaffleWhite};
-`;
-
-const StatsDataEmpty = styled.div`
-  font-family: Poppins;
   font-size: 18px;
   font-weight: 600;
   font-stretch: normal;
@@ -77,14 +70,31 @@ const StatsDataEmpty = styled.div`
   line-height: normal;
   letter-spacing: -0.54px;
   text-align: left;
-  color: var(--raffle-white);
+  color: ${colors.RaffleWhite};
+`;
+
+const StatsDataEmpty = styled.div`
+  font-family: Poppins;
+  font-size: 1.8rem;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.54px;
+  text-align: left;
+  color: ${colors.RaffleWhite};
 `;
 
 const StatsDataUnit = styled.div`
   /* text properties */
   font-family: Poppins;
-  font-size: 0.8rem;
-  font-weight: Light;
+  font-size: 1.2rem;
+  font-weight: 300;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.36px;
+  text-align: left;
   color: ${colors.RaffleWhite};
 `;
 
@@ -348,6 +358,7 @@ export default function Portfoilo() {
 
   const updateTime = async () => {
     setcurrentTime(String(new Date()));
+    window.location.reload();
   };
 
   const renderNFTsTab = () => {
@@ -372,10 +383,6 @@ export default function Portfoilo() {
       // 일단은 특정 주소를 이용해서 값 불러오는 것을 확인함
       address: sessionStorage.getItem("walletAddress"),
     };
-
-    if (sessionStorage.getItem("myAdress") === null) {
-      console.log("ASDFIAWEFHAWLFJLKSDF");
-    }
 
     const response_user = await axios.get(
       "https://nftranks.xyz:8888/v1/users",
@@ -403,7 +410,7 @@ export default function Portfoilo() {
       await navigator.clipboard.writeText(
         sessionStorage.getItem("walletAddress"),
       );
-      alert("DONE");
+      alert("COPY");
     } catch (error) {
       console.log("copy failed");
     }
@@ -424,6 +431,30 @@ export default function Portfoilo() {
     });
   };
 
+  const checkSync = async () => {
+    const params = {
+      page: 0,
+      chain_id: 1,
+      // 일단은 특정 주소를 이용해서 값 불러오는 것을 확인함
+      address: sessionStorage.getItem("walletAddress"),
+    };
+
+    const response = await axios.get(
+      "https://nftranks.xyz:8888/v1/portfolios/nft",
+      {
+        params,
+      },
+    );
+
+    if (response !== null) {
+      console.log("[CheckSync] sync : ", response.data.sync);
+      if (response.data.sync === 0) {
+        alert("포트폴리오가 만들어지는 중입니다.");
+        window.location.href = sessionStorage.getItem("origin");
+      }
+    }
+  };
+
   useEffect(() => {
     console.log("[+] user data : ", userData);
   }, [userData]);
@@ -437,6 +468,7 @@ export default function Portfoilo() {
 
   useEffect(() => {
     getUserData();
+    checkSync();
   }, []);
 
   return (
@@ -458,7 +490,7 @@ export default function Portfoilo() {
                   ? null
                   : "img/profile_picture_" +
                     String(
-                      (String(userData.data.nickname).charCodeAt(0) % 4) + 1,
+                      (String(userData.data.nickname).charCodeAt(0) % 7) + 1,
                     ) +
                     ".png"
               }
@@ -534,15 +566,22 @@ export default function Portfoilo() {
                 <StatsName>Average of Holding Period</StatsName>
                 <StatsInfoImg src="img/Circle_I.png" />
               </StatsHeaderContainer>
-              <StatsData>
-                {portfolioData === null ? (
-                  <StatsDataEmpty>-</StatsDataEmpty>
-                ) : (
-                  String(
-                    portfolioData.data.portfolio.av_holding_period,
-                  ).substring(0, 6) + "  Days"
-                )}
-              </StatsData>
+              <div style={{ display: "flex", justifyContents: "center" }}>
+                <StatsData>
+                  {portfolioData === null ? (
+                    <StatsDataEmpty>-</StatsDataEmpty>
+                  ) : (
+                    String(
+                      portfolioData.data.portfolio.av_holding_period,
+                    ).substring(0, 6)
+                  )}
+                </StatsData>
+                <StatsDataUnit
+                  style={{ alignSelf: "center", marginLeft: "0.6rem" }}
+                >
+                  Days
+                </StatsDataUnit>
+              </div>
             </GeneralStatsContainer>
 
             <GeneralStatsContainer>
@@ -567,7 +606,13 @@ export default function Portfoilo() {
                     <div style={{ paddingLeft: "2.5rem" }}>
                       {portfolioData === null
                         ? null
-                        : portfolioData.data.portfolio.most_collection_name}
+                        : String(
+                            portfolioData.data.portfolio.most_collection_name,
+                          ).length < 10
+                        ? portfolioData.data.portfolio.most_collection_name
+                        : String(
+                            portfolioData.data.portfolio.most_collection_name,
+                          ).substring(0, 10) + "..."}
                     </div>
                   </div>
                 )}
@@ -592,10 +637,10 @@ export default function Portfoilo() {
                 ) : (
                   String(
                     portfolioData.data.portfolio.est_market_value,
-                  ).substring(0, 8) + "USD"
+                  ).substring(0, 8)
                 )}
               </StatsData>
-              <StatsDataUnit></StatsDataUnit>
+              <StatsDataUnit>USD</StatsDataUnit>
             </StatsDataContainer>
           </GeneralStatsContainer>
           <GeneralStatsContainer>
@@ -608,10 +653,13 @@ export default function Portfoilo() {
                 {portfolioData === null ? (
                   <StatsDataEmpty>-</StatsDataEmpty>
                 ) : (
-                  String(portfolioData.data.portfolio.holding_volume) + " USD"
+                  String(portfolioData.data.portfolio.holding_volume).substring(
+                    0,
+                    7,
+                  )
                 )}
               </StatsData>
-              <StatsDataUnit></StatsDataUnit>
+              <StatsDataUnit>USD</StatsDataUnit>
             </StatsDataContainer>
           </GeneralStatsContainer>
           <GeneralStatsContainer>
@@ -624,10 +672,13 @@ export default function Portfoilo() {
                 {portfolioData === null ? (
                   <StatsDataEmpty>-</StatsDataEmpty>
                 ) : (
-                  String(portfolioData.data.portfolio.earnings_rate) + " USD"
+                  String(portfolioData.data.portfolio.earnings_rate).substring(
+                    0,
+                    7,
+                  )
                 )}
               </StatsData>
-              <StatsDataUnit></StatsDataUnit>
+              <StatsDataUnit>%</StatsDataUnit>
             </StatsDataContainer>
           </GeneralStatsContainer>
           <GeneralStatsContainer>
@@ -640,10 +691,13 @@ export default function Portfoilo() {
                 {portfolioData === null ? (
                   <StatsDataEmpty>-</StatsDataEmpty>
                 ) : (
-                  String(portfolioData.data.portfolio.total_gas_fee) + " USD"
+                  String(portfolioData.data.portfolio.total_gas_fee).substring(
+                    0,
+                    7,
+                  )
                 )}
               </StatsData>
-              <StatsDataUnit></StatsDataUnit>
+              <StatsDataUnit>USD</StatsDataUnit>
             </StatsDataContainer>
           </GeneralStatsContainer>
           <GeneralStatsContainer>
@@ -659,10 +713,10 @@ export default function Portfoilo() {
                   String(portfolioData.data.portfolio.buy_volume).substring(
                     0,
                     8,
-                  ) + " USD"
+                  )
                 )}
               </StatsData>
-              <StatsDataUnit></StatsDataUnit>
+              <StatsDataUnit>USD</StatsDataUnit>
             </StatsDataContainer>
           </GeneralStatsContainer>
           <GeneralStatsContainer>
@@ -678,10 +732,10 @@ export default function Portfoilo() {
                   String(portfolioData.data.portfolio.sell_volume).substring(
                     0,
                     8,
-                  ) + " USD"
+                  )
                 )}
               </StatsData>
-              <StatsDataUnit></StatsDataUnit>
+              <StatsDataUnit>USD</StatsDataUnit>
             </StatsDataContainer>
           </GeneralStatsContainer>
           <GeneralStatsContainer>

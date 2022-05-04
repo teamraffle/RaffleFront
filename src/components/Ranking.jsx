@@ -220,6 +220,8 @@ const Footer = styled.div`
 
   width: auto;
   height: 3rem;
+
+  margin-top: 2.4rem;
 `;
 const FooterMore = styled.div`
   position: relative;
@@ -385,7 +387,7 @@ export default function Ranking() {
       setRankList((prev) => [...prev, data]);
     });
 
-    if (Math.floor(response.data.total / 10) >= page) {
+    if (Math.ceil(response.data.total / 10) - 1 >= page) {
       setMore(true);
     } else {
       setMore(false);
@@ -504,7 +506,7 @@ export default function Ranking() {
                           src={
                             "img/profile_picture_" +
                             String(
-                              (String(data.nickname).charCodeAt(0) % 4) + 1,
+                              (String(data.nickname).charCodeAt(0) % 7) + 1,
                             ) +
                             ".png"
                           }
@@ -546,7 +548,9 @@ export default function Ranking() {
                         </div>
                       </RankEMVContainer>
                       <RankNfts>{data.nft_holdings}</RankNfts>
-                      <RankEarnings>{data.earning}</RankEarnings>
+                      <RankEarnings>
+                        {String(data.earning).substring(0, 5) + " %"}
+                      </RankEarnings>
                     </Rank>
                   </Link>
                 </div>

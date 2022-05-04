@@ -86,21 +86,20 @@ const App = () => {
     text-align: center;
     line-height: auto;
 
-    margin-left: auto;
-    margin-right: auto;
-
     padding-left: 4.4rem;
     padding-bottom: 2.4rem;
 
     /* text */
 
+    font-family: Poppins;
+    font-size: 14px;
     font-weight: 500;
     font-stretch: normal;
     font-style: normal;
-
-    letter-spacing: -0.48px;
-
-    color: #bdbebe;
+    line-height: normal;
+    letter-spacing: -0.42px;
+    text-align: left;
+    color: #626262;
   `;
 
   return (
@@ -146,7 +145,9 @@ const App = () => {
         {/* Footer */}
         {/* Footer is in Content*/}
       </Router>
-      <Footer>ⓒ 2022 RAFFLE | All rights reserved</Footer>
+      <div style={{ width: "102.4rem", display: "flex" }}>
+        <Footer>ⓒ 2022 RAFFLE | All rights reserved</Footer>
+      </div>
     </Wrapper>
   );
 };

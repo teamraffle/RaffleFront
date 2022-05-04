@@ -270,7 +270,9 @@ export default function PortfoiloActivity() {
       <ActitivityContainer>
         <Header>
           <HeaderText>{"During the past "}</HeaderText>
-          <HeaderText color={colors.RaffleNeon}>&nbsp;{" 7 "}&nbsp;</HeaderText>
+          <HeaderText color={colors.RaffleNeon}>
+            &nbsp;{" 365 "}&nbsp;
+          </HeaderText>
           <HeaderText>{" Days,"}</HeaderText>
           <HeaderText color={colors.RaffleNeon}>
             &nbsp;

@@ -1,8 +1,9 @@
 import styles from "./ProfileButton.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Blockies from "react-blockies";
+import axios from "axios";
 
 const DropdownArea = styled.div`
   position: absolute;
@@ -171,7 +172,34 @@ const ProfileArea = styled.div`
 
 const ProfileButton = () => {
   const [mouseEnter, setMouseEnter] = useState(false);
+  const [userData, setUserData] = useState(null);
 
+  const getUserData = async () => {
+    const params = {
+      chain_id: 1,
+      // 일단은 특정 주소를 이용해서 값 불러오는 것을 확인함
+      address: sessionStorage.getItem("walletAddress"),
+    };
+
+    if (sessionStorage.getItem("myWalletAddress") === null) {
+      console.log("ASDFIAWEFHAWLFJLKSDF");
+    }
+
+    const response_user = await axios.get(
+      "https://nftranks.xyz:8888/v1/users",
+      {
+        params,
+      },
+    );
+
+    setUserData(response_user);
+
+    console.log("[+] user data : ", userData);
+  };
+
+  useEffect(() => {
+    getUserData();
+  }, []);
   return (
     <div>
       <ProfileArea
@@ -182,14 +210,22 @@ const ProfileButton = () => {
           setMouseEnter(false);
         }}
       >
-        <Blockies
+        {/* <Blockies
           seed={sessionStorage.getItem("myWalletAddress")}
           size={12}
           scale={4}
           color="#1f8203"
           bgColor="#ffe"
           spotColor="#abc"
-        ></Blockies>
+        ></Blockies> */}
+        <img
+          src={
+            "img/profile_picture_" +
+            String((String(userData.data.nickname).charCodeAt(0) % 7) + 1) +
+            ".png"
+          }
+          alt="pfp"
+        />
         {mouseEnter ? <ProfileMiniBox /> : null}
       </ProfileArea>
     </div>
