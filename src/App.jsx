@@ -13,6 +13,7 @@ import Ranking from "./components/Ranking";
 import Projects from "./components/Projects";
 import ProjectsRegister from "./components/ProjectsRegister";
 import Creator from "./components/Creator";
+import CreateNewProject from "./components/CreateNewProject";
 import styled from "styled-components";
 
 const App = () => {
@@ -136,6 +137,9 @@ const App = () => {
             </Route>
             <Route path="/creator">
               <Creator />
+            </Route>
+            <Route path="/createnewproject">
+              <CreateNewProject />
             </Route>
             <Route path="*">
               <PageNotFound />

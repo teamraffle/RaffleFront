@@ -333,32 +333,32 @@ export default function AboutUs() {
             <TeamMemberIcon src="img/Summer.png" alt=" " />
             <TeamMemberRole>Developer</TeamMemberRole>
             <TeamMemberName>Summer</TeamMemberName>
-            <TmeaMemberDescription>Backend</TmeaMemberDescription>
+            <TmeaMemberDescription>Backend, Solidity</TmeaMemberDescription>
           </TeamMemberBox>
 
           <TeamMemberBox>
             <TeamMemberIcon src="img/Blockcodes.png" alt=" " />
-            <TeamMemberRole>Developer</TeamMemberRole>
+            <TeamMemberRole>Community Builder</TeamMemberRole>
             <TeamMemberName>Blockcodes</TeamMemberName>
-            <TmeaMemberDescription>Frontend</TmeaMemberDescription>
+            <TmeaMemberDescription>Frontend, Solidity</TmeaMemberDescription>
           </TeamMemberBox>
           <TeamMemberBox>
             <TeamMemberIcon src="img/Koko.png" alt=" " />
             <TeamMemberRole>Developer</TeamMemberRole>
             <TeamMemberName>Koko</TeamMemberName>
-            <TmeaMemberDescription>Backend</TmeaMemberDescription>
+            <TmeaMemberDescription>Backend, Solidity</TmeaMemberDescription>
           </TeamMemberBox>
           <TeamMemberBox>
             <TeamMemberIcon src="img/Panna.png" alt=" " />
             <TeamMemberRole>Developer</TeamMemberRole>
             <TeamMemberName>Panna</TeamMemberName>
-            <TmeaMemberDescription>Frontend</TmeaMemberDescription>
+            <TmeaMemberDescription>Frontend, Solidity</TmeaMemberDescription>
           </TeamMemberBox>
           <TeamMemberBox>
             <TeamMemberIcon src="img/Mean.png" alt=" " />
-            <TeamMemberRole>Designer</TeamMemberRole>
+            <TeamMemberRole>Product Designer</TeamMemberRole>
             <TeamMemberName>Mean</TeamMemberName>
-            <TmeaMemberDescription>Design</TmeaMemberDescription>
+            <TmeaMemberDescription>Designer</TmeaMemberDescription>
           </TeamMemberBox>
         </TeamMemberContainer>
       </Block4>
