@@ -418,15 +418,16 @@ export default function Portfoilo() {
   };
 
   // ENS 이용하는 코드
-  let web3;
-  let provider;
-
-  web3 = window.web3;
-  provider = web3.currentProvider;
-
-  const ens = new ENS({ provider, ensAddress: getEnsAddress("1") });
-
   const tryToGetENSName = async (address) => {
+    let web3;
+    let provider;
+
+    web3 = window.web3;
+    provider = web3.currentProvider;
+
+    console.log("[-] PROVIDER : ", provider);
+
+    const ens = new ENS({ provider, ensAddress: getEnsAddress("1") });
     ens.getName(address).then((data) => {
       setEnsName(data.name);
     });
@@ -456,8 +457,9 @@ export default function Portfoilo() {
 
   useEffect(() => {
     console.log("[+] portfolio basic data : ", portfolioData);
-
-    tryToGetENSName(sessionStorage.getItem("walletAddress"));
+    if (window.web3) {
+      tryToGetENSName(sessionStorage.getItem("walletAddress"));
+    }
     console.log("[*] ens name : ", ensName);
   }, [portfolioData]);
 
