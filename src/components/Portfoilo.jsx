@@ -647,7 +647,7 @@ export default function Portfoilo() {
                   ).substring(0, 8)
                 )}
               </StatsData>
-              <StatsDataUnit>USD</StatsDataUnit>
+              <StatsDataUnit>ETH</StatsDataUnit>
             </StatsDataContainer>
           </GeneralStatsContainer>
           <GeneralStatsContainer>
@@ -666,7 +666,7 @@ export default function Portfoilo() {
                   )
                 )}
               </StatsData>
-              <StatsDataUnit>USD</StatsDataUnit>
+              <StatsDataUnit>ETH</StatsDataUnit>
             </StatsDataContainer>
           </GeneralStatsContainer>
           <GeneralStatsContainer>
@@ -704,7 +704,7 @@ export default function Portfoilo() {
                   )
                 )}
               </StatsData>
-              <StatsDataUnit>USD</StatsDataUnit>
+              <StatsDataUnit>ETH</StatsDataUnit>
             </StatsDataContainer>
           </GeneralStatsContainer>
           <GeneralStatsContainer>
@@ -723,7 +723,7 @@ export default function Portfoilo() {
                   )
                 )}
               </StatsData>
-              <StatsDataUnit>USD</StatsDataUnit>
+              <StatsDataUnit>ETH</StatsDataUnit>
             </StatsDataContainer>
           </GeneralStatsContainer>
           <GeneralStatsContainer>
@@ -742,7 +742,7 @@ export default function Portfoilo() {
                   )
                 )}
               </StatsData>
-              <StatsDataUnit>USD</StatsDataUnit>
+              <StatsDataUnit>ETH</StatsDataUnit>
             </StatsDataContainer>
           </GeneralStatsContainer>
           <GeneralStatsContainer>
