@@ -313,7 +313,7 @@ export default function PortfoiloNFT() {
           ) : (
             nftDataResult.map((data) => {
               return (
-                <div>
+                <div key={data.nft_item_id}>
                   <NFTBox>
                     <BoxImg>
                       {/* ---------------------일단 적당히 돌아가는 코드임--------------------- */}

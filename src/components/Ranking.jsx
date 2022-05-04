@@ -493,6 +493,7 @@ export default function Ranking() {
           : rankList.map((data) => {
               return (
                 <div
+                  key={data.rank_id}
                   onClick={() => {
                     sessionStorage.setItem("walletAddress", data.address);
                     console.log(sessionStorage.getItem("walletAddress"));
