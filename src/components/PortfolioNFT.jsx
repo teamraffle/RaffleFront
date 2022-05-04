@@ -205,6 +205,8 @@ const NFTsFooter = styled.div`
 const FooterIndexButton = styled.div`
   cursor: pointer;
 
+  font-size: 2rem;
+
   &hover: {
     color: ${colors.RaffleNeon};
   }
@@ -282,7 +284,7 @@ export default function PortfoiloNFT() {
         <HeaderSearchBar>
           <NFTSearchBar />
         </HeaderSearchBar>
-        {/* <NFTOptionBox /> */}
+        <NFTOptionBox>Latest</NFTOptionBox>
       </NFTsHeader>
       <NFTsBody>
         <BodyCountResults>
@@ -417,9 +419,23 @@ export default function PortfoiloNFT() {
       </NFTsBody>
       {nftData === null ? null : (
         <NFTsFooter>
-          <FooterIndexButton onClick={pageDecrease}>{"<"}</FooterIndexButton>
+          <FooterIndexButton
+            style={{ color: "#f5f5f5" }}
+            onClick={pageDecrease}
+          >
+            {"<"}
+          </FooterIndexButton>
           <FooterIndexButton>{page}</FooterIndexButton>
-          <FooterIndexButton onClick={pageIncrease}>{">"}</FooterIndexButton>
+          <FooterIndexButton>{"/"}</FooterIndexButton>
+          <FooterIndexButton>
+            {Math.ceil(nftData.data.total / 12)}
+          </FooterIndexButton>
+          <FooterIndexButton
+            style={{ color: "#f5f5f5" }}
+            onClick={pageIncrease}
+          >
+            {">"}
+          </FooterIndexButton>
         </NFTsFooter>
       )}
     </NFTsContainer>
