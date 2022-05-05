@@ -222,7 +222,9 @@ const ProfileButton = () => {
             userData === null
               ? null
               : "img/profile_picture_" +
-                String((String(userData.data.nickname).charCodeAt(0) % 7) + 1) +
+                String(
+                  (String(userData.data.nickname).charCodeAt(0) % 10) + 1,
+                ) +
                 ".png"
           }
           alt="pfp"

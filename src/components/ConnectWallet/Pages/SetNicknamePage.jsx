@@ -251,6 +251,7 @@ export default function SetNicknamePage(props) {
             alt="nickname page wallet symbol"
           />
           <HeaderWalletName>
+            &nbsp; &nbsp;
             {chainID === 1 && "metamask |"}
             {chainID === 2 && "coinbase |"}
             {chainID === 3 && "kaikas |"}
@@ -269,7 +270,11 @@ export default function SetNicknamePage(props) {
             alt="basic img"
           />
         </BoxAvatarContainer>
-        <BoxUserAddress>{currentAccount}</BoxUserAddress>
+        <BoxUserAddress>
+          {String(currentAccount).substring(0, 12) +
+            " ... " +
+            String(currentAccount).substring(30, 42)}
+        </BoxUserAddress>
         <BoxNicknameInput
           type="text"
           onChange={(event) => _setNickname(event.target.value)}
