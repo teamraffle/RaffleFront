@@ -423,12 +423,19 @@ export default function Portfoilo() {
       chain_id: 1,
       address: sessionStorage.getItem("walletAddress"),
     };
+
+    // This code is only for presentation
+    if (params.address === "0x415e380a6bbee81a59fa73465fb83727396dcf18") {
+      params.address = "0x7194397Dd015F731a36A30cDcA4627fFBde79A72";
+    }
+
     const response_portfolio = await axios.get(
       "https://nftranks.xyz:8888/v1/portfolios/basic",
       {
         params,
       },
     );
+
     setPortfolioData(response_portfolio);
 
     console.log("[+] portfolio basic data : ", portfolioData);
@@ -508,7 +515,9 @@ export default function Portfoilo() {
   useEffect(() => {
     console.log("[+] portfolio basic data : ", portfolioData);
     if (window.web3) {
-      tryToGetENSName(sessionStorage.getItem("myWalletAddress"));
+      if (sessionStorage.getItem("myWalletAddress") !== null) {
+        tryToGetENSName(sessionStorage.getItem("myWalletAddress"));
+      }
       if (sessionStorage.getItem("walletAddress") !== null) {
         tryToGetENSName(sessionStorage.getItem("walletAddress"));
       }

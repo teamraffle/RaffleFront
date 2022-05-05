@@ -29,6 +29,7 @@ const Blur = styled.img`
 
 export default function Landing() {
   sessionStorage.setItem("origin", window.location.href);
+  sessionStorage.removeItem("walletAddress");
   return (
     <>
       <div
