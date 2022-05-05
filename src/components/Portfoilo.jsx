@@ -562,7 +562,7 @@ export default function Portfoilo() {
                       ? null
                       : "img/profile_picture_" +
                         String(
-                          (String(userData.data.nickname).charCodeAt(0) % 7) +
+                          (String(userData.data.nickname).charCodeAt(0) % 10) +
                             1,
                         ) +
                         ".png"

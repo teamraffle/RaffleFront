@@ -466,7 +466,7 @@ export default function Ranking() {
                           src={
                             "img/profile_picture_" +
                             String(
-                              (String(data.nickname).charCodeAt(0) % 7) + 1,
+                              (String(data.nickname).charCodeAt(0) % 10) + 1,
                             ) +
                             ".png"
                           }
