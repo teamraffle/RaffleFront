@@ -231,9 +231,7 @@ export default function SetNicknamePage(props) {
       sessionStorage.setItem("nickname", response.data.nickname);
       sessionStorage.setItem("myWalletAddress", currentAccount);
 
-      const url = await window.location.href;
-      const targetURL = url.slice(0, url.indexOf("connectWallet"));
-      window.location.href = targetURL + "portfolio";
+      window.location.href = sessionStorage.getItem("origin");
     } catch (ex) {
       console.log("[sendPostToRegisterNewUser] Error : ", ex);
     }
