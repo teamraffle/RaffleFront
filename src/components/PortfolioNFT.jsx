@@ -236,7 +236,7 @@ export default function PortfoiloNFT() {
 
     // This code is only for presentation
     if (params.address === "0x415e380a6bbee81a59fa73465fb83727396dcf18") {
-      params.address = "0x7194397Dd015F731a36A30cDcA4627fFBde79A72";
+      params.address = "0x256640f9FCc6A81f96649A7A45cb62d997838949";
     }
 
     const response = await axios.get(

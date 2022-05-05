@@ -152,11 +152,11 @@ const ProfileMiniBox = () => {
         {/* Sign out */}
         <DropdownOption
           onClick={() => {
-            sessionStorage.setItem("user", null);
-            sessionStorage.setItem("nickname", null);
-            sessionStorage.setItem("myWalletAddress", null);
-            sessionStorage.setItem("myWalletAddress", null);
-            window.location.reload();
+            sessionStorage.removeItem("user");
+            sessionStorage.removeItem("nickname");
+            sessionStorage.removeItem("myWalletAddress");
+            sessionStorage.removeItem("myWalletAddress");
+            window.location.href = sessionStorage.getItem("origin");
           }}
         >
           Sign Out
