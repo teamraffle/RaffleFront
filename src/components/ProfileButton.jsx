@@ -152,9 +152,10 @@ const ProfileMiniBox = () => {
         {/* Sign out */}
         <DropdownOption
           onClick={() => {
-            sessionStorage.setItem("user", "");
-            sessionStorage.setItem("nickname", "");
-            sessionStorage.setItem("myWalletAddress", "");
+            sessionStorage.setItem("user", null);
+            sessionStorage.setItem("nickname", null);
+            sessionStorage.setItem("myWalletAddress", null);
+            sessionStorage.setItem("myWalletAddress", null);
             window.location.reload();
           }}
         >
@@ -178,7 +179,7 @@ const ProfileButton = () => {
     const params = {
       chain_id: 1,
       // 일단은 특정 주소를 이용해서 값 불러오는 것을 확인함
-      address: sessionStorage.getItem("walletAddress"),
+      address: sessionStorage.getItem("myWalletAddress"),
     };
 
     const response_user = await axios.get(

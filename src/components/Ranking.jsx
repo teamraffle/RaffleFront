@@ -206,8 +206,8 @@ const RankNfts = styled.div`
 `;
 const RankEarnings = styled.div`
   align-self: center;
-  width: 6rem;
-  margin-left: 4rem;
+  width: 8rem;
+  margin-left: 2rem;
 
   text-align: right;
 `;
@@ -513,7 +513,11 @@ export default function Ranking() {
                           }
                           alt="pfp"
                         ></RankUserImg>
-                        <RankUsername>{data.nickname}</RankUsername>
+                        <RankUsername>
+                          {data.nickname === "null"
+                            ? "annonymous"
+                            : data.nickname}
+                        </RankUsername>
                         <RankHands>
                           <img
                             style={{ width: "9.2rem" }}
@@ -529,7 +533,13 @@ export default function Ranking() {
                       </RankUser>
                       <RankEMVContainer>
                         <RankEstMarketValue>
-                          {String(data.est_market_value).substring(0, 8)}
+                          {String(data.est_market_value).indexOf(".") !== -1
+                            ? String(data.est_market_value).split(".")[0] +
+                              "." +
+                              String(data.est_market_value)
+                                .split(".")[1]
+                                .substring(0, 2)
+                            : String(data.est_market_value)}
                         </RankEstMarketValue>
                         <div
                           style={{
@@ -550,7 +560,12 @@ export default function Ranking() {
                       </RankEMVContainer>
                       <RankNfts>{data.nft_holdings}</RankNfts>
                       <RankEarnings>
-                        {String(data.earning).substring(0, 5) + " %"}
+                        {String(data.earning).indexOf(".") !== -1
+                          ? String(data.earning).split(".")[0] +
+                            "." +
+                            String(data.earning).split(".")[1].substring(0, 2) +
+                            " %"
+                          : String(data.earning) + " %"}
                       </RankEarnings>
                     </Rank>
                   </Link>
