@@ -250,13 +250,14 @@ export default function SetNicknamePage(props) {
             src="img/SetNickName_metamask_symbol.png"
             alt="nickname page wallet symbol"
           />
-
           <HeaderWalletName>
             {chainID === 1 && "metamask |"}
             {chainID === 2 && "coinbase |"}
             {chainID === 3 && "kaikas |"}
           </HeaderWalletName>
+          &nbsp;
           <HeaderChainName>
+            &nbsp;
             {chainID === 1 && " ethereum"}
             {chainID === 2 && " coinbase"}
             {chainID === 3 && " klaytn"}
