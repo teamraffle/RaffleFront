@@ -333,30 +333,36 @@ export default function AboutUs() {
             <TeamMemberIcon src="img/Summer.png" alt=" " />
             <TeamMemberRole>Developer</TeamMemberRole>
             <TeamMemberName>Summer</TeamMemberName>
-            <TmeaMemberDescription>Backend, Solidity</TmeaMemberDescription>
+            <TmeaMemberDescription>
+              Backend, Smart Contracts
+            </TmeaMemberDescription>
           </TeamMemberBox>
 
           <TeamMemberBox>
             <TeamMemberIcon src="img/Blockcodes.png" alt=" " />
             <TeamMemberRole>Community Builder</TeamMemberRole>
             <TeamMemberName>Blockcodes</TeamMemberName>
-            <TmeaMemberDescription>Frontend, Solidity</TmeaMemberDescription>
+            <TmeaMemberDescription>
+              Marketing, Community Building
+            </TmeaMemberDescription>
           </TeamMemberBox>
           <TeamMemberBox>
             <TeamMemberIcon src="img/Koko.png" alt=" " />
             <TeamMemberRole>Developer</TeamMemberRole>
             <TeamMemberName>Koko</TeamMemberName>
-            <TmeaMemberDescription>Backend, Solidity</TmeaMemberDescription>
+            <TmeaMemberDescription>
+              Backend, Smart Contracts
+            </TmeaMemberDescription>
           </TeamMemberBox>
           <TeamMemberBox>
             <TeamMemberIcon src="img/Panna.png" alt=" " />
             <TeamMemberRole>Developer</TeamMemberRole>
             <TeamMemberName>Panna</TeamMemberName>
-            <TmeaMemberDescription>Frontend, Solidity</TmeaMemberDescription>
+            <TmeaMemberDescription>Frontend</TmeaMemberDescription>
           </TeamMemberBox>
           <TeamMemberBox>
             <TeamMemberIcon src="img/Mean.png" alt=" " />
-            <TeamMemberRole>Product Designer</TeamMemberRole>
+            <TeamMemberRole>Designer</TeamMemberRole>
             <TeamMemberName>Mean</TeamMemberName>
             <TmeaMemberDescription>Designer</TmeaMemberDescription>
           </TeamMemberBox>

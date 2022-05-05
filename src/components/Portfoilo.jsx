@@ -415,7 +415,14 @@ export default function Portfoilo() {
     );
 
     setUserData(response_user);
+    console.log("[+] user data : ", userData);
+  };
 
+  const getPortfolioData = async () => {
+    const params = {
+      chain_id: 1,
+      address: sessionStorage.getItem("walletAddress"),
+    };
     const response_portfolio = await axios.get(
       "https://nftranks.xyz:8888/v1/portfolios/basic",
       {
@@ -424,7 +431,6 @@ export default function Portfoilo() {
     );
     setPortfolioData(response_portfolio);
 
-    console.log("[+] user data : ", userData);
     console.log("[+] portfolio basic data : ", portfolioData);
   };
 
@@ -473,6 +479,28 @@ export default function Portfoilo() {
     setSync(response.data.sync);
   };
 
+  const renderLoading = () => {
+    return (
+      <Loading>
+        <img
+          style={{
+            width: "36rem",
+            height: "36rem",
+            marginLeft: "auto",
+            marginRight: "auto",
+          }}
+          src="img/loading_page.png"
+          alt="loading img"
+        />
+        <LoadingText>
+          Please wait!
+          <br />
+          Your result on the way
+        </LoadingText>
+      </Loading>
+    );
+  };
+
   useEffect(() => {
     console.log("[+] user data : ", userData);
   }, [userData]);
@@ -480,7 +508,10 @@ export default function Portfoilo() {
   useEffect(() => {
     console.log("[+] portfolio basic data : ", portfolioData);
     if (window.web3) {
-      tryToGetENSName(sessionStorage.getItem("walletAddress"));
+      tryToGetENSName(sessionStorage.getItem("myWalletAddress"));
+      if (sessionStorage.getItem("walletAddress") !== null) {
+        tryToGetENSName(sessionStorage.getItem("walletAddress"));
+      }
     }
     console.log("[*] ens name : ", ensName);
   }, [portfolioData]);
@@ -490,30 +521,20 @@ export default function Portfoilo() {
   }, [sync]);
 
   useEffect(() => {
-    getUserData();
+    setTimeout(() => {
+      getUserData();
+    }, 500);
+    setTimeout(() => {
+      getPortfolioData();
+    }, 500);
+
     checkSync();
   }, []);
 
   return (
     <div>
-      {sync === 0 ? (
-        <Loading>
-          <img
-            style={{
-              width: "36rem",
-              height: "36rem",
-              marginLeft: "auto",
-              marginRight: "auto",
-            }}
-            src="img/loading_page.png"
-            alt="loading img"
-          />
-          <LoadingText>
-            Please wait!
-            <br />
-            Your result on the way
-          </LoadingText>
-        </Loading>
+      {(userData === null && portfolioData === null) || sync === 0 ? (
+        renderLoading()
       ) : (
         <PortfoiloContainer>
           <Box1>
@@ -559,14 +580,22 @@ export default function Portfoilo() {
 
                   <DataNicknameContainer>
                     <DataNickname>
-                      {userData === null ? null : userData.data.nickname}
+                      {userData === null
+                        ? "annonymous"
+                        : userData.data.nickname}
                     </DataNickname>
                     <DataNicknameEditButtonImg src="img/EditButton.png"></DataNicknameEditButtonImg>
                   </DataNicknameContainer>
                   <DataWalletAddressContainer>
                     <DataWalletAddress>
                       {userData === null
-                        ? null
+                        ? String(
+                            sessionStorage.getItem("walletAddress"),
+                          ).substring(0, 6) +
+                          "..." +
+                          String(
+                            sessionStorage.getItem("walletAddress"),
+                          ).substring(38, 42)
                         : ensName === null
                         ? String(userData.data.wallet.address).substring(0, 6) +
                           "..." +
@@ -872,6 +901,7 @@ export default function Portfoilo() {
               >
                 NFTs
               </NSAHeaderButton>
+
               <NSAHeaderButton
                 onClick={renderActivityTab}
                 style={
@@ -884,31 +914,35 @@ export default function Portfoilo() {
               >
                 Activity
               </NSAHeaderButton>
-              <NSAHeaderButton
-                onClick={renderStatsTab}
-                style={
-                  (tab === "Stats" && {
-                    borderBottom: "solid 0.5rem #d6f866",
-                  }) || {
-                    borderBottom: null,
-                  }
-                }
-              >
-                Stats
-              </NSAHeaderButton>
 
-              <NSAHeaderButton
-                onClick={renderProjectsTab}
-                style={
-                  (tab === "Projects" && {
-                    borderBottom: "solid 0.5rem #d6f866",
-                  }) || {
-                    borderBottom: null,
+              {userData === null ? null : (
+                <NSAHeaderButton
+                  onClick={renderStatsTab}
+                  style={
+                    (tab === "Stats" && {
+                      borderBottom: "solid 0.5rem #d6f866",
+                    }) || {
+                      borderBottom: null,
+                    }
                   }
-                }
-              >
-                Projects
-              </NSAHeaderButton>
+                >
+                  Stats
+                </NSAHeaderButton>
+              )}
+              {userData === null ? null : (
+                <NSAHeaderButton
+                  onClick={renderProjectsTab}
+                  style={
+                    (tab === "Projects" && {
+                      borderBottom: "solid 0.5rem #d6f866",
+                    }) || {
+                      borderBottom: null,
+                    }
+                  }
+                >
+                  Projects
+                </NSAHeaderButton>
+              )}
             </PortfoiloNSAHeader>
             <PortfoiloNSABody>
               {(tab === "NFTs" && <PortfolioNFT />) ||

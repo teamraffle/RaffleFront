@@ -229,7 +229,7 @@ export default function SetNicknamePage(props) {
       });
       sessionStorage.setItem("user", response.data.user_id);
       sessionStorage.setItem("nickname", response.data.nickname);
-      sessionStorage.setItem("walletAddress", currentAccount);
+      sessionStorage.setItem("myWalletAddress", currentAccount);
 
       const url = await window.location.href;
       const targetURL = url.slice(0, url.indexOf("connectWallet"));
