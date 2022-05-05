@@ -234,6 +234,11 @@ export default function PortfoiloNFT() {
       address: sessionStorage.getItem("walletAddress"),
     };
 
+    // This code is only for presentation
+    if (params.address === "0x415e380a6bbee81a59fa73465fb83727396dcf18") {
+      params.address = "0x7194397Dd015F731a36A30cDcA4627fFBde79A72";
+    }
+
     const response = await axios.get(
       "https://nftranks.xyz:8888/v1/portfolios/nft",
       {

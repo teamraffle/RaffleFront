@@ -358,7 +358,9 @@ export default function AboutUs() {
             <TeamMemberIcon src="img/Panna.png" alt=" " />
             <TeamMemberRole>Developer</TeamMemberRole>
             <TeamMemberName>Panna</TeamMemberName>
-            <TmeaMemberDescription>Frontend</TmeaMemberDescription>
+            <TmeaMemberDescription>
+              Frontend, Smart Contracts
+            </TmeaMemberDescription>
           </TeamMemberBox>
           <TeamMemberBox>
             <TeamMemberIcon src="img/Mean.png" alt=" " />

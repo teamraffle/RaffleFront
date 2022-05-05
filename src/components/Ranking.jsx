@@ -327,46 +327,6 @@ export default function Ranking() {
     setRangeOption(3);
   };
 
-  //   const initRanking = async () => {
-  //     const wallets = [];
-  //     wallets.push("0x4a570CC168caf8eA07eaD7f5DA34e28BBaE44B29");
-  //     wallets.push("0x922b8d9803a6cfc60fa6bfb32ac9c4a8fce4ec57");
-  //     wallets.push("0x036eff96a00b461bf86cdfb6cf1fbee08e9e3be6");
-  //     wallets.push("0x138b9057d61e893b72b33ab2d17f24ac87bd33cb");
-  //     wallets.push("0x0bf75cc9f0755cc211ca968cb722cdf472430fb8");
-  //     wallets.push("0x6facad44e126f2cacde44a0b2b85ce1b643495d1");
-  //     wallets.push("0x9678619db86cb846c3a91c960cbf85bff7db842d");
-  //     wallets.push("0x7194397dd015f731a36a30cdca4627ffbde79a72");
-  //     wallets.push("0x11a8e8670970ef4782c90a2af8ccf20f9889c803");
-  //     wallets.push("0x2f2f237d2e655cc0a6f6fef761e5aef13087e71f");
-
-  //     const nicknames = [];
-  //     nicknames.push("alice");
-  //     nicknames.push("brown");
-  //     nicknames.push("fuller");
-  //     nicknames.push("davaron");
-  //     nicknames.push("spencer");
-  //     nicknames.push("aaron");
-  //     nicknames.push("landwher");
-  //     nicknames.push("ancheta");
-  //     nicknames.push("robert");
-  //     nicknames.push("stephanie");
-
-  //     for (let i = 0; i < 10; i++) {
-  //       const params = {
-  //         chain_id: 1,
-  //         address: wallets[i],
-  //         nickname: nicknames[i],
-  //       };
-  //       const response = await axios.post(
-  //         "https://nftranks.xyz:8888/v1/users",
-  //         params,
-  //       );
-
-  //       console.log(response);
-  //     }
-  //   };
-
   const getRankList = async () => {
     const params = {
       page: page - 1,
@@ -404,7 +364,6 @@ export default function Ranking() {
 
   useEffect(() => {
     getRankList();
-    // initRanking();
   }, []);
 
   return (
