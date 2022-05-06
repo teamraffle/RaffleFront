@@ -433,7 +433,6 @@ export default function Ranking() {
         >
           20001 ~ 20050
         </RangeOption>
-        <StandardOptionBox>정렬 기준</StandardOptionBox>
       </RangeOptionContainer>
       <Body>
         <BodyTitle>
